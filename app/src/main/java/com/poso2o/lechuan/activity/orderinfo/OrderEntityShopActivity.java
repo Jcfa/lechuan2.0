@@ -11,7 +11,6 @@ import com.poso2o.lechuan.base.BaseActivity;
  */
 
 public class OrderEntityShopActivity extends BaseActivity {
-
     private FrameLayout florderContent;
 
     @Override
