@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="61dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/member_root"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/member_name"
+            android:layout_width="0px"
+            android:layout_weight="1.2"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/z_text_small"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="--"/>
+
+        <TextView
+            android:id="@+id/member_buy_count"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/z_text_little"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="0"/>
+
+        <TextView
+            android:id="@+id/member_buy_amount"
+            android:layout_width="0px"
+            android:layout_weight="1.2"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/z_text_little"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="0.00"/>
+
+        <TextView
+            android:id="@+id/member_balance"
+            android:layout_width="0px"
+            android:layout_weight="1.2"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/z_text_little"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="0.00"/>
+
+        <TextView
+            android:id="@+id/member_integral"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/z_text_little"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="0"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+
+</LinearLayout>

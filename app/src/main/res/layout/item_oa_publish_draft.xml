@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><!--公众号助手-发布-稿件箱item-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_common_item"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/article_item_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="@dimen/spacing_small"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/article_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+        <TextView
+            android:id="@+id/article_item_look"
+            style="@style/text_tiny"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="40dp"
+            android:drawableLeft="@mipmap/ic_look"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="center_vertical"
+            android:text="@string/zero"
+            android:textColor="@color/textGray" />
+
+        <TextView
+            android:id="@+id/article_item_collect"
+            style="@style/text_tiny"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/selector_common"
+            android:drawableLeft="@mipmap/ic_collect_selected"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/zero"
+            android:textColor="@color/textGray" />
+
+        <TextView
+            android:id="@+id/article_item_share"
+            style="@style/text_tiny"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:drawableLeft="@mipmap/ic_share"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="center_vertical"
+            android:text="@string/zero"
+            android:textColor="@color/textGray" />
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/icon_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:src="@mipmap/icon_clear_48"/>
+</LinearLayout>

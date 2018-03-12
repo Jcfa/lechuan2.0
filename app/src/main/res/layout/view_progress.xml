@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/color_00BCB4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="12dp"
+        android:text="进度标尺"
+        android:textSize="@dimen/textSize_middle" />
+
+    <RelativeLayout
+        android:id="@+id/chart_progress"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="60dp" />
+
+    <ImageView
+        android:id="@+id/image_sale"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="5dp"
+        android:layout_below="@+id/chart_progress"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/icon_sale_amount" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/chart_progress"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/image_sale"
+        android:text="销售："
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/ruler_sale"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/chart_progress"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/textSize_middle"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="0.00"
+        android:layout_toRightOf="@+id/image_sale"
+        android:layout_marginLeft="52dp"/>
+
+    <ImageView
+        android:id="@+id/image_target"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/chart_progress"
+        android:layout_toRightOf="@+id/ruler_sale"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/icon_target_amount" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/chart_progress"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/image_target"
+        android:text="目标："
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/ruler_target"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/chart_progress"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/textSize_middle"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="0.00"
+        android:layout_toRightOf="@+id/image_target"
+        android:layout_marginLeft="52dp"/>
+
+    <ImageView
+        android:id="@+id/image_bottom_money"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="5dp"
+        android:src="@mipmap/icon_bottom_money"
+        android:layout_below="@+id/image_sale"
+        android:layout_alignLeft="@+id/image_sale"
+        android:layout_marginTop="12dp"
+        />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/image_sale"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/image_bottom_money"
+        android:text="保本："
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/ruler_bottom_money"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/image_sale"
+        android:layout_marginTop="12dp"
+        android:textSize="@dimen/textSize_middle"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="0.00"
+        android:layout_toRightOf="@+id/image_bottom_money"
+        android:layout_marginLeft="52dp" />
+
+    <ImageView
+        android:id="@+id/image_rate"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/image_target"
+        android:layout_toRightOf="@+id/ruler_sale"
+        android:layout_marginTop="12dp"
+        android:padding="5dp"
+        android:layout_marginLeft="17dp"
+        android:src="@mipmap/icon_complete_data"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/image_target"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/image_rate"
+        android:text="完成："
+        android:textSize="@dimen/textSize_middle"  />
+
+    <TextView
+        android:id="@+id/ruler_rate"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/image_target"
+        android:layout_marginTop="12dp"
+        android:textSize="@dimen/textSize_middle"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="0.00"
+        android:layout_toRightOf="@+id/image_target"
+        android:layout_marginLeft="52dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/image_bottom_money"
+        android:layout_marginTop="15dp" />
+
+</RelativeLayout>

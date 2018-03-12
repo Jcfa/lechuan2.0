@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.poso2o.lechuan.view.rich.DeletableEditText
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:cursorVisible="true"
+    android:lineSpacingExtra="10dp"
+    android:textSize="12sp"
+    android:textColor="#757575"
+    android:textCursorDrawable="@drawable/richtextedit_cursor_shape" />
+

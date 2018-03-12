@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--公众号助手-发布-文章-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_small">
+
+    <ImageView
+        android:id="@+id/iv_article_image"
+        android:layout_width="@dimen/height_large"
+        android:layout_height="@dimen/height_middle"
+        android:scaleType="centerCrop"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/tv_article_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:layout_margin="@dimen/spacing_tiny"
+        android:layout_toLeftOf="@+id/iv_article_close"
+        android:layout_toRightOf="@+id/iv_article_image" />
+
+    <ImageView
+        android:id="@+id/iv_article_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/spacing_tiny"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/icon_clear_48" />
+
+    <TextView
+        android:id="@+id/iv_add_advertised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_tiny"
+        android:drawableLeft="@mipmap/add_red_icon"
+        android:text="广告"
+        android:textSize="@dimen/textSize_normal"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

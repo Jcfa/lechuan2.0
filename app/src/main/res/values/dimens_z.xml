@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--标题字体大小-->
+    <dimen name="z_title_size">18sp</dimen>
+    <!--一般字体大小-->
+    <dimen name="z_text_normal">16sp</dimen>
+    <!--较小字体-->
+    <dimen name="z_text_small">14sp</dimen>
+    <!--特小字体-->
+    <dimen name="z_text_little">12sp</dimen>
+    <!--较大字体-->
+    <dimen name="z_text_big">18sp</dimen>
+    <!--特大字体-->
+    <dimen name="z_text_large">20sp</dimen>
+
+    <!--标题栏高度-->
+    <dimen name="z_head_height">50dp</dimen>
+    <!--标题栏返回键宽高-->
+    <dimen name="z_head_back_size">50dp</dimen>
+    <!--标题栏确定按钮高度-->
+    <dimen name="z_head_btn_height">40dp</dimen>
+
+    <!--公众号设置一般左边距-->
+    <dimen name="z_oa_set_padding_left">20dp</dimen>
+    <!--公众号设置一般上边距-->
+    <dimen name="z_oa_set_padding_height">12dp</dimen>
+</resources>

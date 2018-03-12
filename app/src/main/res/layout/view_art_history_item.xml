@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/art_history_item"
+    android:background="@android:color/white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"/>
+
+    <ImageView
+        android:id="@+id/item_history_list_pic"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/background_image"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/art_history_list_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/item_history_list_pic"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:lineSpacingMultiplier="1.3"
+        android:maxLines="2"
+        android:textSize="@dimen/z_text_normal"
+        android:textColor="@color/color_5E5E5E"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#EEEEEE"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/item_history_list_pic" />
+
+    <TextView
+        android:id="@+id/art_history_list_read"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/item_history_list_pic"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="30dp"
+        android:textSize="@dimen/z_text_normal"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/color_5E5E5E"
+        android:text="阅读 0"/>
+
+    <TextView
+        android:id="@+id/art_history_list_prise"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/item_history_list_pic"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/art_history_list_read"
+        android:layout_marginTop="3dp"
+        android:textSize="@dimen/z_text_normal"
+        android:textColor="@color/color_5E5E5E"
+        android:text="赞 0"/>
+
+    <TextView
+        android:id="@+id/art_history_list_del"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/item_history_list_pic"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:drawableLeft="@mipmap/icon_delete_art_64"
+        android:text="删除"
+        android:layout_marginTop="3dp"
+        android:visibility="invisible"
+        android:textColor="@color/color_5E5E5E"
+        android:drawablePadding="5dp"
+        android:layout_marginRight="30dp"/>
+
+</RelativeLayout>

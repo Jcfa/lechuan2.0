@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="32dp"
+    android:background="@drawable/shape_image_update"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/spacing_large"
+    android:paddingRight="@dimen/spacing_large">
+
+    <TextView
+        android:id="@+id/oa_publish_set_stick"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ems="4"
+        android:background="@drawable/selector_popup_menu_bg"
+        android:gravity="center"
+        android:text="设为封面"
+        android:textColor="@color/color_EEEEEE"
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/oa_publish_save_draft"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ems="4"
+        android:gravity="center"
+        android:background="@drawable/selector_popup_menu_bg"
+        android:text="存稿件箱"
+        android:textColor="@color/color_EEEEEE"
+        android:textSize="@dimen/textSize_middle" />
+
+    <LinearLayout
+        android:id="@+id/oa_publish_move_up"
+        android:layout_width="60dp"
+        android:background="@drawable/selector_popup_menu_bg"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/popup_menu_up_icon"
+            android:gravity="center"
+            android:text="上移"
+            android:textColor="@color/color_EEEEEE"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/oa_publish_move_down"
+        android:layout_width="60dp"
+        android:background="@drawable/selector_popup_menu_bg"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/popup_menu_down_icon"
+            android:gravity="center"
+            android:text="下移"
+            android:textColor="@color/color_EEEEEE"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+</LinearLayout>

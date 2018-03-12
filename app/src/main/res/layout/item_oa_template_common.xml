@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_template_pic"
+        android:layout_width="@dimen/image_middle"
+        android:layout_height="@dimen/image_middle"
+        android:layout_margin="@dimen/spacing_small"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_template_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/text_9E9E9E_12"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:text="简约模版" />
+</LinearLayout>

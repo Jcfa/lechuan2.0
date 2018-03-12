@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_root"
+    android:orientation="vertical" >
+    
+    <FrameLayout 
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/shape_down_line">
+        
+        <ImageView 
+            style="@style/iv_back"/>
+        
+        <TextView
+            style="@style/text_title"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:text="@string/add_red_money"/>
+
+    </FrameLayout>
+    
+    <TableRow
+        android:id="@+id/tr_article"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_down_line" >
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="@dimen/image_middle"
+            android:layout_height="@dimen/image_middle"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="0dp"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:paddingRight="@dimen/spacing_middle"
+            android:paddingTop="@dimen/spacing_large"
+            android:paddingBottom="@dimen/spacing_large" >
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/text_tiny_single_line"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/hint_text" />
+
+            <TextView
+                android:id="@+id/tv_article_title"
+                style="@style/text_middle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/tv_time" />
+
+        </RelativeLayout>
+
+    </TableRow>
+    
+    <TextView 
+        android:id="@+id/add_redbag_bar"
+        style="@style/text_tiny"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:drawableLeft="@mipmap/ic_red_bar_on"
+        android:drawablePadding="@dimen/spacing_small"
+        android:drawableRight="@mipmap/set_dialog_close"
+        android:background="@color/common_background"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="@dimen/spacing_middle"
+        android:gravity="center_vertical"
+        android:text="@string/edit_moments_red_envelope_describe"/>
+    
+    <include 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_redbag_base"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:background="@color/common_background">
+        
+        <TextView 
+            android:id="@+id/add_redbag_total"
+            style="@style/text_large"
+            android:layout_gravity="center_horizontal"
+            android:textSize="34sp"
+            android:layout_marginTop="@dimen/spacing_big"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/textBlack"/>
+        
+        <Button 
+            android:id="@+id/add_redbag_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/textSize_middle"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:padding="@dimen/spacing_middle"
+            android:text="@string/join_redbag"
+            android:background="@drawable/selector_blue"/>
+
+    </LinearLayout>
+
+</LinearLayout>

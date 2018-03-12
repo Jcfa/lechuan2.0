@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/color_00BCB4"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:text="销售趋势"
+        android:textSize="@dimen/textSize_middle"/>
+
+    <FrameLayout
+        android:id="@+id/tips_sale_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/tips_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="15dp"
+            android:text="销售"
+            android:textColor="#979797"
+            android:textSize="@dimen/textSize_tiny"/>
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center_vertical"
+            android:background="#882211"
+            android:id="@+id/view"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/tips_cost_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tips_sale_group" >
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center_vertical"
+            android:background="#FF6537"/>
+
+        <TextView
+            android:id="@+id/tips_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="15dp"
+            android:text="成本"
+            android:textColor="#979797"
+            android:textSize="@dimen/textSize_tiny"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/tips_profit_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tips_cost_group" >
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center_vertical"
+            android:background="#00BCB4"/>
+
+        <TextView
+            android:id="@+id/tips_profit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="15dp"
+            android:text="利润"
+            android:textColor="#979797"
+            android:textSize="@dimen/textSize_tiny"/>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/chart_sale_tendency"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="30dp"
+        android:paddingRight="4dp"/>
+
+</RelativeLayout>

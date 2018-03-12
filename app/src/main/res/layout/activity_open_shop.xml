@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/open_shop_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:layout_centerInParent="true"
+            android:text="我要开店"/>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/open_r_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/icon_shop_logo"
+                android:layout_marginTop="120dp"
+                android:text="开实体店"
+                android:drawablePadding="10dp"
+                android:textSize="@dimen/textSize_normal"
+                android:textColor="@color/textBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/textSize_tiny"
+                android:layout_marginLeft="15dp"
+                android:text="POSO2O店铺管理系统\n简单、易用、个性化，\n只占传统收银机的六分之一。"
+                android:lineSpacingMultiplier="1.2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/open_w_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/icon_vdian_logo"
+                android:gravity="center_horizontal"
+                android:text="开微店"
+                android:drawablePadding="10dp"
+                android:layout_marginTop="120dp"
+                android:textSize="@dimen/textSize_normal"
+                android:textColor="@color/textBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/textSize_tiny"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="一键开设微店，\n助您快速完成资讯、营销，\n分销的各种互动营销环节。"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.2"/>
+
+            <TextView
+                android:id="@+id/open_w_shop_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="资质审核中"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/z_text_small"
+                android:textColor="#F91212"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/in_shop"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="#FF4444"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="进店"
+                android:textSize="@dimen/z_text_normal"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

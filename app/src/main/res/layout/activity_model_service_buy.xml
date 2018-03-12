@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/model_service_back"
+            style="@style/iv_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="服务订购"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/z_title_size"/>
+
+    </FrameLayout>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/z_oa_set_padding_left"
+        android:paddingTop="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_text_common"
+            android:text="模板名称：" />
+
+        <TextView
+            android:id="@+id/model_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_text_common"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="购买时长："
+        android:background="@android:color/white"
+        style="@style/oa_set_text_common"
+        android:paddingLeft="@dimen/z_oa_set_padding_left"
+        android:paddingTop="@dimen/z_oa_set_padding_height"/>
+
+    <LinearLayout
+        android:id="@+id/model_packages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="bottom"
+        android:paddingLeft="@dimen/z_oa_set_padding_left"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_text_common"
+            android:text="服务费用："/>
+
+        <TextView
+            android:id="@+id/model_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorRed"
+            android:textSize="@dimen/z_text_normal"/>
+
+        <TextView
+            android:id="@+id/model_package_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:textSize="@dimen/z_text_small"
+            android:textColor="@color/color_AAAAAA"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/z_oa_set_padding_left"
+        android:background="@android:color/white">
+
+        <CheckBox
+            android:id="@+id/agree_model_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我已同意"/>
+
+        <TextView
+            android:id="@+id/model_protocol_love_spread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_small"
+            android:text="《爱乐传服务条款》"
+            android:textColor="@color/btn_blue_click"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="支付方式"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        style="@style/oa_set_text_common"
+        android:paddingLeft="@dimen/z_oa_set_padding_left"/>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <LinearLayout
+        android:id="@+id/model_pay_for_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/white_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_normal"
+            android:text="微信支付"
+            android:textColor="@color/textBlack"
+            android:drawableLeft="@mipmap/icon_wechat_64"
+            android:gravity="center_vertical"
+            android:drawablePadding="6dp"
+            android:layout_marginLeft="30dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/right_arrow_icon"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:id="@+id/model_pay_for_ali"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/white_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_normal"
+            android:text="支付宝"
+            android:textColor="@color/textBlack"
+            android:drawableLeft="@mipmap/icon_ali_pay_64"
+            android:gravity="center_vertical"
+            android:drawablePadding="6dp"
+            android:layout_marginLeft="30dp"/>
+
+        <View
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/right_arrow_icon"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+</LinearLayout>

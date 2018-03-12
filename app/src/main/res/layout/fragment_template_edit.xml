@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/image_text_title"
+        style="@style/et_common"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_down_line"
+        android:drawablePadding="@dimen/spacing_tiny"
+        android:hint="@string/hint_show_image_title"
+        android:maxLength="30"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:textSize="@dimen/textSize_middle" />
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+</LinearLayout>

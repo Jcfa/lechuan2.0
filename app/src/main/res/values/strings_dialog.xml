@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 对话框文本-->
+    <string name="dialog_clear_record">是否清空历史记录</string>
+
+    <string name="dialog_relieve_distribution">是否确定要解除分销关系？</string>
+    <string name="dialog_abandon_edit_content">是否放弃当前编辑内容？</string>
+    <string name="dialog_not_delete_catalog">不能删除有商品的目录</string>
+    <string name="dialog_upload_image_unfinished">正在上传图片，现在发布可能会导致图片丢失，是否继续发布？</string>
+    <string name="dialog_switch_goods_type">切换商品类型将丢失部分已编辑数据，是否继续操作？</string>
+
+    <string name="dialog_weixin_bind_text">您还未绑定提现微信帐号，是否现在绑定微信？</string>
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/bought_info_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:text="模板详情"/>
+
+        <TextView
+            android:id="@+id/edit_model_preview"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:text="预览"
+            android:gravity="center"
+            android:background="@drawable/selector_frame_circular_bead"
+            android:textColor="@color/color_00BCB4"
+            android:textSize="@dimen/z_text_normal"/>
+
+    </FrameLayout>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_model_change"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="32dp"
+            android:background="@color/lineBg"/>
+
+        <ImageView
+            android:id="@+id/model_goods"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="@drawable/selector_common"
+            android:src="@mipmap/icon_goods_64"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="32dp"
+            android:background="@color/lineBg"/>
+
+        <ImageView
+            android:id="@+id/model_pic"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:background="@drawable/selector_common"
+            android:src="@mipmap/icon_photos_128_8e"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#EFEFEF">
+
+        <TextView
+            android:id="@+id/model_edit_back"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/selector_model_back"
+            android:text="返回"/>
+
+        <TextView
+            android:id="@+id/model_edit_save"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="保存"
+            android:textColor="@android:color/white"
+            android:background="@drawable/selector_sign_btn"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

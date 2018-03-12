@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:background="#F4F4F4">
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize_large"
+            android:layout_marginLeft="30dp"
+            android:text="选择银行"/>
+
+        <ImageView
+            android:id="@+id/goods_bank_select_exit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            android:padding="5dp"
+            android:background="@drawable/selector_common"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/goods_line"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/goods_bank_select_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="#ffffff"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/goods_line"/>
+
+    <TextView
+        android:id="@+id/goods_bank_select_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:gravity="center"
+        android:background="@drawable/selector_common"
+        android:text="@string/cancel"
+        android:textSize="@dimen/textSize_small" />
+
+</LinearLayout>

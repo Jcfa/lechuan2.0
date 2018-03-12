@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_art_history_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|bottom"
+        android:text="温馨提示"
+        android:textSize="@dimen/textSize_large"
+        android:textColor="@color/color_262626"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/color_5E5E5E"
+        android:textSize="@dimen/textSize_normal"
+        android:text="是否确定删除该历史记录"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineBg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height">
+
+        <Button
+            android:id="@+id/del_ah_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/textBlack"
+            android:text="取消"
+            android:background="@drawable/selector_common"
+            android:textSize="@dimen/textSize_small"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/lineBg"/>
+
+        <Button
+            android:id="@+id/del_ah_confirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/textGreen"
+            android:background="@drawable/selector_common"
+            android:textSize="@dimen/textSize_small"/>
+
+    </LinearLayout>
+
+</LinearLayout>

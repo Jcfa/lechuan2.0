@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mdg_promotion_root"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/shape_per_reduce">
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="@dimen/line_height"
+            android:background="#BBBBBB"
+            android:layout_centerVertical="true"/>
+
+        <View
+            android:layout_width="@dimen/line_width"
+            android:layout_height="match_parent"
+            android:background="#BBBBBB"
+            android:layout_marginLeft="300dp"/>
+        
+        <View
+            android:layout_width="300dp"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/lineBg"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"/>
+        
+        <ImageView
+            android:id="@+id/mdg_promotion_pic"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:background="@mipmap/background_image"/>
+
+        <TextView
+            android:id="@+id/mdg_promotion_name"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/mdg_promotion_pic"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="@dimen/textSize_middle"
+            android:textColor="@color/color_5E5E5E"
+            android:text="--"/>
+
+        <TextView
+            android:id="@+id/mdg_promotion_price"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mdg_promotion_name"
+            android:layout_alignBottom="@+id/mdg_promotion_pic"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:textSize="@dimen/textSize_middle"
+            android:textColor="#f00"
+            android:text="¥"/>
+
+        <LinearLayout
+            android:id="@+id/discount_price_layout"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/textSize_middle"
+                android:text="折扣价"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/mdg_promotion_discount_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/textSize_middle"
+                android:textColorHint="@color/color_999999"
+                android:textColor="@color/color_5E5E5E"
+                android:gravity="center_vertical|right"
+                android:paddingRight="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_5E5E5E"
+                android:text="元"
+                android:textSize="@dimen/textSize_middle"
+                android:layout_marginRight="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/discount_price_layout">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="折扣率"/>
+
+            <EditText
+                android:id="@+id/mdg_promotion_discount"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:paddingRight="15dp"
+                android:hint="请输入折扣率"
+                android:textSize="@dimen/textSize_middle"
+                android:gravity="center_vertical|right"
+                android:background="@android:color/transparent"
+                android:textColorHint="@color/color_999999"
+                android:textColor="@color/color_5E5E5E"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_middle"
+                android:textColor="@color/color_5E5E5E"
+                android:text="%"
+                android:layout_marginRight="20dp"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/mdg_promotion_del"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="300dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/icon_delete_art_64" />
+
+    </RelativeLayout>
+
+</LinearLayout>

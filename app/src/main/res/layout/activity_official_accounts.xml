@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/oa_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/goods_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/z_head_height"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/oa_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:paddingLeft="55dp"
+            android:paddingRight="55dp"
+            android:background="@drawable/selector_common"
+            android:drawableLeft="@mipmap/icon_info_on"
+            android:textColor="@color/textGreen"
+            android:textSize="@dimen/textSize_middle"
+            android:text="资讯"/>
+
+        <View
+            android:layout_width="@dimen/line_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@color/line"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/oa_issue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="55dp"
+                android:paddingRight="55dp"
+                android:gravity="center_vertical|right"
+                android:drawableLeft="@mipmap/icon_wechat_off"
+                android:background="@drawable/selector_common"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/textSize_middle"
+                android:text="发布"/>
+
+            <TextView
+                android:id="@+id/article_send_num"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@mipmap/icon_num_bg_red_64"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="@android:color/white"
+                android:text="0"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

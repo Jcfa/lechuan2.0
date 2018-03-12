@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?><!--佣金结算支付-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorBg" />
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <org.raphets.roundimageview.RoundImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_normal" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingLeft="10dp"
+        android:text="结算金额"
+        android:textColor="@color/textBlack_jet"
+        android:textSize="@dimen/textSize_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="￥"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/et_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="0.00"
+            android:inputType="number"
+            android:maxLength="8"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorBg" />
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/height_little"-->
+        <!--android:layout_marginTop="@dimen/spacing_small"-->
+        <!--android:background="@drawable/shape_down_line"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:paddingLeft="@dimen/spacing_middle"-->
+        <!--android:paddingRight="0dp"-->
+        <!--android:text="支付方式"-->
+        <!--android:textColor="@color/textBlack_jet"-->
+        <!--android:textSize="@dimen/textSize_normal"-->
+        <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/top_up_wx"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/height_tiny"-->
+        <!--android:background="@drawable/white_bg"-->
+        <!--android:drawableLeft="@mipmap/ic_wxpay_tag"-->
+        <!--android:drawablePadding="@dimen/spacing_small"-->
+        <!--android:drawableRight="@mipmap/right_arrow_icon"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:paddingLeft="@dimen/spacing_large"-->
+        <!--android:paddingRight="@dimen/spacing_large"-->
+        <!--android:text="@string/weixin_pay"-->
+        <!--android:textColor="@color/black_shallow_text"-->
+        <!--android:textSize="@dimen/textSize_normal" />-->
+
+    <!--<View style="@style/horizontal_line" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/top_up_alipay"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/height_tiny"-->
+        <!--android:background="@drawable/white_bg"-->
+        <!--android:drawableLeft="@mipmap/ic_alipay_tag"-->
+        <!--android:drawablePadding="@dimen/spacing_small"-->
+        <!--android:drawableRight="@mipmap/right_arrow_icon"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:paddingLeft="@dimen/spacing_large"-->
+        <!--android:paddingRight="@dimen/spacing_large"-->
+        <!--android:text="@string/alipay"-->
+        <!--android:textColor="@color/black_shallow_text"-->
+        <!--android:textSize="@dimen/textSize_normal" />-->
+        <Button
+            android:id="@+id/btn_settle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="确认结算"
+            style="@style/common_button_red"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorBg" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_little"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/shape_down_line"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="0dp"
+        android:text="@string/transaction_record"
+        android:textColor="@color/textBlack_jet"
+        android:textSize="@dimen/textSize_normal"
+        android:textStyle="bold" />
+    <!--</LinearLayout>-->
+    <include layout="@layout/layout_commission_detail_item" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

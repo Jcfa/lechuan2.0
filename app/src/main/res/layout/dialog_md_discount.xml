@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/z_title_size"
+        android:text="批量折扣"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/input_discount_close"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/icon_close_64"
+        android:scaleType="centerInside"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"
+        android:layout_marginTop="50dp"/>
+
+    <EditText
+        android:id="@+id/batch_discount_input"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="120dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_login_edit_bg"
+        android:inputType="numberDecimal"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/z_text_normal"
+        android:textColor="@color/color_5E5E5E"
+        android:singleLine="true"
+        android:maxLength="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="折扣价："
+        android:textSize="@dimen/z_text_normal"
+        android:textColor="@color/color_00BCB4"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_5E5E5E"
+        android:textSize="@dimen/z_text_normal"
+        android:text="%"
+        android:layout_toRightOf="@+id/batch_discount_input"
+        android:layout_marginLeft="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/batch_discount_back"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="返回"
+            android:textSize="@dimen/textSize_small"
+            android:textColor="@color/color_5E5E5E"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/lineBg"/>
+
+        <TextView
+            android:id="@+id/batch_discount_ok"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="@dimen/textSize_small"
+            android:textColor="@color/color_5E5E5E"/>
+    </LinearLayout>
+
+</RelativeLayout>

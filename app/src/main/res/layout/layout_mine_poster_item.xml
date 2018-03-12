@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <org.raphets.roundimageview.RoundImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="@dimen/spacing_small"
+            app:corner_radius="5dp"
+            app:type="round" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/tv_detail"
+                    android:gravity="center_vertical"
+                    android:lines="2"
+                    android:text=""
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <TextView
+                    android:id="@+id/tv_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="8dp"
+                    android:text="详情"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/textSize_small" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_commission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/textSize_small" />
+
+                <TextView
+                    android:id="@+id/tv_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tv_amount"
+                    android:drawableLeft="@mipmap/icon_wallet_tag"
+                    android:drawablePadding="2dp"
+                    android:gravity="center_vertical"
+                    android:text="佣金"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/textSize_small" />
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_tag"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:ems="3"
+                    android:text="0.00"
+                    android:textColor="@color/colorOrange"
+                    android:textSize="@dimen/textSize_small" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

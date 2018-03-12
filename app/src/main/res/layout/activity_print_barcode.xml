@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#EEEEEE"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:background="@drawable/shape_down_line"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/print_barcode_back"
+                style="@style/iv_back"/>
+
+            <TextView
+                style="@style/text_title"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="条码打印"/>
+
+            <TextView
+                android:id="@+id/print_barcode_goods_print_config"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="right"
+                android:background="@drawable/selector_setting_sure_bg"
+                android:gravity="center"
+                android:text="@string/print"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/print_barcode_currency_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:padding="10dp"
+                    android:background="@drawable/selector_item"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/printer_choice" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择货币符号"
+                        android:paddingLeft="5dp"
+                        style="@style/text_5E5E5E_16" />
+
+                    <TextView
+                        android:id="@+id/print_barcode_currency_group_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:gravity="right"
+                        android:text="￥"
+                        style="@style/text_5E5E5E_16" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@mipmap/right_arrow" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/print_barcode_goods_muns_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:orientation="vertical"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <View
+            style="@style/horizontal_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/print_barcode_goods_all_select"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/print_barcode_goods_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerInside"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/selector_print_barcode"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/all_select"
+                        android:textColor="#FE7200"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/print_barcode_goods_print_total"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="#FE7200"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="各"
+                        android:textColor="#cccccc"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/print_barcode_goods_print_sub"
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:src="@mipmap/ic_subtract"/>
+
+                    <EditText
+                        android:id="@+id/print_barcode_goods_all_print_num"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:digits="1234567890"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textCursorDrawable="@null"
+                        android:textSize="14sp"/>
+
+                    <ImageView
+                        android:id="@+id/print_barcode_goods_print_add"
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:layout_marginRight="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:src="@mipmap/ic_add"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

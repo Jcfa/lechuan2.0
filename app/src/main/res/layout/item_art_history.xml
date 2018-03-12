@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/art_history_time"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_normal"
+            android:textColor="@color/color_999999"
+            android:text="2018-01-01 00:00:00"/>
+
+        <ImageButton
+            android:id="@+id/history_del_all"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/icon_delete_64_00bcb4"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_art_history_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/art_send_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@mipmap/icon_ad_selected_blue_48"
+            android:text=" 成功发送0人，失败0人"
+            android:drawablePadding="4dp"
+            android:visibility="gone"
+            android:textSize="@dimen/textSize_middle"
+            android:textColor="@color/color_999999"/>
+
+        <RelativeLayout
+            android:id="@+id/art_history_first"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" >
+
+            <ImageView
+                android:id="@+id/art_history_first_pic"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"/>
+            
+            <TextView
+                android:id="@+id/art_history_first_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="#55000000"
+                android:textColor="@android:color/white"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/textSize_middle"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/art_history_first_read"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:paddingLeft="20dp"
+                android:textColor="@color/color_5E5E5E"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/z_text_normal"
+                android:text="阅读 99"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/art_history_first_love"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:paddingLeft="30dp"
+                android:textColor="@color/color_5E5E5E"
+                android:layout_toRightOf="@+id/art_history_first_read"
+                android:textSize="@dimen/z_text_normal"
+                android:gravity="center_vertical"
+                android:text="赞 99"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/art_history_first_del"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:drawableLeft="@mipmap/icon_delete_art_64"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="删除"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/z_text_normal"
+                android:textColor="@color/color_5E5E5E"
+                android:drawablePadding="4dp"
+                android:layout_marginRight="15dp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/item_art_history_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>

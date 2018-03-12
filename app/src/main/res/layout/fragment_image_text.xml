@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/image_text_title"
+        style="@style/et_common"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_down_line"
+        android:drawablePadding="@dimen/spacing_tiny"
+        android:maxLength="30"
+        android:hint="@string/hint_show_image_title"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:textSize="@dimen/textSize_middle"/>
+
+    <ScrollView
+        android:id="@+id/image_text_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#fff"
+        android:scrollbarSize="@dimen/spacing_tiny"
+        android:scrollbarThumbVertical="@color/placeholder_30">
+
+        <com.poso2o.lechuan.view.rich.InterceptLinearLayout
+            android:id="@+id/layout_intercept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.poso2o.lechuan.view.rich.RichTextEditor
+                android:id="@+id/image_text_rich_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <RelativeLayout
+                android:id="@+id/image_text_goods_info"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:background="@drawable/shape_imaginary_line_frame"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/image_text_goods_icon"
+                    android:layout_width="@dimen/image_middle"
+                    android:layout_height="@dimen/image_middle"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/image_text_goods_name"
+                    style="@style/text_middle_single_line"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:layout_toRightOf="@+id/image_text_goods_icon"/>
+
+                <TextView
+                    android:id="@+id/image_text_goods_price"
+                    style="@style/text_small_single_line"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="@dimen/spacing_middle"
+                    android:layout_toRightOf="@+id/image_text_goods_icon"
+                    android:drawableLeft="@mipmap/home_rmb"
+                    android:textColor="#b95f55"/>
+
+                <ImageView
+                    android:id="@+id/image_text_goods_cancel"
+                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/size_color_delete_icon"/>
+
+            </RelativeLayout>
+
+            <TableRow
+                android:id="@+id/image_text_redbag_info"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:background="@drawable/shape_imaginary_line_frame">
+
+                <TextView
+                    android:id="@+id/image_text_redbag_tag"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:drawableLeft="@mipmap/icon_welfare_tag"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:gravity="center_vertical"
+                    android:text="@string/redbag"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/textSize_middle"/>
+
+                <ImageView
+                    android:id="@+id/image_text_redbag_cancel"
+                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/size_color_delete_icon"/>
+
+            </TableRow>
+
+        </com.poso2o.lechuan.view.rich.InterceptLinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/image_text_add_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_top_line"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_text_camera"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:visibility="gone"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_camera"/>
+
+        <View
+            style="@style/vertical_line"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:background="@drawable/selector_common"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_image"/>
+
+        <TextView
+            android:id="@+id/image_text_photo"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/icon_image_tag"
+            android:background="@drawable/selector_common"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:gravity="right|center_vertical"
+            android:text="@string/image"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle"/>
+
+        <View
+            style="@style/vertical_line"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/image_text_goods"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/icon_goods_tag"
+            android:background="@drawable/selector_common"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:gravity="right|center_vertical"
+            android:text="@string/goods"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle"/>
+
+        <View
+            style="@style/vertical_line"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/image_text_redbag"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/icon_welfare_tag"
+            android:background="@drawable/selector_common"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:gravity="right|center_vertical"
+            android:text="@string/redbag"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle"/>
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/layout_goods_and_redbag"
+        android:visibility="gone"/>
+
+</LinearLayout>

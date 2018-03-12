@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/position_permission_catalog_style"
+    android:visibility="visible"
+    android:id="@+id/layout_power_catalog">
+
+        <TextView
+            android:id="@+id/power_catalog_name"
+            style="@style/position_permission_catalog_title_style"
+            android:text="产品管理" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="全选"
+            android:textSize="@dimen/textSize_middle" />
+
+        <CheckBox
+            android:id="@+id/power_catalog_checkbox"
+            style="@style/position_permission_check_style" />
+
+</LinearLayout>

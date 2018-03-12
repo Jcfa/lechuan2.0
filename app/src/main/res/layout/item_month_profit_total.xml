@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/total_profit_root"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/total_profit_total"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/z_text_normal"
+            android:text="合计"/>
+
+        <TextView
+            android:id="@+id/total_profit_input"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/color_FF6537"
+            android:textSize="@dimen/z_text_normal"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:padding="2dp"
+            android:text="00.00"/>
+
+        <TextView
+            android:id="@+id/total_profit_cost"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/color_FF6537"
+            android:textSize="@dimen/z_text_normal"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:padding="2dp"
+            android:text="00.00"/>
+
+        <TextView
+            android:id="@+id/total_profit_gross_margin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/color_FF6537"
+            android:textSize="@dimen/z_text_normal"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:padding="2dp"
+            android:text="00.00"/>
+
+        <TextView
+            android:id="@+id/total_profit_retained"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/color_FF6537"
+            android:textSize="@dimen/z_text_normal"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:padding="2dp"
+            android:text="00.00"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineBg"
+        android:layout_alignParentBottom="true"/>
+
+</LinearLayout>

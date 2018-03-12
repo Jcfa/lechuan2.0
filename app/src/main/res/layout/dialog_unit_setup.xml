@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="34dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical"
+        android:textColor="#000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:textColor="#000000">
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:text="@string/rice_tag"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="#f00"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sale_unit"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="#000"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/unit_setup_base"
+                android:layout_width="167dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="17dp"
+                android:layout_gravity="center"
+                android:selectAllOnFocus="true"
+                android:hint="请输入日常零售的单位"
+                android:textColorHint="@color/et_hint"
+                android:background="@drawable/shape_home_add_group_bg"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/textSize_small"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:textColor="#000000">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/assist_unit"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="#000"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/unit_setup_assist"
+                android:layout_width="167dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="17dp"
+                android:layout_gravity="center"
+                android:selectAllOnFocus="true"
+                android:hint="请输入包装单位"
+                android:textColorHint="@color/et_hint"
+                android:background="@drawable/shape_home_add_group_bg"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/textSize_small"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:textColor="#000000">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/assist_unit_number"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="#000"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" = 销售单位 X"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="@color/et_hint"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/unit_setup_number"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:selectAllOnFocus="true"
+                android:textColorHint="@color/et_hint"
+                android:background="@drawable/shape_home_add_group_bg"
+                android:inputType="number"
+                android:text="1"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/textSize_small"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="@color/et_hint"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/unit_setup_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textSize="@dimen/textSize_small"/>
+
+        <View
+            style="@style/vertical_line"/>
+
+        <TextView
+            android:id="@+id/unit_setup_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textSize="@dimen/textSize_small"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

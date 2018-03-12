@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tag_staff_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/z_text_normal"
+        android:textColor="@color/textBlack"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="营业员："/>
+
+    <TextView
+        android:id="@+id/staff_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/z_text_normal"
+        android:text="老板"
+        android:textColor="@color/textBlack"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_toRightOf="@+id/tag_staff_name"
+        android:layout_alignBaseline="@+id/tag_staff_name"
+        android:layout_alignBottom="@+id/tag_staff_name"/>
+
+    <ImageView
+        android:id="@+id/achieve_detail_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:src="@mipmap/set_dialog_close"/>
+
+    <TextView
+        android:id="@+id/staff_sale_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tag_staff_name"
+        android:textSize="@dimen/z_text_small"
+        android:layout_alignLeft="@+id/tag_staff_name"
+        android:layout_marginTop="20dp"
+        android:text="营业额："/>
+
+    <TextView
+        android:id="@+id/value_sale_amount"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/staff_sale_amount"
+        android:layout_toRightOf="@+id/staff_sale_amount"
+        android:layout_marginLeft="5dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLength="8"
+        android:textSize="@dimen/z_text_small"
+        android:text="0.00"/>
+
+    <TextView
+        android:id="@+id/tag_target_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/staff_sale_amount"
+        android:layout_toRightOf="@+id/value_sale_amount"
+        android:layout_marginLeft="6dp"
+        android:textSize="@dimen/z_text_small"
+        android:text="目标额："/>
+
+    <TextView
+        android:id="@+id/value_target_amount"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tag_target_amount"
+        android:layout_toRightOf="@+id/tag_target_amount"
+        android:layout_marginLeft="5dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLength="8"
+        android:textSize="@dimen/z_text_small"
+        android:text="0.00"/>
+
+    <TextView
+        android:id="@+id/tag_sale_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tag_target_amount"
+        android:layout_toRightOf="@+id/value_target_amount"
+        android:layout_marginLeft="6dp"
+        android:textSize="@dimen/z_text_small"
+        android:text="销售比："/>
+
+    <TextView
+        android:id="@+id/value_sale_percent"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tag_sale_percent"
+        android:layout_toRightOf="@+id/tag_sale_percent"
+        android:layout_marginLeft="5dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="@dimen/z_text_small"
+        android:maxLength="8"
+        android:text="0.00"/>
+
+    <View
+        android:id="@+id/under_line_achieve_detail_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/staff_sale_amount"/>
+
+    <LinearLayout
+        android:id="@+id/achievement_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_down_line"
+        android:orientation="horizontal"
+        android:layout_below="@+id/under_line_achieve_detail_top">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_middle"
+            android:text="时间"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/z_text_small"
+            android:text="销售额"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_middle"
+            android:text="目标额"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/z_text_small"
+            android:text="完成率"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/achieve_detail_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/achievement_detail_title"/>
+
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--首页底部，商家-->
+    <array name="home_tag_merchant">
+        <item>广告</item>
+        <item>发布</item>
+        <item>分销</item>
+    </array>
+    <!--首页底部，分销商-->
+    <array name="home_tag_distribution">
+        <item>广告</item>
+        <item>发布</item>
+        <item>我的</item>
+    </array>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/shop_list_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </ScrollView>
+
+    <View
+        style="@style/horizontal_line" />
+    
+    <TextView
+        android:id="@+id/shop_list_back_up"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_little"
+        android:gravity="center"
+        android:background="@drawable/selector_gray"
+        android:textSize="@dimen/textSize_middle"
+        android:text="@string/pack_up"/>
+
+</LinearLayout>

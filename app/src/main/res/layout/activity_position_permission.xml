@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_down_line"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/position_permission_back"
+            style="@style/iv_back" />
+
+        <TextView
+            style="@style/text_title"
+            android:text="职位权限" />
+
+        <Button
+            android:id="@+id/position_permission_confirm"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="right"
+            android:background="@drawable/selector_common_green_btn"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="@dimen/textSize_middle" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:src="@mipmap/icon_need" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职位："
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/textSize_normal" />
+
+                <EditText
+                    android:id="@+id/position_permission_name"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <ImageView
+                    android:id="@+id/clear_permission_name"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/icon_clear_48" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/horizontal_line"/>
+
+            <LinearLayout style="@style/position_permission_catalog_style"
+                android:id="@+id/layout_goods_all">
+
+                <TextView
+                    style="@style/position_permission_catalog_title_style"
+                    android:text="商品" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="全选"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <CheckBox
+                    android:id="@+id/permission_product_all"
+                    style="@style/position_permission_check_style" />
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_discount">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="商品打折" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/checkbox_goods_discount"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_up_down_goods">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="售罄操作" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_up_down_goods"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_give">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="赠送操作" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_give"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_add">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="添加商品" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_add"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_del">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="删除商品" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_del"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_edit">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="修改商品" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_edit"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_cost">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="查看成本" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_cost"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_catalog">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="目录设置" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_catalog"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_catalog_style"
+                android:id="@+id/layout_all_member">
+
+                <TextView
+                    style="@style/position_permission_catalog_title_style"
+                    android:text="会员" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="全选"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <CheckBox
+                    android:id="@+id/permission_member_all"
+                    style="@style/position_permission_check_style" />
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_member_add">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="增加会员" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_member_add"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_member_edit">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="编辑会员" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_member_edit"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_member_del">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="删除会员" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_member_del"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_member_recharge">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="会员充值" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_member_recharge"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_member_rank">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="会员等级设置" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_member_rank"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_catalog_style"
+                android:id="@+id/layout_all_report">
+
+                <TextView
+                    style="@style/position_permission_catalog_title_style"
+                    android:text="报表" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="全选"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <CheckBox
+                    android:id="@+id/permission_forms_all"
+                    style="@style/position_permission_check_style" />
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_sale_report">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="销售统计" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_sale_report"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_goods_report">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="商品统计" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_goods_report"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_assign_report">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="业绩统计" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_assign_report"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_month_profit">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="月损益表" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_month_profit"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_sale_order">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="订单查看" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_sale_order"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_recharge_record">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="充值记录" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_recharge_record"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_catalog_style"
+                android:id="@+id/layout_all_transfer_purchase">
+
+                <TextView
+                    style="@style/position_permission_catalog_title_style"
+                    android:text="交接/采购" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="全选"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <CheckBox
+                    android:id="@+id/permission_purchase_all"
+                    style="@style/position_permission_check_style" />
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_transfer_detail">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="交接明细" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_transfer_detail"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_transfer_set">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="交接设置" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_transfer_set"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_purchase_order">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="采购单" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_purchase_order"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_purchase_return">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="采购-退货单" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_purchase_return"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_catalog_style"
+                android:id="@+id/layout_all_stock">
+
+                <TextView
+                    style="@style/position_permission_catalog_title_style"
+                    android:text="库存" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="全选"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <CheckBox
+                    android:id="@+id/permission_stock_all"
+                    style="@style/position_permission_check_style" />
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_inventory">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="盘点" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_inventory"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_warehousing">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="入仓" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_warehousing"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_want_goods">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="要货" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_want_goods"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_report_bad">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="报损" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_report_bad"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_out_goods">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="出货" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_out_goods"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_stock_warning">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="预警" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_stock_warning"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_catalog_style"
+                android:id="@+id/layout_all_other">
+
+                <TextView
+                    style="@style/position_permission_catalog_title_style"
+                    android:text="其他" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="全选"
+                    android:textSize="@dimen/textSize_middle" />
+
+                <CheckBox
+                    android:id="@+id/permission_other_all"
+                    style="@style/position_permission_check_style" />
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_analysis_chart">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="分析图" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_analysis_chart"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_cashier">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="收银开单" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_cashier"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_refund">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="退货操作" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_refund"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_shop_info">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="店铺信息" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_shop_info"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <LinearLayout style="@style/position_permission_layout_style"
+                android:id="@+id/layout_staff_power">
+
+                <TextView
+                    style="@style/position_permission_name"
+                    android:text="员工权限" />
+
+                <CheckBox style="@style/position_permission_check_style"
+                    android:id="@+id/check_staff_power"/>
+
+            </LinearLayout>
+
+            <View style="@style/horizontal_line" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

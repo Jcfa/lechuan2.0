@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        style="@style/text_middle"
+        android:layout_gravity="center"
+        android:drawableLeft="@mipmap/icon_succeed"
+        android:drawablePadding="@dimen/spacing_small"
+        android:paddingRight="@dimen/spacing_middle"
+        android:gravity="center_vertical"
+        android:text="@string/toast_publish_succeed"/>
+
+</FrameLayout>

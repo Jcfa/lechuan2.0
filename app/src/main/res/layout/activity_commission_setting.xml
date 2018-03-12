@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="商品"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle" />
+
+        <LinearLayout
+            android:id="@+id/layout_commission"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/white_bg"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="佣金"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/textSize_middle" />
+
+            <ImageView
+                android:id="@+id/iv_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sort_default_icon" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_catalog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/white_bg"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="全部"
+            android:textColor="@color/color_green_black_seletor"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+
+    <View style="@style/horizontal_line" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <View style="@style/horizontal_line" />
+
+    <LinearLayout
+        android:id="@+id/layout_commission_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/white_bg"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/commission_edit_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="通用佣金"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:id="@+id/tv_commission_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="未设置"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="，专享折扣"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:id="@+id/tv_commission_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="未设置"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="折"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+</LinearLayout>

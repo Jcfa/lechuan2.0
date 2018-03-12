@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/item_cashier_root"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/item_cashier_calender"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="14dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/date_icon"/>
+
+    <TextView
+        android:id="@+id/item_cashier_time"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="14dp"
+        android:layout_toRightOf="@+id/item_cashier_calender"
+        android:gravity="center_vertical"
+        android:text="1970-08-01 12:00:00"
+        android:textSize="@dimen/textSize_middle"/>
+
+    <TextView
+        android:id="@+id/item_cashier_tag_cashier"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="12dp"
+        android:textSize="@dimen/textSize_middle"
+        android:layout_toLeftOf="@+id/item_cashier_cashier"
+        android:gravity="center_vertical"
+        android:textColor="@color/textGray"
+        android:text="收银员："/>
+
+    <View
+        android:id="@+id/under_line_cashier_time"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/item_cashier_time"
+        android:layout_marginTop="12dp"
+        android:background="@color/lineBg"/>
+
+    <TextView
+        android:id="@+id/cashier_tag_input"
+        style="@style/cashier_item_tag_text"
+        android:layout_below="@+id/under_line_cashier_time"
+        android:text="收入金额："/>
+
+    <TextView
+        android:id="@+id/cashier_value_input"
+        style="@style/cashier_item_value_text"
+        android:layout_below="@+id/under_line_cashier_time"
+        android:text="0.00"/>
+
+    <TextView
+        android:id="@+id/cashier_tag_refund"
+        style="@style/cashier_item_tag_text"
+        android:layout_below="@+id/cashier_tag_input"
+        android:text="退款金额："/>
+
+    <TextView
+        android:id="@+id/cashier_value_refund"
+        style="@style/cashier_item_value_text"
+        android:layout_below="@+id/cashier_value_input"
+        android:text="0.00"/>
+
+    <TextView
+        android:id="@+id/cashier_tag_commit"
+        style="@style/cashier_item_tag_text"
+        android:layout_below="@+id/cashier_tag_refund"
+        android:text="上交金额："/>
+
+    <TextView
+        android:id="@+id/cashier_value_commit"
+        style="@style/cashier_item_value_text"
+        android:layout_below="@+id/cashier_value_refund"
+        android:text="0.00"/>
+
+    <TextView
+        android:id="@+id/cashier_tag_obligate"
+        style="@style/cashier_item_tag_text"
+        android:layout_below="@+id/cashier_tag_commit"
+        android:text="上次预留："/>
+
+    <TextView
+        android:id="@+id/cashier_value_obligate"
+        style="@style/cashier_item_value_text"
+        android:layout_below="@+id/cashier_value_commit"
+        android:text="0.00"/>
+
+    <TextView
+        android:id="@+id/cashier_tag_spare"
+        style="@style/cashier_item_tag_text"
+        android:layout_below="@+id/cashier_tag_obligate"
+        android:text="备用金额："/>
+
+    <TextView
+        android:id="@+id/cashier_value_spare"
+        style="@style/cashier_item_value_text"
+        android:layout_below="@+id/cashier_value_obligate"
+        android:text="0.00"/>
+
+    <View
+        style="@style/horizontal_line"
+        android:layout_below="@+id/cashier_tag_spare"/>
+
+    <TextView
+        android:id="@+id/item_cashier_cashier"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxEms="4"
+        android:textColor="@color/textBlack"
+        android:text="总账号"
+        android:textSize="14sp"/>
+
+</RelativeLayout>

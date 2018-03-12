@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_EEEEEE"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_5E5E5E_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="发货方式"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_delivery_mode_yes"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:background="@drawable/selector_common"
+            android:text="物流" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_EEEEEE"/>
+
+        <TextView
+            android:id="@+id/dialog_delivery_mode_no"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:background="@drawable/selector_common"
+            android:text="无需物流" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/color_EEEEEE"/>
+
+        <TextView
+            android:id="@+id/dialog_delivery_mode_close"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="取消" />
+
+    </LinearLayout>
+
+</LinearLayout>

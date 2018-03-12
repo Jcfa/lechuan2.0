@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/poster_comment_item_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_common"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/poster_comment_item_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/logo_e" />
+
+            <TextView
+                android:id="@+id/poster_comment_item_name"
+                style="@style/text_9E9E9E_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/poster_comment_item_img"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:singleLine="true"
+                android:text="用户名称" />
+
+            <TextView
+                android:id="@+id/poster_comment_item_remark"
+                style="@style/text_5E5E5E_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/poster_comment_item_name"
+                android:layout_toEndOf="@+id/poster_comment_item_img"
+                android:gravity="left"
+                android:text="评论内容" />
+
+            <TextView
+                style="@style/text_9E9E9E_12"
+                android:id="@+id/poster_comment_item_dat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:text="2017-12-02 08:08:00"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_DDDDDD" />
+</LinearLayout>

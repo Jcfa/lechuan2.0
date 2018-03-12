@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定成功"
+        android:gravity="bottom"
+        android:layout_marginTop="80dp"
+        android:paddingLeft="40dp"
+        android:drawableLeft="@mipmap/icon_selected_64"
+        android:drawablePadding="10dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="70dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="我们将在三个工作日内完成审核，\n并发送短信通知提醒。"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <TextView
+        android:id="@+id/authority_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:gravity="center"
+        android:background="@drawable/selector_common"
+        android:text="重新登录进入微店"
+        android:textSize="@dimen/textSize_small"
+        android:textColor="@color/color_FF6537"/>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 加载文本-->
+    <string name="loading_login">正在登录</string>
+    <string name="loading_common">加载中……</string>
+    <string name="loading_upload_image">正在上传图片</string>
+    <string name="loading_compress_image">正在压缩图片</string>
+
+    <string name="loading_delete_goods">正在删除商品</string>
+    <string name="loading_delete_unit">正在删除单位</string>
+    <string name="loading_delete_size">正在删除尺码</string>
+    <string name="loading_delete_spec">正在删除规格</string>
+    <string name="loading_delete_color">正在删除颜色</string>
+    <string name="loading_delete_catalog">正在删除目录</string>
+    <string name="loading_delete_supplier">正在删除供应商</string>
+
+    <string name="loading_add_goods">正在新增商品</string>
+    <string name="loading_add_unit">正在新增单位</string>
+    <string name="loading_add_size">正在新增尺码</string>
+    <string name="loading_add_spec">正在新增规格</string>
+    <string name="loading_add_color">正在新增颜色</string>
+    <string name="loading_add_catalog">正在新增目录</string>
+    <string name="loading_add_supplier">正在新增供应商</string>
+
+    <string name="loading_edit_goods">正在修改商品</string>
+    <string name="loading_edit_unit">正在修改单位</string>
+    <string name="loading_edit_size">正在修改尺码</string>
+    <string name="loading_edit_spec">正在修改规格</string>
+    <string name="loading_edit_color">正在修改颜色</string>
+    <string name="loading_edit_catalog">正在修改目录</string>
+    <string name="loading_edit_supplier">正在修改供应商</string>
+
+    <string name="loading_images">正在加载图片</string>
+    <string name="loading_goodses">正在加载商品数据</string>
+    <string name="loading_units">正在加载单位数据</string>
+    <string name="loading_sizes">正在加载尺码数据</string>
+    <string name="loading_specs">正在加载规格数据</string>
+    <string name="loading_colors">正在加载颜色数据</string>
+    <string name="loading_catalogs">正在加载目录数据</string>
+    <string name="loading_suppliers">正在加载供应商数据</string>
+</resources>

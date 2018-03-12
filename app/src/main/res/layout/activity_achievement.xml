@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/r_achievement_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:layout_centerInParent="true"
+            android:text="人员业绩"/>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/title_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_white_coner_ten">
+
+            <ImageView
+                android:id="@+id/order_calender"
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/date_icon"/>
+
+            <TextView
+                android:id="@+id/order_calender_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/order_calender"
+                android:text="2012-07-01"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <TextView
+                android:id="@+id/order_time_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/order_calender_start"
+                android:text="至"
+                android:textSize="@dimen/z_text_small"/>
+
+            <TextView
+                android:id="@+id/order_calender_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/order_time_to"
+                android:text="2012-07-27"
+                android:textSize="@dimen/textSize_middle"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="66dp"
+            android:background="@drawable/shape_down_line"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="工号"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="营业员"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <RelativeLayout
+                android:id="@+id/achievement_sale"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3">
+
+                <ImageView
+                    android:id="@+id/achievement_sale_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/icon_default_sort"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/achievement_sale_picture"
+                    android:text="销售"
+                    android:textSize="@dimen/textSize_middle"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3"
+                android:gravity="center"
+                android:text="目标额"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <RelativeLayout
+                android:id="@+id/achievement_achieve"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="1.2">
+
+                <ImageView
+                    android:id="@+id/achievement_achieve_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_default_sort"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/achievement_achieve_picture"
+                    android:text="达标"
+                    android:textSize="@dimen/textSize_middle"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/achievement_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
+            android:layout_below="@+id/tabs">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/achievement_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/shape_top_line"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="合计"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/textSize_middle"/>
+
+            <TextView
+                android:id="@+id/achievement_sale_total"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3"
+                android:gravity="center"
+                android:text="0.00"
+                android:textColor="@color/color_FF6537"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <TextView
+                android:id="@+id/target_sale_total"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3"
+                android:gravity="center"
+                android:text="0.00"
+                android:textColor="@color/color_FF6537"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/textSize_middle"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/achievement_setting"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/icon_menu_setting"/>
+
+</RelativeLayout>

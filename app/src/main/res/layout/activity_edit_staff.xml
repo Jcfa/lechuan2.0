@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_down_line"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/edit_staff_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            android:id="@+id/edit_staff_title"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/text_title"
+            android:text="添加员工"/>
+
+        <Button
+            android:id="@+id/edit_staff_confirm"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_gravity="right"
+            android:background="@drawable/selector_common_green_btn"
+            android:text="确定"
+            android:textColor="@drawable/selector_setting_sure_color"
+            android:textSize="@dimen/textSize_middle" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:background="@drawable/shape_down_line"
+        style="@style/edit_staff_layout_style">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_need"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_middle"
+            android:text="工号："/>
+
+        <EditText
+            android:id="@+id/edit_staff_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="number"
+            android:hint="请输入工号"
+            android:layout_marginLeft="8dp"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/textSize_middle"
+            android:textColorHint="@color/color_BBBBBB"/>
+
+        <TextView
+            android:id="@+id/text_staff_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="@dimen/textSize_middle"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/color_999999"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/shape_down_line"
+        style="@style/edit_staff_layout_style">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_need"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_middle"
+            android:text="姓名："/>
+
+        <EditText
+            android:id="@+id/edit_staff_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="请输入姓名"
+            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/textSize_middle"
+            android:background="@android:color/transparent"
+            android:textColorHint="@color/color_BBBBBB"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/edit_staff_select_position"
+        android:background="@drawable/selector_common_item"
+        style="@style/edit_staff_layout_style">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_need"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_middle"
+            android:text="职务："/>
+
+        <TextView
+            android:id="@+id/edit_staff_position"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:singleLine="true"
+            android:textSize="@dimen/textSize_middle"
+            android:textColorHint="@color/color_BBBBBB"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/icon_arrow_right"
+            android:scaleType="centerInside"
+            android:layout_marginRight="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/edit_staff_state"
+        style="@style/edit_staff_layout_style"
+        android:visibility="gone"
+        android:background="@drawable/shape_down_line">
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_middle"
+            android:layout_marginLeft="20dp"
+            android:text="开启/停用"/>
+
+        <CheckBox
+            android:id="@+id/edit_staff_off_on"
+            style="@style/position_permission_check_style" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/shape_down_line"
+        style="@style/edit_staff_layout_style">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_middle"
+            android:layout_marginLeft="20dp"
+            android:text="手机："/>
+
+        <EditText
+            android:id="@+id/edit_staff_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:inputType="number"
+            android:layout_marginLeft="8dp"
+            android:hint="请输入手机"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/textSize_middle"
+            android:textColorHint="@color/color_BBBBBB"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/shape_down_line"
+        style="@style/edit_staff_layout_style">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_need"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_middle"
+            android:text="密码："/>
+
+        <EditText
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginLeft="8dp"
+            android:inputType="number"
+            android:hint="请输入密码"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/textSize_middle"
+            android:textColorHint="@color/color_BBBBBB"
+            android:id="@+id/edit_staff_password" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@drawable/white_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <org.raphets.roundimageview.RoundImageView
+            android:id="@+id/iv_userlogo"
+            android:layout_width="@dimen/image_normal"
+            android:layout_height="@dimen/image_normal"
+            android:layout_marginLeft="@dimen/spacing_middle" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_usernick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/textSize_normal" />
+
+                <ImageView
+                    android:id="@+id/iv_user_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/poster_seller_icon_b"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/textGray"
+                android:textSize="@dimen/textSize_tiny" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_invitation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:background="@drawable/selector_orange_frame"
+            android:paddingBottom="6dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:text="邀请"
+            android:textSize="@dimen/textSize_small" />
+
+    </LinearLayout>
+
+    <View style="@style/horizontal_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_brokerage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/white_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_brokerage_amount"
+                style="@style/text_middle"
+                android:text="@string/money_zero"
+                android:textColor="@color/color_orange_black_selector" />
+
+            <TextView
+                android:id="@+id/tv_brokerage_tag"
+                style="@style/text_middle"
+                android:layout_marginTop="2dp"
+                android:text="未结佣金"
+                android:textColor="@color/color_orange_gray_selector" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/vertical_line"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small" />
+
+        <LinearLayout
+            android:id="@+id/ll_redpacket"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_redpacket_amount"
+                style="@style/text_middle"
+                android:text="@string/money_zero"
+                android:textColor="@color/color_orange_black_selector" />
+
+            <TextView
+                android:id="@+id/tv_redpacket_tag"
+                style="@style/text_middle"
+                android:layout_marginTop="2dp"
+                android:text="红包余额"
+                android:textColor="@color/color_orange_gray_selector" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/vertical_line"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small" />
+
+        <LinearLayout
+            android:id="@+id/ll_poster"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/white_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_poster_times"
+                style="@style/text_middle"
+                android:text="@string/zero"
+                android:textColor="@color/color_orange_black_selector" />
+
+            <TextView
+                android:id="@+id/tv_poster_tag"
+                style="@style/text_middle"
+                android:layout_marginTop="2dp"
+                android:text="转发广告"
+                android:textColor="@color/color_orange_gray_selector" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/horizontal_line" />
+
+    <View
+        android:id="@+id/layout_redpacket_payment_line"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/mine_line" />
+
+    <RelativeLayout
+        android:id="@+id/layout_redpacket_payment"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/white_bg"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/iv_redpacket_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_red_envelope_on" />
+
+        <TextView
+            android:id="@+id/tv_balance_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/iv_redpacket_icon"
+            android:gravity="center_vertical"
+            android:text="余额"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tv_balance_tag"
+            android:text="0.00"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="2dp"
+            android:drawableRight="@mipmap/icon_arrow_right"
+            android:text="充值/提现"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@drawable/line_bg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="你还没有未结佣金"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_middle"
+            android:visibility="gone" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+    <View style="@style/horizontal_line" />
+
+    <LinearLayout
+        android:id="@+id/layout_total"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="合计"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small" />
+
+        <TextView
+            android:id="@+id/tv_commission_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="总佣 0.00"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small" />
+
+        <TextView
+            android:id="@+id/tv_commission_yj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="已结 0.00"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small" />
+
+        <TextView
+            android:id="@+id/tv_commission_wj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="未结 0.00"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small" />
+    </LinearLayout>
+</LinearLayout>

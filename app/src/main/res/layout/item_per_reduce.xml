@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:id="@+id/per_reduce_view">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineBg" />
+
+    <TextView
+        android:id="@+id/per_reduce_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:text="秋季换装大放送"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/z_text_normal" />
+
+    <TextView
+        android:id="@+id/per_reduce_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="40dp"
+        android:ellipsize="end"
+        android:maxLength="30"
+        android:singleLine="true"
+        android:text="新品上市，新品最低可享受 75 折优惠。"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/z_text_small" />
+
+    <TextView
+        android:id="@+id/per_reduce_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="25dp"
+        android:text="2017-10-01 至 2017-10-10。"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/z_text_small" />
+
+    <ImageButton
+        android:id="@+id/per_reduce_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:background="@mipmap/icon_edit_64_00bcb4" />
+
+    <ImageButton
+        android:id="@+id/per_reduce_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:background="@mipmap/icon_delete_64_00bcb4" />
+
+</RelativeLayout>

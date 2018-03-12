@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
+        android:gravity="center"
+        android:text="保存信息"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/add_goods_keep_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="退出"
+            android:textSize="@dimen/textSize_small"/>
+
+        <View
+            style="@style/vertical_line"/>
+
+        <TextView
+            android:id="@+id/add_goods_keep_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="@dimen/textSize_small"/>
+
+    </LinearLayout>
+
+</LinearLayout>

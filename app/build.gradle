@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        //storeFile file('D:/Android/lechuan2.0.jks')
+//        storeFile file('D:/sign/lechuan2.0.jks')
+        config {
+            keyAlias 'lechuan'
+            keyPassword 'lc123456'
+            storeFile file('D:/Android/lechuan2.0.jks')
+            storePassword 'lc123456'
+        }
+    }
+
+    compileSdkVersion 25
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.poso2o.lechuan"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        // ... and any other excludes go here
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.google.code.gson:gson:2.8.0'
+    // 微信开放平台
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    // QQ
+    compile files('libs/open_sdk_r5923_lite.jar')
+    //支付宝
+    compile files('libs/alipaySdk-20170922.jar')
+    //小米
+    compile files('libs/MiPush_SDK_Client_3_5_1.jar')
+    testCompile 'junit:junit:4.12'
+    compile project(':nohttp')
+    // 图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    // 扫码
+    compile 'cn.yipianfengye.android:zxing-library:2.2'
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    // 请求权限
+    compile 'pub.devrel:easypermissions:0.2.0'
+    compile files('libs/sun.misc.BASE64Decoder.jar')
+    // 图片
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile('com.jph.takephoto:takephoto_library:4.0.3') {
+        exclude group: 'com.github.bumptech.glide'
+    }
+    compile 'org.raphets:roundimageview:1.2.0'
+    compile files('libs/httpclient-4.3.5.jar')
+    compile files('libs/httpmime-4.3.1.jar')
+    compile files('libs/httpcore-4.3.jar')
+    compile 'pub.devrel:easypermissions:0.2.0'
+    compile files('libs/xUtils-2.6.14.jar')
+    //    65k
+    compile 'com.android.support:multidex:1.0.1'
+    //eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    // 图像剪切
+    compile('com.kevin:crop:1.0.2') {
+        // 如果已经引入 support:appcompat-v7 可以加上这句话
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+}

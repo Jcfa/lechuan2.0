@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/service_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/z_title_size"
+            android:textColor="@color/textBlack"
+            android:text="乐传服务"/>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/horizontal_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/service_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/pay_service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/service_img"
+            android:layout_toRightOf="@+id/service_img"
+            android:text="乐传分销基础版--半年"
+            android:textSize="@dimen/z_text_normal"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/textBlack"/>
+
+        <TextView
+            android:id="@+id/pay_service_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/service_img"
+            android:layout_toRightOf="@+id/service_img"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color_FF6537"
+            android:textSize="@dimen/z_text_normal"
+            android:text="¥ 998.00"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:text="支付方式"
+        android:paddingLeft="20dp"
+        android:textSize="17sp"
+        android:textColor="#000000"
+        android:gravity="center_vertical" />
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:id="@+id/pay_for_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/white_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_normal"
+            android:text="微信支付"
+            android:textColor="@color/textBlack"
+            android:drawableLeft="@mipmap/icon_wechat_64"
+            android:gravity="center_vertical"
+            android:drawablePadding="6dp"
+            android:layout_marginLeft="30dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/right_arrow_icon"/>
+
+    </LinearLayout>
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:id="@+id/pay_for_ali"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/white_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_normal"
+            android:text="支付宝"
+            android:textColor="@color/textBlack"
+            android:drawableLeft="@mipmap/icon_ali_pay_64"
+            android:gravity="center_vertical"
+            android:drawablePadding="6dp"
+            android:layout_marginLeft="30dp"/>
+
+        <View
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/right_arrow_icon"/>
+
+    </LinearLayout>
+
+
+    <View
+        style="@style/horizontal_line"/>
+
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/dialog_main_date_root"
+    android:background="#22000000"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/shape_white_coner_ten"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/main_date_day"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:textSize="@dimen/z_text_small"
+            android:text="今天"/>
+
+        <View
+            style="@style/under_line_C7C7C7"/>
+
+        <TextView
+            android:id="@+id/main_date_week"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:textSize="@dimen/z_text_small"
+            android:text="最近七天"/>
+
+        <View
+            style="@style/under_line_C7C7C7"/>
+
+        <TextView
+            android:id="@+id/main_date_month"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:textSize="@dimen/z_text_small"
+            android:text="本月"/>
+
+        <View
+            style="@style/under_line_C7C7C7"/>
+
+        <TextView
+            android:id="@+id/main_date_diy"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:textSize="@dimen/z_text_small"
+            android:text="自定义"/>
+
+    </LinearLayout>
+
+</LinearLayout>

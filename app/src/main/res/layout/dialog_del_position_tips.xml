@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_bg_tips_dialog"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="温馨提示"
+        android:gravity="center"
+        android:textSize="@dimen/z_title_size"
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/del_position_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/z_text_normal"
+        android:text="确定删除员工吗 "
+        android:gravity="center"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/del_tips_cancel"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_small"
+            android:textColor="@color/textBlack"
+            android:background="@drawable/selector_common_text_bg"
+            android:text="取消"/>
+
+        <View
+            android:layout_width="@dimen/line_width"
+            android:layout_height="match_parent"
+            android:background="@color/lineBg"/>
+
+        <TextView
+            android:id="@+id/del_tips_confirm"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/textGreen"
+            android:background="@drawable/selector_common_text_bg"
+            android:textSize="@dimen/textSize_small"
+            android:text="确定"/>
+
+    </LinearLayout>
+
+</LinearLayout>

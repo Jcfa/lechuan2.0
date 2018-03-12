@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/poster_nav_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/shape_down_line">
+
+        <ImageView
+            android:id="@+id/poster_back"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_common"
+            android:padding="13dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/main_menu"/>
+
+        <TextView
+            android:id="@+id/poster_title"
+            style="@style/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="乐传"/>
+
+        <ImageView
+            android:id="@+id/poster_left_menu"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/selector_common"
+            android:padding="11dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/main_menu_left"/>
+
+        <ImageView
+            android:id="@+id/poster_search"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/poster_left_menu"
+            android:background="@drawable/selector_common"
+            android:padding="11dp"
+            android:src="@mipmap/poster_search"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/poster_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/poster_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"/>
+
+</LinearLayout>

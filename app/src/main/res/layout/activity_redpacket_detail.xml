@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_red_envelope_on" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.00"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/textSize_large" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可用余额"
+                android:textColor="@color/textGray"
+                android:textSize="@dimen/textSize_middle" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/mine_line" />
+
+    <RelativeLayout
+        android:id="@+id/layout_income"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_bg"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/income_icon"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="收入"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_large" />
+
+        <TextView
+            android:id="@+id/tv_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/right_arrow_icon"
+            android:gravity="center_vertical"
+            android:text="￥0.00"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textSize_large" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/mine_line" />
+
+    <RelativeLayout
+        android:id="@+id/layout_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_bg"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/pay_icon"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="充值"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_large" />
+
+        <TextView
+            android:id="@+id/tv_recharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/right_arrow_icon"
+            android:gravity="center_vertical"
+            android:text="￥0.00"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textSize_large" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/mine_line" />
+
+    <RelativeLayout
+        android:id="@+id/layout_expend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_bg"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/expend_icon"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="支出"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_title" />
+
+        <TextView
+            android:id="@+id/tv_expend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/right_arrow_icon"
+            android:gravity="center_vertical"
+            android:text="￥0.00"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textSize_large" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/mine_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <View style="@style/horizontal_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_withdrawal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/white_bg"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="提现"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/textSize_large" />
+
+            <TextView
+                android:id="@+id/tv_top_up"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/seletor_red_bg"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="充值"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSize_large" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

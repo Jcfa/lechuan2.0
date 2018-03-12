@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/model_info_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:text="模板实例"/>
+
+    </FrameLayout>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <WebView
+        android:id="@+id/model_info_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tag_shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="成交店铺："/>
+
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tag_shop_name"
+                android:layout_alignBaseline="@+id/tag_shop_name"
+                android:layout_marginLeft="4dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="--"/>
+
+            <TextView
+                android:id="@+id/tag_order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_below="@+id/tag_shop_name"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textSize="@dimen/textSize_middle"
+                android:text="订单号："/>
+
+            <TextView
+                android:id="@+id/order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_order_id"
+                android:layout_toRightOf="@+id/tag_order_id"
+                android:layout_marginLeft="4dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="--"/>
+
+            <View
+                android:id="@+id/under_line_order_id"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lineBg"
+                android:layout_below="@+id/tag_order_id"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/tag_goods_list"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/under_line_order_id">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/textSize_middle"
+                    android:text="商品"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/textSize_middle"
+                    android:text="数量"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/textSize_middle"
+                    android:text="金额"/>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/under_line_goods_list"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lineBg"
+                android:layout_below="@+id/tag_goods_list"/>
+
+            <LinearLayout
+                android:id="@+id/goods_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/under_line_goods_list"/>
+
+            <LinearLayout
+                android:id="@+id/order_total"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/goods_list">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/textSize_middle"
+                    android:text="合计"/>
+
+                <TextView
+                    android:id="@+id/order_total_count"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/textSize_middle"
+                    android:text="0"/>
+
+                <TextView
+                    android:id="@+id/order_total_amount"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="@dimen/textSize_middle"
+                    android:text="0.00"
+                    android:textColor="@color/color_FF6537"/>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/underi_line_total"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lineBg"
+                android:layout_below="@+id/order_total"/>
+
+            <TextView
+                android:id="@+id/tag_order_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/underi_line_total"
+                android:layout_marginTop="20dp"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="开单时间："/>
+
+            <TextView
+                android:id="@+id/order_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_order_time"
+                android:layout_toRightOf="@+id/tag_order_time"
+                android:textSize="@dimen/textSize_middle"
+                android:text="2017-08-01 00:00:00"
+                android:layout_alignLeft="@+id/shop_name" />
+
+            <TextView
+                android:id="@+id/tag_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_order_time"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="整单打折："/>
+
+            <TextView
+                android:id="@+id/order_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_discount"
+                android:layout_toRightOf="@+id/tag_discount"
+                android:layout_alignLeft="@+id/shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="100.00%"/>
+
+            <TextView
+                android:id="@+id/tag_paid_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_discount"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="支付方式："/>
+
+            <TextView
+                android:id="@+id/order_paid_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_paid_type"
+                android:layout_toRightOf="@+id/tag_paid_type"
+                android:layout_alignLeft="@+id/shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="现金"/>
+
+            <TextView
+                android:id="@+id/tag_should_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_paid_type"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="应收金额："/>
+
+            <TextView
+                android:id="@+id/order_should_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_should_pay"
+                android:layout_toRightOf="@+id/tag_should_pay"
+                android:layout_alignLeft="@+id/shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="168.00"/>
+
+            <TextView
+                android:id="@+id/tag_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_should_pay"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="实收金额："/>
+
+            <TextView
+                android:id="@+id/order_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_paid"
+                android:layout_toRightOf="@+id/tag_paid"
+                android:layout_alignLeft="@+id/shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="168.00"/>
+
+            <TextView
+                android:id="@+id/tag_cashier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_paid"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="收银员："/>
+
+            <TextView
+                android:id="@+id/order_cashier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_cashier"
+                android:layout_toRightOf="@+id/tag_cashier"
+                android:layout_alignLeft="@+id/shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="--"/>
+
+            <TextView
+                android:id="@+id/tag_sale_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tag_cashier"
+                android:layout_alignLeft="@+id/tag_shop_name"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="@dimen/textSize_middle"
+                android:text="营业员："/>
+
+            <TextView
+                android:id="@+id/order_sale_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tag_sale_man"
+                android:layout_toRightOf="@+id/tag_sale_man"
+                android:layout_alignLeft="@+id/shop_name"
+                android:textSize="@dimen/textSize_middle"
+                android:text="--"
+                android:layout_marginBottom="20dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/order_detail_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside"
+        android:src="@mipmap/icon_close_with_circle"/>
+
+</RelativeLayout>

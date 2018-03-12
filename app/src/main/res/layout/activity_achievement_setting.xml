@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/achievement_setting_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <ImageView
+            android:id="@+id/achievement_set_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:layout_centerInParent="true"
+            android:text="任务额设置"/>
+
+        <Button
+            android:id="@+id/achievement_set_confirm"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:textColor="#fff"
+            android:background="@drawable/selector_common_green_btn"
+            android:textSize="@dimen/textSize_middle"
+            android:text="确定"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/under_line_achievement_set_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"
+        android:layout_below="@+id/achievement_setting_top"/>
+
+    <LinearLayout
+        android:id="@+id/achievement_set_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/under_line_achievement_set_top">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_middle"
+            android:text="营业员"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_middle"
+            android:text="工号"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.2"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_middle"
+            android:text="任务额（月）"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/under_line_achievement_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/achievement_list_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

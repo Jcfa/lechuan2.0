@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_root"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/add_redbag_top_up"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/selector_item"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="@dimen/spacing_middle">
+
+        <TextView
+            style="@style/text_middle"
+            android:text="@string/available_balance"
+            android:textColor="@color/textGray"/>
+
+        <TextView
+            android:id="@+id/add_redbag_balance"
+            style="@style/text_middle_single_line"
+            android:layout_width="0dp"
+            android:textColor="@color/money_text"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_top_up"
+            style="@style/text_tiny"
+            android:text="@string/top_up"
+            android:drawableRight="@mipmap/icon_arrow_right"/>
+    </TableRow>
+
+    <View 
+        style="@style/horizontal_line"/>
+    
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_down_line"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="@dimen/spacing_middle">
+        
+        <TextView
+            style="@style/text_small"
+            android:textStyle="bold"
+            android:text="@string/red_envelope_num"
+            android:textColor="@color/textBlack"/>
+        
+        <EditText 
+            android:id="@+id/add_redbag_num"
+            style="@style/et_common"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:textSize="@dimen/textSize_large"
+            android:inputType="number"
+            android:maxLength="3"
+            android:gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_weight="1"/>
+        
+        <TextView
+            style="@style/text_small"
+            android:textStyle="bold"
+            android:text="@string/one"
+            android:textColor="@color/textBlack"/>
+    </TableRow>
+    
+    <TableRow 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_down_line"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="@dimen/spacing_middle">
+        
+        <TextView
+            android:id="@+id/add_redbag_money_tag"
+            style="@style/text_small"
+            android:textStyle="bold"
+            android:text="@string/total_money"
+            android:drawableRight="@mipmap/ic_pin_tag"
+            android:drawablePadding="1dp"
+            android:textColor="@color/textBlack"/>
+
+        <EditText
+            android:id="@+id/add_redbag_money"
+            style="@style/et_common"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:inputType="numberDecimal"
+            android:maxLength="7"
+            android:textSize="@dimen/textSize_large"
+            android:gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_weight="1"/>
+
+        <TextView
+            style="@style/text_small"
+            android:textStyle="bold"
+            android:text="@string/yuan"
+            android:textColor="@color/textBlack"/>
+
+    </TableRow>
+    
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_down_line"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingLeft="@dimen/spacing_middle"
+        android:paddingRight="@dimen/spacing_middle">
+        
+        <TextView
+            android:id="@+id/add_redbag_describe"
+            style="@style/text_tiny"
+            android:text="@string/moments_welfare_money_random_describe"/>
+        
+        <TextView
+            android:id="@+id/add_redbag_switch_mode"
+            style="@style/text_tiny"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:background="@drawable/selector_common"
+            android:textColor="#316899"
+            android:text="@string/update_orderliness_money"/>
+
+    </TableRow>
+
+</LinearLayout>

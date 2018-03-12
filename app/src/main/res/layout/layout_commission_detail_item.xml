@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><!--佣金详情列表item-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="时间"
+        android:textColor="@color/textGray"
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/tv_member"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="会员"
+        android:textColor="@color/textGray"
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="成交额"
+        android:textColor="@color/textGray"
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/tv_commission_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="佣金收入"
+        android:textColor="@color/textGray"
+        android:textSize="@dimen/textSize_middle" />
+</LinearLayout>

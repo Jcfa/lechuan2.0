@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="@dimen/z_oa_set_padding_left">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/oa_set_text_common"
+                android:text="文章篇数："/>
+
+            <TextView
+                android:id="@+id/oa_set_off_article_num"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                style="@style/oa_set_text_common"
+                android:background="@drawable/shape_bg_oa_num_off"
+                android:text="3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="篇"
+                style="@style/oa_set_text_common"
+                android:layout_marginLeft="6dp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/oa_set_off_article_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥12.00"
+                android:layout_marginRight="10dp"
+                style="@style/oa_set_off_price_common"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_hint_common"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="96dp"
+            android:text="（每日可在资讯库中选用文章的篇数）"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="运营方式："
+            style="@style/oa_set_text_common"
+            android:paddingLeft="@dimen/z_oa_set_padding_left"
+            android:layout_marginTop="@dimen/z_oa_set_padding_height"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z_oa_set_padding_left"
+            android:layout_marginTop="@dimen/z_oa_set_padding_height">
+
+            <TextView
+                android:id="@+id/oa_off_self_running"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/oa_set_text_common"
+                android:text="自主运营"
+                android:drawableLeft="@mipmap/item_no_select"
+                android:drawablePadding="4dp"/>
+
+            <TextView
+                android:id="@+id/off_self_running_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:text="免费"
+                android:gravity="right"
+                android:visibility="invisible"
+                style="@style/oa_set_off_price_common"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_hint_common"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="6dp"
+            android:text="您可自主发布文章、自主编辑/插入广告等。"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/z_oa_set_padding_height">
+
+            <TextView
+                android:id="@+id/oa_off_supper_running"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/oa_set_text_common"
+                android:paddingLeft="@dimen/z_oa_set_padding_left"
+                android:text="代运营"
+                android:drawableLeft="@mipmap/item_select"
+                android:drawablePadding="4dp"/>
+
+            <TextView
+                android:id="@+id/off_supper_running_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                style="@style/oa_set_off_price_common"
+                android:gravity="right"
+                android:text="¥128.00"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_hint_common"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="6dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="省事、省力，无需费心。\n为您提供最新的文章资讯，定时发布文章等服务内容。"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/color_EEEEEE"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务费用："
+                style="@style/oa_set_text_common"
+                android:layout_marginLeft="@dimen/z_oa_set_padding_left"/>
+
+            <TextView
+                android:id="@+id/oa_off_total_pay"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                style="@style/oa_set_off_price_common"
+                android:text="¥408.00"
+                android:gravity="right"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/oa_off_total_formula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/oa_set_hint_common"
+            android:layout_marginLeft="30dp"
+            android:text="可选文章（3篇）*一个月（280.00）+代运营（128.00）"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务到期："
+                style="@style/oa_set_text_common"
+                android:layout_marginLeft="@dimen/z_oa_set_padding_left"/>
+
+            <TextView
+                android:id="@+id/packages_time_out"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_AAAAAA"
+                android:textSize="@dimen/z_text_small"
+                android:text="2018-12-12"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剩余"
+                android:textSize="@dimen/z_text_small"
+                android:drawableLeft="@mipmap/oa_clock_48"
+                android:gravity="center_vertical"
+                android:drawablePadding="6dp"
+                android:textColor="@color/black_shallow_text"/>
+
+            <TextView
+                android:id="@+id/oa_time_less"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/z_text_small"
+                android:text="100"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日"
+                android:layout_marginRight="10dp"
+                android:textSize="@dimen/z_text_small"
+                android:textColor="@color/black_shallow_text"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@color/color_EEEEEE"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_auto_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定时发布："
+                style="@style/oa_set_text_common"
+                android:layout_marginLeft="@dimen/z_oa_set_padding_left"
+                android:id="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/oa_auto_send_time"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                style="@style/oa_set_text_common"
+                android:background="@drawable/shape_bg_oa_num_off"
+                android:text="17:00"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/oa_set_hint_common"
+                android:text="定时发布文章至公众号。"/>
+
+            <TextView
+                android:id="@+id/set_auto_send_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:textColor="@color/colorGreen"
+                android:textSize="@dimen/z_text_normal"
+                android:drawablePadding="4dp"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@mipmap/supplier_edit"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@color/color_EEEEEE" />
+
+        <TextView
+            android:id="@+id/continue_fee"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:text="续费"
+            android:textSize="@dimen/z_text_normal"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:background="@drawable/selector_bg_buy_now"
+            android:layout_marginBottom="60dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            style="@style/text_5E5E5E_16"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="运单号&#160;"/>
+
+        <EditText
+            android:id="@+id/dialog_order_express_et"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:background="@drawable/selector_search_order"
+            android:hint=""
+            android:inputType="number"
+            android:gravity="center"
+            android:maxLength="32"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_order_express_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/selector_common"
+            android:textSize="@dimen/textSize_small"
+            android:text="取消"/>
+
+        <View
+            style="@style/vertical_line"/>
+
+        <TextView
+            android:id="@+id/dialog_order_express_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_small"
+            android:background="@drawable/selector_common"
+            android:text="确定"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 标签文本-->
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="password">密码</string>
+    <string name="memory_password">记住密码</string>
+
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="publish">发布</string>
+    <string name="save">保存</string>
+    <string name="finish">完成</string>
+    <string name="change">更换</string>
+    <string name="update">修改</string>
+    <string name="setup">设置</string>
+    <string name="release">发布</string>
+    <string name="print">打印</string>
+    <string name="add">添加</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="upload">上传</string>
+    <string name="all_select">全选</string>
+    <string name="image">图片</string>
+    <string name="redbag">红包</string>
+    <string name="goods">商品</string>
+    <string name="barcode">条码</string>
+    <string name="pack_up">收起</string>
+    <string name="again_edit">重新编辑</string>
+    <string name="print_barcode">打印条码</string>
+    <string name="goods_info">商品信息</string>
+    <string name="show_image">晒图</string>
+    <string name="select_publish">选文发布</string>
+    <string name="select_address">选择地址</string>
+    <string name="select_bank">选择银行</string>
+    <string name="image_text">图文编辑</string>
+    <string name="shop_name">店铺名称</string>
+    <string name="add_red_money">添加红包</string>
+    <string name="join_redbag">加入红包</string>
+    <string name="one">个</string>
+    <string name="yuan">元</string>
+    <string name="time">时间</string>
+    <string name="available_balance">可用余额</string>
+    <string name="red_envelope_num">红包个数</string>
+    <string name="total_money">总金额</string>
+    <string name="one_money">单个金额</string>
+    <string name="top_up">充值</string>
+    <string name="balance_top_up">余额充值</string>
+    <string name="money">金额</string>
+    <string name="pay_mode">支付模式</string>
+    <string name="transaction_record">成交记录</string>
+    <string name="top_up_record">充值记录</string>
+    <string name="encashment_record">提现记录</string>
+    <string name="alipay">支付宝</string>
+    <string name="alipay_encashment">支付宝提现</string>
+    <string name="weixin">微信</string>
+    <string name="weixin_pay">微信支付</string>
+
+    <string name="serial_code">编号</string>
+    <string name="name">名称</string>
+    <string name="shortname">简称</string>
+    <string name="full_name">全称</string>
+    <string name="contact">联系人</string>
+    <string name="region">所在地区</string>
+    <string name="details_address">详细地址</string>
+    <string name="deposit_bank">开户银行</string>
+    <string name="account_name">账户名</string>
+    <string name="bank_account">银行账户</string>
+    <string name="all">全部</string>
+    <string name="total">合计</string>
+    <string name="catalog">目录</string>
+    <string name="colour">颜色</string>
+    <string name="size">尺码</string>
+    <string name="spec">规格</string>
+    <string name="unit">单位</string>
+    <string name="goods_no">货号</string>
+    <string name="stock">库存</string>
+    <string name="number">数量</string>
+    <string name="published">已发布</string>
+    <string name="collect">收藏</string>
+    <string name="fashion">时尚</string>
+    <string name="cate">美食</string>
+    <string name="health">健康</string>
+    <string name="sale_number">销量</string>
+    <string name="sale_unit">销售单位</string>
+    <string name="assist_unit">包装单位</string>
+    <string name="assist_unit_number">包装单位数</string>
+    <string name="select_supplier">选择供销商</string>
+    <string name="price">价格</string>
+    <string name="sale_price">售价</string>
+    <string name="cost">成本</string>
+    <string name="commit">提交</string>
+    <string name="brokerage">佣金</string>
+    <string name="spec_and_stock">规格/库存</string>
+    <string name="spec_and_barcode">规格/条码</string>
+
+    <string name="transfer_to">转移到</string>
+    <string name="add_supplier">添加供应商</string>
+    <string name="supplier">供应商</string>
+    <string name="phone">电话</string>
+    <string name="mobile">手机</string>
+    <string name="address">地址</string>
+    <string name="mail">邮箱</string>
+    <string name="base_info">基础信息</string>
+    <string name="goods_name">品名</string>
+
+    <string name="clothing_type">服饰类</string>
+    <string name="shop_type">百货类</string>
+
+    <string name="now_putaway">立即上架</string>
+    <string name="in_warehouse">放入仓库</string>
+
+    <string name="goods_manage">商品管理</string>
+    <string name="goods_image">商品图片</string>
+    <string name="add_goods">添加商品</string>
+    <string name="upload_image">上传图片</string>
+    <string name="all_image">全部图片</string>
+    <string name="preview">预览</string>
+    <string name="camera">拍照</string>
+    <string name="photo">相册</string>
+    <string name="sold_out">下架</string>
+    <string name="share">分享</string>
+
+    <string name="add_add_ad">+ 添加广告</string>
+
+    <string name="goods_list_all">全部(0)</string>
+
+    <!--带分号标签-->
+    <string name="type_colon">类别：</string>
+    <string name="goods_name_colon">品名：</string>
+    <string name="sale_price_colon">售价：</string>
+    <string name="cost_colon">成本：</string>
+    <string name="unit_colon">单位：</string>
+    <string name="catalog_colon">目录：</string>
+    <string name="colour_colon">颜色：</string>
+    <string name="size_colon">尺码：</string>
+    <string name="spec_colon">规格：</string>
+    <string name="goods_no_colon">货号：</string>
+    <string name="stack_colon">库存：</string>
+    <string name="total_colon">合计：</string>
+    <string name="total_stack_colon">总库存：</string>
+    <string name="supplier_colon">供应商：</string>
+    <string name="putaway_time_colon">上架时间：</string>
+
+    <string name="rice_tag">*</string>
+    <string name="zero">0</string>
+    <string name="money_zero">0.00</string>
+
+</resources>

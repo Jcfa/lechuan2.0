@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TableRow
+        android:id="@+id/common_goods_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_middle"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/selector_white">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/common_goods_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:drawableLeft="@mipmap/icon_goods_tag"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:gravity="center_vertical"
+                android:text="@string/goods"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <RelativeLayout
+                android:id="@+id/common_goods_info"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/common_goods_icon"
+                    android:layout_width="@dimen/image_middle"
+                    android:layout_height="@dimen/image_middle"
+                    android:scaleType="centerCrop"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/common_goods_name"
+                    style="@style/text_middle_single_line"
+                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_toRightOf="@+id/common_goods_icon"/>
+
+                <TextView
+                    android:id="@+id/common_goods_price"
+                    style="@style/text_small_single_line"
+                    android:layout_marginBottom="@dimen/spacing_middle"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:drawableLeft="@mipmap/home_rmb"
+                    android:textColor="#b95f55"
+                    android:layout_toRightOf="@+id/common_goods_icon"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/common_goods_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:drawableRight="@mipmap/right_arrow"
+            android:text="@string/add"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/common_redbag_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/selector_white">
+
+        <TextView
+            android:id="@+id/common_redbag_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/icon_welfare_tag"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:gravity="center_vertical"
+            android:text="@string/redbag"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSize_middle"/>
+
+        <TextView
+            android:id="@+id/common_redbag_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:drawableRight="@mipmap/right_arrow"
+            android:text="@string/add"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/textSize_small"/>
+
+    </TableRow>
+
+</LinearLayout>

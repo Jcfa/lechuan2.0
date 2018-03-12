@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_little"
+    android:background="@drawable/selector_item"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/text_tiny"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/add_redbag_money_tag"
+        style="@style/text_tiny"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:textColor="@color/money_text"/>
+
+</LinearLayout>

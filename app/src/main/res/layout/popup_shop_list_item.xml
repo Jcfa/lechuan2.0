@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/selector_common_item"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingBottom="12dp"
+    android:paddingTop="12dp">
+
+    <com.poso2o.lechuan.view.RoundAngleImage
+        android:id="@+id/shop_icon"
+        android:layout_width="@dimen/image_tiny"
+        android:layout_height="@dimen/image_tiny"
+        android:layout_gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/icon_add_ad_cover"
+        app:radius="16dp"/>
+
+    <TextView
+        android:id="@+id/shop_name"
+        style="@style/text_middle_single_line"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/spacing_small"
+        android:text="@string/shop_name"/>
+
+</LinearLayout>

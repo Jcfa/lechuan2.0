@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:textSize="@dimen/z_title_size"
+        android:textColor="@color/textBlack"
+        android:text="发布时间"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"/>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <TimePicker
+        android:id="@+id/time_picker_select"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        tools:targetApi="23"
+        android:timePickerMode="spinner" />
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/select_time_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="取消"
+            android:gravity="center"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/z_text_normal"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/lineBg"/>
+
+        <TextView
+            android:id="@+id/select_time_confirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="确定"
+            android:gravity="center"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/z_text_normal"/>
+
+    </LinearLayout>
+
+</LinearLayout>

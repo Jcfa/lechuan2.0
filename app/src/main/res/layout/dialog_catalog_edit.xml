@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="38dp"
+        android:paddingBottom="24dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="33dp"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:textColor="#000000">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="#000"
+                android:text="@string/name"/>
+
+            <EditText
+                android:id="@+id/catalog_edit_name"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_height="40dp"
+                android:maxLines="1"
+                android:textColorHint="@color/et_hint"
+                android:layout_marginRight="20dp"
+                android:selectAllOnFocus="true"
+                android:maxLength="10"
+                android:padding="10dp"
+                android:background="@drawable/shape_home_add_group_bg"
+                android:textCursorDrawable="@null"
+                android:hint="输入目录名称"
+                android:textSize="@dimen/textSize_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catalog_edit_discount_group"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_small"
+                android:textColor="#000"
+                android:text="折扣"/>
+
+            <EditText
+                android:id="@+id/catalog_edit_discount"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_height="40dp"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:maxLines="1"
+                android:maxLength="13"
+                android:textColorHint="@color/et_hint"
+                android:padding="10dp"
+                android:text="100.00"
+                android:background="@drawable/shape_home_add_group_bg"
+                android:textCursorDrawable="@null"
+                android:hint="输入目录折扣"
+                android:textSize="@dimen/textSize_small" />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_small"
+                android:gravity="center"
+                android:textColor="#000"
+                android:text="%"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/catalog_edit_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="@dimen/textSize_small" />
+
+        <View
+            android:layout_width="@dimen/line_width"
+            android:layout_height="match_parent"
+            android:background="@color/line" />
+
+        <TextView
+            android:id="@+id/catalog_edit_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="新建"
+            android:textSize="@dimen/textSize_small" />
+
+    </LinearLayout>
+
+</LinearLayout>

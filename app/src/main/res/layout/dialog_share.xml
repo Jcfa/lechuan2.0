@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/poster_item_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/dialog_share_wechat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/white_bg"
+                android:gravity="center_vertical|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/umeng_socialize_wechat" />
+
+                <TextView
+                    style="@style/text_5E5E5E_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="微信好友"
+                    android:textSize="@dimen/textSize_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialog_share_wxcircle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/white_bg"
+                android:gravity="center_vertical|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/umeng_socialize_wxcircle" />
+
+                <TextView
+                    style="@style/text_5E5E5E_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="朋友圈"
+                    android:textSize="@dimen/textSize_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialog_share_qq"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/white_bg"
+                android:gravity="center_vertical|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/umeng_socialize_qq" />
+
+                <TextView
+                    style="@style/text_5E5E5E_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="QQ好友"
+                    android:textSize="@dimen/textSize_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialog_share_qzone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/white_bg"
+                android:gravity="center_vertical|center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/umeng_socialize_qzone" />
+
+                <TextView
+                    style="@style/text_5E5E5E_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="QQ空间"
+                    android:textSize="@dimen/textSize_normal" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/umeng_socialize_sina"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center_vertical|center"-->
+        <!--android:background="@drawable/selector_common"-->
+        <!--android:padding="10dp"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:padding="10dp"-->
+        <!--android:src="@mipmap/umeng_socialize_sina" />-->
+
+        <!--<TextView-->
+        <!--style="@style/text_5E5E5E_14"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:text="新浪微博" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="3"/>-->
+
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dialog_share_close"
+        style="@style/text_5E5E5E_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/white_bg"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="取  消"
+        android:textSize="@dimen/textSize_normal" />
+
+
+</LinearLayout>

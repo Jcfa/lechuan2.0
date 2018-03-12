@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/model_groups_back"
+            style="@style/iv_back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/set_model_group_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.8"
+                android:text="新品推荐"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/z_text_normal"
+                android:gravity="center_vertical"/>
+
+            <LinearLayout
+                android:id="@+id/oa_set_model_group_des"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:gravity="top">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="共 "
+                    android:textSize="@dimen/z_text_little"
+                    android:textColor="@color/color_999999"/>
+
+                <TextView
+                    android:id="@+id/set_model_group_detail_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/z_text_little"
+                    android:text="8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 款模板，可任意选用。"
+                    android:textSize="@dimen/z_text_little"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_999999"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/set_model_detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_small"
+            android:textColor="@color/color_FF6537"
+            android:layout_marginRight="8dp"
+            android:text="¥168.00"/>
+
+        <TextView
+            android:id="@+id/set_model_detail_buy"
+            android:layout_width="56dp"
+            android:layout_height="34dp"
+            android:background="@drawable/selector_bg_buy_now"
+            android:gravity="center"
+            android:text="购买"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/z_text_small"/>
+
+        <TextView
+            android:id="@+id/set_model_detail_continue"
+            android:layout_width="56dp"
+            android:layout_height="36dp"
+            android:background="@drawable/selector_bg_buy_now"
+            android:gravity="center"
+            android:text="续订"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/z_text_small"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/under_line_C7C7C7"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/set_model_group_detail_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

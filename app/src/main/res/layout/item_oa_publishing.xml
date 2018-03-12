@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:id="@+id/oa_publishing"
+    android:background="@drawable/shape_down_line">
+
+    <ImageView
+        android:id="@+id/art_publishing_pic"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:background="@mipmap/background_image"/>
+
+    <TextView
+        android:id="@+id/art_publishing_title"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/art_publishing_pic"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="12dp"
+        android:textSize="@dimen/z_text_small"
+        android:lineSpacingMultiplier="1.3"
+        android:maxLines="2"
+        android:maxLength="50"
+        android:ellipsize="end"
+        android:layout_marginRight="50dp"
+        android:textColor="@color/color_5E5E5E"/>
+
+    <ImageButton
+        android:id="@+id/art_publishing_del"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/icon_close_with_circle"/>
+
+    <TextView
+        android:id="@+id/art_publishing_ad"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:text="广告"
+        android:textSize="@dimen/z_text_normal"
+        android:textColor="@color/color_999999"
+        android:drawableLeft="@mipmap/icon_ad_select_48"
+        android:drawablePadding="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_little"
+        android:background="@drawable/shape_down_line"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/oa_article_published"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/published"
+            android:textColor="@color/textBlack"/>
+
+        <TextView
+            android:id="@+id/oa_article_collect"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/collect"
+            android:textColor="@color/textGreen"/>
+
+        <TextView
+            android:id="@+id/oa_article_fashion"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="推荐"
+            android:textColor="@color/textBlack"/>
+
+    </TableRow>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/oa_article_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/height_little"/>
+
+</RelativeLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <ImageView
+            android:id="@+id/des_shop_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:layout_centerInParent="true"
+            android:text="功能介绍"/>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/common_background"
+        android:layout_height="5dp"/>
+
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/background_image"
+        android:scaleType="centerInside" />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/textSize_normal"
+        android:textColor="@color/textBlack"
+        android:text="产品设计师（荷兰）"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/textSize_small"
+        android:gravity="center_horizontal"
+        android:text="Serge de Warrimont\n联合创始人兼首席产品官\n\n2014红点设计奖得主\n可口可乐、宝洁、联合利华设计师"/>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/img_ad"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/go_to_buy"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:background="#FF4444"
+        android:textSize="@dimen/textSize_middle"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="前往淘宝购买"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

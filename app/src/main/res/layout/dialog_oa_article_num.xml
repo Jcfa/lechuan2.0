@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="@dimen/z_title_size"
+        android:textColor="@color/color_00BCB4"
+        android:text="文章篇数"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineBg"/>
+
+    <LinearLayout
+        android:id="@+id/oa_num_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineBg"/>
+
+    <TextView
+        android:id="@+id/oa_article_num_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/z_text_normal"/>
+
+</LinearLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="5dp"-->
+    <!--android:background="@drawable/mine_line" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layout_publish"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/white_bg"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="10dp">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="@dimen/textSize_middle"-->
+    <!--android:textColor="@color/textBlack"-->
+    <!--android:text="文章数" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_publish_sort"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@mipmap/sort_default_icon" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layout_fans"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/white_bg"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="10dp">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="@dimen/textSize_middle"-->
+    <!--android:textColor="@color/textBlack"-->
+    <!--android:text="粉丝数" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_fans_sort"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@mipmap/sort_default_icon" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layout_type"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/white_bg"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="10dp">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="@dimen/textSize_middle"-->
+    <!--android:textColor="@color/textBlack"-->
+    <!--android:text="全部(0)" />-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@mipmap/pull_down_icon" />-->
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/mine_line" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/my_fans_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_fans_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="已选择"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/textSize_large" />
+
+            <TextView
+                android:id="@+id/tv_total_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0/1"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/textSize_large" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_total_invitation"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:text="(已邀请0，可邀请0)"-->
+                <!--android:textColor="@color/textGray"-->
+                <!--android:textSize="@dimen/textSize_middle" />-->
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_invitation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/seletor_invitation"
+            android:gravity="center"
+            android:ems="6"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="邀请"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/textSize_large" />
+    </RelativeLayout>
+</LinearLayout>

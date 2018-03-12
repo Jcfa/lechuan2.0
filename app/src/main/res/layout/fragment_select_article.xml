@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_little"
+        android:background="@drawable/shape_down_line"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/select_article_collect"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_select_article_tag"
+            android:gravity="center"
+            android:text="@string/collect"
+            android:textColor="@color/textGreen"/>
+
+        <TextView
+            android:id="@+id/select_article_fashion"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fashion"
+            android:textColor="@color/textBlack"/>
+
+        <TextView
+            android:id="@+id/select_article_cate"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cate"
+            android:textColor="@color/textBlack"/>
+
+        <TextView
+            android:id="@+id/select_article_health"
+            style="@style/text_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/health"
+            android:textColor="@color/textBlack"/>
+
+    </TableRow>
+
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:id="@+id/select_article_swipe"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="@dimen/height_little">-->
+
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/select_article_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/height_little"/>
+
+</RelativeLayout>

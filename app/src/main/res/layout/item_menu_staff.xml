@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/item_staff_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/selector_common_item"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/menu_staff_no"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:text="-"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/textSize_small"/>
+
+    <TextView
+        android:id="@+id/menu_staff_name"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="--"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/textSize_small"/>
+
+    <TextView
+        android:id="@+id/menu_staff_task"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="--"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/textSize_small"/>
+
+    <TextView
+        android:id="@+id/menu_staff_phone"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.4"
+        android:gravity="center_horizontal"
+        android:text="-"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/textSize_small"/>
+
+</LinearLayout>

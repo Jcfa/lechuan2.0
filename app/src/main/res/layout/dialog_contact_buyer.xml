@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/poster_item_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_EEEEEE"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_5E5E5E_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="联系买家"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_contact_buyer_tel"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:background="@drawable/selector_common"
+            android:text="拨打电话" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_EEEEEE"/>
+
+        <TextView
+            android:id="@+id/dialog_contact_buyer_message"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:background="@drawable/selector_common"
+            android:text="短信" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_EEEEEE"/>
+
+        <TextView
+            android:id="@+id/dialog_contact_buyer_copy"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:background="@drawable/selector_common"
+            android:text="复制收货地址" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/color_EEEEEE"/>
+
+        <TextView
+            android:id="@+id/dialog_contact_buyer_close"
+            style="@style/text_5E5E5E_16"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="取消" />
+
+    </LinearLayout>
+
+</LinearLayout>

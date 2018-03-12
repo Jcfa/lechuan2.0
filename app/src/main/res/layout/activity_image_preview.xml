@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000">
+
+    <FrameLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/shape_down_line">
+
+        <ImageView
+            android:id="@+id/select_image_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            android:id="@+id/select_image_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_title"
+            android:textColor="@color/textBlack"
+            android:layout_gravity="center"
+            android:text="@string/title_image_preview"/>
+
+        <ImageView
+            android:id="@+id/images_preview_select"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:layout_gravity="right"
+            android:src="@drawable/selector_mind_password_bg"/>
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/images_preview_content"
+        android:layout_below="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/images_preview_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"/>
+
+</RelativeLayout>

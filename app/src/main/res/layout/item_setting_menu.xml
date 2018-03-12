@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="126dp"
+    android:padding="6dp">
+
+    <RelativeLayout
+        android:id="@+id/setting_menu_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_main_menu_item">
+
+        <RelativeLayout
+            android:id="@+id/main_menu_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/setting_menu_icon"
+                android:layout_width="@dimen/image_middle"
+                android:layout_height="@dimen/image_middle"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/setting_menu_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/setting_menu_icon"
+                android:layout_centerHorizontal="true"
+                android:textSize="14sp"
+                android:textColor="#575757"
+                android:text="设置"
+                android:layout_marginTop="2dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/setting_menu_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/setting_menu_select"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

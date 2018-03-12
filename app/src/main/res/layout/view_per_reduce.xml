@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_per_reduce">
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:background="#BBBBBB"
+            android:layout_centerVertical="true"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#BBBBBB"
+            android:layout_marginLeft="300dp"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:textSize="@dimen/z_text_normal"
+            android:text="消费满"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/textBlack"/>
+
+        <EditText
+            android:id="@+id/per_reduce_to_amount"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="90dp"
+            android:gravity="center_vertical"
+            android:hint="请填写金额"
+            android:textSize="@dimen/z_text_normal"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:maxLength="20"
+            android:background="@android:color/transparent"
+            android:textColor="@color/textBlack"
+            android:textColorHint="@color/color_BBBBBB"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical|right"
+            android:textSize="@dimen/z_text_normal"
+            android:textColor="@color/textBlack"
+            android:text="减"/>
+
+        <EditText
+            android:id="@+id/per_reduce_amount"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="90dp"
+            android:hint="请填写金额"
+            android:textColor="@color/textBlack"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/z_text_normal"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/color_BBBBBB"/>
+
+        <ImageButton
+            android:id="@+id/per_reduce_del"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="300dp"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/icon_delete_art_64" />
+
+    </RelativeLayout>
+
+</LinearLayout>

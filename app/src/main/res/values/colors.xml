@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主色-->
+    <color name="colorMain">#5EE4A7</color>
+    <!--主背景色-->
+    <color name="colorBg">#EEEEEE</color>
+    <!--绿色-->
+    <color name="colorGreen">#0BA894</color>
+    <color name="colorGreen_Press">#088171</color>
+
+    <!--红色-->
+    <color name="colorRed">#E53847</color>
+    <color name="colorRed_Press">#CE5F61</color>
+    <!--分隔线背景色-->
+    <color name="lineBg">#E3E3E3</color>
+    <!--字体颜色-->
+    <color name="textGray">#9b9b9b</color>
+    <color name="textBlack">#555555</color>
+    <!--深黑-->
+    <color name="textBlack_jet">#111111</color>
+    <color name="textGreen">#6c9f9f</color>
+    <!--白色-->
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite_press">#f1f1f1</color>
+    <!--橙-->
+    <color name="colorOrange">#F17604</color>
+
+    <!--浅灰色-->
+    <color name="colorGray_light">#E0E0E0</color>
+    <!--灰色-->
+    <color name="colorGray">#C2C2C2</color>
+    <!--标题栏背景色-->
+    <color name="colorTitleBarBg">#FEFEFE</color>
+    <!--粉红色-->
+    <color name="colorPink">#F89696</color>
+    <color name="hint_text">#b9b9b9</color>
+    <color name="black_shallow_text">#4d4d4d</color>
+    <color name="money_text">#ff8000</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#5db2a4</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--分割线-->
+    <color name="line">#c9c9c9</color>
+    <color name="divider">#9b9b9b</color>
+
+    <color name="color_AAAAAA">#AAAAAA</color>
+    <color name="color_BBBBBB">#BBBBBB</color>
+    <color name="color_CCCCCC">#CCCCCC</color>
+    <color name="color_DDDDDD">#DDDDDD</color>
+    <color name="color_EEEEEE">#EEEEEE</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_5E5E5E">#5E5E5E</color>
+    <color name="color_262626">#262626</color>
+    <color name="color_00BCB4">#00BCB4</color>
+    <color name="color_FF6537">#FF6537</color>
+    <color name="color_CD533D">#cd533d</color>
+
+    <color name="item_click">#0f000000</color>
+
+    <!-- 橙色按钮的边框颜色 -->
+    <color name="orange_frame">#ffce0e</color>
+    <!-- item点击背景色 -->
+    <color name="item_click_back">#f1f1f1</color>
+    <!-- 阴影（黑：透明度30%） -->
+    <color name="placeholder_30">#4C000000</color>
+    <!-- 阴影（黑：透明度50%） -->
+    <color name="placeholder_50">#7F000000</color>
+    <!-- 阴影（黑：透明度70%） -->
+    <color name="placeholder_70">#B2000000</color>
+    <!-- 通用背景色 -->
+    <color name="common_background">#efeff7</color>
+    <!-- 蓝色按钮底色 -->
+    <color name="btn_blue">#00aaee</color>
+    <!-- 蓝色按钮点击后底色 -->
+    <color name="btn_blue_click">#0196d1</color>
+
+    <!--图片选择点颜色-->
+    <color name="spot_off">#b9b9b9</color>
+    <color name="spot_on">#575757</color>
+
+
+    <color name="base_dialog_widow_bg">#00000000</color>
+    <!--分割线-->
+    <color name="goods_line">#e4e4e4</color>
+    <!--输入框提示语颜色-->
+    <color name="et_hint">#979797</color>
+
+    <color name="text_type">#FF6537</color>
+
+</resources>

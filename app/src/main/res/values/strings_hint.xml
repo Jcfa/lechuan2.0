@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 注释文本-->
+    <string name="hint_goods_image">（长按图片并拖动可排序）</string>
+
+    <!--商品搜索-->
+    <string name="hint_goods_search">名称/货号/条码</string>
+
+    <!--默认输入-->
+    <string name="text_default">--</string>
+    <string name="hint_search">输入内容搜索</string>
+    <string name="hint_top_up_money">请输入充值金额</string>
+    <string name="hint_show_image_title">标题（30字以内）</string>
+    <string name="hint_show_image_content">说说你的购物心得或其他想和朋友交流的话题（300字以内）</string>
+    <string name="hint_click_input_title">请输入标题</string>
+    <string name="hint_select_catalog">请选择目录</string>
+    <string name="hint_load_goods_fail">获取商品数据失败，点击空白处刷新</string>
+    <string name="hint_load_goods_null">未获取到商品数据，点击空白处刷新</string>
+    <string name="hint_load_article_fail">获取文章数据失败，点击空白处刷新</string>
+    <string name="hint_load_article_null">未获取到文章数据，点击空白处刷新</string>
+    <string name="hint_not_collect_article">还没有收藏文章</string>
+    <string name="hint_not_published_article">还没有发布文章</string>
+</resources>

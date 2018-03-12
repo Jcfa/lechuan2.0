@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/my_publish_item_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical|left">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:scaleType="centerCrop"
+                android:alpha="0.6"
+                android:src="@mipmap/my_publish_dat" />
+
+            <TextView
+                style="@style/text_9E9E9E_12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="2017-11-30 08:08:08" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/my_publish_item_img"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_EEEEEE"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/pic_thumb" />
+
+            <TextView
+                android:id="@+id/my_publish_item_name"
+                style="@style/text_5E5E5E_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/my_publish_item_img"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:lines="1"
+                android:text="标题" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_below="@+id/my_publish_item_name"
+                android:layout_toEndOf="@+id/my_publish_item_img"
+                android:gravity="center_vertical|center">
+
+                <LinearLayout
+                    android:id="@+id/my_publish_item_red_bag"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/white_bg"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="centerCrop"
+                        android:padding="2dp"
+                        android:src="@mipmap/ic_red_envelope_on" />
+
+                    <TextView
+                        style="@style/text_5E5E5E_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="总" />
+
+                    <TextView
+                        android:id="@+id/my_publish_item_red_bag_amount"
+                        style="@style/text_5E5E5E_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/color_CD533D"
+                        android:text="" />
+
+                    <TextView
+                        style="@style/text_5E5E5E_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="&#160;剩" />
+
+                    <TextView
+                        android:id="@+id/my_publish_item_red_bag_amount_b"
+                        style="@style/text_5E5E5E_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/color_CD533D"
+                        android:text="" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/my_publish_item_commission"
+                android:layout_width="wrap_content"
+                android:background="@drawable/white_bg"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="centerCrop"
+                    android:padding="2dp"
+                    android:src="@mipmap/poster_commission" />
+
+                <TextView
+                    style="@style/text_5E5E5E_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="佣金" />
+
+                <TextView
+                    android:id="@+id/my_publish_item_commission_amount"
+                    style="@style/text_5E5E5E_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/color_CD533D"
+                    android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_DDDDDD" />
+
+</LinearLayout>

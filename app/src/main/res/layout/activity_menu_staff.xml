@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/shape_down_line">
+
+        <ImageView
+            android:id="@+id/r_staff_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            android:id="@+id/base_view_title"
+            style="@style/text_title"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="员工管理"/>
+
+        <ImageView
+            android:id="@+id/base_view_imagese"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerInside"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_staff_status"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/title_height"
+        android:background="@drawable/shape_down_line"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1.2"
+            android:ellipsize="end"
+            style="@style/menu_staff_manager_text"
+            android:text="工号"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1"
+            style="@style/menu_staff_manager_text"
+            android:text="姓名"/>
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1"
+            style="@style/menu_staff_manager_text"
+            android:text="职务"/>
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1.4"
+            style="@style/menu_staff_manager_text"
+            android:text="手机"/>
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/menu_staff_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/menu_staff_status"
+        android:layout_marginBottom="48dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/menu_staff_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginBottom="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_EEEEEE">
+
+        <RelativeLayout
+            android:id="@+id/menu_staff_edit_staff"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_edit_staff"
+                android:drawablePadding="10dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/textSize_middle"
+                android:text="编辑职位"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/line_width"
+            android:layout_height="match_parent"
+            android:background="@color/divider"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"/>
+
+        <RelativeLayout
+            android:id="@+id/menu_staff_add_staff"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_add_staff"
+                android:drawablePadding="10dp"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/textSize_middle"
+                android:text="添加员工"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

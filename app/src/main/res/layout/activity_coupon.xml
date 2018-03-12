@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/shape_down_line"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/coupon_back"
+            style="@style/iv_back" />
+
+        <TextView
+            style="@style/text_title"
+            android:text="优惠券"/>
+
+        <Button
+            android:id="@+id/coupon_ok"
+            android:layout_width="@dimen/title_button_width"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/textSize_middle"
+            android:textColor="@android:color/white"
+            android:layout_gravity="right"
+            android:text="确定"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/selector_confirm_button_bg"/>
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#fff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_middle"
+                    android:textColor="@color/textBlack"
+                    android:text="活动名称"
+                    android:layout_marginLeft="18dp"/>
+
+                <EditText
+                    android:id="@+id/coupon_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_middle"
+                    android:textColor="@color/textBlack"
+                    android:hint="请输入活动名称"
+                    android:textColorHint="@color/color_BBBBBB"
+                    android:paddingRight="15dp"
+                    android:background="@android:color/transparent"
+                    android:singleLine="true"
+                    android:paddingLeft="15dp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/common_background"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/coupon_tag_des"
+                    android:text="卡券金额"  />
+
+                <EditText
+                    android:id="@+id/coupon_amount"
+                    style="@style/coupon_value"
+                    android:hint="请输入优惠券金额" />
+
+            </LinearLayout>
+            
+            <View
+                style="@style/coupon_under_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    style="@style/coupon_tag_des"
+                    android:text="使用条件"  />
+
+                <EditText
+                    android:id="@+id/coupon_use_amount"
+                    style="@style/coupon_value"
+                    android:hint="订单满多少元可以使用" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/coupon_under_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    style="@style/coupon_tag_des"
+                    android:text="发券总数"  />
+
+                <EditText
+                    android:id="@+id/coupon_total_num"
+                    style="@style/coupon_value"
+                    android:inputType="number"
+                    android:hint="可被领取的总券数" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/coupon_under_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    style="@style/coupon_tag_des"
+                    android:text="领券上限"  />
+
+                <EditText
+                    style="@style/coupon_value"
+                    android:hint="每人限领张数"
+                    android:inputType="number"
+                    android:id="@+id/coupon_num_person" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/common_background"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/coupon_tag_des"
+                    android:text="开始时间" />
+
+                <TextView
+                    android:id="@+id/coupon_begin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/textSize_middle"
+                    android:textColor="@color/textBlack"
+                    android:hint="请选择开始时间  >"
+                    android:gravity="center_vertical|right"
+                    android:textColorHint="@color/color_BBBBBB"
+                    android:paddingRight="20dp"
+                    android:singleLine="true"
+                    android:paddingLeft="15dp"/>
+
+            </LinearLayout>
+
+            <View
+                style="@style/coupon_under_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/coupon_tag_des"
+                    android:text="结束时间" />
+
+                <TextView
+                    android:id="@+id/coupon_end"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/textSize_middle"
+                    android:textColor="@color/textBlack"
+                    android:hint="请选择结束时间  >"
+                    android:gravity="center_vertical|right"
+                    android:textColorHint="@color/color_BBBBBB"
+                    android:paddingRight="20dp"
+                    android:singleLine="true"
+                    android:paddingLeft="15dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/r_shop_go"
+        android:layout_width="190dp"
+        android:layout_height="@dimen/title_height"
+        android:layout_gravity="center"
+        android:background="@drawable/selector_common">
+
+        <ImageView
+            android:id="@+id/r_shop_img"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/background_image"/>
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/r_shop_img"
+            android:layout_marginLeft="12dp"
+            android:layout_toLeftOf="@+id/shop_list_down"
+            android:layout_toRightOf="@+id/r_shop_img"
+            android:ellipsize="end"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:text="商家编号"
+            android:textColor="@color/color_FF6537"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/r_shop_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/r_shop_img"
+            android:layout_marginLeft="12dp"
+            android:layout_toLeftOf="@+id/shop_list_down"
+            android:layout_toRightOf="@+id/r_shop_img"
+            android:text="--"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/textBlack"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:id="@+id/shop_list_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_arrow_down"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineBg"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/main_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_background"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_white_coner_ten"
+                    android:padding="5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/main_sale_amount"
+                        android:layout_width="0px"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:paddingRight="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/main_total_sale_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_toRightOf="@+id/main_sale_really"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:textColor="@drawable/selector_text_report"
+                            android:singleLine="true"
+                            android:text="0.00"
+                            android:textSize="@dimen/textSize_small"/>
+
+                        <TextView
+                            android:id="@+id/main_total_sale_amount_tag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/main_total_sale_amount"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_toRightOf="@+id/main_sale_really"
+                            android:gravity="center"
+                            android:textColor="@drawable/selector_text_report"
+                            android:text="销售额"
+                            android:textSize="@dimen/textSize_small"/>
+
+                        <ImageView
+                            android:id="@+id/main_sale_really"
+                            android:layout_width="@dimen/image_little"
+                            android:layout_height="@dimen/image_little"
+                            android:layout_alignTop="@+id/main_total_sale_amount"
+                            android:layout_alignBottom="@+id/main_total_sale_amount_tag"
+                            android:scaleType="fitCenter"
+                            android:layout_marginLeft="16dp"
+                            android:src="@mipmap/icon_sale_data"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="@dimen/line_width"
+                        android:layout_height="match_parent"
+                        android:background="@color/lineBg"/>
+
+                    <RelativeLayout
+                        android:id="@+id/main_finish_rate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingRight="8dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/main_sale_finish"
+                            android:layout_width="@dimen/image_little"
+                            android:layout_height="@dimen/image_little"
+                            android:layout_alignTop="@+id/main_total_finish"
+                            android:layout_alignBottom="@+id/main_total_finish_tag"
+                            android:scaleType="fitCenter"
+                            android:layout_marginLeft="16dp"
+                            android:src="@mipmap/icon_finish_rate"/>
+
+                        <TextView
+                            android:id="@+id/main_total_finish"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_toRightOf="@+id/main_sale_finish"
+                            android:ellipsize="end"
+                            android:textColor="@drawable/selector_text_report"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="0.00"
+                            android:textSize="@dimen/textSize_small"/>
+
+                        <TextView
+                            android:id="@+id/main_total_finish_tag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/main_total_finish"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_toRightOf="@+id/main_sale_finish"
+                            android:gravity="center"
+                            android:textColor="@drawable/selector_text_report"
+                            android:text="完成率"
+                            android:textSize="@dimen/textSize_small"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="@dimen/line_width"
+                        android:layout_height="match_parent"
+                        android:background="@color/lineBg"/>
+
+                    <RelativeLayout
+                        android:id="@+id/main_profit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingRight="8dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/main_total_profit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_toRightOf="@+id/main_maolirun"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textColor="@drawable/selector_text_report"
+                            android:text="0.00"
+                            android:textSize="@dimen/textSize_small"/>
+
+                        <TextView
+                            android:id="@+id/main_total_profit_tag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/main_total_profit"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_toRightOf="@+id/main_maolirun"
+                            android:gravity="center"
+                            android:text="毛利润"
+                            android:textColor="@drawable/selector_text_report"
+                            android:textSize="@dimen/textSize_small"/>
+
+                        <ImageView
+                            android:id="@+id/main_maolirun"
+                            android:layout_width="@dimen/image_little"
+                            android:layout_height="@dimen/image_little"
+                            android:layout_alignTop="@+id/main_total_profit"
+                            android:layout_alignBottom="@+id/main_total_profit_tag"
+                            android:scaleType="fitCenter"
+                            android:layout_marginLeft="16dp"
+                            android:src="@mipmap/icon_gross_profit_data"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/main_chart_view_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_white_coner_ten"
+                    android:orientation="vertical"
+                    android:visibility="gone"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/menu_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="520dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="6dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

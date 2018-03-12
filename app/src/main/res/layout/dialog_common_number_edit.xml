@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:textColor="#000000">
+
+        <EditText
+            android:id="@+id/common_edit_edit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="34dp"
+            android:layout_marginRight="34dp"
+            android:selectAllOnFocus="true"
+            android:background="@drawable/shape_home_add_group_bg"
+            android:maxLength="8"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/common_edit_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textSize="@dimen/textSize_small"/>
+
+        <View
+            style="@style/vertical_line"/>
+
+        <TextView
+            android:id="@+id/common_edit_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textSize="@dimen/textSize_small"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

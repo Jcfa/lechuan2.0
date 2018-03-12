@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO 对话框文本-->
+    <string name="share_friends_title">邀请好友玩乐传</string>
+    <string name="share_friends_description">乐传乐传乐传。。。好友邀请。。。。。。。。。。。。。。。。。。。。。。。。。</string>
+
+    <string name="share_distribution_title">邀请好友做分销</string>
+    <string name="share_distribution_description">乐传乐传乐传。。。分销邀请。。。。。。。。。。。。。。。。。。。。。。。。。</string>
+</resources>

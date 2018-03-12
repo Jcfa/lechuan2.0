@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/shape_down_line"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/type_back"
+            style="@style/iv_back" />
+
+        <TextView
+            android:text="商品类型"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/text_title" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/type_clothing_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:background="@drawable/selector_common_item"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/type_clothing_type_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/clothing_type"
+            android:textColor="@color/text_type"
+            android:textSize="@dimen/z_text_normal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginTop="10dp"
+            android:text="服饰类"
+            android:textColor="#8b8b8b"
+            android:textSize="@dimen/z_text_little"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/type_shop_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:background="@drawable/selector_common_item"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/type_shop_type_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/shop_type"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/z_text_normal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginTop="10dp"
+            android:text="百货类"
+            android:textColor="#8b8b8b"
+            android:textSize="@dimen/z_text_little"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/article_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="#fff">
+
+        <include
+            layout="@layout/layout_base_title"/>
+
+        <FrameLayout
+            android:id="@+id/add_ad_confirm"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="@dimen/title_button_width"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_common_green_btn"
+                android:gravity="center"
+                android:text="@string/confirm"
+                android:textColor="#fff"
+                android:textSize="@dimen/textSize_middle"
+                android:id="@+id/textView4"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_small"
+                android:background="@drawable/shape_imaginary_line_frame"
+                android:orientation="vertical" >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/add_ad_image"
+                        android:layout_width="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:background="@mipmap/icon_add_ad_cover"
+                        android:layout_height="210dp"/>
+
+                    <ImageView
+                        android:id="@+id/add_ad_image_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:scaleType="centerInside"
+                        android:visibility="gone"
+                        android:padding="@dimen/spacing_tiny"
+                        android:src="@mipmap/icon_add_ad_delete"/>
+
+                </FrameLayout>
+
+                <View
+                    style="@style/horizontal_line" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_tiny">
+
+                    <TextView
+                        android:id="@+id/add_ad_camera"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:drawableLeft="@mipmap/ic_camera"
+                        android:background="@drawable/selector_common"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:text="@string/camera"/>
+
+                    <View
+                        style="@style/vertical_line" />
+
+                    <TextView
+                        android:id="@+id/add_ad_photo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_common"
+                        android:gravity="center_vertical|right"
+                        android:drawableLeft="@mipmap/ic_image"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:text="@string/photo"/>
+
+                </TableRow>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_small"
+                android:background="@color/common_background"/>
+
+            <EditText
+                android:id="@+id/add_ad_content"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="#fff"
+                android:gravity="top"
+                android:inputType="none"
+                android:maxLength="300"
+                android:hint="@string/hint_show_image_content"
+                android:textColorHint="@color/hint_text"
+                android:paddingBottom="@dimen/spacing_middle"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="@dimen/spacing_middle"
+                android:textSize="@dimen/textSize_middle"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_small"
+                android:background="@color/common_background"/>
+
+            <TableRow
+                android:id="@+id/add_ad_goods"
+                android:layout_width="match_parent"
+                android:background="@drawable/selector_common"
+                android:layout_height="@dimen/height_middle">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/add_ad_goods_tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:drawableLeft="@mipmap/icon_goods_tag"
+                        android:drawablePadding="@dimen/spacing_tiny"
+                        android:gravity="center_vertical"
+                        android:text="@string/goods"
+                        android:textColor="@color/textBlack"
+                        android:textSize="@dimen/textSize_middle"/>
+
+                    <RelativeLayout
+                        android:id="@+id/add_ad_goods_info"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/add_ad_goods_icon"
+                            android:layout_width="@dimen/image_middle"
+                            android:layout_height="@dimen/image_middle"
+                            android:scaleType="centerCrop"
+                            android:layout_marginRight="@dimen/spacing_small"
+                            android:layout_marginLeft="@dimen/spacing_small"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:id="@+id/add_ad_goods_name"
+                            style="@style/text_middle_single_line"
+                            android:layout_marginTop="@dimen/spacing_middle"
+                            android:layout_marginRight="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_toRightOf="@+id/add_ad_goods_icon"/>
+
+                        <TextView
+                            android:id="@+id/add_ad_goods_price"
+                            style="@style/text_small_single_line"
+                            android:layout_marginBottom="@dimen/spacing_middle"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:drawableLeft="@mipmap/home_rmb"
+                            android:textColor="#b95f55"
+                            android:layout_toRightOf="@+id/add_ad_goods_icon"/>
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/add_ad_goods_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:drawableRight="@mipmap/right_arrow"
+                    android:text="@string/add"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/textSize_small"/>
+
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_small"
+                android:background="@color/common_background"/>
+
+            <TableRow
+                android:id="@+id/add_ad_redbag"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_tiny"
+                android:background="@drawable/selector_common">
+
+                <TextView
+                    android:id="@+id/add_ad_redbag_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/icon_welfare_tag"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:gravity="center_vertical"
+                    android:text="@string/redbag"
+                    android:textColor="@color/textBlack"
+                    android:textSize="@dimen/textSize_middle"/>
+
+                <TextView
+                    android:id="@+id/add_ad_redbag_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:drawableRight="@mipmap/right_arrow"
+                    android:text="@string/add"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/textSize_small"/>
+
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_small"
+                android:background="@color/common_background"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

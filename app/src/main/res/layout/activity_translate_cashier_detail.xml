@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/common_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/translate_cashier_detail_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:layout_centerInParent="true"
+            android:text="交接详情"/>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/translate_detail_tag_cashier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:textColor="@color/textGray"
+                    android:textSize="@dimen/z_text_small"
+                    android:text="收银员："/>
+
+                <TextView
+                    android:id="@+id/translate_detail_value_cashier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/translate_detail_tag_cashier"
+                    android:textSize="14sp"
+                    android:textColor="@color/textBlack"
+                    android:layout_alignBaseline="@+id/translate_detail_tag_cashier"
+                    android:text="总账号"/>
+
+                <TextView
+                    android:id="@+id/translate_detail_cashier_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_below="@+id/translate_detail_tag_cashier"
+                    android:textSize="14sp"
+                    android:textColor="#AAAAAA"
+                    android:text="1970-8-01 12:00:00"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_down_line">
+
+                <ImageView
+                    android:id="@+id/icon_cashier"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_cashier"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/icon_cashier"
+                    android:textSize="14sp"
+                    android:layout_centerVertical="true"
+                    android:text="现金" />
+
+                <TextView
+                    android:id="@+id/translate_detail_total_cashier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:text="+ 0.00"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="12dp"/>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/translate_detail_cashier_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_down_line">
+
+                <ImageView
+                    android:id="@+id/icon_ali_pay"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_cashier"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/icon_ali_pay"
+                    android:textSize="14sp"
+                    android:text="支付宝"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/translate_detail_ali_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:text="+ 0.00"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="12dp"/>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/translate_detail_ali_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_down_line">
+
+                <ImageView
+                    android:id="@+id/icon_wechat"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_cashier"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/icon_wechat"
+                    android:textSize="14sp"
+                    android:text="微信"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/translate_detail_wechat_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:text="+ 0.00"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/translate_detail_wechat_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_down_line">
+
+                <ImageView
+                    android:id="@+id/icon_balance"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="12dp"
+                    android:src="@mipmap/icon_cashier"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/icon_balance"
+                    android:textSize="14sp"
+                    android:text="余额"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/translate_detail_balance_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:text="+ 0.00"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/translate_detail_balance_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_down_line">
+
+                <ImageView
+                    android:id="@+id/icon_card"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_cashier"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/icon_card"
+                    android:textSize="14sp"
+                    android:text="刷卡"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/translate_detail_card_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:text="+ 0.00"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/translate_detail_card_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,236 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#30000000"
+    android:gravity="center|center_horizontal|center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/gprinterView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/printer_title_tv"
+                android:textColor="#33AA99"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="连接打印机" />
+
+            <TextView
+                android:id="@+id/printer_name_tv"
+                android:textColor="#5e5e5e"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:drawablePadding="1dip"
+                android:drawableRight="@mipmap/pointer_down"
+                android:gravity="center_vertical|left"
+                android:text="Printer001" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/iv_close_dialog"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:src="@mipmap/set_dialog_close" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="3dip"
+            android:background="#33aa99" />
+
+        <LinearLayout
+            android:id="@+id/tipDialog_a"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:paddingBottom="50dip"
+            android:paddingTop="50dip"
+            android:visibility="visible" >
+
+            <ImageView
+                android:id="@+id/iv_printer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30dip"
+                android:paddingRight="30dip"
+                android:src="@mipmap/set_printer" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:textColor="#5e5e5e"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|left"
+                    android:text="连接打印机"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tip_textView"
+                    android:textColor="#5e5e5e"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|left"
+                    android:text="正在连接中..." />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tipDialog_b"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="#FFFFFF"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="40dp"
+                    android:paddingTop="40dp" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="30dip"
+                        android:paddingRight="30dip"
+                        android:paddingTop="6dip"
+                        android:src="@mipmap/set_printer_erre" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/tip_textView_bx"
+                            android:textColor="#5e5e5e"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical|left"
+                            android:text="已为连接打印机10次"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="6dp" >
+
+                            <TextView
+                                android:id="@+id/tip_textView_b"
+                                android:textColor="#5e5e5e"
+                                android:textSize="18sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical|left"
+                                android:text="小票机重启后，点击“连接打印机”" />
+
+                            <TextView
+                                android:textSize="18sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical|left"
+                                android:text="请检查打印机是否开启、缺纸，建议重启打印机"
+                                android:textColor="#ff0000"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="#DDDDDD" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp" >
+
+                    <Button
+                        android:id="@+id/print_btn_cancel"
+                        android:textColor="#5e5e5e"
+                        android:textSize="18sp"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        android:text="取消打印" />
+
+                    <View
+                        android:layout_width="1dip"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#DDDDDD" />
+
+                    <Button
+                        android:id="@+id/print_btn_sure"
+                        android:textColor="#5e5e5e"
+                        android:textSize="18sp"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:paddingBottom="16dp"
+                        android:paddingTop="16dp"
+                        android:text="连接打印机" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

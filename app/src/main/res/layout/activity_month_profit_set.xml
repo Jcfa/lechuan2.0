@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ImageView
+        android:id="@+id/month_profit_set_back"
+        android:layout_height="@dimen/title_height"
+        style="@style/iv_back"/>
+
+    <TextView
+        android:id="@+id/month_profit_set_title"
+        style="@style/text_title"
+        android:layout_height="@dimen/title_height"
+        android:layout_centerHorizontal="true"
+        android:text="月损益表"/>
+
+    <Button
+        android:id="@+id/month_profit_set_confirm"
+        android:layout_width="@dimen/title_button_width"
+        android:layout_height="34dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/selector_common_green_btn"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@drawable/selector_setting_sure_color"
+        android:textSize="14sp"/>
+
+    <View
+        android:id="@+id/under_line_profit_set_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginTop="@dimen/title_height"
+        android:background="@color/lineBg"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/under_line_profit_set_top">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tag_date_output"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="日常支出"
+                android:textColor="@color/color_999999"
+                android:textSize="16sp"/>
+
+            <View
+                android:id="@+id/under_line_date_output"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_date_output"/>
+
+            <TextView
+                android:id="@+id/tag_profit_rent"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_date_output"
+                android:text="铺租："/>
+
+            <EditText
+                android:id="@+id/value_profit_rent"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_date_output"
+                android:text="0.00"/>
+
+            <View
+                android:id="@+id/under_line_rent"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_rent"/>
+
+            <TextView
+                android:id="@+id/tag_profit_water"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_rent"
+                android:text="水电："/>
+
+            <EditText
+                android:id="@+id/value_profit_water"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_rent"
+                android:text="0.00"
+                />
+
+            <View
+                android:id="@+id/under_line_water"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_water"/>
+
+            <TextView
+                android:id="@+id/tag_profit_manager"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_water"
+                android:text="管理费："/>
+
+            <EditText
+                android:id="@+id/value_profit_manager"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_water"
+                android:text="0.00"
+                />
+
+            <View
+                android:id="@+id/under_line_manager"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_manager"/>
+
+            <TextView
+                android:id="@+id/catalog_sale_output"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignLeft="@+id/tag_date_output"
+                android:layout_below="@+id/under_line_manager"
+                android:gravity="center_vertical"
+                android:text="销售支出"
+                android:textColor="@color/color_999999"
+                android:textSize="16sp"/>
+
+            <View
+                android:id="@+id/under_line_output"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/catalog_sale_output"/>
+
+            <TextView
+                android:id="@+id/tag_profit_tax"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_output"
+                android:text="税收："/>
+
+            <EditText
+                android:id="@+id/value_profit_tax"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_output"
+                android:text="0.00"/>
+
+            <View
+                android:id="@+id/under_line_tax"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_tax"/>
+
+            <TextView
+                android:id="@+id/tag_profit_salary"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_tax"
+                android:text="工资："/>
+
+            <EditText
+                android:id="@+id/value_profit_salary"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_tax"
+                android:text="0.00"/>
+
+            <View
+                android:id="@+id/under_line_salary"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_salary"/>
+
+            <TextView
+                android:id="@+id/tag_profit_percentage"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_salary"
+                android:text="提成："/>
+
+            <EditText
+                android:id="@+id/value_profit_percentage"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_salary"
+                android:text="0.00"/>
+
+            <View
+                android:id="@+id/under_line_percentage"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_percentage"/>
+
+            <TextView
+                android:id="@+id/catalog_sale_fee_allot"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignLeft="@+id/tag_date_output"
+                android:layout_below="@+id/under_line_percentage"
+                android:gravity="center_vertical"
+                android:text="费用分摊"
+                android:textColor="@color/color_999999"
+                android:textSize="16sp"/>
+
+            <View
+                android:id="@+id/under_line_allot"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/catalog_sale_fee_allot"/>
+
+            <TextView
+                android:id="@+id/tag_profit_anther_fee"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_allot"
+                android:text="杂费："/>
+
+            <EditText
+                android:id="@+id/value_profit_anther_fee"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_allot"
+                android:text="0.00"/>
+
+            <View
+                android:id="@+id/under_line_anther_fee"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_anther_fee"/>
+
+            <TextView
+                android:id="@+id/tag_profit_spread"
+                style="@style/profit_set_tag_property"
+                android:layout_below="@+id/under_line_anther_fee"
+                android:text="推广："/>
+
+            <EditText
+                android:id="@+id/value_profit_spread"
+                style="@style/profit_set_value_property"
+                android:layout_below="@+id/under_line_anther_fee"
+                android:text="0.00"/>
+
+            <View
+                android:id="@+id/under_line_spread"
+                style="@style/horizontal_line"
+                android:layout_below="@+id/tag_profit_spread"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

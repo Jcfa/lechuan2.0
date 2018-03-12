@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="#F4F4F4"
+        android:paddingLeft="30dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:textColor="#575757"
+            android:textSize="@dimen/textSize_large"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="选择省市区" />
+
+        <ImageView
+            android:id="@+id/iv_close_dialog"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_common"
+            android:visibility="gone"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/goods_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="30dp">
+
+        <Spinner
+            android:id="@+id/dialog_select_address_province_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_home_add_group_bg"
+            android:drawableRight="@mipmap/set_edit_text_drop_down"
+            android:gravity="center_vertical"
+            android:textAlignment="center" />
+
+        <Spinner
+            android:id="@+id/dialog_select_address_city_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/shape_home_add_group_bg"
+            android:drawableRight="@mipmap/set_edit_text_drop_down"
+            android:gravity="center_vertical"
+            android:textAlignment="center" />
+
+        <Spinner
+            android:id="@+id/dialog_select_address_area_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/shape_home_add_group_bg"
+            android:drawableRight="@mipmap/set_edit_text_drop_down"
+            android:gravity="center_vertical"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/horizontal_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_btn_height"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_cancel"
+            android:textSize="@dimen/textSize_small"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:textColor="#5e5e5e"
+            android:text="@string/cancel" />
+
+        <View
+            style="@style/vertical_line"/>
+
+        <Button
+            android:id="@+id/dialog_confirm"
+            android:textSize="@dimen/textSize_small"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_common"
+            android:gravity="center"
+            android:textColor="@color/color_00BCB4"
+            android:text="@string/confirm" />
+    </LinearLayout>
+
+</LinearLayout>

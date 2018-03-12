@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/service_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/z_title_size"
+            android:textColor="@color/textBlack"
+            android:text="乐传服务"/>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/service_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/service_layout_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/service_iv_dot1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@mipmap/black_dot" />
+
+            <ImageView
+                android:id="@+id/service_iv_dot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@mipmap/black_dot" />
+
+            <ImageView
+                android:id="@+id/service_iv_dot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@mipmap/black_dot" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/service_iv_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/service_layout_dot"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:src="@mipmap/white_dot" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/use_seven_days"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="试用七天"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/textBlack"
+            android:background="@drawable/seletor_red_stroke_radius5"
+            android:textSize="@dimen/z_text_normal"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:id="@+id/to_buy_service"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:textSize="@dimen/z_text_normal"
+            android:text="立即购买"
+            android:textColor="@android:color/white"
+            android:background="@drawable/selector_red_radius5"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

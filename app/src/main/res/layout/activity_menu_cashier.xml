@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/translate_cashier_back"
+            style="@style/iv_back"/>
+
+        <TextView
+            style="@style/text_title"
+            android:layout_centerInParent="true"
+            android:text="交接明细"/>
+
+        <View
+            style="@style/horizontal_line"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/cashier_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape_white_coner_ten">
+
+                <ImageView
+                    android:id="@+id/cashier_calender"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/date_icon" />
+
+                <TextView
+                    android:id="@+id/cashier_calender_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:layout_toRightOf="@+id/cashier_calender"
+                    android:text="2017-07-01"
+                    android:textSize="@dimen/textSize_middle"/>
+
+                <TextView
+                    android:id="@+id/cashier_time_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@+id/cashier_calender_start"
+                    android:text="至"
+                    android:textSize="@dimen/textSize_middle"/>
+
+                <TextView
+                    android:id="@+id/cashier_calender_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:layout_toRightOf="@+id/cashier_time_to"
+                    android:text="2017-07-27"
+                    android:textSize="@dimen/textSize_middle"/>
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                
+                <TextView
+                    android:id="@+id/tips_no_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="抱歉，没有任何数据"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/z_text_normal"/>
+                
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/cashier_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                
+            </FrameLayout>
+            
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>
