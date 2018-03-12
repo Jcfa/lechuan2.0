@@ -858,6 +858,8 @@
 
         <!--模板详情 （已购买，可以编辑）-->
         <activity android:name=".activity.official.ModelEditActivity"/>
+        <activity android:name=".activity.orderinfo.OrderInfoMainActivity" />
+        <activity android:name=".activity.orderinfo.OrderEntityShopActivity" />
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">
