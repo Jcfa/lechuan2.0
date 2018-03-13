@@ -256,7 +256,7 @@ public class RShopMainActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<MainMenuBean> initMenuData() {
         beans = new ArrayList<>();
         Object obj = FileManage.restoreObject(MenuConstant.SETTING_MENU_SELECT_DATA);
-//        if ((obj == null)) {
+        if ((obj == null)) {
 
             MainMenuBean realshop = new MainMenuBean();
             realshop.menu_id = 13;
@@ -343,12 +343,12 @@ public class RShopMainActivity extends BaseActivity implements View.OnClickListe
             beans.add(setting);
 
             FileManage.saveObject(MenuConstant.SETTING_MENU_SELECT_DATA, beans);
-//        } else {
-//            ArrayList<MainMenuBean> temp = (ArrayList<MainMenuBean>) obj;
-//            for (MainMenuBean bean : temp) {
-//                if (bean.isSelected) beans.add(bean);
-//            }
-//        }
+        } else {
+            ArrayList<MainMenuBean> temp = (ArrayList<MainMenuBean>) obj;
+            for (MainMenuBean bean : temp) {
+                if (bean.isSelected) beans.add(bean);
+            }
+        }
         if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_SHOP) == 0) {
             //没有实体店，把本地保存的实体店改为创建实体店
             for (MainMenuBean bean : beans) {

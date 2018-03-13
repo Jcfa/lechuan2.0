@@ -7,7 +7,6 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.MainActivity;
 import com.poso2o.lechuan.activity.goods.RGoodsActivity;
 import com.poso2o.lechuan.activity.order.OrderActivity;
-import com.poso2o.lechuan.activity.realshop.CompanyDefineActivity;
 import com.poso2o.lechuan.activity.realshop.MemberActivity;
 import com.poso2o.lechuan.activity.realshop.MenuSettingActivity;
 import com.poso2o.lechuan.activity.realshop.MenuStaffActivity;
@@ -18,11 +17,10 @@ import com.poso2o.lechuan.activity.realshop.RShopActivity;
 import com.poso2o.lechuan.activity.realshop.RShopDesActivity;
 import com.poso2o.lechuan.activity.realshop.RShopMainActivity;
 import com.poso2o.lechuan.activity.wshop.LechuanServiceActivity;
+import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.activity.wshop.WShopActivity;
-import com.poso2o.lechuan.activity.wshop.WShopDesActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.configs.Constant;
-import com.poso2o.lechuan.manager.rshopmanager.ROrderManager;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 
@@ -85,14 +83,15 @@ public class MainMenuBean implements Serializable{
 //                intent.setClass(context, RMarketActivity.class);
 //                break;
             case 8:
-                int type = SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY);
-                if (type == 1){
-                    intent.setClass(context, WShopDesActivity.class);
-                }else if (type == 2 || type == 4){
-                    intent.setClass(context, CompanyDefineActivity.class);
-                }else {
-                    intent.setClass(context, WShopDesActivity.class);
-                }
+                intent.setClass(context, VdianActivity.class);
+//                int type = SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY);
+//                if (type == 1){
+//                    intent.setClass(context, WShopDesActivity.class);
+//                }else if (type == 2 || type == 4){
+//                    intent.setClass(context, CompanyDefineActivity.class);
+//                }else {
+//                    intent.setClass(context, WShopDesActivity.class);
+//                }
                 break;
             case 9:
                 intent.setClass(context, OAHelperActivity.class);
