@@ -64,7 +64,6 @@
     <permission
         android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE" />
     <application
         android:name="com.poso2o.lechuan.base.BaseApplication"
         android:allowBackup="true"
@@ -87,17 +86,18 @@
         </activity>
 
         <!--启动页-->
-
+        <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
         <activity
-            android:name="com.poso2o.lechuan.activity.login.StartActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        android:name="com.poso2o.lechuan.activity.login.StartActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE" />
 
         <!--登录-->
         <activity
@@ -858,6 +858,9 @@
 
         <!--模板详情 （已购买，可以编辑）-->
         <activity android:name=".activity.official.ModelEditActivity"/>
+        <activity android:name=".activity.orderinfo.OrderEntityShopActivity" />
+        <activity android:name=".activity.orderinfo.OrderInfoSellActivity" />
+        <activity android:name=".activity.orderinfo.OrderInfoMainActivity" />
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">

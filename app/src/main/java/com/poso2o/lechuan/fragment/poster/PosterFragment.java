@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.MainActivity;
+import com.poso2o.lechuan.activity.orderinfo.OrderInfoMainActivity;
 import com.poso2o.lechuan.activity.poster.MyScrollViewActivity;
 import com.poso2o.lechuan.activity.poster.OpenHomeActivity;
 import com.poso2o.lechuan.activity.poster.PosterCommentActivity;
@@ -142,7 +143,8 @@ public class PosterFragment extends BaseFragment {
                 //((MainActivity) getActivity()).finish();
                 Intent intent = new Intent();
                 if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_SHOP) == 1 || (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP) == 1 && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 3)) {
-                    intent.setClass(context, RShopMainActivity.class);
+//                    intent.setClass(context, RShopMainActivity.class);
+                    intent.setClass(context, OrderInfoMainActivity.class);
                 } else {
                     intent.setClass(context, OpenShopActivity.class);
                 }
