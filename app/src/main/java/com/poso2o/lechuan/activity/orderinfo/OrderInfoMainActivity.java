@@ -52,7 +52,7 @@ public class OrderInfoMainActivity extends BaseActivity {
         llOrderSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoSellActivity.class));
             }
         });
     }

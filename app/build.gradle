@@ -22,6 +22,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        //Error: java.util.concurrent.ExecutionException: com.android.ide.common.process.ProcessException:
+        //不然包.9图异常
+        aaptOptions.cruncherEnabled = false
     }
     buildTypes {
         release {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/iv_order_sell_head"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ex_shop_logo" />
+
+        <TextView
+            android:id="@+id/tv_order_goodsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_order_sell_head"
+            android:text="10dp"
+            android:textColor="@color/placeholder_70" />
+
+        <TextView
+            android:id="@+id/tv_order_goodsName_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_order_goodsName"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_order_sell_head"
+            android:text="无规格"
+            android:textColor="@color/placeholder_70" />
+
+        <TextView
+            android:id="@+id/tv_order_goods_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_order_goodsName_des"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_order_sell_head"
+            android:text="9.00"
+            android:textColor="@color/color_FF6537" />
+
+        <TextView
+            android:id="@+id/tv_order_goods_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="11"
+            android:textColor="@color/placeholder_70" />
+    </RelativeLayout>
+
+</RelativeLayout>
