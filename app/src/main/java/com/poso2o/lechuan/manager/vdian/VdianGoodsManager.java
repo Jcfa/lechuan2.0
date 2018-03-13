@@ -229,18 +229,18 @@ public class VdianGoodsManager extends BaseManager {
         request.add("goods_discount", NumberFormatUtils.format(goods.goods_discount));
         request.add("goods_cost_section", goods.goods_cost_section);
         request.add("goods_price_section", goods.goods_price_section);
-        request.add("goods_auxiliary_unit", goods.goods_auxiliary_unit);
-        request.add("goods_auxiliary_unit_packingrate", Integer.toString(goods.goods_auxiliary_unit_packingrate));
+//        request.add("goods_auxiliary_unit", goods.goods_auxiliary_unit);
+//        request.add("goods_auxiliary_unit_packingrate", Integer.toString(goods.goods_auxiliary_unit_packingrate));
         request.add("goods_number", NumberFormatUtils.formatToInteger(goods.goods_number));
         request.add("goods_sale_number", NumberFormatUtils.formatToInteger(goods.goods_sale_number));
         request.add("sale_type", NumberFormatUtils.formatToInteger(goods.sale_type));
-        request.add("goods_type", NumberFormatUtils.formatToInteger(goods.goods_type));
+//        request.add("goods_type", NumberFormatUtils.formatToInteger(goods.goods_type));
         request.add("remark", goods.remark);
         request.add("goods_move_picture", getImgsJson(goods.goods_move_picture));
         request.add("goods_spec", getSpecJson(goods.goods_spec));
-        request.add("goods_supplier", getSupplierJson(goods.goods_supplier));
-        request.add("main_supplier_id", goods.main_supplier_id);
-        request.add("main_supplier_name", goods.main_supplier_name);
+//        request.add("goods_supplier", getSupplierJson(goods.goods_supplier));
+//        request.add("main_supplier_id", goods.main_supplier_id);
+//        request.add("main_supplier_name", goods.main_supplier_name);
         defaultParam(request);
 
         baseActivity.request(ADD, request, new HttpListener<String>() {
@@ -390,18 +390,18 @@ public class VdianGoodsManager extends BaseManager {
         request.add("goods_discount", NumberFormatUtils.format(goods.goods_discount));
         request.add("goods_cost_section", goods.goods_cost_section);
         request.add("goods_price_section", goods.goods_price_section);
-        request.add("goods_auxiliary_unit", goods.goods_auxiliary_unit);
-        request.add("goods_auxiliary_unit_packingrate", Integer.toString(goods.goods_auxiliary_unit_packingrate));
+//        request.add("goods_auxiliary_unit", goods.goods_auxiliary_unit);
+//        request.add("goods_auxiliary_unit_packingrate", Integer.toString(goods.goods_auxiliary_unit_packingrate));
         request.add("goods_number", NumberFormatUtils.formatToInteger(goods.goods_number));
         request.add("goods_sale_number", NumberFormatUtils.formatToInteger(goods.goods_sale_number));
         request.add("sale_type", NumberFormatUtils.formatToInteger(goods.sale_type));
-        request.add("goods_type", NumberFormatUtils.formatToInteger(goods.goods_type));
+//        request.add("goods_type", NumberFormatUtils.formatToInteger(goods.goods_type));
         request.add("remark", goods.remark);
         request.add("goods_move_picture", getImgsJson(goods.goods_move_picture));
         request.add("goods_spec", getSpecJson(goods.goods_spec));
-        request.add("goods_supplier", getSupplierJson(goods.goods_supplier));
-        request.add("main_supplier_id", goods.main_supplier_id);
-        request.add("main_supplier_name", goods.main_supplier_name);
+//        request.add("goods_supplier", getSupplierJson(goods.goods_supplier));
+//        request.add("main_supplier_id", goods.main_supplier_id);
+//        request.add("main_supplier_name", goods.main_supplier_name);
         defaultParam(request);
 
         baseActivity.request(EDIT, request, new HttpListener<String>() {

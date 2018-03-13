@@ -12,9 +12,7 @@ import com.poso2o.lechuan.bean.color.GoodsColor;
 import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.dialog.CommonEditDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.rshopmanager.RealColorManager;
 import com.poso2o.lechuan.manager.vdian.VdianColorManager;
-import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 

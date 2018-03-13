@@ -120,6 +120,7 @@
                             android:id="@+id/edit_goods_type_group"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
+                            android:visibility="gone"
                             android:layout_marginTop="@dimen/spacing_tiny"
                             android:background="@drawable/selector_common_press"
                             android:gravity="center_vertical">

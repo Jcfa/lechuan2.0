@@ -1,8 +1,6 @@
 package com.poso2o.lechuan.activity.realshop;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -227,7 +225,7 @@ public class MenuSettingActivity extends BaseActivity {
                     break;
                 }
             }
-        }else {
+        } else {
             //有实体店，把本地保存的创建实体店改为实体店
             for (MainMenuBean bean : beans){
                 if (bean.menu_id == 13){

@@ -132,63 +132,63 @@
         <activity
             android:name="com.poso2o.lechuan.activity.mine.CommissionDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--领取详情列表-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.AcceptDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--红包详情列表-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.RedPacketDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--红包收支记录-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.RedPacketRecordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--佣金设置-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.CommissionSettingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--邀请好友抢红包-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.InvitationFriendsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!---->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.PosterDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--我的-用户信息-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.UserInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--编辑信息-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.EditTextActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--编辑手机号码-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.EditPhoneActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--佣金结算-->
         <activity
             android:name="com.poso2o.lechuan.activity.topup.CommissionSettleActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--批量邀请粉丝-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.InvitationFansActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.poso2o.lechuan.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -220,7 +220,7 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!--商家首页面-->
         <activity
             android:name=".activity.realshop.RShopMainActivity"
@@ -680,49 +680,49 @@
         <activity
             android:name="com.poso2o.lechuan.activity.poster.PosterCommissionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告我的发布-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyPublishActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告我的收藏-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyCollectionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告我的关注-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyFollowActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告我的粉丝-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyFansActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告商家店铺评论页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.ShopCommentActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告商家店铺评论页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyScrollViewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--广告商家公开店铺页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.OpenHomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--订单页面-->
         <activity
@@ -742,108 +742,108 @@
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--订单修改价格页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderPriceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--修改订单地址页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderAddressActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--修改订单备注页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderRemarkActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--订单发货页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderDeliveryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--物流公司页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.LogisticsCompanyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--批量发货页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.BatchDeliveryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--批量发货页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.BatchDeliveryNextActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--物流信息页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.LogisticsInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--修改物流页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.LogisticsModifyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--订单评论页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderEvaluateActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--订单详情页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--省市区地址选择-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.AddressSelectActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--打印机 - 选择货币-->
         <activity
             android:name="com.poso2o.lechuan.activity.print.CurrencySelectActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--打印机 - 首页-->
         <activity
             android:name="com.poso2o.lechuan.printer.PrinterBluetoothActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <!--打印机 - 连接蓝牙设备-->
         <activity
             android:name="com.poso2o.lechuan.printer.BluetoothDeviceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--公众号助手-自由编辑发布页-->
         <activity
             android:name=".activity.oa.OAFreeEditActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".activity.oa.OAFreeEditActivity2"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <!--公众号服务订购页面-->
         <activity android:name=".activity.official.OaServiceActivity"/>
 

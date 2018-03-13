@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.goods.EditGoodsActivity;
 import com.poso2o.lechuan.activity.print.PrintBarcodeActivity;
 import com.poso2o.lechuan.adapter.GoodsDetailsImgsAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
@@ -30,7 +28,6 @@ import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
 import com.poso2o.lechuan.tool.listener.NoDoubleClickListener;
 import com.poso2o.lechuan.util.NumberFormatUtils;
-import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.GoodsDetailsImgsItemView;
 import com.poso2o.lechuan.view.GoodsSupplierItemView;
@@ -251,9 +248,9 @@ public class WGoodsDetailActivity extends BaseActivity {
         goods_details_salesnum.setText(Integer.toString(goods.goods_sale_number));
         goods_details_stock.setText(Integer.toString(goods.goods_number));
 
-        if (goods.goods_type == 2) {
-            goods_details_auxiliary_unit.setText(goods.getAuxiliaryUnitText());
-        }
+//        if (goods.goods_type == 2) {
+//            goods_details_auxiliary_unit.setText(goods.getAuxiliaryUnitText());
+//        }
 
         /*if (goods.goods_spec.size() == 1 && TextUtils.equals(GoodsSpec.NOT_SPEC, goods.goods_spec.get(0).goods_spec_name)) {
             goods_details_spec_group.setVisibility(GONE);

@@ -34,7 +34,6 @@ import com.poso2o.lechuan.activity.goods.SpecActivity;
 import com.poso2o.lechuan.activity.goods.SupplierActivity;
 import com.poso2o.lechuan.activity.goods.UnitActivity;
 import com.poso2o.lechuan.activity.image.SelectImagesActivity;
-import com.poso2o.lechuan.activity.realshop.GoodsTypeActivity;
 import com.poso2o.lechuan.adapter.EditGoodsImageAdapter;
 import com.poso2o.lechuan.adapter.WEditGoodsImageAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
@@ -43,15 +42,12 @@ import com.poso2o.lechuan.bean.goodsdata.Catalog;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
 import com.poso2o.lechuan.bean.goodsdata.GoodsMovePicture;
 import com.poso2o.lechuan.bean.goodsdata.GoodsSpec;
-import com.poso2o.lechuan.bean.goodsdata.GoodsSupplier;
 import com.poso2o.lechuan.bean.size.GoodsSize;
 import com.poso2o.lechuan.bean.spec.Spec;
 import com.poso2o.lechuan.bean.unit.GoodsUnit;
 import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.configs.MenuConstant;
-import com.poso2o.lechuan.dialog.CommonDialog;
 import com.poso2o.lechuan.dialog.KeepAddGoodsBackDialog;
-import com.poso2o.lechuan.dialog.UnitSetupDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
@@ -129,8 +125,8 @@ public class WEditGoodsActivity extends BaseActivity {
     /**
      * 类别
      */
-    private LinearLayout edit_goods_type_group;
-    private TextView edit_goods_type;
+//    private LinearLayout edit_goods_type_group;
+//    private TextView edit_goods_type;
 
     /**
      * 添加品名
@@ -208,7 +204,7 @@ public class WEditGoodsActivity extends BaseActivity {
     /**
      * 上架时间
      */
-    private LinearLayout on_sale_group;
+//    private LinearLayout on_sale_group;
     private TextView edit_goods_now_putaway;
     private TextView edit_goods_in_warehouse;
 
@@ -287,8 +283,8 @@ public class WEditGoodsActivity extends BaseActivity {
         itemTouchHelper.attachToRecyclerView(edit_goods_image_recycle);
 
         // 类别
-        edit_goods_type_group = (LinearLayout) findViewById(R.id.edit_goods_type_group);
-        edit_goods_type = (TextView) findViewById(R.id.edit_goods_type);
+//        edit_goods_type_group = (LinearLayout) findViewById(R.id.edit_goods_type_group);
+//        edit_goods_type = (TextView) findViewById(R.id.edit_goods_type);
 
         // 添加品名
         edit_goods_name_group = (LinearLayout) findViewById(R.id.edit_goods_name_group);
@@ -345,7 +341,7 @@ public class WEditGoodsActivity extends BaseActivity {
         edit_goods_stock_hint = (TextView) findViewById(R.id.edit_goods_stock_hint);
 
         // 上传时间
-        on_sale_group = (LinearLayout) findViewById(R.id.on_sale_group);
+//        on_sale_group = (LinearLayout) findViewById(R.id.on_sale_group);
         edit_goods_now_putaway = (TextView) findViewById(R.id.edit_goods_now_putaway);
         edit_goods_in_warehouse = (TextView) findViewById(R.id.edit_goods_in_warehouse);
         edit_goods_now_putaway.setSelected(true);
@@ -405,14 +401,14 @@ public class WEditGoodsActivity extends BaseActivity {
                 }
                 if (goods == null) {
                     goods = new Goods();
-                    goods.goods_type = SharedPreferencesUtils.getInt(Constant.GOODS_TYPE, 1);
-                    if (goods.goods_type == 2) {
-                        edit_goods_type.setText(R.string.shop_type);
-                        edit_goods_color_group.setVisibility(GONE);
-                        edit_goods_size_group.setVisibility(GONE);
-                        edit_goods_spec_group.setVisibility(VISIBLE);
-                        edit_goods_stock_hint.setVisibility(VISIBLE);
-                    }
+//                    goods.goods_type = SharedPreferencesUtils.getInt(Constant.GOODS_TYPE, 1);
+//                    if (goods.goods_type == 2) {
+//                        edit_goods_type.setText(R.string.shop_type);
+//                        edit_goods_color_group.setVisibility(GONE);
+//                        edit_goods_size_group.setVisibility(GONE);
+//                        edit_goods_spec_group.setVisibility(VISIBLE);
+//                        edit_goods_stock_hint.setVisibility(VISIBLE);
+//                    }
                     if (selectCatalog != null) {
                         if (!TextUtil.equals(selectCatalog.catalog_id, "-1")) {
                             goods.catalog_id = selectCatalog.catalog_id;
@@ -429,7 +425,7 @@ public class WEditGoodsActivity extends BaseActivity {
             case Constant.UPDATE:
                 goods = (Goods) intent.getExtras().get(Constant.GOODS);
 
-                edit_goods_type_group.setEnabled(false);
+//                edit_goods_type_group.setEnabled(false);
                 // 设置图片数据
                 loadImages(true);
                 // 展示商品详情信息
@@ -485,24 +481,24 @@ public class WEditGoodsActivity extends BaseActivity {
         });
 
         // 类别
-        edit_goods_type_group.setOnClickListener(new NoDoubleClickListener() {
-
-            @Override
-            public void onNoDoubleClick(View v) {
-                if (goods.goods_spec.size() > 0 || TextUtil.isNotEmpty(goods.goods_unit)) {
-                    CommonDialog dialog = new CommonDialog(context, R.string.dialog_switch_goods_type);
-                    dialog.show(new CommonDialog.OnConfirmListener() {
-
-                        @Override
-                        public void onConfirm() {
-                            toGoodsTypeActivity();
-                        }
-                    });
-                } else {
-                    toGoodsTypeActivity();
-                }
-            }
-        });
+//        edit_goods_type_group.setOnClickListener(new NoDoubleClickListener() {
+//
+//            @Override
+//            public void onNoDoubleClick(View v) {
+//                if (goods.goods_spec.size() > 0 || TextUtil.isNotEmpty(goods.goods_unit)) {
+//                    CommonDialog dialog = new CommonDialog(context, R.string.dialog_switch_goods_type);
+//                    dialog.show(new CommonDialog.OnConfirmListener() {
+//
+//                        @Override
+//                        public void onConfirm() {
+//                            toGoodsTypeActivity();
+//                        }
+//                    });
+//                } else {
+//                    toGoodsTypeActivity();
+//                }
+//            }
+//        });
 
         // 货号
         edit_goods_code.addTextChangedListener(new CustomTextWatcher() {
@@ -530,13 +526,13 @@ public class WEditGoodsActivity extends BaseActivity {
 
             @Override
             public void onNoDoubleClick(View v) {
-                if (goods.goods_type == 1) {
+//                if (goods.goods_type == 1) {
                     Intent intent = new Intent(context, UnitActivity.class);
                     intent.putExtra(Constant.DATA, goods.goods_unit);
                     startActivityForResult(intent, REQUEST_UNIT);
-                } else {
-                    showUnitSetupDialog();
-                }
+//                } else {
+//                    showUnitSetupDialog();
+//                }
             }
         });
 
@@ -681,30 +677,30 @@ public class WEditGoodsActivity extends BaseActivity {
     /**
      * 显示单位设置对话框
      */
-    private void showUnitSetupDialog() {
-        UnitSetupDialog dialog = new UnitSetupDialog(context, goods.goods_unit, goods.goods_auxiliary_unit, goods.goods_auxiliary_unit_packingrate);
-        dialog.show(new UnitSetupDialog.OnUnitSetupListener() {
+//    private void showUnitSetupDialog() {
+//        UnitSetupDialog dialog = new UnitSetupDialog(context, goods.goods_unit, goods.goods_auxiliary_unit, goods.goods_auxiliary_unit_packingrate);
+//        dialog.show(new UnitSetupDialog.OnUnitSetupListener() {
+//
+//            @Override
+//            public void onConfirm(String unit, String auxiliary_unit, int auxiliary_unit_number) {
+//                goods.goods_unit = unit;
+//                goods.goods_auxiliary_unit = auxiliary_unit;
+//                goods.goods_auxiliary_unit_packingrate = auxiliary_unit_number;
+//                edit_goods_unit.setText(unit);
+//                if (TextUtil.isNotEmpty(auxiliary_unit)) {
+//                    edit_goods_auxiliary_unit.setText("(" + auxiliary_unit_number + unit + "/" + auxiliary_unit + ")");
+//                }
+//                initSpecView();
+//            }
+//        });
+//    }
 
-            @Override
-            public void onConfirm(String unit, String auxiliary_unit, int auxiliary_unit_number) {
-                goods.goods_unit = unit;
-                goods.goods_auxiliary_unit = auxiliary_unit;
-                goods.goods_auxiliary_unit_packingrate = auxiliary_unit_number;
-                edit_goods_unit.setText(unit);
-                if (TextUtil.isNotEmpty(auxiliary_unit)) {
-                    edit_goods_auxiliary_unit.setText("(" + auxiliary_unit_number + unit + "/" + auxiliary_unit + ")");
-                }
-                initSpecView();
-            }
-        });
-    }
-
-    private void toGoodsTypeActivity() {
-        Intent intent = new Intent();
-        intent.setClass(context, GoodsTypeActivity.class);
-        intent.putExtra(Constant.TYPE, goods.goods_type);
-        startActivityForResult(intent, REQUEST_TYPE);
-    }
+//    private void toGoodsTypeActivity() {
+//        Intent intent = new Intent();
+//        intent.setClass(context, GoodsTypeActivity.class);
+//        intent.putExtra(Constant.TYPE, goods.goods_type);
+//        startActivityForResult(intent, REQUEST_TYPE);
+//    }
 
     /**
      * 新增
@@ -716,7 +712,7 @@ public class WEditGoodsActivity extends BaseActivity {
             @Override
             public void onResult(int tag, Object object) {
                 SharedPreferencesUtils.put(Constant.ADD_GOODS_SAVE, false);
-                SharedPreferencesUtils.put(Constant.GOODS_TYPE, goods.goods_type);
+//                SharedPreferencesUtils.put(Constant.GOODS_TYPE, goods.goods_type);
                 Intent intent = new Intent();
                 intent.putExtra(Constant.GOODS, goods);
                 setResult(RESULT_OK, intent);
@@ -882,11 +878,11 @@ public class WEditGoodsActivity extends BaseActivity {
                     break;
 
                 case REQUEST_TYPE:// 商品类别
-                    int type = data.getIntExtra(Constant.TYPE, 1);
-                    if (type != goods.goods_type) {
-                        goods.goods_type = type;
-                        switchGoodsType();
-                    }
+//                    int type = data.getIntExtra(Constant.TYPE, 1);
+//                    if (type != goods.goods_type) {
+//                        goods.goods_type = type;
+//                        switchGoodsType();
+//                    }
                     break;
 
                 case REQUEST_NAME:// 品名
@@ -913,13 +909,13 @@ public class WEditGoodsActivity extends BaseActivity {
                     break;
 
                 case REQUEST_SUPPLIER:// 供应商
-                    goods.goods_supplier.clear();
-                    ArrayList<GoodsSupplier> suppliers = (ArrayList<GoodsSupplier>) data.getSerializableExtra(Constant.DATA);
-                    if (ListUtils.isNotEmpty(suppliers)) {
-                        suppliers.get(0).has_default = 1;
-                        goods.goods_supplier.addAll(suppliers);
-                    }
-                    initSupplierView();
+//                    goods.goods_supplier.clear();
+//                    ArrayList<GoodsSupplier> suppliers = (ArrayList<GoodsSupplier>) data.getSerializableExtra(Constant.DATA);
+//                    if (ListUtils.isNotEmpty(suppliers)) {
+//                        suppliers.get(0).has_default = 1;
+//                        goods.goods_supplier.addAll(suppliers);
+//                    }
+//                    initSupplierView();
                     break;
 
                 case REQUEST_COLOUR:// 选择颜色
@@ -1197,8 +1193,8 @@ public class WEditGoodsActivity extends BaseActivity {
         goods.goods_unit = "";
         goods.goods_spec.clear();
         edit_goods_spec_list.removeAllViews();
-        if (goods.goods_type == 1) {
-            edit_goods_type.setText(R.string.clothing_type);
+//        if (goods.goods_type == 1) {
+//            edit_goods_type.setText(R.string.clothing_type);
             edit_goods_spec_group.setVisibility(GONE);
             edit_goods_stock_hint.setVisibility(GONE);
             edit_goods_spec.setText("");
@@ -1206,23 +1202,23 @@ public class WEditGoodsActivity extends BaseActivity {
 
             edit_goods_color_group.setVisibility(VISIBLE);
             edit_goods_size_group.setVisibility(VISIBLE);
-        } else {
-            edit_goods_type.setText(R.string.shop_type);
-            // 隐藏并清空颜色尺码数据
-            edit_goods_color_group.setVisibility(GONE);
-            edit_goods_size_group.setVisibility(GONE);
-            edit_goods_color.setText("");
-            edit_goods_size.setText("");
-            colours.clear();
-            sizes.clear();
-
-            goods.goods_auxiliary_unit = "";
-            goods.goods_auxiliary_unit_packingrate = 1;
-            edit_goods_auxiliary_unit.setText("");
-
-            edit_goods_spec_group.setVisibility(VISIBLE);
-            edit_goods_stock_hint.setVisibility(VISIBLE);
-        }
+//        } else {
+//            edit_goods_type.setText(R.string.shop_type);
+//            // 隐藏并清空颜色尺码数据
+//            edit_goods_color_group.setVisibility(GONE);
+//            edit_goods_size_group.setVisibility(GONE);
+//            edit_goods_color.setText("");
+//            edit_goods_size.setText("");
+//            colours.clear();
+//            sizes.clear();
+//
+//            goods.goods_auxiliary_unit = "";
+//            goods.goods_auxiliary_unit_packingrate = 1;
+//            edit_goods_auxiliary_unit.setText("");
+//
+//            edit_goods_spec_group.setVisibility(VISIBLE);
+//            edit_goods_stock_hint.setVisibility(VISIBLE);
+//        }
     }
 
     /**
@@ -1279,7 +1275,7 @@ public class WEditGoodsActivity extends BaseActivity {
      */
     private void initSpecData() {
         ArrayList<GoodsSpec> goods_specs = new ArrayList<>();
-        if (goods.goods_type == 1) {
+//        if (goods.goods_type == 1) {
             // 新服装版商品
             if (ListUtils.isNotEmpty(colours) && ListUtils.isNotEmpty(sizes)) {
                 for (GoodsColor colour : colours) {
@@ -1296,19 +1292,19 @@ public class WEditGoodsActivity extends BaseActivity {
                     addSpecData(goods_specs, "", size.goods_size_name);
                 }
             }
-        } else {
-            if (ListUtils.isNotEmpty(specs)) {
-                for (Spec spec : specs) {
-                    addSpecData(goods_specs, spec.spec_name, goods.goods_unit, "");
-                    if (TextUtil.isNotEmpty(goods.goods_auxiliary_unit)) {
-                        addSpecData(goods_specs, spec.spec_name, goods.goods_unit, goods.goods_auxiliary_unit);
-                    }
-                }
-            } else if (TextUtil.isNotEmpty(goods.goods_auxiliary_unit)) {
-                addSpecData(goods_specs, "", goods.goods_unit, "");
-                addSpecData(goods_specs, "", goods.goods_unit, goods.goods_auxiliary_unit);
-            }
-        }
+//        } else {
+//            if (ListUtils.isNotEmpty(specs)) {
+//                for (Spec spec : specs) {
+//                    addSpecData(goods_specs, spec.spec_name, goods.goods_unit, "");
+//                    if (TextUtil.isNotEmpty(goods.goods_auxiliary_unit)) {
+//                        addSpecData(goods_specs, spec.spec_name, goods.goods_unit, goods.goods_auxiliary_unit);
+//                    }
+//                }
+//            } else if (TextUtil.isNotEmpty(goods.goods_auxiliary_unit)) {
+//                addSpecData(goods_specs, "", goods.goods_unit, "");
+//                addSpecData(goods_specs, "", goods.goods_unit, goods.goods_auxiliary_unit);
+//            }
+//        }
         goods.goods_spec.clear();
         goods.goods_spec.addAll(goods_specs);
         goods.goods_price_section = SpecUtils.getPriceText(goods.goods_spec);
@@ -1365,7 +1361,7 @@ public class WEditGoodsActivity extends BaseActivity {
             spec.spec_name = spec_name;
             spec.goods_unit = unit;
             spec.goods_auxiliary_unit = auxiliary_unit;
-            spec.goods_auxiliary_unit_packingrate = goods.goods_auxiliary_unit_packingrate;
+//            spec.goods_auxiliary_unit_packingrate = goods.goods_auxiliary_unit_packingrate;
             spec.goods_spec_name = spec.getSpecName();
         }
         spec.serial = goods_specs.size() + 1;
@@ -1449,18 +1445,18 @@ public class WEditGoodsActivity extends BaseActivity {
         edit_goods_code.setText(goods.goods_no);
         edit_goods_name.setText(goods.goods_name);
         edit_goods_unit.setText(goods.goods_unit);
-        if (goods.goods_type == 2) {// 切换到百货模式
-            edit_goods_type.setText(R.string.shop_type);
-            edit_goods_color_group.setVisibility(GONE);
-            edit_goods_size_group.setVisibility(GONE);
-            edit_goods_spec_group.setVisibility(VISIBLE);
-            edit_goods_stock_hint.setVisibility(VISIBLE);
-            edit_goods_auxiliary_unit.setText(goods.getAuxiliaryUnitText());
-        }
+//        if (goods.goods_type == 2) {// 切换到百货模式
+//            edit_goods_type.setText(R.string.shop_type);
+//            edit_goods_color_group.setVisibility(GONE);
+//            edit_goods_size_group.setVisibility(GONE);
+//            edit_goods_spec_group.setVisibility(VISIBLE);
+//            edit_goods_stock_hint.setVisibility(VISIBLE);
+//            edit_goods_auxiliary_unit.setText(goods.getAuxiliaryUnitText());
+//        }
         // 目录
         edit_goods_catalog.setText(goods.catalog_name);
 
-        initSupplierView();
+//        initSupplierView();
 
         if (TextUtil.isEmpty(selectCatalog.catalog_id)) {
             selectCatalog.catalog_id = goods.catalog_id;
@@ -1479,7 +1475,7 @@ public class WEditGoodsActivity extends BaseActivity {
             edit_goods_cost_layout.setVisibility(GONE);
             for (int i = 0; i < goods.goods_spec.size(); i++) {
                 GoodsSpec spec = goods.goods_spec.get(i);
-                if (goods.goods_type == 1) {
+//                if (goods.goods_type == 1) {
                     if (isNotContainSize(spec.spec_size)) {
                         GoodsSize size = new GoodsSize();
                         size.goods_size_id = spec.spec_size;
@@ -1492,14 +1488,14 @@ public class WEditGoodsActivity extends BaseActivity {
                         colour.goods_colour_name = spec.spec_colour;
                         this.colours.add(colour);
                     }
-                } else {
-                    if (isNotContainSpec(spec.spec_name)) {
-                        Spec s = new Spec();
-                        s.spec_id = spec.spec_name;
-                        s.spec_name = spec.spec_name;
-                        this.specs.add(s);
-                    }
-                }
+//                } else {
+//                    if (isNotContainSpec(spec.spec_name)) {
+//                        Spec s = new Spec();
+//                        s.spec_id = spec.spec_name;
+//                        s.spec_name = spec.spec_name;
+//                        this.specs.add(s);
+//                    }
+//                }
                 // 添加视图
                 WSpecViewHolder specViewHolder = new WSpecViewHolder(context, spec, true);
                 edit_goods_spec_list.addView(specViewHolder.view);
@@ -1519,67 +1515,67 @@ public class WEditGoodsActivity extends BaseActivity {
     /**
      * 初始化供应商视图
      */
-    private void initSupplierView() {
-        if (ListUtils.isNotEmpty(goods.goods_supplier)) {
-            edit_goods_supplier.setText("选择供应商" + goods.goods_supplier.size());
-
-            goodsSupplierItemViews.clear();
-            edit_goods_supplier_list.removeAllViews();
-
-            for (int i = 0; i < goods.goods_supplier.size(); i++) {
-                GoodsSupplier supplier = goods.goods_supplier.get(i);
-
-                final GoodsSupplierItemView matchView = new GoodsSupplierItemView(context, supplier);
-                edit_goods_supplier_list.addView(matchView.getRootView());
-                goodsSupplierItemViews.add(matchView);
-                if (supplier.has_default == 1) {
-                    goods.main_supplier_id = supplier.supplier_id;
-                    goods.main_supplier_name = supplier.supplier_shortname;
-                    matchView.setTagSelect(true);
-                }
-
-                matchView.setOnDataUpdateListener(new GoodsSupplierItemView.OnDataUpdateListener() {
-
-                    @Override
-                    public void onTagClick(GoodsSupplier supplier, View view) {
-                        if (supplier != null) {
-                            goods.main_supplier_id = supplier.supplier_id;
-                            goods.main_supplier_name = supplier.supplier_shortname;
-                        }
-                        if (view != null) {
-                            for (GoodsSupplierItemView goodsSupplierItemView : goodsSupplierItemViews) {
-                                if (view.equals(goodsSupplierItemView.getRootView())) {
-                                    goodsSupplierItemView.setTagSelect(true);
-                                } else {
-                                    goodsSupplierItemView.setTagSelect(false);
-                                }
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onDeleteItem(GoodsSupplier supplier, View view) {
-                        goods.goods_supplier.remove(supplier);
-                        edit_goods_supplier_list.removeView(view);
-                        goodsSupplierItemViews.remove(matchView);
-                        if (goods.goods_supplier.size() == 0) {
-                            edit_goods_supplier_list.removeAllViews();
-                            edit_goods_supplier.setText("选择供应商");
-                        } else {
-                            edit_goods_supplier.setText("供应商" + goods.goods_supplier.size());
-                            // 如果被删除的是默认供应商，则重新指定一个默认供应商
-                            if (supplier.has_default == 1) {
-                                goodsSupplierItemViews.get(0).setTagSelect(true);
-                                GoodsSupplier gs = goods.goods_supplier.get(0);
-                                goods.main_supplier_id = gs.supplier_id;
-                                goods.main_supplier_name = gs.supplier_shortname;
-                            }
-                        }
-                    }
-                });
-            }
-        }
-    }
+//    private void initSupplierView() {
+//        if (ListUtils.isNotEmpty(goods.goods_supplier)) {
+//            edit_goods_supplier.setText("选择供应商" + goods.goods_supplier.size());
+//
+//            goodsSupplierItemViews.clear();
+//            edit_goods_supplier_list.removeAllViews();
+//
+//            for (int i = 0; i < goods.goods_supplier.size(); i++) {
+//                GoodsSupplier supplier = goods.goods_supplier.get(i);
+//
+//                final GoodsSupplierItemView matchView = new GoodsSupplierItemView(context, supplier);
+//                edit_goods_supplier_list.addView(matchView.getRootView());
+//                goodsSupplierItemViews.add(matchView);
+//                if (supplier.has_default == 1) {
+//                    goods.main_supplier_id = supplier.supplier_id;
+//                    goods.main_supplier_name = supplier.supplier_shortname;
+//                    matchView.setTagSelect(true);
+//                }
+//
+//                matchView.setOnDataUpdateListener(new GoodsSupplierItemView.OnDataUpdateListener() {
+//
+//                    @Override
+//                    public void onTagClick(GoodsSupplier supplier, View view) {
+//                        if (supplier != null) {
+//                            goods.main_supplier_id = supplier.supplier_id;
+//                            goods.main_supplier_name = supplier.supplier_shortname;
+//                        }
+//                        if (view != null) {
+//                            for (GoodsSupplierItemView goodsSupplierItemView : goodsSupplierItemViews) {
+//                                if (view.equals(goodsSupplierItemView.getRootView())) {
+//                                    goodsSupplierItemView.setTagSelect(true);
+//                                } else {
+//                                    goodsSupplierItemView.setTagSelect(false);
+//                                }
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onDeleteItem(GoodsSupplier supplier, View view) {
+//                        goods.goods_supplier.remove(supplier);
+//                        edit_goods_supplier_list.removeView(view);
+//                        goodsSupplierItemViews.remove(matchView);
+//                        if (goods.goods_supplier.size() == 0) {
+//                            edit_goods_supplier_list.removeAllViews();
+//                            edit_goods_supplier.setText("选择供应商");
+//                        } else {
+//                            edit_goods_supplier.setText("供应商" + goods.goods_supplier.size());
+//                            // 如果被删除的是默认供应商，则重新指定一个默认供应商
+//                            if (supplier.has_default == 1) {
+//                                goodsSupplierItemViews.get(0).setTagSelect(true);
+//                                GoodsSupplier gs = goods.goods_supplier.get(0);
+//                                goods.main_supplier_id = gs.supplier_id;
+//                                goods.main_supplier_name = gs.supplier_shortname;
+//                            }
+//                        }
+//                    }
+//                });
+//            }
+//        }
+//    }
 
     /**
      * 是否不包含这个尺码

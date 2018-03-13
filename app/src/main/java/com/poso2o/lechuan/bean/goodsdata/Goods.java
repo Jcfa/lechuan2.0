@@ -1,20 +1,19 @@
 package com.poso2o.lechuan.bean.goodsdata;
 
-import android.text.TextUtils;
-
 import com.poso2o.lechuan.bean.printer.GoodsDetailsImgsData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * 商品
+ *
  * Created by J on 2017-08-18.
  */
 public class Goods implements Serializable, Cloneable {
     public String catalog_id = "";// 目录id
     public String catalog_name = "";// 目录名称
 
-    public int goods_type = 1;// 商品类型 1=服装，2便利店
     public String goods_id = "";// 商品id
     public String goods_name = "";// 商品名称
     public String goods_no = "";// 货号
@@ -22,8 +21,6 @@ public class Goods implements Serializable, Cloneable {
     public ArrayList<GoodsMovePicture> goods_move_picture = new ArrayList<>();// 图片列表
     public ArrayList<GoodsSpec> goods_spec = new ArrayList<>();// 规格
     public String goods_unit = "";// 单位
-    public String goods_auxiliary_unit = "";// 商品辅助单位
-    public int goods_auxiliary_unit_packingrate = 1;// 商品辅助单位-包装率  默认为1
 
     public Double goods_discount = 100.00;// 商品折扣
 
@@ -48,9 +45,6 @@ public class Goods implements Serializable, Cloneable {
     public String modify_czy = "";// 修改员工
     public String modify_czy_name = "";// 修改员工名称
 
-    public String main_supplier_id = "0";// 主供应商id
-    public String main_supplier_name = "";// 主供应商名称
-    public ArrayList<GoodsSupplier> goods_supplier = new ArrayList<>();// 供应商列表
 
     public String share_url = "";
 
@@ -63,6 +57,19 @@ public class Goods implements Serializable, Cloneable {
     public boolean isNoLight = false;
     public String light_no = "";// 高亮货号
 
+    @Deprecated
+    public int goods_type = 1;// 商品类型 1=服装，2便利店
+    @Deprecated
+    public String goods_auxiliary_unit = "";// 商品辅助单位
+    @Deprecated
+    public int goods_auxiliary_unit_packingrate = 1;// 商品辅助单位-包装率  默认为1
+    @Deprecated
+    public String main_supplier_id = "0";// 主供应商id
+    @Deprecated
+    public String main_supplier_name = "";// 主供应商名称
+    @Deprecated
+    public ArrayList<GoodsSupplier> goods_supplier = new ArrayList<>();// 供应商列表
+
 
     /**
      * 参加的打折活动
@@ -74,12 +81,12 @@ public class Goods implements Serializable, Cloneable {
         return (Goods) super.clone();
     }
 
-    public String getAuxiliaryUnitText() {
-        if (!TextUtils.isEmpty(goods_auxiliary_unit)) {
-            return "(" + goods_auxiliary_unit_packingrate + goods_unit + "/" + goods_auxiliary_unit + ")";
-        }
-        return "";
-    }
+//    public String getAuxiliaryUnitText() {
+//        if (!TextUtils.isEmpty(goods_auxiliary_unit)) {
+//            return "(" + goods_auxiliary_unit_packingrate + goods_unit + "/" + goods_auxiliary_unit + ")";
+//        }
+//        return "";
+//    }
 
     /**
      * 旧服装版字段
