@@ -7,6 +7,10 @@ import android.widget.LinearLayout;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoSellManager;
+import com.poso2o.lechuan.util.Toast;
 
 /**
  * Created by ${cbf} on 2018/3/12 0012.
@@ -40,7 +44,19 @@ public class OrderInfoMainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        OrderInfoSellManager.getOrderInfo().orderInfoSell(activity, "2018-02-01", "2018-02-16", new IRequestCallBack<OrderInfoSellCountBean>() {
+            @Override
+            public void onResult(int tag, OrderInfoSellCountBean result) {
+                dismissLoading();
+                OrderInfoSellCountBean sellCountBean = result;
+            }
 
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                Toast.show(activity, msg);
+            }
+        });
     }
 
     @Override
