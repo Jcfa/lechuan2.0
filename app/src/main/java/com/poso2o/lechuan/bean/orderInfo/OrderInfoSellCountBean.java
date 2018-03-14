@@ -17,44 +17,7 @@ public class OrderInfoSellCountBean implements Serializable {
      * ":"110693.00","today_sales_number":0,"total_goods_number":376,"selling_cost":"0.00","today_sales_amounts":0}
      * total : {}
      */
-    private String code;
-    private String msg;
-    private DataBean data;
-    private TotalBean total;
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
-    }
-
-    public TotalBean getTotal() {
-        return total;
-    }
-
-    public void setTotal(TotalBean total) {
-        this.total = total;
-    }
-
-    public static class DataBean {
         /**
          * nick : 时装周
          * completion_rate : 0
@@ -139,8 +102,4 @@ public class OrderInfoSellCountBean implements Serializable {
         public void setToday_sales_number(int today_sales_number) {
             this.today_sales_number = today_sales_number;
         }
-    }
-
-    public static class TotalBean {
-    }
 }
