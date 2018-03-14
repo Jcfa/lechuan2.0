@@ -16,6 +16,7 @@ import com.poso2o.lechuan.activity.realshop.RReportActivity;
 import com.poso2o.lechuan.activity.realshop.RShopActivity;
 import com.poso2o.lechuan.activity.realshop.RShopDesActivity;
 import com.poso2o.lechuan.activity.realshop.RShopMainActivity;
+import com.poso2o.lechuan.activity.wopenaccount.EmpowermentActivity;
 import com.poso2o.lechuan.activity.wshop.LechuanServiceActivity;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.activity.wshop.WShopActivity;
@@ -117,7 +118,8 @@ public class MainMenuBean implements Serializable{
                 break;
             case 14:
                 RShopMainActivity vactivity = (RShopMainActivity) context;
-                intent.setClass(context, WShopActivity.class);
+            //    intent.setClass(context, WShopActivity.class);
+                intent.setClass(context, EmpowermentActivity.class);
                 intent.putExtra(RShopMainActivity.DATA_SHOP,vactivity.getShopData());
                 vactivity.startActivityForResult(intent,RShopMainActivity.CODE_SHOP);
                 return;
