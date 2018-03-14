@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.appdatasearch.UsageInfo;
 import com.poso2o.lechuan.base.BaseFragment;
+import com.poso2o.lechuan.manager.main.UserDataManager;
+import com.tencent.connect.UserInfo;
 
 /**
  * Created by ${cbf} on 2018/3/12 0012.
@@ -31,6 +34,7 @@ public class OrderInfoPaperFragment extends BaseFragment {
 
     @Override
     public void initData() {
+
 
     }
 
