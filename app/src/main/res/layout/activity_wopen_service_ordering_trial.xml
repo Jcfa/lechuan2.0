@@ -20,7 +20,7 @@
             <RelativeLayout
                 android:id="@+id/rv_wopen_trial_one"
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="wrap_content">
 
                 <RadioButton
                     android:id="@+id/rb_wopen_trial_one"
@@ -29,9 +29,13 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:button="@null"
+                    android:drawableBottom="@drawable/select_trial_checked"
+                    android:paddingBottom="10dp"/>
 
                 <RelativeLayout
+                    android:id="@+id/rv_wopen_trial_gao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
@@ -56,7 +60,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_toLeftOf="@+id/tv_wopen_trial_one_yuan"
                         android:layout_alignTop="@+id/tv_wopen_trial_one_yuan"
                         android:layout_alignBottom="@+id/tv_wopen_trial_one_yuan"
@@ -119,11 +123,17 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:button="@null"
+                    android:drawableBottom="@drawable/select_trial_checked"
+                    android:paddingBottom="10dp"/>
 
                 <RelativeLayout
+                    android:id="@+id/rv_wopen_trial_gs"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true">
                     <TextView
                         android:id="@+id/tv_wopen_trial_gs"
                         android:layout_width="match_parent"
@@ -161,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_wopen_trial_gs"
                         android:layout_marginLeft="55dp"
-                        android:text="1.公众号+微商城的全部功能"
+                        android:text="1.公众号免费使用文章3篇。"
                         android:textColor="@color/placeholder_30"/>
 
                     <TextView
@@ -169,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_wopen_trial_one_g"
                         android:layout_marginLeft="55dp"
-                        android:text="2.店铺装修模板、广告模板免费使用。"
+                        android:text="2.微商城开设"
                         android:textColor="@color/placeholder_30"
                         android:layout_marginTop="5dp"/>
 
@@ -200,9 +210,13 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:button="@null"
+                    android:drawableBottom="@drawable/select_trial_checked"
+                    android:paddingBottom="10dp"/>
 
                 <RelativeLayout
+                    android:id="@+id/rv_wopen_trial_gz"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
@@ -229,7 +243,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_toLeftOf="@+id/tv_wopen_trial_three_yuan"
                         android:layout_alignTop="@+id/tv_wopen_trial_three_yuan"
                         android:layout_alignBottom="@+id/tv_wopen_trial_three_yuan"
@@ -244,7 +258,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_wopen_trial_gz"
                         android:layout_marginLeft="55dp"
-                        android:text="1.公众号+微商城的全部功能"
+                        android:text="1.公众号免费使用文章3篇。"
                         android:textColor="@color/placeholder_30"/>
 
                     <TextView
@@ -252,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_wopen_trial_three_g"
                         android:layout_marginLeft="55dp"
-                        android:text="2.店铺装修模板、广告模板免费使用。"
+                        android:text="2.微商城开设"
                         android:textColor="@color/placeholder_30"
                         android:layout_marginTop="5dp"/>
 
