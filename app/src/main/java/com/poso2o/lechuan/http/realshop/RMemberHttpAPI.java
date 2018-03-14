@@ -14,8 +14,8 @@ public class RMemberHttpAPI {
     //会员详情
     public static final String R_MEMBER_INFO = R_MAMBER_URL + "topClientView";
     //畅销商品
-    public static final String O_REMBER_INFO=R_MAMBER_URL+"nowSales";
+    public static final String O_REMBER_INFO = R_MAMBER_URL + "nowSales";
     //主界面销售额 目标率 完成度
-    public static final String O_REMBER_MAIN_INFO=R_MAMBER_URL+"index";
+    public static final String O_REMBER_MAIN_INFO = R_MAMBER_URL + "index";
 
 }

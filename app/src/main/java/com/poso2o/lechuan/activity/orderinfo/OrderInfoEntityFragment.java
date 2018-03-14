@@ -7,7 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
+import com.poso2o.lechuan.bean.orderInfo.OrderInfoBean;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoManager;
 
 /**
  * Created by ${cbf} on 2018/3/12 0012.
@@ -31,6 +35,17 @@ public class OrderInfoEntityFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), "2018-01-01", "2018-03-14", new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object infoBean) {
+
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+
+            }
+        });
 
     }
 

@@ -1,9 +1,8 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
+import android.content.Intent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
@@ -14,49 +13,32 @@ import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
 
 /**
- * Created by ${cbf} on 2018/3/12 0012.
- * 实体店订单信息
+ * Created by ${cbf} on 2018/3/14 0014.
+ * 人员业绩
  */
 
-public class OrderEntityShopActivity extends BaseActivity implements View.OnClickListener {
-    private FrameLayout florderContent;
-    private TextView tvBeginTime;
-    private TextView tvEndTime;
-    private ImageView ivVisibility;
-    private LinearLayout llOrderClick;
-    private TextView today, tomad, trecently, trecentlys, tlastm, tv_visibility;
-    private TextView tvOrderHao, tvOrderNum, tvOrderMoney, tvOrderSaleName;
+public class OrderPoplstaffActivity extends BaseActivity implements View.OnClickListener {
+    private ImageView ivBack;
     private boolean isBeginTime;
     private String beginTime, endTime;
+    private TextView tvBeginTime;
+    private TextView tvEndTime;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_orderentity_shop;
+        return R.layout.activity_orderinfo_staff;
     }
 
     @Override
     protected void initView() {
+        ivBack = (ImageView) findViewById(R.id.iv_back);
         tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
-        tv_visibility = (TextView) findViewById(R.id.tv_visibility);
-        ivVisibility = (ImageView) findViewById(R.id.iv_order_time_visibility);
-        llOrderClick = (LinearLayout) findViewById(R.id.ll_ordr_click);
-
-        //我的订单统计
-        tvOrderHao = (TextView) findViewById(R.id.tv_order_hao);
-        tvOrderNum = (TextView) findViewById(R.id.tv_order_num);
-        tvOrderMoney = (TextView) findViewById(R.id.tv_order_money);
-        tvOrderSaleName = (TextView) findViewById(R.id.tv_order_salesname);
-        florderContent = (FrameLayout) findViewById(R.id.fl_order_entity_content);
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fl_order_entity_content, new OrderInfoEntityFragment()).commit();
-
     }
 
     @Override
     protected void initData() {
-        ivVisibility.setVisibility(View.GONE);
+        ivBack.setImageResource(R.drawable.actionbar_back);
         //默认为当天时间
         String nowDay = CalendarUtil.getTodayDate();
         tvBeginTime.setText(nowDay);
@@ -65,6 +47,7 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void initListener() {
+        ivBack.setOnClickListener(this);
         tvBeginTime.setOnClickListener(this);
         tvEndTime.setOnClickListener(this);
 
@@ -73,6 +56,10 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_back:
+                startActivity(new Intent(OrderPoplstaffActivity.this, OrderInfoMainActivity.class));
+                finish();
+                break;
             case R.id.tv_order_info_bgin_time:
                 isBeginTime = true;
                 showCalender();

@@ -864,6 +864,9 @@
         <activity android:name=".activity.orderinfo.OrderEntityShopActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoSellActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoMainActivity"/>
+        <activity android:name=".activity.orderinfo.OrderInfoPaperActivity" />
+        <activity android:name=".activity.orderinfo.OrderPoplstaffActivity" />
+        <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity" />
 
         <!--微店开通公众号-->
         <activity android:name=".activity.wopenaccount.EmpowermentActivity"/>
