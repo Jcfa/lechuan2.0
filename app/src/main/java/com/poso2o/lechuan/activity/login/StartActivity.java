@@ -126,8 +126,8 @@ public class StartActivity extends BaseActivity implements ViewPager.OnPageChang
      */
     private void toRShopMainActivity() {
 //        SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_SELECTED_TYPE, Constant.MERCHANT_TYPE);//保存当前登录身份为商家
-        startActivity(new Intent(activity, OrderInfoMainActivity.class));
-//        startActivity(new Intent(activity, RShopMainActivity.class));
+    //    startActivity(new Intent(activity, OrderInfoMainActivity.class));
+          startActivity(new Intent(activity, RShopMainActivity.class));
 
         finish();
     }

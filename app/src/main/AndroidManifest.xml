@@ -862,6 +862,14 @@
         <activity android:name=".activity.orderinfo.OrderInfoSellActivity" />
         <activity android:name=".activity.orderinfo.OrderInfoMainActivity" />
 
+        <!--微店开通公众号-->
+        <activity android:name=".activity.wopenaccount.EmpowermentActivity"/>
+        <activity android:name=".activity.wopenaccount.OpenNumberActivity"/>
+        <activity android:name=".activity.wopenaccount.ServiceOrderActivity"/>
+        <activity android:name=".activity.wopenaccount.StardOpenActivity"/>
+        <activity android:name=".activity.wopenaccount.AuthorizationActivity"/>
+        <activity android:name=".activity.wopenaccount.ServiceOrderingTrialActivity"/>
+
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">
             <intent-filter android:priority="1000">
