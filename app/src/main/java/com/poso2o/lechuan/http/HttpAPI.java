@@ -5,8 +5,9 @@ package com.poso2o.lechuan.http;
  */
 
 public class HttpAPI {
-
+    //http://fuzhuang.poso2o.com/user.htm?Act=login&loginname=13016079579&password=123456
     public static String SERVER_MAIN_API = "http://wechat.poso2o.com/";
+//    public static String SERVER_MAIN_API = "http://fuzhuang.poso2o.com/";
 //public static String SERVER_MAIN_API = "http://192.168.10.153:8080/";
 
     /**
@@ -26,7 +27,9 @@ public class HttpAPI {
     /**
      * 登录
      */
+    // http://fuzhuang.poso2o.com/user.htm?Act=login&loginname=13016079579&password=123456
     public static String LOGIN_API = SERVER_MAIN_API + "UserManage.htm?Act=login";
+//    public static String LOGIN_API = SERVER_MAIN_API + "user.htm?Act=login";
 
     /**
      * 注册

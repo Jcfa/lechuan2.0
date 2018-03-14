@@ -6,7 +6,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/title_height"
         android:background="@drawable/shape_down_line"
         android:gravity="center_vertical">
 

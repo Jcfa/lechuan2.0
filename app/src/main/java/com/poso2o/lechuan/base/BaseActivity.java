@@ -89,9 +89,23 @@ public abstract class BaseActivity extends FragmentActivity {
         mQueue = NoHttp.newRequestQueue(3);
         onCreate2(savedInstanceState);
         setContentView(getLayoutResId());
+        initBase();
         initView();
         initData();
         initListener();
+    }
+
+    private void initBase() {
+        View iv_back = findView(R.id.iv_back);
+        if (iv_back != null) {
+            iv_back.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
     }
 
     protected abstract int getLayoutResId();

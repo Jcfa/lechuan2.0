@@ -264,11 +264,11 @@ public class RShopMainActivity extends BaseActivity implements View.OnClickListe
             realshop.isSelected = true;
             beans.add(realshop);
 
-            /*MainMenuBean wShop = new MainMenuBean();
+            MainMenuBean wShop = new MainMenuBean();
             wShop.menu_id = 8;
             wShop.menu_name = "创建微店";
             wShop.isSelected = true;
-            beans.add(wShop);*/
+            beans.add(wShop);
 
             MainMenuBean addGoods = new MainMenuBean();
             addGoods.menu_id = 2;

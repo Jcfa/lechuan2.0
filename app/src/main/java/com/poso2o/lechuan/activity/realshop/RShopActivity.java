@@ -37,15 +37,11 @@ import com.poso2o.lechuan.dialog.TipsNoAuthorDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.rshopmanager.RealGoodsManager;
 import com.poso2o.lechuan.manager.rshopmanager.RealShopManager;
-import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
-import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
-
-import org.apache.http.protocol.HTTP;
 
 import java.util.ArrayList;
 import java.util.List;

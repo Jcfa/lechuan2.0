@@ -5,9 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.orderinfo.adapter.OrderInfoSellAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellBean;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoSellManager;
+import com.poso2o.lechuan.util.Toast;
+
+import java.util.List;
 
 /**
  * Created by ${cbf} on 2018/3/13 0013.
@@ -20,7 +27,7 @@ public class OrderInfoSellActivity extends BaseActivity {
     private TextView tvSellTime;//时间显示2018-03-11至2018-03-12
     private TextView tvSellMany;//销售最多和最少
     private RecyclerView rlvSellList;
-
+    private  List<OrderInfoSellBean.DataBean> dataBeen;
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_orderinfo_sell;
@@ -29,7 +36,7 @@ public class OrderInfoSellActivity extends BaseActivity {
     @Override
     protected void initView() {
         llOrderClick = (LinearLayout) findViewById(R.id.ll_ordr_click);
-        tvSellTime = (TextView) findViewById(R.id.tv_order_info_sell_time);
+        tvSellTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         tvSellMany = (TextView) findViewById(R.id.tv_order_sell_many);
         rlvSellList = (RecyclerView) findViewById(R.id.rlv_order_sell_list);
 
@@ -41,7 +48,6 @@ public class OrderInfoSellActivity extends BaseActivity {
         rlvSellList.setLayoutManager(new LinearLayoutManager(this));
         OrderInfoSellAdapter adapter = new OrderInfoSellAdapter();
         rlvSellList.setAdapter(adapter);
-
     }
 
     @Override

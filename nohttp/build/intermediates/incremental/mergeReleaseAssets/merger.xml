@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\Android\workspace\lechuan1.0\nohttp\src\main\assets"/><source path="D:\Android\workspace\lechuan1.0\nohttp\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Android\workspace\lechuan1.0\nohttp\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Oso\lechuan2.0\nohttp\src\main\assets"/><source path="D:\Oso\lechuan2.0\nohttp\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Oso\lechuan2.0\nohttp\src\release\assets"/></dataSet></merger>
