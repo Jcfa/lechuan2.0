@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/vdian_info_group"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/selector_item"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/vdian_info_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:background="@mipmap/background_image"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/vdian_info_hint"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:text="请填写店铺信息"
+            android:textColor="#979797"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/vdian_info_main"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vdian_info_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:hint="尚未填写店铺名称"
+                android:textColorHint="@color/color_999999"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/vdian_info_describe"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_marginBottom="4dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="#979797"
+                android:hint="暂无简介"
+                android:textColorHint="@color/color_999999"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_arrow_right_32" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_down_line"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/vdian_sort_sale"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/sale_number"
+            android:textColor="@color/textBlack"
+            android:background="@drawable/selector_common"
+            android:textSize="14sp"
+            android:paddingRight="32dp"
+            android:paddingLeft="32dp"
+            android:drawableRight="@mipmap/home_hand_default"/>
+
+        <TextView
+            android:id="@+id/vdian_sort_stock"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/stock"
+            android:textColor="@color/textBlack"
+            android:background="@drawable/selector_common"
+            android:textSize="14sp"
+            android:paddingRight="32dp"
+            android:paddingLeft="32dp"
+            android:drawableRight="@mipmap/home_hand_default"/>
+
+        <TextView
+            android:id="@+id/vdian_catalog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="全部"
+            android:background="@drawable/selector_common"
+            android:textColor="@color/textGreen"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/vdian_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/vdian_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

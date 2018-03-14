@@ -13,7 +13,7 @@
         <include layout="@layout/layout_base_title"/>
 
         <LinearLayout
-            android:id="@+id/shop_search_group"
+            android:id="@+id/vdian_search_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
@@ -33,7 +33,7 @@
                 android:src="@mipmap/home_search" />
 
             <EditText
-                android:id="@+id/shop_goods_search"
+                android:id="@+id/vdian_search"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -50,7 +50,7 @@
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/shop_search_text_delete"
+                android:id="@+id/vdian_search_delete"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerInside"
@@ -60,7 +60,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/shop_scan_code"
+            android:id="@+id/vdian_add_goods"
             android:layout_width="@dimen/title_button_width"
             android:layout_height="match_parent"
             android:layout_gravity="right"
@@ -70,38 +70,44 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/shop_content"
+        android:id="@+id/vdian_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
+    <View
+        style="@style/horizontal_line"/>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
         <TextView
+            android:id="@+id/vdian_goods_tag"
+            style="@style/text_large"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center_vertical|right"
-            android:drawableLeft="@mipmap/ic_alipay_tag"
-            android:paddingLeft="65dp"
-            android:paddingRight="65dp"
-            style="@style/text_middle"
+            android:drawableLeft="@mipmap/icon_vdian_goods_on"
+            android:textColor="@color/textGreen"
+            android:paddingLeft="52dp"
+            android:paddingRight="52dp"
             android:text="商品"/>
 
         <View
             style="@style/vertical_line"/>
 
         <TextView
+            android:id="@+id/vdian_order_tag"
+            style="@style/text_large"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center_vertical|right"
-            android:drawableLeft="@mipmap/ic_alipay_tag"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
-            style="@style/text_middle"
+            android:drawableLeft="@mipmap/icon_vdian_order_off"
+            android:paddingLeft="52dp"
+            android:paddingRight="52dp"
             android:text="订单"/>
 
     </TableRow>
