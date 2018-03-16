@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\httpcore-4.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8dfd6286d04ad9dbf26cdf7d4ef5c8fad430cf30">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpcore-4.3_5bfac9c67045c54e09e3cd130d1ef99e0d6849a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\umeng_shareboard_widget.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b1a59e4c996ee354c2db160f4b1ad3b0e94aab5">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\umeng_shareboard_widget_f825387886ed743cac7701ccade3c8000e97a6f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2c419b23cdde153ff95b76730862f9540f7574ff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\open_sdk_r5923_lite.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="78fb2dd522128925a3ceb0ab22e1ca60a91502f8">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\open_sdk_r5923_lite_bcd6194f8c23af90ef519cf98926f54d1dfe900b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\httpclient-4.3.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9783d89b8eea20a517a4afc5f979bd2882b54c44">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpclient-4.3.5_60c39949558c09fc97132fbe729f478678df065b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\umeng_social_api.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b680704ac08a1203f713be45e7c95653bb7497fe">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\umeng_social_api_1de3002e50100a8b78d9be483a40c69c3ca9dd59\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\alipaySdk-20170922.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7a534fa553c844a7ef3475eada45f5a81a170f88">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipaySdk-20170922_c39d4080bbe59adb7c658fef4fc3fdefba74e5d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2b0eab842f03e08c376313683399c842600574fc">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f83fc386ec2a5634061d13e673bdca15356abb5a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\sun.misc.BASE64Decoder.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="acd93e3727886196f9b8434279ff445ba8611186">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\sun.misc.BASE64Decoder_4316315c657631b040d7f10557b30496d743ca71\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\httpmime-4.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f49e2348b768a7199e021a97e951df25cd5fb714">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpmime-4.3.1_dd88b75c107d7bbb24acf4541f715ee10a40ee2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\MiPush_SDK_Client_3_5_1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8626d173e698dd72056411e85a9ab34f71a3af21">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\MiPush_SDK_Client_3_5_1_edc1c547912ca8685d5d0dfe017d01b4407d8ad0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\umeng_social_net.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9a2fc3d30ce3cb03014a373b1d5c8b5795334271">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\umeng_social_net_e16025ad5969d919f75af58ead1609c950f340d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\umeng_social_shareboard.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="61fdc2bd1237079ae596f6cc93b6a5807d23940e">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\umeng_social_shareboard_17cf796c7006c0767a21a527fc692611db1571c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\xUtils-2.6.14.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f10c51f3e0732fdeefe6e104279a58e275879b6c">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\xUtils-2.6.14_1c51c756e2f6aa4e1a7a331f08212ad99de75eb9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\demo\lechuan2.0\lechuan2.0\app\libs\umeng_social_tool.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="87ef211d4ef0c257c7d040fbaa411832330eb9aa">
+        <dex dex="D:\demo\lechuan2.0\lechuan2.0\app\build\intermediates\transforms\dex\debug\folders\1000\2\umeng_social_tool_592637b37e3723d120db4822c523591e7aca6804\classes.dex" />
+    </item>
+
+</items>

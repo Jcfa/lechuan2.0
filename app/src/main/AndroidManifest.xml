@@ -60,6 +60,7 @@
     <!-- USB打印机权限 -->
     <uses-feature android:name="android.hardware.usb.host"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
 
     <permission
         android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"
@@ -97,7 +98,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
+
 
         <!--登录-->
         <activity

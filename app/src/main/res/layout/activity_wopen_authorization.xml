@@ -38,66 +38,18 @@
             android:layout_below="@+id/tv_wopen_auth_certification"
             android:layout_alignLeft="@+id/tv_wopen_auth_certification"
             android:layout_marginTop="15dp"
-            android:text="日进斗金老板管理app"/>
-        <TextView
-            android:id="@+id/tv_wopen_auth_li"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_wopen_auth_w"
-            android:layout_below="@+id/tv_wopen_auth_certification"
-            android:layout_marginTop="15dp"
-            android:text=" 不会 "
-            android:textColor="@color/colorRed"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_wopen_auth_li"
-            android:layout_below="@+id/tv_wopen_auth_certification"
-            android:layout_marginTop="15dp"
-            android:text="将您的公众号登陆账号"/>
-
-
-        <TextView
-            android:id="@+id/tv_wopen_auth_er"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_wopen_auth_w"
-            android:layout_below="@+id/tv_wopen_auth_w"
-            android:text="和密码上传到服务器。"/>
+            android:textSize="15dp"/>
 
         <TextView
             android:id="@+id/tv_wopen_auth_s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_wopen_auth_er"
-            android:layout_below="@+id/tv_wopen_auth_er"
+            android:layout_alignLeft="@+id/tv_wopen_auth_w"
+            android:layout_below="@+id/tv_wopen_auth_w"
             android:layout_marginTop="20dp"
-            android:text="-删除app后，日进斗金服务端"
-            android:textColor="@color/placeholder_70"/>
+            android:textColor="@color/placeholder_70"
+            android:textSize="15dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_wopen_auth_er"
-            android:layout_toRightOf="@+id/tv_wopen_auth_s"
-            android:layout_marginTop="20dp"
-            android:text="不会保留您的隐私信"
-            android:textColor="@color/colorRed"/>
-
-        <TextView
-            android:id="@+id/tv_wopen_auth_i"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_wopen_auth_s"
-            android:layout_below="@+id/tv_wopen_auth_s"
-            android:text="息"
-            android:textColor="@color/colorRed"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_wopen_auth_s"
-            android:layout_toRightOf="@+id/tv_wopen_auth_i"
-            android:text="。"/>
 
     </RelativeLayout>
 
@@ -132,10 +84,11 @@
             android:id="@+id/tv_wopen_auth_d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="-授权后，若您的公众号底部菜单已设置，将会被新的菜单覆盖，见下图。"
             android:layout_below="@+id/tv_wopen_auth_charge"
-            android:layout_alignLeft="@+id/tv_wopen_auth_charge"
-            android:layout_marginTop="15dp"
-            android:text="-授权后，若您的公众号底部菜单已设置，将会被新的菜单覆盖，见下图。"/>
+            android:layout_alignParentEnd="true"
+            android:textSize="15dp"/>
 
 
         <ImageView
@@ -151,7 +104,7 @@
 
         <Button
             android:id="@+id/bt_wopen_auth_qian"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/green_radius5_bg"
             android:layout_alignParentBottom="true"

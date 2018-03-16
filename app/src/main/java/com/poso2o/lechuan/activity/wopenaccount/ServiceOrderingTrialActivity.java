@@ -1,11 +1,23 @@
 package com.poso2o.lechuan.activity.wopenaccount;
 
+import android.content.Intent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.adapter.wopenaccountadapter.ServiceOrderingTrialAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
+import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrialBean;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.manager.wopenaccountmanager.ServiceOrderinTrialManager;
 
 /**
  * Created by Administrator on 2018/3/14 0014.
@@ -13,8 +25,9 @@ import com.poso2o.lechuan.base.BaseActivity;
 
 public class ServiceOrderingTrialActivity extends BaseActivity implements View.OnClickListener{
     private TextView tv_title;
-    private View rv_wopen_trial_gao,rv_wopen_trial_gs,rv_wopen_trial_gz;
-    private RadioButton rb_wopen_trial_one,rb_wopen_trial_two,rb_wopen_trial_three;
+    private Button bt_wopen_trial_order;
+    private ListView lsv_wopen_trim;
+    private String service_name,amount,service_id;
 
     @Override
     protected int getLayoutResId() {
@@ -24,12 +37,9 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
     @Override
     protected void initView() {
         tv_title=(TextView)findViewById(R.id.tv_title);
-        rv_wopen_trial_gao=(View)findViewById(R.id.rv_wopen_trial_gao);
-        rv_wopen_trial_gs=(View)findViewById(R.id.rv_wopen_trial_gs);
-        rv_wopen_trial_gz=(View)findViewById(R.id.rv_wopen_trial_gz);
-        rb_wopen_trial_one=(RadioButton)findViewById(R.id.rb_wopen_trial_one);
-        rb_wopen_trial_two=(RadioButton)findViewById(R.id.rb_wopen_trial_two);
-        rb_wopen_trial_three=(RadioButton)findViewById(R.id.rb_wopen_trial_three);
+
+        bt_wopen_trial_order=(Button)findViewById(R.id.bt_wopen_trial_order);
+        lsv_wopen_trim=(ListView)findViewById(R.id.lsv_wopen_trim);
 
     }
 
@@ -37,33 +47,81 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
     protected void initData() {
         tv_title.setText(getResources().getString(R.string.service_orderint_trial));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
+
+        //获取服务的信息
+        ServiceOrderinTrialManager manager=new ServiceOrderinTrialManager();
+        manager.TrialListDate(this, new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object result) {
+                Gson gson=new Gson();
+                final ServiceOrderingTrialBean trial=gson.fromJson(result.toString(), ServiceOrderingTrialBean.class);
+                final ServiceOrderingTrialAdapter adapter=new ServiceOrderingTrialAdapter(ServiceOrderingTrialActivity.this,trial.list);
+                lsv_wopen_trim.setAdapter(adapter);
+                setListViewHeightOnChildren(lsv_wopen_trim);
+                service_id=trial.list.get(0).getService_id();
+                amount=trial.list.get(0).getAmount();
+                service_name=trial.list.get(0).getService_name();
+                //单选
+                adapter.setOnAddClickListener(new ServiceOrderingTrialAdapter.OnAddClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        adapter.setSelected(position);
+                        adapter.notifyDataSetChanged();
+                        service_id=trial.list.get(position).getService_id();
+                        amount=trial.list.get(position).getAmount();
+                        service_name=trial.list.get(position).getService_name();
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+
+            }
+        });
     }
 
     @Override
     protected void initListener() {
-        rv_wopen_trial_gao.setOnClickListener(this);
-        rv_wopen_trial_gs.setOnClickListener(this);
-        rv_wopen_trial_gz.setOnClickListener(this);
+        bt_wopen_trial_order.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.rv_wopen_trial_gao:
-                rb_wopen_trial_one.setChecked(true);
-                rb_wopen_trial_two.setChecked(false);
-                rb_wopen_trial_three.setChecked(false);
-                break;
-            case R.id.rv_wopen_trial_gs:
-                rb_wopen_trial_one.setChecked(false);
-                rb_wopen_trial_two.setChecked(true);
-                rb_wopen_trial_three.setChecked(false);
-                break;
-            case R.id.rv_wopen_trial_gz:
-                rb_wopen_trial_one.setChecked(false);
-                rb_wopen_trial_two.setChecked(false);
-                rb_wopen_trial_three.setChecked(true);
+            case R.id.bt_wopen_trial_order:
+
+                //点击立即订购
+                if (service_id!=null) {
+                    Intent i = new Intent();
+                    i.putExtra("service_id", service_id);
+                    i.putExtra("amount", amount);
+                    i.putExtra("service_name", service_name);
+                    i.setClass(ServiceOrderingTrialActivity.this, ServiceOrderActivity.class);
+                    startActivity(i);
+                }
                 break;
         }
+    }
+
+
+    //计算listview的高度
+    public void setListViewHeightOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        ((ViewGroup.MarginLayoutParams) params).setMargins(10, 10, 10, 10);
+        listView.setLayoutParams(params);
     }
 }
