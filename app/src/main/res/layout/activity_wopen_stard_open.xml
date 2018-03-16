@@ -61,6 +61,7 @@
                 android:textColor="@color/placeholder_70"/>
 
             <TextView
+                android:id="@+id/tv_wopen_stard_service_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tv_wopen_stard_project"
@@ -81,6 +82,7 @@
                 android:textColor="@color/placeholder_70"/>
 
             <TextView
+                android:id="@+id/tv_wopen_stard_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lv_wopen_stard_underline"
@@ -92,7 +94,7 @@
                 android:textColor="@color/colorRed"/>
 
             <TextView
-                android:id="@+id/tv_wopen_stard_payment"
+                android:id="@+id/tv_wopen_stard_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="缴费时间:"
@@ -102,9 +104,10 @@
                 android:layout_marginTop="20dp"/>
 
             <TextView
+                android:id="@+id/tv_wopen_stard_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_wopen_stard_payment"
+                android:layout_toRightOf="@+id/tv_wopen_stard_pay"
                 android:layout_below="@+id/tv_wopen_stard_project"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
@@ -160,7 +163,8 @@
                     android:layout_marginLeft="44dp"
                     android:gravity="center"/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/tv_wopen_stard_attn"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:text="周晓晴"
@@ -191,7 +195,8 @@
                     android:layout_marginLeft="44dp"
                     android:gravity="center"/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/tv_wopen_stard_mobile"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:text="1345698751"
@@ -216,6 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lv_wopen_stard_mobile_line"
                 android:layout_marginLeft="40dp"
+                android:visibility="gone"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:text="请核对您的联系方式，若有误请进行修改~"/>

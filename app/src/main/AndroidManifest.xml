@@ -513,6 +513,7 @@
         <activity
             android:name=".activity.wshop.WShopActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--微店商品详情界面-->
@@ -870,7 +871,7 @@
         <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity" />
 
         <!--微店开通公众号-->
-        <activity android:name=".activity.wopenaccount.EmpowermentActivity"/>
+        <activity android:name=".activity.wopenaccount.EmpowermentActivity" android:launchMode="singleTask"/>
         <activity android:name=".activity.wopenaccount.OpenNumberActivity"/>
         <activity android:name=".activity.wopenaccount.ServiceOrderActivity"/>
         <activity android:name=".activity.wopenaccount.StardOpenActivity"/>

@@ -1,5 +1,8 @@
 package com.poso2o.lechuan.activity.wopenaccount;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -7,7 +10,10 @@ import android.widget.Toast;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.broadcast.wopenbroad.WeiXinFuWuReceived;
+import com.poso2o.lechuan.broadcast.wopenbroad.WeiXinKaiReceived;
 import com.poso2o.lechuan.configs.AppConfig;
+import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wopenaccountmanager.ServiceOrderinTrialManager;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -25,6 +31,10 @@ public class ServiceOrderActivity extends BaseActivity {
     private TextView tv_title,tv_wopen_order_num,tv_wopen_order_money;
     //微信支付
     private TextView top_wopen_order_wx;
+    private WeiXinKaiReceived received;
+    private WeiXinFuWuReceived fuWuReceived;
+    private int service_type;
+    public static Activity sactivity;
 
     @Override
     protected int getLayoutResId() {
@@ -33,6 +43,7 @@ public class ServiceOrderActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        sactivity=this;
         tv_title=(TextView)findViewById(R.id.tv_title);
         tv_wopen_order_money=(TextView)findViewById(R.id.tv_wopen_order_money);
         tv_wopen_order_num=(TextView)findViewById(R.id.tv_wopen_order_num);
@@ -87,10 +98,44 @@ public class ServiceOrderActivity extends BaseActivity {
 
             }
         });
+
+
+        //注册广播
+        service_type=Integer.valueOf(getIntent().getStringExtra("service_type"));
+         if (service_type==4){
+            received=new WeiXinKaiReceived();
+            IntentFilter intentFilter=new IntentFilter();
+            intentFilter.addAction(Constant.BROADCAST_WEIXIN_TOP_UP);
+            registerReceiver(received,intentFilter);
+        }else if (service_type==3){
+                 fuWuReceived=new WeiXinFuWuReceived();
+                 IntentFilter intentFilter=new IntentFilter();
+                 intentFilter.addAction(Constant.BROADCAST_WEIXIN_TOP_UP);
+                 registerReceiver(fuWuReceived,intentFilter);
+
+
+         }
     }
 
     @Override
     protected void initListener() {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //注销动态广播
+        if (service_type==3) {
+            unregisterReceiver(fuWuReceived);
+        }else if (service_type==4) {
+            unregisterReceiver(received);
+        }
 
     }
 }

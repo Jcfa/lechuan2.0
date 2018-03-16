@@ -79,6 +79,7 @@
                     android:text="元"
                     android:layout_marginRight="10dp"/>
                 <TextView
+                    android:id="@+id/tv_wopen_number_wechar_authentication_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/tv_wopen_number_yuan"
@@ -152,6 +153,7 @@
                     android:text="元"
                     android:layout_marginRight="10dp"/>
                 <TextView
+                    android:id="@+id/tv_wopen_number_agency_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/tv_wopen_number_xyuan"
@@ -331,6 +333,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/ed_wopen_number_attn"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:text="周晓晴"
@@ -362,6 +365,7 @@
                     android:gravity="center"/>
 
                 <EditText
+                    android:id="@+id/et_wopen_number_mobile"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:text="1345698751"

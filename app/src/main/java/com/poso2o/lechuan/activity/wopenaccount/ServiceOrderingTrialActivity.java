@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.wopenaccount;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,8 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
     private TextView tv_title;
     private Button bt_wopen_trial_order;
     private ListView lsv_wopen_trim;
-    private String service_name,amount,service_id;
+    private String service_name,amount,service_id,service_type;
+    public static Activity order;
 
     @Override
     protected int getLayoutResId() {
@@ -36,6 +38,7 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
 
     @Override
     protected void initView() {
+        order=this;
         tv_title=(TextView)findViewById(R.id.tv_title);
 
         bt_wopen_trial_order=(Button)findViewById(R.id.bt_wopen_trial_order);
@@ -61,6 +64,7 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
                 service_id=trial.list.get(0).getService_id();
                 amount=trial.list.get(0).getAmount();
                 service_name=trial.list.get(0).getService_name();
+                service_type=trial.list.get(0).getService_type();
                 //单选
                 adapter.setOnAddClickListener(new ServiceOrderingTrialAdapter.OnAddClickListener() {
                     @Override
@@ -70,7 +74,7 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
                         service_id=trial.list.get(position).getService_id();
                         amount=trial.list.get(position).getAmount();
                         service_name=trial.list.get(position).getService_name();
-
+                        service_type=trial.list.get(position).getService_type();
                     }
                 });
             }
@@ -98,6 +102,7 @@ public class ServiceOrderingTrialActivity extends BaseActivity implements View.O
                     i.putExtra("service_id", service_id);
                     i.putExtra("amount", amount);
                     i.putExtra("service_name", service_name);
+                    i.putExtra("service_type",service_type);
                     i.setClass(ServiceOrderingTrialActivity.this, ServiceOrderActivity.class);
                     startActivity(i);
                 }
