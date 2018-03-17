@@ -71,7 +71,41 @@ public class ShopData implements Serializable {
     public String shop_tel = "";
     public String shop_url = "";
 
-    //旧服装版补充字段
+    /** 是否开通微店试用  0=未开通,1=已开通 */
+    public int has_webshop_try = 0;
+
+    /** 是否开通微店 0=未开，1=已开 */
+    public int has_webshop = 0;
+
+    /** 微店购买服务ID */
+    public int webshop_service_id = 0;
+
+    /** 微店购买服务名称 */
+    public String webshop_service_name = "";
+
+    /** 微店到期时间*/
+    public String webshop_service_date = "";
+
+    /** 微店剩余 (天数) */
+    public int webshop_service_days = 0;
+
+    /** 是否已绑定信息收款账号  1=已绑定，0=未绑定 */
+    public int has_bank_binding = 0;
+
+    /** 提现银行ID */
+    public String shop_bank_code = "";
+
+    /** 商家提现银行-名称 */
+    public String shop_bank_name = "";
+
+    /** 商家提现银行-户名 */
+    public String shop_bank_account_name = "";
+
+    /** 商家提现银行-账号 */
+    public String shop_bank_account_no = "";
+
+
+    // 旧服装版补充字段
     public String area = "";
     public String areaname = "";
     public String attn = "";

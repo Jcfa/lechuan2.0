@@ -43,7 +43,7 @@
                 android:hint="品名/货号/条码"
                 android:maxLength="32"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColorHint="#c0bebe"
                 android:textCursorDrawable="@null"
@@ -54,6 +54,7 @@
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerInside"
+                android:visibility="gone"
                 android:padding="5dp"
                 android:src="@mipmap/home_delete_search" />
 
@@ -64,6 +65,7 @@
             android:layout_width="@dimen/title_button_width"
             android:layout_height="match_parent"
             android:layout_gravity="right"
+            android:background="@drawable/selector_common"
             android:scaleType="centerInside"
             android:src="@mipmap/icon_add_vdian" />
 

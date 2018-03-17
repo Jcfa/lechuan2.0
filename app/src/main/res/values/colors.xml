@@ -19,11 +19,15 @@
     <!--深黑-->
     <color name="textBlack_jet">#111111</color>
     <color name="textGreen">#6c9f9f</color>
+    <color name="textOrange">#cc6404</color>
     <!--白色-->
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhite_press">#f1f1f1</color>
     <!--橙-->
     <color name="colorOrange">#F17604</color>
+    <color name="colorOrange_click">#cc6404</color>
+    <color name="orange">#FF4F01</color>
+    <color name="orange_click">#d74403</color>
 
     <!--浅灰色-->
     <color name="colorGray_light">#E0E0E0</color>

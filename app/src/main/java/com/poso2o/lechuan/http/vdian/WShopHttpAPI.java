@@ -30,4 +30,7 @@ public class WShopHttpAPI {
 
     //绑定微信支付详情接口
     public static final String W_BIND_PAY_INFO = W_MAIN_API + "AuthorizerTokenManage.htm?Act=getAuthorizerServiceInfo";
+
+    // 绑定收款帐号
+    public static final String SET_BANK_ACCOUNT = W_MAIN_API + "ShopManage.htm?Act=setBankAccount";
 }

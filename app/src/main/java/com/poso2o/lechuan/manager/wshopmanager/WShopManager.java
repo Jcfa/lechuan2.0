@@ -1,7 +1,6 @@
 package com.poso2o.lechuan.manager.wshopmanager;
 
 import com.google.gson.Gson;
-import com.kevin.crop.util.RectUtils;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
 import com.poso2o.lechuan.bean.shopdata.BangDingData;
@@ -74,8 +73,7 @@ public class WShopManager<T> extends BaseManager {
 
             @Override
             public void onFailed(int what, String response) {
-                baseActivity.dismissLoading();
-                Toast.show(baseActivity,response);
+                iRequestCallBack.onFailed(what, response);
             }
         },true,true);
     }
@@ -240,6 +238,36 @@ public class WShopManager<T> extends BaseManager {
         defaultParamNoShop(request);
 
         baseActivity.request(W_BIND_PAY_ID, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                BindPayData bindPayData = new Gson().fromJson(response,BindPayData.class);
+                iRequestCallBack.onResult(W_BIND_PAY_ID,bindPayData);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                iRequestCallBack.onFailed(W_BIND_PAY_ID,response);
+            }
+        },true,true);
+    }
+
+    /**
+     * 绑定收款帐号
+     *
+     * @param baseActivity
+     * @param iRequestCallBack
+     */
+    public void setBankAccount(BaseActivity baseActivity, String shop_bank_code, String shop_bank_name, String shop_bank_account_name,
+                               String shop_bank_account_no, final IRequestCallBack iRequestCallBack){
+        final Request<String> request = getStringRequest(WShopHttpAPI.SET_BANK_ACCOUNT);
+        defaultParam(request);
+        request.add("shop_bank_code", shop_bank_code);
+        request.add("shop_bank_name", shop_bank_name);
+        request.add("shop_bank_account_name", shop_bank_account_name);
+        request.add("shop_bank_account_no", shop_bank_account_no);
+
+        baseActivity.request(W_BIND_PAY_ID, request, new HttpListener<String>() {
+
             @Override
             public void onSucceed(int what, String response) {
                 BindPayData bindPayData = new Gson().fromJson(response,BindPayData.class);

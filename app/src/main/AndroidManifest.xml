@@ -272,6 +272,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <!--微店商品导入页面-->
+        <activity
+            android:name=".activity.wshop.VdianImportGoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <!--微店目录页面-->
         <activity
             android:name=".activity.goods.CatalogActivity"
@@ -488,6 +494,11 @@
         <!--微店主页-->
         <activity
             android:name=".activity.wshop.VdianActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--微店主页-->
+        <activity
+            android:name=".activity.wshop.VdianShopInfoActivity"
             android:screenOrientation="portrait"/>
 
         <!--企业认证页面-->
