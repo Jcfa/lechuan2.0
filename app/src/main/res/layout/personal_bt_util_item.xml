@@ -16,7 +16,7 @@
             android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
@@ -24,7 +24,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_order_info_bg"
                 android:src="@mipmap/performance_icon" />
 
             <TextView
@@ -43,7 +42,7 @@
             android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
@@ -51,7 +50,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_order_info_bg"
                 android:src="@mipmap/profit_loss" />
 
             <TextView
@@ -71,7 +69,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
@@ -79,7 +77,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_order_info_bg"
                 android:src="@mipmap/ware_manage" />
 
             <TextView
@@ -107,7 +104,7 @@
             android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
@@ -115,7 +112,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_order_info_bg"
                 android:src="@mipmap/icon_menu_online" />
 
             <TextView
@@ -134,7 +130,7 @@
             android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
@@ -142,7 +138,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_order_info_bg"
                 android:src="@mipmap/icon_menu_vx" />
 
             <TextView
@@ -162,7 +157,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
@@ -170,7 +165,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_order_info_bg"
                 android:src="@mipmap/quit_menu" />
 
             <TextView

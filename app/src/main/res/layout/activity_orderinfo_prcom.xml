@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line"
+    android:background="@color/color_EEEEEE"
     android:orientation="vertical">
 
     <LinearLayout
@@ -223,23 +223,15 @@
         <include layout="@layout/layout_orderinfo_public" />
     </RelativeLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_below="@+id/rl2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/line" />
 
     <RelativeLayout
         android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/rl2"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/orderinfo_main_bg"
         android:gravity="center">
 
@@ -299,7 +291,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rlv_order_pc_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/rl"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

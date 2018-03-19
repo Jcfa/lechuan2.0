@@ -41,7 +41,7 @@
             <ImageView
                 android:id="@+id/iv_order_center_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
@@ -90,7 +90,7 @@
             <ImageView
                 android:id="@+id/iv_order_aim_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
@@ -138,7 +138,7 @@
             <ImageView
                 android:id="@+id/iv_order_complete_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
@@ -185,7 +185,7 @@
             <ImageView
                 android:id="@+id/iv_order_gpm_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"

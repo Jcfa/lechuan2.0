@@ -1,7 +1,10 @@
 package com.poso2o.lechuan.activity.wopenaccount;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
@@ -46,11 +49,10 @@ public class ServiceOrderActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {;
+    protected void initData() {
         final IWXAPI api = WXAPIFactory.createWXAPI(this, null);
         api.registerApp(AppConfig.WEIXIN_APPID);
         tv_title.setText(getResources().getString(R.string.service_order));
-    protected void initData() {
 //        tv_title.setText(getResources().getString(R.string.service_order));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
         //获取传过来的信息

@@ -100,7 +100,7 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
                         public void onItemClickListener(View view, int position) {
                             OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(activity);
                             dialog.show();
-                            dialog.setData(data.get(position).getShopid(),begin, type);
+                            dialog.setData(data.get(position).getShopid(), begin, type);
                         }
                     });
                 }

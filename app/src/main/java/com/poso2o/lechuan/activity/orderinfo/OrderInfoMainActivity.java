@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.login.StartActivity;
 import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
 import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
@@ -33,6 +34,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     private LinearLayout llOrderWeid;  // 微店
     private LinearLayout ll_order_poplstaff;  // 人员业绩
     private LinearLayout ll_order_primecost;
+    private LinearLayout ll_order_exit;//退出登录
 
     //公众号助手
     private LinearLayout ll_order_public_hao;
@@ -67,8 +69,9 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
         ll_order_primecost = (LinearLayout) findViewById(R.id.ll_order_primecost);
         ll_order_members = (LinearLayout) findViewById(R.id.ll_order_members);
+        ll_order_exit = (LinearLayout) findViewById(R.id.ll_order_exit);
 
-        ll_order_public_hao =  findView(R.id.ll_order_public_hao);
+        ll_order_public_hao = findView(R.id.ll_order_public_hao);
 
         tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
@@ -173,6 +176,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         ll_order_poplstaff.setOnClickListener(this);
         ll_order_primecost.setOnClickListener(this);
         ll_order_members.setOnClickListener(this);
+        ll_order_exit.setOnClickListener(this);
         // 实体店
         llOrderEntityShop.setOnClickListener(this);
         // 畅销商品
@@ -227,6 +231,9 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.ll_order_public_hao:
                 startActivity(new Intent(this, OAHelperActivity.class));
+                break;
+            case R.id.ll_order_exit:
+                startActivity(new Intent(this, StartActivity.class));
                 break;
         }
     }
