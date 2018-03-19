@@ -129,16 +129,55 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/vdian_swipe"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/vdian_recycle"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/vdian_swipe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/vdian_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <View
+            android:id="@+id/vdian_shade"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33000000"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/vdian_goods_hint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="136dp"
+            android:textSize="@dimen/textSize_middle"
+            android:visibility="gone"
+            android:textColor="@color/textBlack"
+            android:background="@color/common_background"
+            android:text="@string/hint_load_goods_fail"/>
+
+        <TextView
+            android:id="@+id/vdian_goods_add"
+            style="@style/text_normal"
+            android:layout_width="140dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="180dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/selector_green_radius5_bg"
+            android:gravity="center"
+            android:text="+ 添加商品"
+            android:textColor="#fff"/>
+
+    </FrameLayout>
 
 </LinearLayout>

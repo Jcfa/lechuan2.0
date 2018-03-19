@@ -26,6 +26,8 @@ public interface Constant {
 
     String GOODS = "goods";
 
+    String SHOP = "shop";
+
     String TYPE = "type";
 
     /**

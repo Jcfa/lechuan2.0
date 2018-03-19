@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
+import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
@@ -31,6 +33,10 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     private LinearLayout llOrderWeid;  // 微店
     private LinearLayout ll_order_poplstaff;  // 人员业绩
     private LinearLayout ll_order_primecost;
+
+    //公众号助手
+    private LinearLayout ll_order_public_hao;
+
     private LinearLayout ll_order_members;//会员管理
     private TextView tvBeginTime;//开始时间
     private TextView tvEndTime;//结束时间
@@ -56,9 +62,13 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         llOrderPaper = (LinearLayout) findViewById(R.id.ll_order_paper);
 
         llOrderWeid = (LinearLayout) findViewById(R.id.ll_order_weid);
+
         ll_order_poplstaff = (LinearLayout) findViewById(R.id.ll_order_poplstaff);
+
         ll_order_primecost = (LinearLayout) findViewById(R.id.ll_order_primecost);
         ll_order_members = (LinearLayout) findViewById(R.id.ll_order_members);
+
+        ll_order_public_hao =  findView(R.id.ll_order_public_hao);
 
         tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
@@ -181,6 +191,8 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 startActivity(new Intent(OrderInfoMainActivity.this, VdianActivity.class));
             }
         });
+        //公众号助手
+        ll_order_public_hao.setOnClickListener(this);
     }
 
     @Override
@@ -212,6 +224,9 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
             //会员管理
             case R.id.ll_order_members:
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoMemberActivity.class));
+                break;
+            case R.id.ll_order_public_hao:
+                startActivity(new Intent(this, OAHelperActivity.class));
                 break;
         }
     }

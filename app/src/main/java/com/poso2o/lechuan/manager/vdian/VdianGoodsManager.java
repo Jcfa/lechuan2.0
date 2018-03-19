@@ -76,6 +76,7 @@ public class VdianGoodsManager extends BaseManager {
      * 排序类型
      */
     public static final String SORT_TYPE_SALE_NUMBER = "goods_sale_number";// 销量
+    public static final String SORT_TYPE_STOCK = "goods_number";// 库存
     public static final String SORT_TYPE_COMMISSION = "commission_amount";// 佣金
 
     private static volatile VdianGoodsManager vdianGoodsManager;
