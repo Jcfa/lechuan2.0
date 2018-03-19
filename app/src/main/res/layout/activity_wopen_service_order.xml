@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/colorGray_light"></LinearLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_down_line">
+        <TextView
+            android:id="@+id/tv_wopen_order_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务项目:"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_wopen_order_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公众号开通"
+            android:layout_toRightOf="@+id/tv_wopen_order_project"
+            android:layout_centerVertical="true"
+            android:textSize="16dp"
+            android:textColor="@color/placeholder_70"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_wopen_order_yuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="元"
+            android:layout_marginRight="20dp"/>
+        <TextView
+            android:id="@+id/tv_wopen_order_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_wopen_order_yuan"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="500.00"
+            android:textColor="@color/colorRed"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_wopen_order_num"
+            android:layout_alignLeft="@+id/tv_wopen_order_num"
+            android:layout_marginTop="10dp"
+            android:text="(含服务费300.00+代办费200.00)"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/colorGray_light"></LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/shape_down_line"
+        android:gravity="center_vertical"
+        android:paddingRight="0dp"
+        android:text="支付方式"
+        android:textSize="@dimen/textSize_normal"
+        android:textStyle="bold"
+        android:paddingLeft="30dp"/>
+
+    <View style="@style/horizontal_line" />
+
+    <TextView
+        android:id="@+id/top_wopen_order_wx"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/white_bg"
+        android:drawableLeft="@mipmap/ic_wxpay_tag"
+        android:drawablePadding="@dimen/spacing_small"
+        android:drawableRight="@mipmap/icon_arrow_right"
+        android:gravity="center_vertical"
+        android:paddingLeft="46dp"
+        android:paddingRight="@dimen/spacing_large"
+        android:text="@string/weixin_pay"
+        android:textColor="@color/black_shallow_text"
+        android:textSize="@dimen/textSize_normal" />
+
+    <View style="@style/horizontal_line" />
+
+    <TextView
+        android:id="@+id/top_wopen_order_alipay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tiny"
+        android:background="@drawable/white_bg"
+        android:drawableLeft="@mipmap/ic_alipay_tag"
+        android:drawablePadding="@dimen/spacing_small"
+        android:drawableRight="@mipmap/icon_arrow_right"
+        android:gravity="center_vertical"
+        android:paddingLeft="46dp"
+        android:paddingRight="@dimen/spacing_large"
+        android:text="@string/alipay"
+        android:textColor="@color/black_shallow_text"
+        android:textSize="@dimen/textSize_normal" />
+
+</LinearLayout>

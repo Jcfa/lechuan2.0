@@ -232,8 +232,8 @@ public class WShopActivity extends BaseActivity implements EasyPermissions.Permi
 //        shop_info_name.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK));
 //        shop_info_describe.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_DESCRIPTION));
 
-        shopData = (ShopData) getIntent().getExtras().get(RShopMainActivity.DATA_SHOP);
-        refreshShopData();
+//        shopData = (ShopData) getIntent().getExtras().get(RShopMainActivity.DATA_SHOP);
+        //refreshShopData();
         if (shopData == null)requestShopInfo();
 
         to_import.setVisibility(View.VISIBLE);

@@ -60,6 +60,7 @@
     <!-- USB打印机权限 -->
     <uses-feature android:name="android.hardware.usb.host"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
 
     <permission
         android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"
@@ -97,7 +98,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
+
 
         <!--登录-->
         <activity
@@ -523,6 +524,7 @@
         <activity
             android:name=".activity.wshop.WShopActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--微店商品详情界面-->
@@ -875,6 +877,17 @@
         <activity android:name=".activity.orderinfo.OrderEntityShopActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoSellActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoMainActivity"/>
+        <activity android:name=".activity.orderinfo.OrderInfoPaperActivity" />
+        <activity android:name=".activity.orderinfo.OrderPoplstaffActivity" />
+        <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity" />
+
+        <!--微店开通公众号-->
+        <activity android:name=".activity.wopenaccount.EmpowermentActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.wopenaccount.OpenNumberActivity"/>
+        <activity android:name=".activity.wopenaccount.ServiceOrderActivity"/>
+        <activity android:name=".activity.wopenaccount.StardOpenActivity"/>
+        <activity android:name=".activity.wopenaccount.AuthorizationActivity"/>
+        <activity android:name=".activity.wopenaccount.ServiceOrderingTrialActivity"/>
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">

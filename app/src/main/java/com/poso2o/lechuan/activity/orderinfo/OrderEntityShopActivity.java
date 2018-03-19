@@ -1,17 +1,33 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.dialog.CalendarDialog;
+import com.poso2o.lechuan.util.CalendarUtil;
+import com.poso2o.lechuan.util.Toast;
+import com.poso2o.lechuan.view.customcalendar.CustomDate;
 
 /**
  * Created by ${cbf} on 2018/3/12 0012.
  * 实体店订单信息
  */
 
-public class OrderEntityShopActivity extends BaseActivity {
+public class OrderEntityShopActivity extends BaseActivity implements View.OnClickListener {
     private FrameLayout florderContent;
+    private TextView tvBeginTime;
+    private TextView tvEndTime;
+    private ImageView ivVisibility;
+    private LinearLayout llOrderClick;
+    private TextView today, tomad, trecently, trecentlys, tlastm, tv_visibility;
+    private TextView tvOrderHao, tvOrderNum, tvOrderMoney, tvOrderSaleName;
+    private boolean isBeginTime;
+    private String beginTime, endTime;
 
     @Override
     protected int getLayoutResId() {
@@ -20,19 +36,91 @@ public class OrderEntityShopActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
+        tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
+        tv_visibility = (TextView) findViewById(R.id.tv_visibility);
+        ivVisibility = (ImageView) findViewById(R.id.iv_order_time_visibility);
+        llOrderClick = (LinearLayout) findViewById(R.id.ll_ordr_click);
+
+        //我的订单统计
+        tvOrderHao = (TextView) findViewById(R.id.tv_order_hao);
+        tvOrderNum = (TextView) findViewById(R.id.tv_order_num);
+        tvOrderMoney = (TextView) findViewById(R.id.tv_order_money);
+        tvOrderSaleName = (TextView) findViewById(R.id.tv_order_salesname);
         florderContent = (FrameLayout) findViewById(R.id.fl_order_entity_content);
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fl_order_entity_content, new OrderInfoEntityFragment()).commit();
+
     }
 
     @Override
     protected void initData() {
-
+        ivVisibility.setVisibility(View.GONE);
+        //默认为当天时间
+        String nowDay = CalendarUtil.getTodayDate();
+        tvBeginTime.setText(nowDay);
+        tvEndTime.setText(nowDay);
     }
 
     @Override
     protected void initListener() {
+        tvBeginTime.setOnClickListener(this);
+        tvEndTime.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_order_info_bgin_time:
+                isBeginTime = true;
+                showCalender();
+                break;
+            case R.id.tv_order_end_time:
+                isBeginTime = false;
+                showCalender();
+                break;
+        }
+    }
+
+    //显示日期
+    private void showCalender() {
+        final CalendarDialog calendarDialog = new CalendarDialog(this);
+        calendarDialog.show();
+        calendarDialog.setOnDateSelectListener(new CalendarDialog.OnDateSelectListener() {
+            @Override
+            public void onDateSelect(CustomDate date) {
+                if (date == null) return;
+                String dateT = date.getYear() + "-" + date.getMonth() + "-" + date.getDay();
+                if (isBeginTime) {
+                    String str = tvEndTime.getText().toString();
+                    if (str == null || str.equals("")) {
+                        tvBeginTime.setText(dateT);
+                        beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
+                        calendarDialog.dismiss();
+                    } else if (CalendarUtil.TimeCompare(dateT, str)) {
+                        tvBeginTime.setText(dateT);
+                        beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
+                        calendarDialog.dismiss();
+                    } else {
+                        Toast.show(activity, "选择的时间范围不正确");
+                    }
+                } else {
+                    String str = tvBeginTime.getText().toString();
+                    if (str == null || str.equals("")) {
+                        tvEndTime.setText(dateT);
+                        endTime = CalendarUtil.timeStamp(dateT + " 23:59:59");
+                        calendarDialog.dismiss();
+                    } else if (CalendarUtil.TimeCompare(str, dateT)) {
+                        tvEndTime.setText(dateT);
+                        endTime = CalendarUtil.timeStamp(dateT + " 23:59:59");
+                        calendarDialog.dismiss();
+                    } else {
+                        Toast.show(activity, "选择的时间范围不正确");
+                    }
+                }
+            }
+        });
     }
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rv_wopen_auth_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+        <TextView
+            android:id="@+id/tv_wopen_auth_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="1."
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_wopen_auth_certification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_wopen_auth_one"
+            android:text="安全声明"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_wopen_auth_w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_wopen_auth_certification"
+            android:layout_alignLeft="@+id/tv_wopen_auth_certification"
+            android:layout_marginTop="15dp"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_wopen_auth_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_wopen_auth_w"
+            android:layout_below="@+id/tv_wopen_auth_w"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/placeholder_70"
+            android:textSize="15dp"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rv_wopen_auth_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/rv_wopen_auth_one"
+        android:layout_above="@+id/bt_wopen_auth_qian">
+        <TextView
+            android:id="@+id/tv_wopen_auth_fu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="2."
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_wopen_auth_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_wopen_auth_fu"
+            android:text="公众号菜单"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_wopen_auth_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="-授权后，若您的公众号底部菜单已设置，将会被新的菜单覆盖，见下图。"
+            android:layout_below="@+id/tv_wopen_auth_charge"
+            android:layout_alignParentEnd="true"
+            android:textSize="15dp"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_wopen_auth_d"
+            android:src="@drawable/ex_shop_logo"/>
+
+    </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_wopen_auth_qian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/green_radius5_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:text="我已同意，前往授权"
+            android:textColor="@color/colorWhite"/>
+    </RelativeLayout>
+</LinearLayout>

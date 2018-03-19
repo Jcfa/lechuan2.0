@@ -67,7 +67,7 @@
             android:layout_gravity="right"
             android:background="@drawable/selector_common"
             android:scaleType="centerInside"
-            android:src="@mipmap/icon_add_vdian" />
+            android:src="@mipmap/ic_alipay_tag" />
 
     </FrameLayout>
 

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/ll_ordr_click"
         android:layout_width="match_parent"
-        android:background="@drawable/orderinfo_main_bg"
-        android:layout_marginRight="10dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="10dp"
-        android:layout_height="45dp">
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        android:background="@drawable/orderinfo_main_bg">
 
         <ImageView
             android:layout_width="40dp"
@@ -18,12 +21,31 @@
             android:src="@drawable/calendar_icon" />
 
         <TextView
-            android:id="@+id/tv_order_info_sell_time"
+            android:id="@+id/tv_order_info_bgin_time"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
+            android:clickable="true"
             android:gravity="center"
-            android:text="03-13至03-16"
+            android:hint="02-12"
+            android:textColor="@color/color_262626" />
+
+        <TextView
+            android:id="@+id/tv_visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="至"
+            android:textColor="@color/color_262626" />
+
+        <TextView
+            android:id="@+id/tv_order_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="2dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:hint="03-11"
             android:textColor="@color/color_262626" />
 
         <ImageView
@@ -32,7 +54,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
-            android:visibility="gone"
-            android:src="@drawable/calendar_icon" />
+            android:src="@mipmap/pull_down_icon"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>
