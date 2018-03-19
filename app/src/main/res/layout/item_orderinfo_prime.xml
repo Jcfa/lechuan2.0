@@ -38,9 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="45dp"
-            android:layout_toRightOf="@+id/tv_order_prime_name"
-            android:text="1116.11a"
+            android:layout_marginLeft="150dp"
+            android:text="1116.11"
             android:textColor="#000"
             android:textSize="12dp" />
 
@@ -48,9 +47,10 @@
             android:id="@+id/tv_order_prime_spend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="25dp"
-            android:layout_toLeftOf="@+id/tv_order_prime_lr"
+            android:layout_marginRight="65dp"
+            android:gravity="center"
             android:text="支出"
             android:textColor="#000"
             android:textSize="12dp" />

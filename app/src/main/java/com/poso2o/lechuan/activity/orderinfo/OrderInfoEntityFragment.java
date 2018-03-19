@@ -66,6 +66,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
     }
 
     private void initNet(String beginTime, String endTime) {
+        swipeRefreshLayout.setRefreshing(true);
         OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), beginTime, endTime, new IRequestCallBack<OrderInfoBean>() {
             @Override
             public void onResult(int tag, OrderInfoBean infoBeans) {
@@ -76,6 +77,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
                 rlv.setAdapter(adapter);
                 tvNum.setText("合计数量:" + infoBean.getTotal().getTotal_num());
                 tvMoeny.setText("合计金额:" + infoBean.getTotal().getTotal_amount());
+                swipeRefreshLayout.setRefreshing(false);
 
             }
 

@@ -32,8 +32,9 @@
             <ImageView
                 android:id="@+id/iv_order_center_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/qian_dai_pic" />
@@ -79,8 +80,9 @@
             <ImageView
                 android:id="@+id/iv_order_income_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/clock_pic" />
@@ -127,8 +129,9 @@
             <ImageView
                 android:id="@+id/iv_order_spend_head"
                 android:layout_width="40dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/dollar_pic" />
@@ -183,7 +186,7 @@
                 <ImageView
                     android:id="@+id/iv_order_profits_head"
                     android:layout_width="40dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:scaleType="centerCrop"
@@ -240,16 +243,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="排名" />
+            android:text="排名"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_order_yyy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_order_name"
-            android:text="店铺名" />
+            android:text="店铺名"
+            android:textSize="16dp" />
 
 
         <TextView
@@ -257,26 +262,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/tv_order_yyy"
-            android:text="收入" />
+            android:text="收入"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_order_renwu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/tv_order_zm"
-            android:text="支出" />
+            android:text="支出"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_order_zm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:text="净利润" />
+            android:layout_marginRight="15dp"
+            android:text="净利润"
+            android:textSize="16dp" />
     </RelativeLayout>
 
     <View

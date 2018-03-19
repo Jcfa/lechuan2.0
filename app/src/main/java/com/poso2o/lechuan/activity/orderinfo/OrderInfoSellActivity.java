@@ -79,8 +79,13 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
         initNet(begin, nowDay, cuurapge);
+        //自动加载  第一次进来时
+        if (isClick == false) {
+            refreshLayout.autoRefresh();
+            isClick = true;
+        }
         rlvSellList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new OrderInfoSellAdapter(activity, data,beginTs,endTs);
+        adapter = new OrderInfoSellAdapter(activity, data, beginTs, endTs);
         rlvSellList.setAdapter(adapter);
       /*  adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
             @Override
