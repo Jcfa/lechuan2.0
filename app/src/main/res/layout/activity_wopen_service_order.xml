@@ -12,7 +12,8 @@
     
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:background="@drawable/shape_down_line">
         <TextView
             android:id="@+id/tv_wopen_order_project"
             android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
             android:text="元"
             android:layout_marginRight="20dp"/>
         <TextView
+            android:id="@+id/tv_wopen_order_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/tv_wopen_order_yuan"
@@ -58,7 +60,8 @@
             android:layout_below="@+id/tv_wopen_order_num"
             android:layout_alignLeft="@+id/tv_wopen_order_num"
             android:layout_marginTop="10dp"
-            android:text="(含服务费300.00+代办费200.00)"/>
+            android:text="(含服务费300.00+代办费200.00)"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -72,11 +75,13 @@
         android:layout_height="@dimen/height_tiny"
         android:background="@drawable/shape_down_line"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/spacing_middle"
         android:paddingRight="0dp"
         android:text="支付方式"
         android:textSize="@dimen/textSize_normal"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:paddingLeft="30dp"/>
+
+    <View style="@style/horizontal_line" />
 
     <TextView
         android:id="@+id/top_wopen_order_wx"
@@ -87,7 +92,7 @@
         android:drawablePadding="@dimen/spacing_small"
         android:drawableRight="@mipmap/icon_arrow_right"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/spacing_large"
+        android:paddingLeft="46dp"
         android:paddingRight="@dimen/spacing_large"
         android:text="@string/weixin_pay"
         android:textColor="@color/black_shallow_text"
@@ -104,7 +109,7 @@
         android:drawablePadding="@dimen/spacing_small"
         android:drawableRight="@mipmap/icon_arrow_right"
         android:gravity="center_vertical"
-        android:paddingLeft="@dimen/spacing_large"
+        android:paddingLeft="46dp"
         android:paddingRight="@dimen/spacing_large"
         android:text="@string/alipay"
         android:textColor="@color/black_shallow_text"

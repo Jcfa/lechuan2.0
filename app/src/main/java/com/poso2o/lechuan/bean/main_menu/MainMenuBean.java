@@ -93,6 +93,10 @@ public class MainMenuBean implements Serializable{
 //                }else {
 //                    intent.setClass(context, WShopDesActivity.class);
 //                }
+                RShopMainActivity vactivity = (RShopMainActivity) context;
+                intent.setClass(context, EmpowermentActivity.class);
+                intent.putExtra(RShopMainActivity.DATA_SHOP,vactivity.getShopData());
+                vactivity.startActivityForResult(intent,RShopMainActivity.CODE_SHOP);
                 break;
             case 9:
                 intent.setClass(context, OAHelperActivity.class);
@@ -117,11 +121,11 @@ public class MainMenuBean implements Serializable{
                 intent.setClass(context, RShopDesActivity.class);
                 break;
             case 14:
-                RShopMainActivity vactivity = (RShopMainActivity) context;
+                RShopMainActivity vactivity1 = (RShopMainActivity) context;
             //    intent.setClass(context, WShopActivity.class);
                 intent.setClass(context, EmpowermentActivity.class);
-                intent.putExtra(RShopMainActivity.DATA_SHOP,vactivity.getShopData());
-                vactivity.startActivityForResult(intent,RShopMainActivity.CODE_SHOP);
+                intent.putExtra(RShopMainActivity.DATA_SHOP,vactivity1.getShopData());
+                vactivity1.startActivityForResult(intent,RShopMainActivity.CODE_SHOP);
                 return;
             case 15:
                 SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_SELECTED_TYPE, Constant.DISTRIBUTION_TYPE);

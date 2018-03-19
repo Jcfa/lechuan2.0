@@ -623,12 +623,22 @@ public class RShopMainActivity extends BaseActivity implements View.OnClickListe
     public ShopData getShopData(){
         return shopData;
     }
+    public ShopData shop;
+
+    public ShopData getShop() {
+        return shop;
+    }
+
+    public void setShop(ShopData shop) {
+        this.shop = shop;
+    }
 
     //加载微店店铺信息
     private void requestVShop(){
         WShopManager.getrShopManager().wShopInfo(this, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
+                setShop((ShopData) result);
                 shopData = (ShopData) result;
                 if (shopData == null)return;
                 shop_name.setText(shopData.shop_name);

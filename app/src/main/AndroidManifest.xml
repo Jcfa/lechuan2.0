@@ -60,6 +60,7 @@
     <!-- USB打印机权限 -->
     <uses-feature android:name="android.hardware.usb.host"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
 
     <permission
         android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"
@@ -97,7 +98,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
+
 
         <!--登录-->
         <activity
@@ -269,6 +270,12 @@
         <!--实体店商品上传页面-->
         <activity
             android:name=".activity.goods.RGoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!--微店商品导入页面-->
+        <activity
+            android:name=".activity.wshop.VdianImportGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
@@ -490,6 +497,11 @@
             android:name=".activity.wshop.VdianActivity"
             android:screenOrientation="portrait"/>
 
+        <!--微店主页-->
+        <activity
+            android:name=".activity.wshop.VdianShopInfoActivity"
+            android:screenOrientation="portrait"/>
+
         <!--企业认证页面-->
         <activity
             android:name=".activity.realshop.CompanyDefineActivity"
@@ -512,6 +524,7 @@
         <activity
             android:name=".activity.wshop.WShopActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--微店商品详情界面-->
@@ -869,7 +882,7 @@
         <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity" />
 
         <!--微店开通公众号-->
-        <activity android:name=".activity.wopenaccount.EmpowermentActivity"/>
+        <activity android:name=".activity.wopenaccount.EmpowermentActivity" android:launchMode="singleTask"/>
         <activity android:name=".activity.wopenaccount.OpenNumberActivity"/>
         <activity android:name=".activity.wopenaccount.ServiceOrderActivity"/>
         <activity android:name=".activity.wopenaccount.StardOpenActivity"/>

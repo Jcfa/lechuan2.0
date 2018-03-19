@@ -268,6 +268,17 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <!--中大号字体-->
+    <style name="text_normal" parent="text_base">
+        <item name="android:textSize">@dimen/textSize_normal</item>
+    </style>
+
+    <!--中大号字体单行-->
+    <style name="text_normal_single_line" parent="text_normal">
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
     <!--大号字体-->
     <style name="text_large" parent="text_base">
         <item name="android:textSize">@dimen/textSize_large</item>

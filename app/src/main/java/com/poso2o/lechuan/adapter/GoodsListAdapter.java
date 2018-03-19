@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * 商品列表适配器
+ *
  * Created by lenovo on 2016/12/9.
  */
 public class GoodsListAdapter extends BaseAdapter<GoodsListAdapter.HomeGoodsHolder, Goods> {
@@ -28,10 +29,19 @@ public class GoodsListAdapter extends BaseAdapter<GoodsListAdapter.HomeGoodsHold
 
     private boolean isVdian;
 
+    /**
+     * 是否有底部间距
+     */
+    private boolean isHaveBottom = true;
+
     public GoodsListAdapter(Context context, boolean isVdian) {
         super(context, null);
         this.isVdian = isVdian;
         selects = new ArrayList<>();
+    }
+
+    public void setHaveBottom(boolean haveBottom) {
+        isHaveBottom = haveBottom;
     }
 
     public void setMainEdit(boolean mainEdit) {
@@ -129,7 +139,7 @@ public class GoodsListAdapter extends BaseAdapter<GoodsListAdapter.HomeGoodsHold
             holder.home_goods_stock_tv.setText(item.kcnum);
         }
 
-        if (position == getItemCount() - 1) {
+        if (position == getItemCount() - 1 && isHaveBottom) {
             holder.home_recycle_item_group.setPadding(0, 0, 0, 150);
         } else {
             holder.home_recycle_item_group.setPadding(0, 0, 0, 0);

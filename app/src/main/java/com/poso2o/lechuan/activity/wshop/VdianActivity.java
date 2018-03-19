@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.wshop;
 
+import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -9,14 +10,17 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
-import com.poso2o.lechuan.base.BaseFragment;
-import com.poso2o.lechuan.fragment.common.PlaceholderFragment;
+import com.poso2o.lechuan.bean.event.EventBean;
+import com.poso2o.lechuan.dialog.TipsNoAuthorDialog;
 import com.poso2o.lechuan.fragment.vdian.VdianGoodsFragment;
+import com.poso2o.lechuan.fragment.vdian.VdianOrderFragment;
 import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.tool.listener.CustomTextWatcher;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.poso2o.lechuan.base.BaseManager.FIRST;
 
 /**
  * 微店
@@ -24,6 +28,11 @@ import static android.view.View.VISIBLE;
  * Created by Jaydon on 2018/3/13.
  */
 public class VdianActivity extends BaseActivity implements View.OnClickListener {
+
+    /**
+     * 微店导入商品
+     */
+    public final static int REQUEST_IMPORT_CODE = 112;
 
     /**
      * 商品搜索
@@ -50,7 +59,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
     /**
      * 订单列表视图
      */
-    private BaseFragment vdianOrderFragment;
+    private VdianOrderFragment vdianOrderFragment;
 
     @Override
     protected int getLayoutResId() {
@@ -70,10 +79,8 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initData() {
         vdianGoodsFragment = new VdianGoodsFragment();
-        vdianOrderFragment = new PlaceholderFragment();
+        vdianOrderFragment = new VdianOrderFragment();
         addFragment(R.id.vdian_content, vdianGoodsFragment);
-
-
     }
 
     @Override
@@ -96,10 +103,10 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
             public void input(String s, int start, int before, int count) {
                 if (TextUtils.isEmpty(s)) {
                     vdian_search_delete.setVisibility(GONE);
+                    vdianGoodsFragment.search(s);
                 } else {
                     vdian_search_delete.setVisibility(VISIBLE);
                 }
-//                vdianGoodsFragment.search(s);
             }
         });
         vdian_search_delete.setOnClickListener(this);
@@ -111,15 +118,22 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.vdian_search_delete:
+            case R.id.vdian_search_delete:// 清空搜索
                 vdian_search.setText("");
                 break;
 
-            case R.id.vdian_add_goods:
-
+            case R.id.vdian_add_goods:// 导入商品
+                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
+                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(activity);
+                    noAuthorDialog.show();
+                    return;
+                }
+                Intent intent = new Intent();
+                intent.setClass(activity, VdianImportGoodsActivity.class);
+                startActivityForResult(intent, REQUEST_IMPORT_CODE);
                 break;
 
-            case R.id.vdian_goods_tag:
+            case R.id.vdian_goods_tag:// 商品列表
                 if (vdianOrderFragment.isVisible()) {
                     vdian_search_group.setVisibility(VISIBLE);
                     vdian_add_goods.setVisibility(VISIBLE);
@@ -132,7 +146,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
                 }
                 break;
 
-            case R.id.vdian_order_tag:
+            case R.id.vdian_order_tag:// 订单管理
                 if (vdianGoodsFragment.isVisible()) {
                     vdian_search_group.setVisibility(GONE);
                     vdian_add_goods.setVisibility(GONE);
@@ -144,6 +158,24 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
                     replaceFragment(R.id.vdian_content, vdianOrderFragment);
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onEvent(EventBean event) {
+        super.onEvent(event);
+        vdianOrderFragment.onEvent(event);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_IMPORT_CODE:
+                    vdianGoodsFragment.loadGoodsData(FIRST);
+                    break;
+            }
         }
     }
 }
