@@ -80,11 +80,12 @@
                 <EditText
                     android:id="@+id/shop_info_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/textBlack"
                     android:layout_marginRight="20dp"
                     android:singleLine="true"
                     android:ellipsize="end"
-                    android:gravity="right"
+                    android:gravity="center_vertical|right"
                     android:maxLength="20"
                     android:selectAllOnFocus="true"
                     android:layout_marginLeft="30dp"
@@ -141,13 +142,13 @@
                 <EditText
                     android:id="@+id/shop_info_contacts"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="20dp"
                     android:background="@android:color/transparent"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:maxLength="15"
-                    android:gravity="right"
+                    android:gravity="center_vertical|right"
                     android:selectAllOnFocus="true"
                     android:layout_marginLeft="30dp"
                     android:textSize="14sp"/>
@@ -172,16 +173,17 @@
                 <EditText
                     android:id="@+id/shop_info_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="40dp"
                     android:background="@android:color/transparent"
                     android:singleLine="true"
+                    android:textColor="@color/textBlack"
                     android:inputType="phone"
                     android:ellipsize="end"
                     android:maxLength="11"
                     android:selectAllOnFocus="true"
-                    android:gravity="right"
+                    android:gravity="center_vertical|right"
                     android:textSize="14sp"/>
 
             </LinearLayout>
@@ -203,12 +205,13 @@
                 <EditText
                     android:id="@+id/shop_info_tel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:inputType="phone"
                     android:singleLine="true"
+                    android:textColor="@color/textBlack"
                     android:background="@android:color/transparent"
                     android:ellipsize="end"
-                    android:gravity="right"
+                    android:gravity="center_vertical|right"
                     android:maxLength="15"
                     android:selectAllOnFocus="true"
                     android:layout_marginLeft="40dp"
@@ -218,9 +221,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/shop_info_area_group"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@android:color/white"
+                android:background="@drawable/selector_white"
                 android:layout_marginTop="1dp"
                 android:gravity="center_vertical">
 
@@ -238,13 +242,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:textSize="14sp"
+                    android:textColor="@color/textBlack"
                     android:gravity="right"
                     android:background="@android:color/transparent"
                     android:hint="省/市/区"
                     android:textColorHint="#979797"/>
 
                 <ImageView
-                    android:id="@+id/shop_info_location"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@mipmap/right_arrow"
@@ -270,12 +274,13 @@
                 <EditText
                     android:id="@+id/shop_info_address"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="街道门牌信息"
                     android:textColorHint="#979797"
                     android:selectAllOnFocus="true"
                     android:textSize="14sp"
-                    android:gravity="right"
+                    android:textColor="@color/textBlack"
+                    android:gravity="center_vertical|right"
                     android:background="@android:color/transparent"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
@@ -287,7 +292,7 @@
                 android:id="@+id/shop_info_accounts_group"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@android:color/white"
+                android:background="@drawable/selector_white"
                 android:layout_marginTop="8dp"
                 android:gravity="center_vertical">
 
@@ -305,6 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:textSize="14sp"
+                    android:textColor="@color/textBlack"
                     android:gravity="right"
                     android:background="@android:color/transparent"
                     android:textColorHint="#979797"/>

@@ -32,7 +32,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
     /**
      * 微店导入商品
      */
-    private final static int REQUEST_IMPORT_CODE = 112;
+    public final static int REQUEST_IMPORT_CODE = 112;
 
     /**
      * 商品搜索

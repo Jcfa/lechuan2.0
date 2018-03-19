@@ -157,16 +157,26 @@
             android:id="@+id/vdian_goods_hint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:visibility="gone"
+            android:gravity="center_horizontal"
+            android:paddingTop="136dp"
             android:textSize="@dimen/textSize_middle"
+            android:visibility="gone"
             android:textColor="@color/textBlack"
             android:background="@color/common_background"
             android:text="@string/hint_load_goods_fail"/>
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="42dp"/>
+            android:id="@+id/vdian_goods_add"
+            style="@style/text_normal"
+            android:layout_width="140dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="180dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/selector_green_radius5_bg"
+            android:gravity="center"
+            android:text="+ 添加商品"
+            android:textColor="#fff"/>
 
     </FrameLayout>
 

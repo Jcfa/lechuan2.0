@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.wshop.VdianActivity;
+import com.poso2o.lechuan.activity.wshop.VdianImportGoodsActivity;
 import com.poso2o.lechuan.activity.wshop.VdianShopInfoActivity;
 import com.poso2o.lechuan.adapter.GoodsListAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
@@ -28,6 +30,7 @@ import com.poso2o.lechuan.bean.goodsdata.CatalogBean;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
 import com.poso2o.lechuan.bean.shopdata.ShopData;
 import com.poso2o.lechuan.configs.Constant;
+import com.poso2o.lechuan.dialog.TipsNoAuthorDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.VdianCatalogManager;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
@@ -35,6 +38,7 @@ import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
 import com.poso2o.lechuan.util.ListUtils;
 import com.poso2o.lechuan.util.NumberUtils;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 
 import java.util.ArrayList;
@@ -104,8 +108,13 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
 
     /**
      * 无商品提示
-     **/
+     */
     private TextView vdian_goods_hint;
+
+    /**
+     * 添加商品
+     */
+    private TextView vdian_goods_add;
 
     /**
      * 列表
@@ -170,6 +179,7 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
         vdian_info_describe = findView(R.id.vdian_info_describe);
 
         vdian_goods_hint = findView(R.id.vdian_goods_hint);
+        vdian_goods_add = findView(R.id.vdian_goods_add);
 
         vdian_sort_sale = findView(R.id.vdian_sort_sale);
         vdian_sort_stock = findView(R.id.vdian_sort_stock);
@@ -265,6 +275,7 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
     public void loadGoodsData(final int pageType) {
         vdian_swipe.setRefreshing(true);
         vdian_goods_hint.setVisibility(GONE);
+        vdian_goods_add.setVisibility(GONE);
         VdianGoodsManager.getInstance().query((BaseActivity) context, shop_id, catalog_id, orderByName, sort, keywords, pageType, new IRequestCallBack<ArrayList<Goods>>() {
 
             @Override
@@ -272,7 +283,8 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                 if (pageType == FIRST) {
                     if (ListUtils.isEmpty(goodsDatas)) {
                         vdian_goods_hint.setVisibility(VISIBLE);
-                        vdian_goods_hint.setText(R.string.hint_load_goods_null);
+                        vdian_goods_add.setVisibility(VISIBLE);
+                        vdian_goods_hint.setText("请点击下方或右上角的按钮，添加商品至微店.");
                     } else {
                         vdian_goods_hint.setVisibility(GONE);
                     }
@@ -357,6 +369,7 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
         });
         vdian_info_group.setOnClickListener(this);
         vdian_goods_hint.setOnClickListener(this);
+        vdian_goods_add.setOnClickListener(this);
         vdian_catalog.setOnClickListener(this);
         vdian_sort_sale.setOnClickListener(this);
         vdian_sort_stock.setOnClickListener(this);
@@ -375,6 +388,17 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                 vdian_goods_hint.setVisibility(GONE);
                 vdian_swipe.setRefreshing(true);
                 loadGoodsData(FIRST);
+                break;
+
+            case R.id.vdian_goods_add:// 导入商品
+                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
+                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(context);
+                    noAuthorDialog.show();
+                    return;
+                }
+                Intent intent = new Intent();
+                intent.setClass(context, VdianImportGoodsActivity.class);
+                ((BaseActivity) context).startActivityForResult(intent, VdianActivity.REQUEST_IMPORT_CODE);
                 break;
 
             case R.id.vdian_catalog:// 目录

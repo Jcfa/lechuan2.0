@@ -86,7 +86,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     /**
      * 定位
      */
-    private ImageView shop_info_location;
+    private View shop_info_location;
 
     /**
      * 具体地址
@@ -134,7 +134,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         shop_info_phone = findView(R.id.shop_info_phone);
         shop_info_tel = findView(R.id.shop_info_tel);
         shop_info_area = findView(R.id.shop_info_area);
-        shop_info_location = findView(R.id.shop_info_location);
+        shop_info_location = findView(R.id.shop_info_area_group);
         shop_info_address = findView(R.id.shop_info_address);
         shop_info_accounts = findView(R.id.shop_info_accounts);
         shop_info_taocan = findView(R.id.shop_info_taocan);
@@ -211,7 +211,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         shop_info_save.setOnClickListener(this);
 
         shop_info_picture.setOnClickListener(this);
-        shop_info_area.setOnClickListener(this);
+//        shop_info_area.setOnClickListener(this);
         shop_info_location.setOnClickListener(this);
         findView(R.id.shop_info_accounts_group).setOnClickListener(this);
         findView(R.id.shop_info_renew).setOnClickListener(this);
@@ -228,13 +228,13 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                 selectPicture();
                 break;
 
-            case R.id.shop_info_area:
-                Intent intent = new Intent();
-                intent.setClass(activity, AddressSelectActivity.class);
-                startActivityForResult(intent, CODE_SELECT_ADDRESS);
-                break;
+//            case R.id.shop_info_area:
+//                Intent intent = new Intent();
+//                intent.setClass(activity, AddressSelectActivity.class);
+//                startActivityForResult(intent, CODE_SELECT_ADDRESS);
+//                break;
 
-            case R.id.shop_info_location:
+            case R.id.shop_info_area_group:
                 Intent selectArea = new Intent();
                 selectArea.setClass(activity, AddressSelectActivity.class);
                 startActivityForResult(selectArea, CODE_SELECT_ADDRESS);
