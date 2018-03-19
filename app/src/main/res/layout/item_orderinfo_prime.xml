@@ -7,9 +7,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorWhite"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorWhite"
         android:orientation="horizontal">
 
         <TextView
@@ -19,17 +19,19 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:text="1"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_prime_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_toRightOf="@+id/tv_order_prime_pm"
             android:text="店铺名"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_prime_income"
@@ -39,17 +41,19 @@
             android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/tv_order_prime_name"
             android:text="1116.11a"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_prime_spend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="25dp"
             android:layout_toLeftOf="@+id/tv_order_prime_lr"
             android:text="支出"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_prime_lr"
@@ -58,7 +62,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="1116.11"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:textSize="12dp" />
     </RelativeLayout>
 
     <View
@@ -66,5 +71,5 @@
         android:layout_height="1dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/color_EEEEEE"/>
+        android:background="@color/color_EEEEEE" />
 </LinearLayout>

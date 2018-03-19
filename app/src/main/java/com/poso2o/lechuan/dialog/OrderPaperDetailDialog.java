@@ -172,8 +172,12 @@ public class OrderPaperDetailDialog extends BaseDialog {
                         spend += Double.parseDouble(list.get(i).getSales_amount());
                     }
                     BigDecimal bg = new BigDecimal(profit);
+                    BigDecimal bg2 = new BigDecimal(income);
+                    BigDecimal bg3 = new BigDecimal(spend);
                     double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    tvPrice.setText("净利润" + value + "收入 " + income + " 支出 " + spend);
+                    double value2 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    double value3 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    tvPrice.setText("净利润" + value + "收入 " + value2 + " 支出 " + value3);
                     OrderMothsDetailAdapter adapter = new OrderMothsDetailAdapter(detailBean.getList(), type);
                     rlvDialog.setAdapter(adapter);
 

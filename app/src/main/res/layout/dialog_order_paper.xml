@@ -123,6 +123,12 @@
             android:textSize="16dp" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/llss"
+        android:background="@color/color_EEEEEE" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rlv_dalog"
