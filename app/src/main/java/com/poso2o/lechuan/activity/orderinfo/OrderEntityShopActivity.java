@@ -1,15 +1,17 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.dialog.CalendarDialog;
 import com.poso2o.lechuan.util.CalendarUtil;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
 
@@ -25,9 +27,10 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
     private ImageView ivVisibility;
     private LinearLayout llOrderClick;
     private TextView today, tomad, trecently, trecentlys, tlastm, tv_visibility;
-    private TextView tvOrderHao, tvOrderNum, tvOrderMoney, tvOrderSaleName;
+    private TextView tvOrderHao, tvOrderNum, tvOrderMoney, tvOrderSaleName, tvNick;
     private boolean isBeginTime;
     private String beginTime, endTime;
+    private OrderInfoEntityFragment infoEntityFragment;
 
     @Override
     protected int getLayoutResId() {
@@ -41,16 +44,14 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
         tv_visibility = (TextView) findViewById(R.id.tv_visibility);
         ivVisibility = (ImageView) findViewById(R.id.iv_order_time_visibility);
         llOrderClick = (LinearLayout) findViewById(R.id.ll_ordr_click);
-
+        //设置用户名
+        tvNick = (TextView) findViewById(R.id.tv_title);
         //我的订单统计
         tvOrderHao = (TextView) findViewById(R.id.tv_order_hao);
         tvOrderNum = (TextView) findViewById(R.id.tv_order_num);
         tvOrderMoney = (TextView) findViewById(R.id.tv_order_money);
         tvOrderSaleName = (TextView) findViewById(R.id.tv_order_salesname);
         florderContent = (FrameLayout) findViewById(R.id.fl_order_entity_content);
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fl_order_entity_content, new OrderInfoEntityFragment()).commit();
 
     }
 
@@ -59,8 +60,24 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
         ivVisibility.setVisibility(View.GONE);
         //默认为当天时间
         String nowDay = CalendarUtil.getTodayDate();
-        tvBeginTime.setText(nowDay);
+        //本月第一天
+        String begin = CalendarUtil.getFirstDay();
+        tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
+        String nick = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK);
+        tvNick.setText(nick + ">" + "我的订单");
+        initTime(begin,nowDay);
+    }
+
+    private void initTime(String begin,String endTime) {
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+        infoEntityFragment = new OrderInfoEntityFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("beginTime", begin);
+        bundle.putString("endTime", endTime);
+        infoEntityFragment.setArguments(bundle);
+        ft.add(R.id.fl_order_entity_content, infoEntityFragment).commit();
     }
 
     @Override
@@ -97,12 +114,13 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
                     String str = tvEndTime.getText().toString();
                     if (str == null || str.equals("")) {
                         tvBeginTime.setText(dateT);
-                        beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
                         calendarDialog.dismiss();
                     } else if (CalendarUtil.TimeCompare(dateT, str)) {
                         tvBeginTime.setText(dateT);
                         beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
                         calendarDialog.dismiss();
+                        String end = CalendarUtil.stampToDate(beginTime);
+                        initTimes(str, end);
                     } else {
                         Toast.show(activity, "选择的时间范围不正确");
                     }
@@ -116,11 +134,19 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
                         tvEndTime.setText(dateT);
                         endTime = CalendarUtil.timeStamp(dateT + " 23:59:59");
                         calendarDialog.dismiss();
+                        String end = CalendarUtil.stampToDate(endTime);
+                        initTimes(str, end);
                     } else {
                         Toast.show(activity, "选择的时间范围不正确");
                     }
                 }
             }
         });
+
     }
+
+    private void initTimes(String str, String end) {
+        infoEntityFragment.onInstance(str,end);
+    }
+
 }

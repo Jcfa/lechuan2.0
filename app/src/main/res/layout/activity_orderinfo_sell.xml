@@ -5,13 +5,23 @@
     android:background="@color/line"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_orderinfo_public" />
+    <include layout="@layout/layout_title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <include layout="@layout/layout_orderinfo_public" />
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/line" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -41,7 +51,8 @@
             android:layout_height="15dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
-            android:src="@drawable/down_image" />
+            android:src="@drawable/down_image"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <View
@@ -51,11 +62,18 @@
         android:layout_marginRight="10dp"
         android:background="@color/line" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rlv_order_sell_list"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/swip_refreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rlv_order_sell_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 </LinearLayout>

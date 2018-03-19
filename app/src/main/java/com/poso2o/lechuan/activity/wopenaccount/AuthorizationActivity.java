@@ -24,7 +24,7 @@ public class AuthorizationActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tv_title.setText(getResources().getString(R.string.authorization_statement));
+//        tv_title.setText(getResources().getString(R.string.authorization_statement));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
     }
 

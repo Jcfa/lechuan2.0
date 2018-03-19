@@ -90,6 +90,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.2-alpha-7'
     // 图像剪切
     compile('com.kevin:crop:1.0.2') {
         // 如果已经引入 support:appcompat-v7 可以加上这句话

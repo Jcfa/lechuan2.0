@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_order_prime_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="1"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_order_prime_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_toRightOf="@+id/tv_order_prime_pm"
+            android:text="店铺名"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_order_prime_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="45dp"
+            android:layout_toRightOf="@+id/tv_order_prime_name"
+            android:text="1116.11a"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_order_prime_spend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/tv_order_prime_lr"
+            android:text="支出"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_order_prime_lr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="1116.11"
+            android:textColor="#000" />
+    </RelativeLayout>
+
+
+</LinearLayout>

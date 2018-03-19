@@ -46,6 +46,7 @@
             android:layout_height="15dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/tv_order_sell_many"
+            android:visibility="gone"
             android:src="@drawable/down_image" />
 
         <TextView

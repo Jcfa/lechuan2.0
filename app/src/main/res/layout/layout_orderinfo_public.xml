@@ -27,8 +27,8 @@
             android:layout_marginLeft="5dp"
             android:clickable="true"
             android:gravity="center"
-            android:hint="02-12"
-            android:textColor="@color/color_262626" />
+            android:text="02-12"
+            android:textColor="#000" />
 
         <TextView
             android:id="@+id/tv_visibility"
@@ -45,8 +45,8 @@
             android:layout_marginLeft="2dp"
             android:clickable="true"
             android:gravity="center"
-            android:hint="03-11"
-            android:textColor="@color/color_262626" />
+            android:text="03-11"
+            android:textColor="#000" />
 
         <ImageView
             android:id="@+id/iv_order_time_visibility"

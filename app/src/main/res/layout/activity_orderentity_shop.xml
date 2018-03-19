@@ -4,7 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_orderinfo_public" />
+    <include layout="@layout/layout_title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <include layout="@layout/layout_orderinfo_public" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,9 +29,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="订单号"
-            android:textColor="@color/color_5E5E5E"
+            android:textColor="@color/grgray"
             android:textSize="18dp" />
 
 
@@ -31,29 +39,35 @@
             android:id="@+id/tv_order_num"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="数量"
-            android:textColor="@color/color_5E5E5E"
+            android:textColor="@color/grgray"
             android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tv_order_money"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="金额"
-            android:textColor="@color/color_5E5E5E"
+            android:textColor="@color/grgray"
             android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tv_order_salesname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="2dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="营业员"
-            android:textColor="@color/color_5E5E5E"
+            android:textColor="@color/grgray"
             android:textSize="18dp" />
     </LinearLayout>
 
@@ -64,20 +78,7 @@
         <FrameLayout
             android:id="@+id/fl_order_entity_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/tv_order_info" />
-
-        <TextView
-            android:id="@+id/tv_order_info"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/orderinfo_main_bg"
-            android:gravity="left|center"
-            android:text="支付方式0.00=现金:+刷卡:+支付宝+微信:余额\n数量0"
-            android:textColor="@color/color_5E5E5E"
-            android:textSize="12dp" />
+            android:layout_height="match_parent" />
     </RelativeLayout>
 
 </LinearLayout>

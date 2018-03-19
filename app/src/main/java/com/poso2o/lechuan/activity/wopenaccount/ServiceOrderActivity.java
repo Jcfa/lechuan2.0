@@ -24,7 +24,7 @@ public class ServiceOrderActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tv_title.setText(getResources().getString(R.string.service_order));
+//        tv_title.setText(getResources().getString(R.string.service_order));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
     }
 

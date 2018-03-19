@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_title"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
 
         <include layout="@layout/layout_orderinfo_public" />
     </RelativeLayout>
@@ -61,8 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
-            android:layout_toRightOf="@+id/tv_order_yyy"
+            android:layout_marginLeft="150dp"
             android:text="库存最高" />
 
         <ImageView
@@ -70,7 +70,8 @@
             android:layout_width="20dp"
             android:layout_height="15dp"
             android:layout_toRightOf="@+id/tv_order_sell_many"
-            android:src="@drawable/down_image" />
+            android:src="@drawable/down_image"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_order_renwu"
@@ -110,18 +111,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
         android:background="@color/colorWhite">
 
         <TextView
             android:id="@+id/tv_sell_total"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_centerVertical="true"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:text="合计销售额:0.0"
             android:textColor="#121111"
             android:textSize="16dp" />
@@ -129,10 +129,11 @@
         <TextView
             android:id="@+id/tv_sell_total_task"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:gravity="center"
             android:text="合计任务额:0.0"
             android:textColor="#121111"
             android:textSize="16dp" />

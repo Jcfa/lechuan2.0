@@ -875,6 +875,7 @@
         <activity android:name=".activity.wopenaccount.StardOpenActivity"/>
         <activity android:name=".activity.wopenaccount.AuthorizationActivity"/>
         <activity android:name=".activity.wopenaccount.ServiceOrderingTrialActivity"/>
+        <activity android:name=".activity.orderinfo.OrderInfoMemberActivity" />
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">
