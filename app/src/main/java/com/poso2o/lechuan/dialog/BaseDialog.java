@@ -146,4 +146,6 @@ public abstract class BaseDialog extends Dialog {
     public boolean getIsFinishInit() {
         return isInit;
     }
+
+
 }

@@ -2,26 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line"
+    android:background="@color/color_EEEEEE"
     android:orientation="vertical">
 
     <include
         android:id="@+id/ll_title"
         layout="@layout/layout_title_back" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/line" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/orderinfo_main_bg"
         android:gravity="center">
 
@@ -46,6 +39,7 @@
             android:layout_height="15dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/tv_order_sell_many"
+            android:visibility="gone"
             android:src="@drawable/down_image" />
 
         <TextView

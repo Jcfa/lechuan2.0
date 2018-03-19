@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_EEEEEE"
     android:orientation="vertical">
+
     <include
         android:id="@+id/ll_title"
         layout="@layout/layout_title_back" />
@@ -13,8 +14,9 @@
         android:id="@+id/ll_order_main_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/ll_title">
+        android:layout_below="@+id/ll_title"
+        android:layout_marginTop="10dp">
+
         <include layout="@layout/layout_orderinfo_public" />
     </LinearLayout>
 
@@ -45,9 +47,9 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/clock_pic" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:orientation="vertical">
 
@@ -55,26 +57,29 @@
                     android:id="@+id/tv_order_sell_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
                     android:text="0.00"
+                    android:textColor="@color/sbc_snippet_text"
                     android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="3dp"
-                    android:layout_marginTop="2dp"
                     android:text="销售额"
-                    android:textSize="12dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                android:background="@color/divider" />
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </RelativeLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@color/divider" />
 
         <LinearLayout
             android:id="@+id/rl_order_aim"
@@ -91,36 +96,38 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/dollar_pic" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_height="60dp"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/tv_order_aim_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="0.00"
+                    android:text="0.0"
+                    android:textColor="@color/sbc_snippet_text"
                     android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="3dp"
                     android:layout_marginTop="2dp"
                     android:text="目标额"
-                    android:textSize="12dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                android:background="@color/divider" />
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </RelativeLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@color/divider" />
 
         <LinearLayout
             android:id="@+id/rl_order_complete"
@@ -137,36 +144,36 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/fangfang_pic" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_height="60dp"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/tv_order_complete_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="0.00%"
+                    android:text="0.00"
+                    android:textColor="@color/sbc_snippet_text"
                     android:textSize="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
                     android:text="完成率"
-                    android:textSize="12dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                android:background="@color/divider" />
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </RelativeLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@color/divider" />
 
         <LinearLayout
             android:id="@+id/rl_order_gpm"
@@ -184,34 +191,34 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/gross_profit_pic" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_height="60dp"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/tv_order_gpm_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
                     android:text="0.00"
+                    android:textColor="@color/sbc_snippet_text"
                     android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
                     android:text="毛利润"
-                    android:textSize="12dp" />
-            </LinearLayout>
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/ll_order_center"
         android:orientation="vertical">
 

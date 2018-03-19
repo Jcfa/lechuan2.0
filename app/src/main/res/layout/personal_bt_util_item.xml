@@ -13,25 +13,25 @@
         <LinearLayout
             android:id="@+id/ll_order_poplstaff"
             android:layout_width="0dp"
-            android:layout_height="87dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/xiaoshouzonglan" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/performance_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="人员业绩"
-                android:textColor="@color/color_5E5E5E"
+                android:textColor="@color/sbc_snippet_text"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -39,25 +39,25 @@
         <LinearLayout
             android:id="@+id/ll_order_primecost"
             android:layout_width="0dp"
-            android:layout_height="87dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/primecost_pic" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/profit_loss" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="月损益表"
-                android:textColor="@color/color_5E5E5E"
+                android:textColor="@color/sbc_snippet_text"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -65,26 +65,26 @@
         <LinearLayout
             android:id="@+id/ll_order_members"
             android:layout_width="0dp"
-            android:layout_height="87dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/cha_ren_pic" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ware_manage" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="会员管理"
-                android:textColor="@color/color_5E5E5E"
+                android:textColor="@color/sbc_snippet_text"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -101,25 +101,25 @@
         <LinearLayout
             android:id="@+id/ll_order_weid"
             android:layout_width="0dp"
-            android:layout_height="87dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/xiaoshouzonglan" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/icon_menu_online" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="微店"
-                android:textColor="@color/color_5E5E5E"
+                android:textColor="@color/sbc_snippet_text"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -127,25 +127,25 @@
         <LinearLayout
             android:id="@+id/ll_order_public_hao"
             android:layout_width="0dp"
-            android:layout_height="87dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/chanpinguanli" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/icon_menu_vx" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="公众号助手"
-                android:textColor="@color/color_5E5E5E"
+                android:textColor="@color/sbc_snippet_text"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -153,26 +153,26 @@
         <LinearLayout
             android:id="@+id/ll_order_exit"
             android:layout_width="0dp"
-            android:layout_height="87dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/orderinfo_main_bg"
+            android:background="@drawable/button_order_info_bg"
             android:clickable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/tui_chu_pic" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/quit_menu" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="退出登录"
-                android:textColor="@color/color_5E5E5E"
+                android:textColor="@color/sbc_snippet_text"
                 android:textSize="12dp" />
 
         </LinearLayout>

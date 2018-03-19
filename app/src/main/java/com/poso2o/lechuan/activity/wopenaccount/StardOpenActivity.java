@@ -27,7 +27,7 @@ public class StardOpenActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tv_title.setText(getResources().getString(R.string.wopen_number));
+//        tv_title.setText(getResources().getString(R.string.wopen_number));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
 
         String amount=getIntent().getStringExtra("amount");

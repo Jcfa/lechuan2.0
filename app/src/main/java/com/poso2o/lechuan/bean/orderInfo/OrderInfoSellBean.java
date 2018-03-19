@@ -8,7 +8,7 @@ import java.util.List;
  * 畅销商品
  */
 
-public class OrderInfoSellBean implements Serializable{
+public class OrderInfoSellBean implements Serializable {
 
     /**
      * code : success
@@ -21,27 +21,8 @@ public class OrderInfoSellBean implements Serializable{
      * msg : 参数错误
      * total : {"currPage":"1","pages":"1","rowcount":"5"}
      */
-
-    private String code;
-    private String msg;
     private TotalBean total;
-    private List<DataBean> data;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+    private List<DataBean> list;
 
     public TotalBean getTotal() {
         return total;
@@ -52,11 +33,11 @@ public class OrderInfoSellBean implements Serializable{
     }
 
     public List<DataBean> getData() {
-        return data;
+        return list;
     }
 
-    public void setData(List<DataBean> data) {
-        this.data = data;
+    public void setData(List<DataBean> list) {
+        this.list = list;
     }
 
     public static class TotalBean {
@@ -121,6 +102,8 @@ public class OrderInfoSellBean implements Serializable{
         private String totalnum;
 
         public String getBh() {
+            if (bh == null || bh.equals(""))
+                return "0";
             return bh;
         }
 
@@ -129,6 +112,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getColorid() {
+            if (colorid == null || colorid.equals(""))
+                return "0";
             return colorid;
         }
 
@@ -137,6 +122,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getGuid() {
+            if (guid == null || guid.equals(""))
+                return "0";
             return guid;
         }
 
@@ -153,6 +140,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getKcnum() {
+            if (kcnum == null || kcnum.equals(""))
+                return "0";
             return kcnum;
         }
 
@@ -161,6 +150,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getName() {
+            if (name == null || name.equals(""))
+                return "0";
             return name;
         }
 
@@ -169,6 +160,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getPrice() {
+            if (price == null || price.equals(""))
+                return "0";
             return price;
         }
 
@@ -185,6 +178,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getSizeid() {
+            if (sizeid == null || sizeid.equals(""))
+                return "0";
             return sizeid;
         }
 
@@ -193,6 +188,8 @@ public class OrderInfoSellBean implements Serializable{
         }
 
         public String getTotalnum() {
+            if (totalnum == null || totalnum.equals(""))
+                return "0";
             return totalnum;
         }
 

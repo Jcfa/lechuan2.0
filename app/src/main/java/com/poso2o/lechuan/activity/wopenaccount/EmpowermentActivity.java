@@ -77,7 +77,7 @@ public class EmpowermentActivity  extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initData() {
-        tv_title.setText(getResources().getString(R.string.wopen_shouquan));
+//        tv_title.setText(getResources().getString(R.string.wopen_shouquan));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
 
       load();

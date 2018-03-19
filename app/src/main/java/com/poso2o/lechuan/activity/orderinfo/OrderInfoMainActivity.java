@@ -1,12 +1,15 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.oa.OAHelperActivity;
+import com.poso2o.lechuan.activity.login.StartActivity;
+import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
+import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
@@ -14,6 +17,7 @@ import com.poso2o.lechuan.dialog.CalendarDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoSellManager;
 import com.poso2o.lechuan.util.CalendarUtil;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
 
@@ -30,10 +34,12 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     private LinearLayout llOrderWeid;  // 微店
     private LinearLayout ll_order_poplstaff;  // 人员业绩
     private LinearLayout ll_order_primecost;
+    private LinearLayout ll_order_exit;//退出登录
 
     //公众号助手
     private LinearLayout ll_order_public_hao;
 
+    private LinearLayout ll_order_members;//会员管理
     private TextView tvBeginTime;//开始时间
     private TextView tvEndTime;//结束时间
     private boolean isBeginTime;
@@ -41,6 +47,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     private String endTime;
     //销售额 目标额 完成率 毛利润
     private TextView tvSellPrice, tvAimPrice, tvComPletePrice, tvGpmPrice;
+    private TextView tvNick;
 
     @Override
     protected int getLayoutResId() {
@@ -61,8 +68,10 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         ll_order_poplstaff = (LinearLayout) findViewById(R.id.ll_order_poplstaff);
 
         ll_order_primecost = (LinearLayout) findViewById(R.id.ll_order_primecost);
+        ll_order_members = (LinearLayout) findViewById(R.id.ll_order_members);
+        ll_order_exit = (LinearLayout) findViewById(R.id.ll_order_exit);
 
-        ll_order_public_hao =  findView(R.id.ll_order_public_hao);
+        ll_order_public_hao = findView(R.id.ll_order_public_hao);
 
         tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
@@ -72,6 +81,8 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         tvAimPrice = (TextView) findViewById(R.id.tv_order_aim_price);
         tvComPletePrice = (TextView) findViewById(R.id.tv_order_complete_price);
         tvGpmPrice = (TextView) findViewById(R.id.tv_order_gpm_price);
+        //设置用户名
+        tvNick = (TextView) findViewById(R.id.tv_title);
 
     }
 
@@ -79,10 +90,13 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     protected void initData() {
         //默认为当天时间
         String nowDay = CalendarUtil.getTodayDate();
-        tvBeginTime.setText(nowDay);
+        String begin = CalendarUtil.getFirstDay();
+        tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
         beginTime = tvBeginTime.getText().toString();
         endTime = tvEndTime.getText().toString();
+        String nick = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK);
+        tvNick.setText(nick);
         //网络请求
         initNetRequest(beginTime, endTime);
 
@@ -161,6 +175,8 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         llOrderPaper.setOnClickListener(this);
         ll_order_poplstaff.setOnClickListener(this);
         ll_order_primecost.setOnClickListener(this);
+        ll_order_members.setOnClickListener(this);
+        ll_order_exit.setOnClickListener(this);
         // 实体店
         llOrderEntityShop.setOnClickListener(this);
         // 畅销商品
@@ -199,17 +215,25 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 break;
             //库存管理
             case R.id.ll_order_paper:
-                startActivity(new Intent(OrderInfoMainActivity.this,OrderInfoPaperActivity.class));
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPaperActivity.class));
                 break;
             //人员业绩
             case R.id.ll_order_poplstaff:
-                startActivity(new Intent(OrderInfoMainActivity.this,OrderPoplstaffActivity.class));
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderPoplstaffActivity.class));
                 break;
+            //月损益表
             case R.id.ll_order_primecost:
-                startActivity(new Intent(OrderInfoMainActivity.this,OrderInfoPrimecostActivity.class));
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPrimecostActivity.class));
+                break;
+            //会员管理
+            case R.id.ll_order_members:
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoMemberActivity.class));
                 break;
             case R.id.ll_order_public_hao:
                 startActivity(new Intent(this, OAHelperActivity.class));
+                break;
+            case R.id.ll_order_exit:
+                startActivity(new Intent(this, StartActivity.class));
                 break;
         }
     }

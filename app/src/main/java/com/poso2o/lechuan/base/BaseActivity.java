@@ -545,7 +545,6 @@ public abstract class BaseActivity extends FragmentActivity {
     public void getUserInfo(UserInfoBean userInfoBean) {
     }
 
-
     /**
      * 邀请分销提示
      */
