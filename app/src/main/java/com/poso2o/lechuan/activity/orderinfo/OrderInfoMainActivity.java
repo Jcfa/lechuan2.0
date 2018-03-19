@@ -1,14 +1,12 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
-import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;

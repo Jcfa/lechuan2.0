@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.realshop.ArticleAdActivity;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.base.BaseFragment;
 import com.poso2o.lechuan.bean.article.Article;
@@ -90,6 +90,7 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
         oaArticleAdapter = new OAArticleAdapter(getChildFragmentManager());
         oa_article_content.setAdapter(oaArticleAdapter);
         oa_article_content.setCurrentItem(1);
+        switchTextView(oa_article_collect);
 
         selectFragment = collectListFragment;
     }
@@ -132,7 +133,8 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
         collectListFragment.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object item) {
-                Article article = (Article) item;
+                Article article = ArticleDataManager.getInstance().findSelectData((Article) item);
+                if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
                 intent.setClass(getContext(),ArticleAdActivity.class);
@@ -143,7 +145,8 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
         fashianListFragment.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Object item) {
-                Article article = (Article) item;
+                Article article = ArticleDataManager.getInstance().findSelectData((Article) item);
+                if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
                 intent.setClass(getContext(),ArticleAdActivity.class);
@@ -184,6 +187,14 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
                 oa_article_content.setCurrentItem(2);
                 selectFragment = fashianListFragment;
                 break;
+        }
+    }
+
+    public void reLoadData(){
+        if (oa_article_content.getCurrentItem() == 1){
+            collectListFragment.reLoadData();
+        }else if (oa_article_content.getCurrentItem() == 2){
+            fashianListFragment.reLoadData();
         }
     }
 

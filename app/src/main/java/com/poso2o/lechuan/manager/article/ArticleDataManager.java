@@ -8,11 +8,16 @@ import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
 import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.article.ArticleBean;
+import com.poso2o.lechuan.bean.articledata.ArticleData;
 import com.poso2o.lechuan.http.HttpAPI;
 import com.poso2o.lechuan.http.HttpListener;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.yanzhenjie.nohttp.rest.Request;
 
 import java.util.ArrayList;
+
+import static com.poso2o.lechuan.manager.rshopmanager.ArticleDataManager.OA_SEND_ARTICLE_URL;
 
 /**
  * 文章管理
@@ -34,6 +39,8 @@ public class ArticleDataManager extends BaseManager {
     private final int TAG_ARTICLE_LIST_ID = 121;
 
     private final int TAG_COLLECT_ID = 122;
+
+    private final int PUBLISH_ARTICLE_ID = 123;
 
     /**
      * 公众号助手选中的数据
@@ -65,6 +72,8 @@ public class ArticleDataManager extends BaseManager {
             request = getStringRequest(HttpAPI.ARTICLES_LIST_API);
             request.add("articles_type", articles_type);
         }
+        request.add("articles_types", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_OA_TYPES));
+        request.add("articles_labels", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_OA_LAYBELS));
         request.add("keywords", keywords);
         request.add("currPage", ++currPage);
         defaultParam(request);
@@ -132,6 +141,13 @@ public class ArticleDataManager extends BaseManager {
     }
 
     /**
+     * 发送成功后删除所有选择的文章
+     */
+    private void removeSelectData(){
+        oaSelectData.clear();
+    }
+
+    /**
      * 添加选择数据
      */
     public void addSelectData(Article article) {
@@ -146,6 +162,17 @@ public class ArticleDataManager extends BaseManager {
         if (article != null) {
             oaSelectData.remove(article);
         }
+    }
+
+    /**
+     * 修改已选择的文章
+     * @param article
+     */
+    public void updateSelectData(Article article){
+        Article item = findSelectData(article);
+        item.content = article.content;
+        item.pic = article.pic;
+        item.title = article.title;
     }
 
     /**
@@ -231,6 +258,34 @@ public class ArticleDataManager extends BaseManager {
         void onSucceed(Article article);
 
         void onFail(String failMsg);
+    }
+
+    /**
+     * 发布文章
+     * @param baseActivity
+     * @param iRequestCallBack
+     */
+    public void sendArticle(final BaseActivity baseActivity,final IRequestCallBack iRequestCallBack){
+
+        Request<String> request = getStringRequest(OA_SEND_ARTICLE_URL);
+        defaultParam(request);
+        for (Article article : getSelectData()){
+            article.cover_pic_url = article.pic;
+        }
+        request.add("articles",new Gson().toJson(getSelectData()));
+
+        baseActivity.request(PUBLISH_ARTICLE_ID, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                removeSelectData();
+                iRequestCallBack.onResult(PUBLISH_ARTICLE_ID,response);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                iRequestCallBack.onFailed(PUBLISH_ARTICLE_ID,response);
+            }
+        },true,true);
     }
 
 }

@@ -41,7 +41,7 @@ public class RenewalsAdapter extends BaseAdapter<RenewalsAdapter.RenewalsVH,Rene
         holder.icon_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onItemClickListener != null)onItemClickListener.onItemClick(item);
+                if (onRenewalDelListener != null)onRenewalDelListener.onRenewalDel(item);
             }
         });
     }
@@ -70,5 +70,13 @@ public class RenewalsAdapter extends BaseAdapter<RenewalsAdapter.RenewalsVH,Rene
             articleShare = (TextView) itemView.findViewById(R.id.article_item_share);
             icon_delete = (ImageView) itemView.findViewById(R.id.icon_delete);
         }
+    }
+
+    private OnRenewalDelListener onRenewalDelListener;
+    public interface OnRenewalDelListener{
+        void onRenewalDel(RenewalsBean renewalsBean);
+    }
+    public void setOnRenewalDelListener(OnRenewalDelListener onRenewalDelListener){
+        this.onRenewalDelListener = onRenewalDelListener;
     }
 }

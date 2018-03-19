@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.articledata.ArticleData;
 import com.poso2o.lechuan.tool.print.Print;

@@ -133,6 +133,12 @@ public class OAArticleListFragment extends BaseFragment {
         });
     }
 
+    public void reLoadData(){
+        oa_article_list_swipe.setRefreshing(false);
+        oa_article_list_swipe.setRefreshing(true);
+        loadData(FIRST);
+    }
+
     /**
      * 刷新数据
      * @param pageType
