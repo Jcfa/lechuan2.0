@@ -5,7 +5,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
@@ -14,7 +13,6 @@ import com.poso2o.lechuan.base.BaseActivity;
 /**
  * Created by Administrator on 2018/3/14 0014.
  */
-
 public class AuthorizationActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_title,tv_wopen_auth_w,tv_wopen_auth_s;
     //点击公众号授权
