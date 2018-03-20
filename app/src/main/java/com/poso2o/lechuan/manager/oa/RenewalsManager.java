@@ -32,6 +32,9 @@ public class RenewalsManager extends BaseManager {
     //稿件详情
     private static final int RENEWALS_INFO_ID = 2305;
 
+    //是否有进行过增删改稿件操作，刷新列表后自动修改回来
+    private boolean is_operate = false;
+
     private static RenewalsManager renewalsManager;
     private RenewalsManager(){
     }
@@ -42,6 +45,10 @@ public class RenewalsManager extends BaseManager {
             }
         }
         return renewalsManager;
+    }
+
+    public boolean getOperateState(){
+        return is_operate;
     }
 
     /**
@@ -59,6 +66,7 @@ public class RenewalsManager extends BaseManager {
         baseActivity.request(RENEWALS_LIST_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
+                is_operate = false;
                 RenewalsList renewalsList = new Gson().fromJson(response,RenewalsList.class);
                 iRequestCallBack.onResult(RENEWALS_LIST_ID,renewalsList);
             }
@@ -85,6 +93,7 @@ public class RenewalsManager extends BaseManager {
         baseActivity.request(RENEWALS_ADD_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
+                is_operate = true;
                 iRequestCallBack.onResult(RENEWALS_ADD_ID,response);
             }
 
@@ -112,6 +121,7 @@ public class RenewalsManager extends BaseManager {
         baseActivity.request(RENEWALS_EDIT_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
+                is_operate = true;
                 iRequestCallBack.onResult(RENEWALS_EDIT_ID,response);
             }
 
@@ -137,6 +147,7 @@ public class RenewalsManager extends BaseManager {
         baseActivity.request(RENEWALS_DEL_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
+                is_operate = true;
                 iRequestCallBack.onResult(RENEWALS_DEL_ID,response);
             }
 

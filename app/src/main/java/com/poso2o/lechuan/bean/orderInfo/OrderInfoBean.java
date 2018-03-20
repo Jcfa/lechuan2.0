@@ -8,19 +8,17 @@ import java.util.List;
  * 我的订单信息
  */
 
-public class OrderInfoBean  implements Serializable{
+public class OrderInfoBean {
 
 
     /**
      * code : success
      * msg : 实时订单
-     * data : [{"order_date":"2018-03-09 17:38:31.0","payment_amount":"138.00","order_num":"1","order_id":"18030917383157672","salesname":"小小A","czy_name":"总账号"},{"order_date":"2018-03-09 15:29:49.0","payment_amount":"123.00","order_num":"1","order_id":"18030915294979248","salesname":"小小A","czy_name":"总账号"},{"order_date":"2018-03-09 09:42:49.0","payment_amount":"128.00","order_num":"1","order_id":"18030909424911520","salesname":"总账号","czy_name":"总账号"},{"order_date":"2018-03-09 09:37:43.0","payment_amount":"128.00","order_num":"1","order_id":"18030909374376130","salesname":"总账号","czy_name":"总账号"},{"order_date":"2018-03-09 09:01:19.0","payment_amount":"128.00","order_num":"1","order_id":"18030909011912889","salesname":"总账号","czy_name":"总账号"},{"order_date":"2018-03-09 09:00:55.0","payment_amount":"128.00","order_num":"1","order_id":"18030909005518457","salesname":"总账号","czy_name":"总账号"},{"order_date":"2018-03-08 19:45:03.0","payment_amount":"-128.00","order_num":"-1","order_id":"18030819450393654","salesname":"总账号","czy_name":"总账号"},{"order_date":"2018-03-08 13:39:45.0","payment_amount":"128.00","order_num":"1","order_id":"18030813394529996","salesname":"总账号","czy_name":"总账号"},{"order_date":"2018-03-05 09:32:48.0","payment_amount":"268.00","order_num":"1","order_id":"18030509324870101","salesname":"小小A","czy_name":"总账号"},{"order_date":"2018-03-02 14:03:35.0","payment_amount":"100.00","order_num":"1","order_id":"18030214031843249","salesname":"总账号","czy_name":"总账号"}]
-     * total : {"currPage":"1","pages":"9","rowcount":"87","total_amount":"12515.87","total_num":"94"}
      */
 
 
     private TotalBean total;
-    private List<DataBean> data;
+    private List<DataBean> list;
 
     public TotalBean getTotal() {
         return total;
@@ -31,11 +29,11 @@ public class OrderInfoBean  implements Serializable{
     }
 
     public List<DataBean> getData() {
-        return data;
+        return list;
     }
 
-    public void setData(List<DataBean> data) {
-        this.data = data;
+    public void setData(List<DataBean> list) {
+        this.list = list;
     }
 
     public static class TotalBean {

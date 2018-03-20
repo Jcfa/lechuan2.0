@@ -547,12 +547,12 @@
 
         <!--公众号助手-->
         <activity
-            android:name=".activity.realshop.OAHelperActivity"
+            android:name=".activity.oa.OAHelperActivity"
             android:screenOrientation="portrait"/>
 
         <!--文章添加广告页面-->
         <activity
-            android:name=".activity.realshop.ArticleAdActivity"
+            android:name=".activity.oa.ArticleAdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
@@ -851,13 +851,9 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--公众号助手-自由编辑发布页-->
-        <activity
-            android:name=".activity.oa.OAFreeEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".activity.oa.OAFreeEditActivity2"
+            android:name=".activity.oa.FreeEditActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <!--公众号服务订购页面-->
@@ -888,6 +884,7 @@
         <activity android:name=".activity.wopenaccount.StardOpenActivity"/>
         <activity android:name=".activity.wopenaccount.AuthorizationActivity"/>
         <activity android:name=".activity.wopenaccount.ServiceOrderingTrialActivity"/>
+        <activity android:name=".activity.orderinfo.OrderInfoMemberActivity" />
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">

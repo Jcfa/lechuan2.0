@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.adapter.ArticleSearchHistoryAdapter;
 import com.poso2o.lechuan.adapter.OAArticleListAdapter;
 import com.poso2o.lechuan.base.BaseActivity;

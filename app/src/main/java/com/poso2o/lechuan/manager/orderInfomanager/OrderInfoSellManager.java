@@ -28,7 +28,6 @@ public class OrderInfoSellManager extends BaseManager {
         return infoSellManager;
     }
 
-    //畅销商品列表
     public void orderInfoSell(BaseActivity activity, String begin, String close, final IRequestCallBack requestCallBack) {
         Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_MAIN_INFO);
         request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
@@ -56,4 +55,5 @@ public class OrderInfoSellManager extends BaseManager {
         }, true, true);
 
     }
+
 }

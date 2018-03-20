@@ -100,4 +100,10 @@ public class AppUtil {
         intent.putExtra(SelectImagesActivity.MAX_NUM, 9);
         fragment.startActivityForResult(intent, code);
     }
+
+    public static void openPhoto(Context context,Activity activity,int code) {
+        Intent intent = new Intent(context, SelectImagesActivity.class);
+        intent.putExtra(SelectImagesActivity.MAX_NUM, 9);
+        activity.startActivityForResult(intent, code);
+    }
 }

@@ -49,7 +49,7 @@ public class OpenNumberActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initData() {
-        tv_title.setText(getResources().getString(R.string.wopen_number));
+//        tv_title.setText(getResources().getString(R.string.wopen_number));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
 
         //获取intent信息

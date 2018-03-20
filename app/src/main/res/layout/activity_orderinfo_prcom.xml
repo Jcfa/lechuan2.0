@@ -2,40 +2,239 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line"
+    android:background="@color/color_EEEEEE"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/ll_title"
-        layout="@layout/layout_title_back" />
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/layout_title_back" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_order_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/orderinfo_main_bg"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_order_center_head"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/qian_dai_pic" />
+
+            <RelativeLayout
+                android:id="@+id/rl_order_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="2dp">
+
+                <TextView
+                    android:id="@+id/tv_order_cb_price"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="010"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="2dp"
+                    android:text="成本"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_cb"
+            android:layout_width="1dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_order_income_head"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/clock_pic" />
+
+            <RelativeLayout
+                android:id="@+id/rl_order_aim"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/view_cb">
+
+                <TextView
+                    android:id="@+id/tv_order_income_price"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="010111110"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="2dp"
+                    android:text="收入"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_income"
+            android:layout_width="1dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_order_spend_head"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dollar_pic" />
+
+            <RelativeLayout
+                android:id="@+id/rl_order_spend"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/view_income">
+
+                <TextView
+                    android:id="@+id/tv_order_spend_price"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="010111110"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="2dp"
+                    android:text="支出"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_spend"
+            android:layout_width="1dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="1dp"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:id="@+id/rl_order_profits"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_toRightOf="@+id/view_spend">
+
+                <ImageView
+                    android:id="@+id/iv_order_profits_head"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/fangfang_pic" />
+
+                <TextView
+                    android:id="@+id/tv_order_profits_price"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_order_profits_head"
+                    android:text="4801.60"
+                    android:textColor="#bf4030"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/iv_order_profits_head"
+                    android:text="利润"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_title"
+        android:layout_below="@+id/ll_order_center"
         android:layout_marginTop="10dp">
 
         <include layout="@layout/layout_orderinfo_public" />
     </RelativeLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_below="@+id/rl2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/line" />
 
     <RelativeLayout
         android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/rl2"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/orderinfo_main_bg"
         android:gravity="center">
 
@@ -44,16 +243,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="排名" />
+            android:text="排名"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_order_yyy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_order_name"
-            android:text="店铺名" />
+            android:text="店铺名"
+            android:textSize="16dp" />
 
 
         <TextView
@@ -61,26 +262,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/tv_order_yyy"
-            android:text="收入" />
+            android:text="收入"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_order_renwu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/tv_order_zm"
-            android:text="支出" />
+            android:text="支出"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tv_order_zm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:text="净利润" />
+            android:layout_marginRight="15dp"
+            android:text="净利润"
+            android:textSize="16dp" />
     </RelativeLayout>
 
     <View
@@ -93,7 +297,7 @@
         android:background="@color/line" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rlv_order_sell_list"
+        android:id="@+id/rlv_order_pc_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl"

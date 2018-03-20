@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.realshop.ArticleAdActivity;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.activity.realshop.ArticleSearchActivity;
 import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
 import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
