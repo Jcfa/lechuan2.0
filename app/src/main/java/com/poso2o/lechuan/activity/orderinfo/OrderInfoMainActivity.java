@@ -1,16 +1,14 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.login.StartActivity;
-import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
-import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
-import com.poso2o.lechuan.activity.wshop.VdianActivity;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
+import com.poso2o.lechuan.activity.wopenaccount.EmpowermentActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
 import com.poso2o.lechuan.dialog.CalendarDialog;
@@ -192,7 +190,11 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OrderInfoMainActivity.this, VdianActivity.class));
+//                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP, 0) == 1) {
+//                    startActivity(VdianActivity.class);
+//                } else {
+                    startActivity(EmpowermentActivity.class);
+//                }
             }
         });
         //公众号助手

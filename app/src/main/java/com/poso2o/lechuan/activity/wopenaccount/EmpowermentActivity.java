@@ -17,7 +17,7 @@ import com.poso2o.lechuan.manager.wopenaccountmanager.ServiceOrderinTrialManager
 
 /**
  * 开通授权界面
- * <p>
+ *
  * Created by Administrator on 2018/3/13 0013.
  */
 public class EmpowermentActivity extends BaseActivity implements View.OnClickListener {
@@ -76,6 +76,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
+        setTitle("开通授权申请");
 //        tv_title.setText(getResources().getString(R.string.wopen_shouquan));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
 
@@ -102,7 +103,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                     rb_wopen_z.setImageResource(R.drawable.notselected);
                     rb_wopen_y.setImageResource(R.drawable.selected);
 
-                    tv_wopen_ly.setTextColor(getResources().getColor(R.color.colorMain));
+                    tv_wopen_ly.setTextColor(getResources().getColor(R.color.textGreen));
                     tv_wopen_hy.setTextColor(getResources().getColor(R.color.placeholder_70));
 
                     tv_wopen_lz.setTextColor(getResources().getColor(R.color.textGray));
@@ -163,7 +164,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 lv_wopen_rabuty.setBackgroundResource(R.drawable.gray_stroke_bg);
                 rb_wopen_z.setImageResource(R.drawable.selected);
                 rb_wopen_y.setImageResource(R.drawable.notselected);
-                tv_wopen_lz.setTextColor(getResources().getColor(R.color.colorMain));
+                tv_wopen_lz.setTextColor(getResources().getColor(R.color.textGreen));
                 tv_wopen_hz.setTextColor(getResources().getColor(R.color.placeholder_70));
 
                 tv_wopen_ly.setTextColor(getResources().getColor(R.color.textGray));
@@ -182,7 +183,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 rb_wopen_z.setImageResource(R.drawable.notselected);
                 rb_wopen_y.setImageResource(R.drawable.selected);
 
-                tv_wopen_ly.setTextColor(getResources().getColor(R.color.colorMain));
+                tv_wopen_ly.setTextColor(getResources().getColor(R.color.textGreen));
                 tv_wopen_hy.setTextColor(getResources().getColor(R.color.placeholder_70));
 
                 tv_wopen_lz.setTextColor(getResources().getColor(R.color.textGray));

@@ -7,7 +7,6 @@ import android.content.Intent;
 import com.poso2o.lechuan.activity.realshop.RShopMainActivity;
 import com.poso2o.lechuan.activity.wopenaccount.EmpowermentActivity;
 import com.poso2o.lechuan.activity.wopenaccount.ServiceOrderActivity;
-import com.poso2o.lechuan.activity.wopenaccount.ServiceOrderingTrialActivity;
 import com.poso2o.lechuan.activity.wshop.WShopActivity;
 
 /**
@@ -26,7 +25,7 @@ public class WeiXinFuWuReceived extends BroadcastReceiver {
         context.startActivity(i);
 
         EmpowermentActivity.eactiviyt.finish();
-        ServiceOrderingTrialActivity.order.finish();
+//        ServiceOrderingTrialActivity.order.finish();
         ServiceOrderActivity.sactivity.finish();
 
     }
