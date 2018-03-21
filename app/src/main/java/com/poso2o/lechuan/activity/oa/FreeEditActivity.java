@@ -233,7 +233,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
         WebSettings settings = webview_edit.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webview_edit.loadUrl("http://wechat.poso2o.com/editor/?v=1.0");
+        webview_edit.loadUrl("http://wechat.poso2o.com/editor/?v=2.0");
         webview_edit.addJavascriptInterface(FreeEditActivity.this,"android");
         webview_edit.setWebChromeClient(new WebChromeClient() {
             @Override

@@ -1,8 +1,11 @@
 <component name="libraryTable">
   <library name="crop-1.0.2">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kevin/crop/1.0.2/annotations.zip!/" />
+    </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/d58d13a587080265a818d3e4f3e9dade63684316/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/d58d13a587080265a818d3e4f3e9dade63684316/output/res" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kevin/crop/1.0.2/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kevin/crop/1.0.2/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -23,7 +23,7 @@ public class WShopHttpAPI {
     public static final String W_SHOP_IMPORT_GOODS = "http://wechat.poso2o.com/GoodsManage.htm?Act=importGoods";
 
     //微店公众号绑定信息(公众号助手使用)
-    public static final String W_BINGING_STATE = "http://wechat.poso2o.com/AuthorizerTokenManage.htm?Act=getAuthorizerSubscribeInfo";
+    public static final String W_BINGING_STATE = "http://wechat.poso2o.com/AuthorizerTokenManage.htm?Act=getAuthorizerServiceInfo";
 
     //提交或修改绑定的微信支付相关id
     public static final String W_COMMIT_BIND_PAY = W_MAIN_API + "AuthorizerTokenManage.htm?Act=setWxPay";

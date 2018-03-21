@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.login.StartActivity;
-import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;

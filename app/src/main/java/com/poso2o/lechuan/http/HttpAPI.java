@@ -426,4 +426,9 @@ public class HttpAPI {
      */
     public static String OA_FREE_EDIT_MY_TEMPLATE_API = SERVER_MAIN_API + "TemplateAdManage.htm?Act=myGroups";
 
+    /**
+     * 设置默认模板
+     */
+    public static String OA_SET_DEFAULT_MODEL = SERVER_MAIN_API + "TemplateAdManage.htm?Act=setMyAD";
+
 }

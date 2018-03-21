@@ -75,11 +75,6 @@ public class Article implements Serializable, Cloneable {
     public String articles_url = "";
 
     /**
-     * 是否已添加了广告，本地字段，后台没有
-     */
-    public boolean is_ad = false;
-
-    /**
      * 是否收藏
      * @return
      */

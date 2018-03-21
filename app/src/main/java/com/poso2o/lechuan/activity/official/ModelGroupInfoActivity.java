@@ -30,15 +30,7 @@ public class ModelGroupInfoActivity extends BaseActivity {
     //返回
     private ImageView model_groups_back;
     //模板组名称
-    private TextView set_model_group_detail_name;
-    //模板组模板数量
-    private TextView set_model_group_detail_num;
-    //模板组价格
-    private TextView set_model_detail_price;
-    //购买
-    private TextView set_model_detail_buy;
-    //续订
-    private TextView set_model_detail_continue;
+    private TextView template_group_name;
     //列表
     private RecyclerView set_model_group_detail_list;
 
@@ -54,11 +46,7 @@ public class ModelGroupInfoActivity extends BaseActivity {
     @Override
     protected void initView() {
         model_groups_back = (ImageView) findViewById(R.id.model_groups_back);
-        set_model_group_detail_name = (TextView) findViewById(R.id.set_model_group_detail_name);
-        set_model_group_detail_num = (TextView) findViewById(R.id.set_model_group_detail_num);
-        set_model_detail_price = (TextView) findViewById(R.id.set_model_detail_price);
-        set_model_detail_buy = (TextView) findViewById(R.id.set_model_detail_buy);
-        set_model_detail_continue = (TextView) findViewById(R.id.set_model_detail_continue);
+        template_group_name = (TextView) findViewById(R.id.template_group_name);
         set_model_group_detail_list = (RecyclerView) findViewById(R.id.set_model_group_detail_list);
     }
 
@@ -81,25 +69,6 @@ public class ModelGroupInfoActivity extends BaseActivity {
                 finish();
             }
         });
-        //购买
-        set_model_detail_buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ModelGroupInfoActivity.this, ModelServiceActivity.class);
-                startActivity(intent);
-            }
-        });
-        //续订
-        set_model_detail_continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ModelGroupInfoActivity.this, ModelServiceActivity.class);
-                intent.putExtra(Constant.DATA,templateGroup);
-                startActivity(intent);
-            }
-        });
         //模板点击
         modelAdapter.setOnModelListener(new ItemOaGroupModelAdapter.OnModelListener() {
             @Override
@@ -114,34 +83,16 @@ public class ModelGroupInfoActivity extends BaseActivity {
         if (bundle == null)return;
         templateGroup = (TemplateGroup) bundle.get(TEMPLATE_GROUP_DATA);
         if (templateGroup == null)return;
-
-        set_model_group_detail_name.setText(templateGroup.group_name);
-        set_model_group_detail_num.setText(templateGroup.templates.size() + "");
-        set_model_detail_price.setText("¥" + NumberFormatUtils.format(templateGroup.amount));
-        if (templateGroup.has_buy.equals("1")){
-            //已购买
-            set_model_detail_buy.setVisibility(View.GONE);
-            set_model_detail_continue.setVisibility(View.VISIBLE);
-        }else {
-            //未购买
-            set_model_detail_buy.setVisibility(View.VISIBLE);
-            set_model_detail_continue.setVisibility(View.GONE);
-        }
+        template_group_name.setText(templateGroup.group_name);
         modelAdapter.notifyData(templateGroup.templates);
     }
 
     //模板详情跳转
     private void goToDetail(TemplateBean templateBean){
-        if (templateGroup.has_buy.equals("0")){
-            //没购买
-            Intent intent = new Intent();
-            intent.setClass(this,ModelInfoActivity.class);
-            startActivity(intent);
-        }else {
-            //已购买
-            Intent intent = new Intent();
-            intent.setClass(this,ModelEditActivity.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent();
+        intent.setClass(this,ModelEditActivity.class);
+        intent.putExtra(ModelEditActivity.TEMPLATE_INFO,templateBean);
+        intent.putExtra(ModelEditActivity.TEMPLATE_GROUP_ID,templateGroup.group_id);
+        startActivity(intent);
     }
 }

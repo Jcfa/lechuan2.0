@@ -107,9 +107,6 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<TemplateGroup> templatesGroup;
     private ArrayList<TemplateBean> templates = new ArrayList<>();
 
-    //当前广告模板id
-    private String add_ad_id = null;
-
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_article_ad;
@@ -157,7 +154,6 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 String str = item.content;
                 art_detail_web.loadUrl("javascript:emptyAdTemplate()");
                 art_detail_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
-                add_ad_id = item.template_id;
             }
         });
     }
@@ -504,18 +500,4 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-    /**
-     * 判断是否已添加了广告
-     */
-    private boolean isAddAD(){
-        art_detail_web.evaluateJavascript("javascript:getTemplateExist('" + add_ad_id + "')", new ValueCallback<String>() {
-            @Override
-            public void onReceiveValue(String s) {
-                if (s.equals("0")){
-                    add_ad_id = null;
-                }
-            }
-        });
-        return add_ad_id == null;
-    }
 }

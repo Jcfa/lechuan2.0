@@ -325,7 +325,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         setTitle("");
         switchTag(oa_setup, R.mipmap.icon_oa_setup_on);
         oa_title_publish.performClick();
-        if (lessDay()){
+        /*if (lessDay()){
             //公众号服务没到期
             if (!oaServiceInfoFragment.isVisible()){
                 replaceFragment(R.id.oa_content, oaServiceInfoFragment);
@@ -335,7 +335,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             if (!oaSetupFragment.isVisible()) {
                 replaceFragment(R.id.oa_content, oaSetupFragment);
             }
-        }
+        }*/
     }
 
     /**
