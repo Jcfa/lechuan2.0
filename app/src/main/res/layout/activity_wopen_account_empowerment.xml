@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <include layout="@layout/layout_title"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorGray_light"></LinearLayout>
-
+        android:background="@color/colorGray_light"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="25dp"
         android:orientation="horizontal"
-        android:layout_margin="25dp">
-
+        android:baselineAligned="false">
 
         <LinearLayout
             android:id="@+id/lv_wopen_rabutz"
@@ -28,12 +29,12 @@
 
             <ImageView
                 android:id="@+id/rb_wopen_z"
-                android:layout_width="50px"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:src="@drawable/notselected" />
+                android:src="@drawable/notselected"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:text="我有公众号"
                     android:textColor="@color/colorMain"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tv_wopen_hz"
@@ -55,320 +56,326 @@
                     android:layout_marginTop="5dp"
                     android:text="一键授权开设微店"
                     android:textColor="@color/placeholder_70"
-                    android:textSize="14dp" />
+                    android:textSize="14sp"/>
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-                android:id="@+id/lv_wopen_rabuty"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:gravity="center|left"
-                android:layout_weight="1"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal"
-                android:background="@drawable/gray_stroke_bg">
-                <ImageView
-                    android:id="@+id/rb_wopen_y"
-                    android:layout_width="50px"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:src="@drawable/notselected"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+            android:id="@+id/lv_wopen_rabuty"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/gray_stroke_bg"
+            android:gravity="center|left"
+            android:orientation="horizontal">
 
-                <LinearLayout
+            <ImageView
+                android:id="@+id/rb_wopen_y"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:src="@drawable/notselected"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_wopen_ly"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="尚无公众号"
+                    android:textColor="@color/textGray"
+                    android:textSize="18sp"/>
 
-                    <TextView
-                        android:id="@+id/tv_wopen_ly"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="尚无公众号"
-                        android:textSize="18dp"
-                        android:textColor="@color/textGray"/>
-
-                    <TextView
-                        android:id="@+id/tv_wopen_hy"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="专人助你开通公众号"
-                        android:textColor="@color/placeholder_30"
-                        android:textSize="14dp"
-                        android:layout_marginTop="5dp"/>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_wopen_hy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="专人助你开通公众号"
+                    android:textColor="@color/placeholder_30"
+                    android:textSize="14sp"/>
             </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorGray_light"></LinearLayout>
+        android:background="@color/colorGray_light"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/projector"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="演示及案例"
-                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
                 android:gravity="center"
+                android:text="演示及案例"
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="16sp"/>
+
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="25dp">
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="去查看"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/placeholder_30"
-                android:layout_toEndOf="@+id/iv_wopen_tu"
                 android:layout_marginLeft="13dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="去查看"
+                android:textColor="@color/placeholder_30"
+                android:textSize="10sp"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@mipmap/icon_arrow_right_32" />
-        </LinearLayout>
+                android:src="@mipmap/icon_arrow_right_32"/>
 
+        </LinearLayout>
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorGray_light"></LinearLayout>
+        android:background="@color/colorGray_light"/>
 
     <RelativeLayout
         android:id="@+id/rv_wopen_empo_number"
         android:layout_width="match_parent"
         android:layout_height="60dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
+                android:gravity="center"
                 android:text="步骤一："
-                android:textSize="16dp"
-                android:gravity="center"
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu" />
+                android:textSize="16sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="开通公众号"
-                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
                 android:gravity="center"
+                android:text="开通公众号"
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="16sp"/>
+
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="25dp">
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:id="@+id/tv_wopen_wei_stand"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="未开通"
-                android:textSize="10dp"
-                android:gravity="center"
-                android:textColor="@color/placeholder_30"
-                android:layout_toEndOf="@+id/iv_wopen_tu"
                 android:layout_marginLeft="13dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="未开通"
+                android:textColor="@color/placeholder_30"
+                android:textSize="10sp"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@mipmap/icon_arrow_right_32"/>
+
         </LinearLayout>
 
-
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorGray_light"></LinearLayout>
+        android:background="@color/colorGray_light"/>
 
     <RelativeLayout
         android:id="@+id/rv_wopen_empo_auth"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/common_background">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:id="@+id/tv_wopen_empo_two"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="步骤二："
-                android:textSize="16dp"
                 android:gravity="center"
+                android:text="步骤二："
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu" />
+                android:textSize="16sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="公众号授权"
-                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
                 android:gravity="center"
+                android:text="公众号授权"
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
+                android:textSize="16sp"/>
 
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="25dp">
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:id="@+id/tv_wopen_empo_auth"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textColor="@color/placeholder_30"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="10dp"/>
+                android:textSize="10sp"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@mipmap/icon_arrow_right_32"/>
-        </LinearLayout>
 
+        </LinearLayout>
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorGray_light"></LinearLayout>
+        android:background="@color/colorGray_light"/>
 
     <RelativeLayout
         android:id="@+id/rv_wopen_trim"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/common_background">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:id="@+id/tv_wopen_empo_three"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="步骤三："
-                android:textSize="16dp"
                 android:gravity="center"
+                android:text="步骤三："
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu" />
+                android:textSize="16sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/iv_wopen_tu"
-                android:text="服务订购/试用"
-                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
                 android:gravity="center"
+                android:text="服务订购/试用"
                 android:textColor="@color/placeholder_70"
-                android:layout_toEndOf="@+id/iv_wopen_tu"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
+                android:textSize="16sp"/>
 
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center|left"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="25dp">
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textColor="@color/placeholder_30"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="10dp"/>
+                android:textSize="10sp"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@mipmap/icon_arrow_right_32"/>
+
         </LinearLayout>
 
-
     </RelativeLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorGray_light"></LinearLayout>
+        android:background="@color/colorGray_light"/>
+
 </LinearLayout>
