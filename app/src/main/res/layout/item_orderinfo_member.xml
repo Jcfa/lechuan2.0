@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="2dp"
             android:text="111"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="70dp"
             android:text="姓名啊"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="150dp"
             android:text="成交数"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
 
@@ -52,7 +52,7 @@
             android:layout_marginRight="60dp"
             android:gravity="center"
             android:text="成交额"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
 
@@ -64,7 +64,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="2dp"
             android:text="余额"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
     </RelativeLayout>

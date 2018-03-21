@@ -30,8 +30,8 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
                 android:text="敏抽"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_paper_detail_price"
@@ -41,6 +41,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="2dp"
                 android:text="1050 成本:1050.00"
+                android:textSize="14dp"
                 android:textColor="#c74825" />
 
             <ImageView
@@ -73,8 +74,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="货号:"
-                android:textColor="@color/grgray"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_sell_hnumber"
@@ -85,8 +86,8 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="1111"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/color_999999"
+                android:textSize="12dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -108,8 +109,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="规格:"
-                android:textColor="@color/grgray"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_sell_spf"
@@ -120,8 +121,8 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="无规格"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/color_999999"
+                android:textSize="12dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -142,8 +143,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="销售数量:"
-                android:textColor="@color/grgray"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_sell_spf_num"
@@ -154,8 +155,8 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/color_999999"
+                android:textSize="12dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -176,8 +177,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="销售金额:"
-                android:textColor="@color/grgray"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_sell_spf_money"
@@ -188,8 +189,8 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="0.00"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/color_999999"
+                android:textSize="12dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -210,8 +211,8 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="利润:"
-                android:textColor="@color/grgray"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_sell_spf_profits"
@@ -222,8 +223,8 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="0.00"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/color_999999"
+                android:textSize="12dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -243,7 +244,7 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="库存:"
-                android:textColor="@color/grgray"
+                android:textColor="@color/textBlack"
                 android:textSize="16dp" />
 
             <TextView
@@ -255,8 +256,8 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="0.00"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/color_999999"
+                android:textSize="12dp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

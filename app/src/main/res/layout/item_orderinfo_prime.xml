@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:text="1"
-            android:textColor="#000"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -27,10 +27,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/tv_order_prime_pm"
+            android:layout_marginLeft="70dp"
+            android:gravity="center"
             android:text="店铺名"
-            android:textColor="#000"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -38,9 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="140dp"
+            android:gravity="center"
             android:text="1116.11"
-            android:textColor="#000"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -49,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="65dp"
+            android:layout_marginRight="90dp"
             android:gravity="center"
             android:text="支出"
-            android:textColor="#000"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -62,7 +63,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="1116.11"
-            android:textColor="#000"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
     </RelativeLayout>
 

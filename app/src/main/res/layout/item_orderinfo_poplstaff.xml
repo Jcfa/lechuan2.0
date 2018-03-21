@@ -20,16 +20,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLength="4"
-            android:text="排名" />
+            android:text="排名"
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_yyy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_order_name"
-            android:text="营业员" />
+            android:text="营业员"
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
 
 
         <TextView
@@ -37,9 +41,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="150dp"
             android:gravity="center"
-            android:layout_marginLeft="140dp"
-            android:text="库存最高" />
+            android:text="库存最高"
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_renwu"
@@ -48,15 +54,20 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tv_order_zm"
-            android:text="任务" />
+            android:text="任务"
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_zm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="达标最高" />
+            android:text="达标最高"
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -28,7 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
-            android:text="商品" />
+            android:text="商品"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_order_sell_many"
@@ -37,7 +39,9 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
-            android:text="销售最多" />
+            android:text="销售最多"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <ImageView
             android:layout_width="20dp"

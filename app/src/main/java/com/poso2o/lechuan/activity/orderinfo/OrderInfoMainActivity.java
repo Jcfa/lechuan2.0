@@ -83,6 +83,8 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         tvGpmPrice = (TextView) findViewById(R.id.tv_order_gpm_price);
         //设置用户名
         tvNick = (TextView) findViewById(R.id.tv_title);
+        //第一个界面隐藏返回图标
+        findViewById(R.id.iv_back).setVisibility(View.INVISIBLE);
 
     }
 
@@ -103,6 +105,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initNetRequest(String beginTime, String endTime) {
+        Log.d("cbf", "b = " + beginTime + "  e = " + endTime);
         OrderInfoSellManager.getOrderInfo().orderInfoSell(activity, beginTime, endTime, new IRequestCallBack<OrderInfoSellCountBean>() {
             @Override
             public void onResult(int tag, OrderInfoSellCountBean result) {
@@ -146,6 +149,8 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                         tvBeginTime.setText(dateT);
                         beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
                         calendarDialog.dismiss();
+                        String end = CalendarUtil.stampToDate(beginTime);
+                        initTimes(str, end);
                     } else {
                         Toast.show(activity, "选择的时间范围不正确");
                     }
@@ -159,6 +164,8 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                         tvEndTime.setText(dateT);
                         endTime = CalendarUtil.timeStamp(dateT + " 23:59:59");
                         calendarDialog.dismiss();
+                        String end = CalendarUtil.stampToDate(endTime);
+                        initTimes(str, end);
                     } else {
                         Toast.show(activity, "选择的时间范围不正确");
                     }
@@ -166,6 +173,18 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
             }
         });
 
+    }
+
+    /**
+     * 进行时间的比较  再进行交换 开始时间必须小于结束时间
+     */
+    private void initTimes(String str, String end) {
+        boolean isdd = CalendarUtil.TimeCompare(str, end);
+        if (isdd == false) {
+            initNetRequest(end, str);
+        } else {
+            initNetRequest(str, end);
+        }
     }
 
     @Override
@@ -179,20 +198,22 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         ll_order_exit.setOnClickListener(this);
         // 实体店
         llOrderEntityShop.setOnClickListener(this);
-        // 畅销商品
+        //   微店  1
         llOrderSell.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoSellActivity.class));
+                startActivity(new Intent(OrderInfoMainActivity.this, VdianActivity.class));
+
             }
         });
-        // 微店
+        // 微店  //库存 1
         llOrderWeid.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OrderInfoMainActivity.this, VdianActivity.class));
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPaperActivity.class));
+
             }
         });
         //公众号助手
@@ -213,27 +234,32 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
             case R.id.ll_order_entity_shop://实体店
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderEntityShopActivity.class));
                 break;
-            //库存管理
+            //库存管理   //公众号助手 1
             case R.id.ll_order_paper:
-                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPaperActivity.class));
+                startActivity(new Intent(this, OAHelperActivity.class));
+
                 break;
-            //人员业绩
+            //人员业绩   //会员1
             case R.id.ll_order_poplstaff:
-                startActivity(new Intent(OrderInfoMainActivity.this, OrderPoplstaffActivity.class));
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoMemberActivity.class));
+
                 break;
-            //月损益表
+            //月损益表  //业绩
             case R.id.ll_order_primecost:
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderPoplstaffActivity.class));
+
+                break;
+            //会员管理  //畅销 1
+            case R.id.ll_order_members:
+                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoSellActivity.class));
+
+                break;
+            //改  损益 1
+            case R.id.ll_order_public_hao:
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPrimecostActivity.class));
                 break;
-            //会员管理
-            case R.id.ll_order_members:
-                startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoMemberActivity.class));
-                break;
-            case R.id.ll_order_public_hao:
-                startActivity(new Intent(this, OAHelperActivity.class));
-                break;
             case R.id.ll_order_exit:
-                startActivity(new Intent(this, StartActivity.class));
+                finish();
                 break;
         }
     }
