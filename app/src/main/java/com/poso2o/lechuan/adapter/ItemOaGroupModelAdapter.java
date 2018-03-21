@@ -46,7 +46,7 @@ public class ItemOaGroupModelAdapter extends RecyclerView.Adapter {
         GroupModelVH vh = (GroupModelVH) holder;
         Glide.with(context).load(bean.pic).placeholder(R.mipmap.background_image).error(R.mipmap.background_image).into(vh.group_model_pic);
         vh.group_model_name.setText(bean.template_name);
-        if (position == 0){
+        if (bean.has_default == 1){
             vh.group_model_item.setSelected(true);
         }else {
             vh.group_model_item.setSelected(false);

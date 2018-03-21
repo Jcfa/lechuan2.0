@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.official.OaServiceActivity;
-import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
 import com.poso2o.lechuan.bean.oa.OaService;

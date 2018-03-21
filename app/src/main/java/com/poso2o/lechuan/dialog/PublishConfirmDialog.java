@@ -25,9 +25,12 @@ public class PublishConfirmDialog extends BaseDialog {
     //确定发布
     private TextView publish_ok;
 
-    public PublishConfirmDialog(Context context) {
+    private OnPublishListener onPublishListener;
+
+    public PublishConfirmDialog(Context context,OnPublishListener onPublishListener) {
         super(context);
         this.context = context;
+        this.onPublishListener = onPublishListener;
     }
 
     @Override
@@ -62,12 +65,17 @@ public class PublishConfirmDialog extends BaseDialog {
         publish_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (onPublishListener != null)onPublishListener.onPublish();
+                dismiss();
             }
         });
     }
 
     public void setPublishInfo(int total,int adNum){
         publish_art_info.append(Html.fromHtml("<font color='#8E8E8E'>本次发布 </font><font color='#FF2222'>" + total+ "</font><font color='#8E8E8E'> 篇文章，包括含广告文章 </font><font color='#FF2222'>" + adNum+ "</font><font color='#8E8E8E'> 篇。</font>"));
+    }
+
+    public interface OnPublishListener{
+        void onPublish();
     }
 }

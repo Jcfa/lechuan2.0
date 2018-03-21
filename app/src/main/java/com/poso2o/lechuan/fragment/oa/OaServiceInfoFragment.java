@@ -1,6 +1,5 @@
 package com.poso2o.lechuan.fragment.oa;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.official.OaServiceActivity;
-import com.poso2o.lechuan.activity.realshop.OAHelperActivity;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
 import com.poso2o.lechuan.bean.oa.OaServiceInfo;
@@ -19,7 +17,6 @@ import com.poso2o.lechuan.dialog.OaTimeSelectDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.oa.OaServiceManager;
 import com.poso2o.lechuan.util.ArithmeticUtils;
-import com.poso2o.lechuan.util.DateTimeUtil;
 import com.poso2o.lechuan.util.NumberFormatUtils;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;

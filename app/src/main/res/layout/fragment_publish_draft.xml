@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--公众号助手-发布-稿件箱-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,4 +13,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/tips_no_renewals"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="您的稿件箱比脸都干净^o^"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/z_text_normal"
+        android:visibility="gone"/>
+</RelativeLayout>

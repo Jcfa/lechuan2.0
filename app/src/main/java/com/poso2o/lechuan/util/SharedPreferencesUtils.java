@@ -138,6 +138,16 @@ public class SharedPreferencesUtils {
      */
     public static final String KEY_OA_ARTICLE_SEARCH_HISTORY = "oa_article_search_history";
 
+    /**
+     *  文章已选择的类型
+     */
+    public static final String KEY_OA_TYPES = "oa_types";
+
+    /**
+     *  文章已选择的标签
+     */
+    public static final String KEY_OA_LAYBELS = "oa_laybels";
+
 
     public static void put(String key, Object object) {
         if (mEditor == null) {

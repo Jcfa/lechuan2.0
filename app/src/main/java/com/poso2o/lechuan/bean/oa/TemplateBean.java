@@ -15,4 +15,5 @@ public class TemplateBean implements Serializable {
     public String build_time = "";
     public String service_id = "";
     public String pic = "";
+    public int has_default = 0;
 }

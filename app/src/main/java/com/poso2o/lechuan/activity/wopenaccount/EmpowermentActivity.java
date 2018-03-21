@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
@@ -15,28 +14,28 @@ import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.wopenaccountdata.OpenStandBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wopenaccountmanager.ServiceOrderinTrialManager;
-import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 /**
+ * 开通授权界面
+ * <p>
  * Created by Administrator on 2018/3/13 0013.
  */
-
-public class EmpowermentActivity  extends BaseActivity implements View.OnClickListener{
-    private LinearLayout lv_wopen_rabuty,lv_wopen_rabutz;
-    private ImageView rb_wopen_z,rb_wopen_y;
-    private TextView tv_wopen_lz,tv_wopen_hz,tv_wopen_ly,tv_wopen_hy;
+public class EmpowermentActivity extends BaseActivity implements View.OnClickListener {
+    private LinearLayout lv_wopen_rabuty, lv_wopen_rabutz;
+    private ImageView rb_wopen_z, rb_wopen_y;
+    private TextView tv_wopen_lz, tv_wopen_hz, tv_wopen_ly, tv_wopen_hy;
     private ImageView iv_back;
     private TextView tv_title;
     //步骤的点击
-    private View rv_wopen_trim,rv_wopen_empo_auth,rv_wopen_empo_number;
-    private TextView tv_wopen_empo_two,tv_wopen_empo_three,tv_wopen_empo_auth;
+    private View rv_wopen_trim, rv_wopen_empo_auth, rv_wopen_empo_number;
+    private TextView tv_wopen_empo_two, tv_wopen_empo_three, tv_wopen_empo_auth;
     //开通状态
     private TextView tv_wopen_wei_stand;
     private int state;
     //联系方式
-    private String attn,mobile;
+    private String attn, mobile;
     //服务信息
-    private String service_name,amount,payment_time;
+    private String service_name, amount, payment_time;
 
     private Context context;
     public static Activity eactiviyt;
@@ -48,25 +47,25 @@ public class EmpowermentActivity  extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initView() {
-        context=this;
-        eactiviyt=this;
-        tv_title=(TextView)findViewById(R.id.tv_title);
-        tv_wopen_lz=(TextView)findViewById(R.id.tv_wopen_lz);
-        tv_wopen_hz=(TextView)findViewById(R.id.tv_wopen_hz);
-        tv_wopen_ly=(TextView)findViewById(R.id.tv_wopen_ly);
-        tv_wopen_hy=(TextView)findViewById(R.id.tv_wopen_hy);
-        lv_wopen_rabutz=(LinearLayout)findViewById(R.id.lv_wopen_rabutz);
-        lv_wopen_rabuty=(LinearLayout)findViewById(R.id.lv_wopen_rabuty);
-        rb_wopen_z=(ImageView)findViewById(R.id.rb_wopen_z);
-        rb_wopen_y=(ImageView)findViewById(R.id.rb_wopen_y);
-        iv_back=(ImageView)findViewById(R.id.iv_back);
-        rv_wopen_trim=(View)findViewById(R.id.rv_wopen_trim);
-        rv_wopen_empo_auth=(View)findViewById(R.id.rv_wopen_empo_auth);
-        rv_wopen_empo_number=(View)findViewById(R.id.rv_wopen_empo_number);
-        tv_wopen_empo_two=(TextView)findViewById(R.id.tv_wopen_empo_two);
-        tv_wopen_empo_three=(TextView)findViewById(R.id.tv_wopen_empo_three);
-        tv_wopen_empo_auth=(TextView)findViewById(R.id.tv_wopen_empo_auth);
-        tv_wopen_wei_stand=(TextView)findViewById(R.id.tv_wopen_wei_stand);
+        context = this;
+        eactiviyt = this;
+        tv_title = findView(R.id.tv_title);
+        tv_wopen_lz = findView(R.id.tv_wopen_lz);
+        tv_wopen_hz = findView(R.id.tv_wopen_hz);
+        tv_wopen_ly = findView(R.id.tv_wopen_ly);
+        tv_wopen_hy = findView(R.id.tv_wopen_hy);
+        lv_wopen_rabutz = findView(R.id.lv_wopen_rabutz);
+        lv_wopen_rabuty = findView(R.id.lv_wopen_rabuty);
+        rb_wopen_z = findView(R.id.rb_wopen_z);
+        rb_wopen_y = findView(R.id.rb_wopen_y);
+        iv_back = findView(R.id.iv_back);
+        rv_wopen_trim = findView(R.id.rv_wopen_trim);
+        rv_wopen_empo_auth = findView(R.id.rv_wopen_empo_auth);
+        rv_wopen_empo_number = findView(R.id.rv_wopen_empo_number);
+        tv_wopen_empo_two = findView(R.id.tv_wopen_empo_two);
+        tv_wopen_empo_three = findView(R.id.tv_wopen_empo_three);
+        tv_wopen_empo_auth = findView(R.id.tv_wopen_empo_auth);
+        tv_wopen_wei_stand = findView(R.id.tv_wopen_wei_stand);
     }
 
     @Override
@@ -80,22 +79,23 @@ public class EmpowermentActivity  extends BaseActivity implements View.OnClickLi
 //        tv_title.setText(getResources().getString(R.string.wopen_shouquan));
         tv_title.setTextColor(getResources().getColor(R.color.text_type));
 
-      load();
+        load();
     }
-    public void load(){
+
+    public void load() {
         //获取开通状态
-        ServiceOrderinTrialManager manager=new ServiceOrderinTrialManager();
+        ServiceOrderinTrialManager manager = new ServiceOrderinTrialManager();
         manager.OpenStateDate(this, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
-                Gson gson=new Gson();
-                OpenStandBean osb=gson.fromJson(result.toString(),OpenStandBean.class);
-                attn=osb.getAttn();
-                mobile=osb.getMobile();
-                service_name=osb.getService_name();
-                amount=osb.getAmount();
-                payment_time=osb.getPayment_time();
-                if(Integer.valueOf(osb.getState())!=null){
+                Gson gson = new Gson();
+                OpenStandBean osb = gson.fromJson(result.toString(), OpenStandBean.class);
+                attn = osb.getAttn();
+                mobile = osb.getMobile();
+                service_name = osb.getService_name();
+                amount = osb.getAmount();
+                payment_time = osb.getPayment_time();
+                if (Integer.valueOf(osb.getState()) != null) {
                     //点击无公众号
                     lv_wopen_rabutz.setBackgroundResource(R.drawable.gray_stroke_bg);
                     lv_wopen_rabuty.setBackgroundResource(R.drawable.green_stroke_bg);
@@ -152,7 +152,7 @@ public class EmpowermentActivity  extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
@@ -196,36 +196,36 @@ public class EmpowermentActivity  extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.rv_wopen_trim:
                 //进入服务订购/试用
-                Intent i=new Intent();
-                i.setClass(EmpowermentActivity.this,ServiceOrderingTrialActivity.class);
+                Intent i = new Intent();
+                i.setClass(EmpowermentActivity.this, ServiceOrderingTrialActivity.class);
                 startActivity(i);
                 break;
             case R.id.rv_wopen_empo_auth:
                 //进入授权说明
-                Intent ia=new Intent();
-                ia.setClass(EmpowermentActivity.this,AuthorizationActivity.class);
+                Intent ia = new Intent();
+                ia.setClass(EmpowermentActivity.this, AuthorizationActivity.class);
                 startActivity(ia);
                 break;
             case R.id.rv_wopen_empo_number:
 
-                if (state==0) {
+                if (state == 0) {
                     //进入未开通状态公众号
                     Intent in = new Intent();
-                    in.putExtra("attn",attn);
-                    in.putExtra("mobile",mobile);
+                    in.putExtra("attn", attn);
+                    in.putExtra("mobile", mobile);
                     in.setClass(EmpowermentActivity.this, OpenNumberActivity.class);
                     startActivity(in);
-                }else if (state==1){
+                } else if (state == 1) {
                     //进入已缴费，待开通状态公众号
                     Intent in = new Intent();
-                    in.putExtra("amount",amount);
-                    in.putExtra("service_name",service_name);
-                    in.putExtra("payment_time",payment_time);
-                    in.putExtra("attn",attn);
-                    in.putExtra("mobile",mobile);
-                    in.setClass(EmpowermentActivity.this,StardOpenActivity .class);
+                    in.putExtra("amount", amount);
+                    in.putExtra("service_name", service_name);
+                    in.putExtra("payment_time", payment_time);
+                    in.putExtra("attn", attn);
+                    in.putExtra("mobile", mobile);
+                    in.setClass(EmpowermentActivity.this, StardOpenActivity.class);
                     startActivity(in);
-                }else if (state==2){
+                } else if (state == 2) {
                     //已开通状态
                     rv_wopen_empo_number.setClickable(false);
                 }

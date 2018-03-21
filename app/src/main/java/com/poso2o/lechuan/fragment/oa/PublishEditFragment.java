@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.oa.OAFreeEditActivity;
-import com.poso2o.lechuan.activity.oa.OAFreeEditActivity2;
+import com.poso2o.lechuan.activity.oa.FreeEditActivity;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
 import com.poso2o.lechuan.adapter.OAPublishEditAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
@@ -25,15 +24,13 @@ import com.poso2o.lechuan.bean.shopdata.BangDingData;
 import com.poso2o.lechuan.dialog.PublishConfirmDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.article.ArticleDataManager;
+import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.util.Toast;
-import com.poso2o.lechuan.view.OfficialAccountsIssueView;
 import com.poso2o.lechuan.views.RecyclerViewDivider;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -53,7 +50,7 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
     //发送至公众号
     private TextView publishButton;
 
-//    private ArrayList<Article> articles = new ArrayList<>();
+    //    private ArrayList<Article> articles = new ArrayList<>();
     private OAPublishEditAdapter mAdapter;
 
     //绑定公众号信息
@@ -126,15 +123,33 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
             Toast.show(context,"请添加要发布的文章");
             return;
         }
-        PublishConfirmDialog confirmDialog = new PublishConfirmDialog(getContext());
+        PublishConfirmDialog confirmDialog = new PublishConfirmDialog(getContext(),onPublishListener);
         confirmDialog.show();
-        confirmDialog.setPublishInfo(3,1);
+        confirmDialog.setPublishInfo(ArticleDataManager.getInstance().getSelectData().size(),1);
     }
+    private PublishConfirmDialog.OnPublishListener onPublishListener = new PublishConfirmDialog.OnPublishListener() {
+        @Override
+        public void onPublish() {
+            showLoading();
+            ArticleDataManager.getInstance().sendArticle((BaseActivity) getActivity(), new IRequestCallBack() {
+                @Override
+                public void onResult(int tag, Object result) {
+                    dismissLoading();
+                    mAdapter.notifyDataSetChanged(ArticleDataManager.getInstance().getSelectData());
+                }
+
+                @Override
+                public void onFailed(int tag, String msg) {
+                    dismissLoading();
+                    Toast.show(getContext(),msg);
+                }
+            });
+        }
+    };
 
     @Override
     public void onEdit() {
-        Toast.show(context, "自由编辑");
-        startActivity(OAFreeEditActivity2.class);
+        startActivity(FreeEditActivity.class);
     }
 
     @Override
@@ -151,7 +166,11 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
      */
     @Override
     public void onItemClick(int position, Article article) {
-        Toast.show(context, "点击文章" + position);
+        Intent intent = new Intent();
+        intent.setClass(getContext(), ArticleAdActivity.class);
+        intent.putExtra(ArticleAdActivity.ART_DATA,article);
+        intent.putExtra(ArticleAdActivity.FROM_PUBLISH_LIST,true);
+        startActivity(intent);
     }
 
     /**
@@ -217,8 +236,23 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
      * @param article
      */
     @Override
-    public void saveDraft(int position, Article article) {
-        Toast.show(context, "保存草稿箱" + position);
+    public void saveDraft(int position, final Article article) {
+        showLoading();
+        RenewalsManager.getRenewalsManager().renewalsAdd((BaseActivity)getActivity(), article, new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object result) {
+                dismissLoading();
+                Toast.show(getContext(),"添加成功");
+                ArticleDataManager.getInstance().removeSelectData(article);
+                mAdapter.notifyDataSetChanged(ArticleDataManager.getInstance().getSelectData());
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                Toast.show(getContext(),msg);
+            }
+        });
     }
 
     //获取绑定公众号的状态
@@ -247,6 +281,7 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
     public void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged(ArticleDataManager.getInstance().getSelectData());
+        publishClickable();
     }
 
     /**

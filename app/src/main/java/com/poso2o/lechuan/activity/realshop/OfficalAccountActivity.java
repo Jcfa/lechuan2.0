@@ -10,9 +10,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseView;
-import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.articledata.ArticleData;
 import com.poso2o.lechuan.view.OAInformationView;
 import com.poso2o.lechuan.view.OfficialAccountsIssueView;

@@ -11,16 +11,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.realshop.ArticleAdActivity;
+import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.activity.realshop.ArticleSearchActivity;
 import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
 import com.poso2o.lechuan.adapter.OAArticleAdapter;
 import com.poso2o.lechuan.base.BaseView;
-import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.articledata.AllArticleData;
 import com.poso2o.lechuan.bean.articledata.ArticleData;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.util.Toast;
 
 import java.util.ArrayList;

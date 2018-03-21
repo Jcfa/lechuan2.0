@@ -21,6 +21,8 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.wshop.VdianActivity;
 import com.poso2o.lechuan.activity.wshop.VdianImportGoodsActivity;
 import com.poso2o.lechuan.activity.wshop.VdianShopInfoActivity;
+import com.poso2o.lechuan.activity.wshop.WGoodsDetailActivity;
+import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.adapter.GoodsListAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
@@ -55,6 +57,8 @@ import static com.poso2o.lechuan.base.BaseManager.FIRST;
 public class VdianGoodsFragment extends BaseFragment implements View.OnClickListener {
 
     private static final int REQUEST_SHOP_INFO = 11;
+
+    private static final int REQUEST_GOODS_DETAILS = 12;
 
     /**
      * 商户头像
@@ -367,6 +371,19 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
 //                loadGoodsData(FIRST);
             }
         });
+
+        goodsListAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<Goods>() {
+
+            @Override
+            public void onItemClick(Goods item) {
+                Intent intent = new Intent();
+                intent.setClass(context, WGoodsDetailActivity.class);
+                intent.putExtra(Constant.DATA, item);
+                intent.putExtra(Constant.TYPE, 2 );
+                startActivityForResult(intent, REQUEST_GOODS_DETAILS);
+            }
+        });
+
         vdian_info_group.setOnClickListener(this);
         vdian_goods_hint.setOnClickListener(this);
         vdian_goods_add.setOnClickListener(this);
@@ -471,6 +488,11 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                 case REQUEST_SHOP_INFO:
                     shopData = (ShopData) data.getSerializableExtra(Constant.SHOP);
                     refreshShopData();
+                    break;
+
+                case REQUEST_GOODS_DETAILS:
+                    vdian_swipe.setRefreshing(true);
+                    loadGoodsData(FIRST);
                     break;
             }
         }
