@@ -129,7 +129,6 @@ public class WCAuthorityActivity extends BaseActivity {
         wechat_authorize_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(RESULT_OK);// TODO 测试代码，记得删除
                 finish();
             }
         });

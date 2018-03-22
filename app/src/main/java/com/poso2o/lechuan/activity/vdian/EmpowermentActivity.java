@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.activity.wopenaccount;
+package com.poso2o.lechuan.activity.vdian;
 
 import android.content.Intent;
 import android.view.View;
@@ -197,7 +197,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 break;
 
             case R.id.empower_not_oa:
-                //点击无公众号
+                // 点击无公众号
                 empower_have_oa.setBackgroundResource(R.drawable.gray_stroke_bg);
                 empower_not_oa.setBackgroundResource(R.drawable.green_stroke_bg);
                 empower_have_oa_select.setImageResource(R.drawable.icon_not_select);
@@ -232,28 +232,27 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
 
             case R.id.empower_apply_oa:
                 if (state == 0) {
-                    //进入未开通状态公众号
+                    // 进入未开通状态公众号
                     Intent in = new Intent();
                     in.putExtra("attn", attn);
                     in.putExtra("mobile", mobile);
                     in.setClass(EmpowermentActivity.this, ApplyOAActivity.class);
                     startActivity(in);
                 } else if (state == 1) {
-                    //进入已缴费，待开通状态公众号
+                    // 进入已缴费，待开通状态公众号
                     Intent in = new Intent();
                     in.putExtra("amount", amount);
                     in.putExtra("service_name", service_name);
                     in.putExtra("payment_time", payment_time);
                     in.putExtra("attn", attn);
                     in.putExtra("mobile", mobile);
-                    in.setClass(EmpowermentActivity.this, StardOpenActivity.class);
+                    in.setClass(EmpowermentActivity.this, ApplyStatusActivity.class);
                     startActivity(in);
                 } else if (state == 2) {
                     // 已开通状态
                     empower_apply_oa.setClickable(false);
                 }
                 break;
-
         }
     }
 }

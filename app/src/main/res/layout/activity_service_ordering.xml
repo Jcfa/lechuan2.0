@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/lsv_wopen_trim"
+                android:id="@+id/service_ordering_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -44,7 +44,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/bt_wopen_try"
+            android:id="@+id/service_ordering_try"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
@@ -54,7 +54,7 @@
             android:textColor="@color/textGray"/>
 
         <Button
-            android:id="@+id/bt_wopen_trial_order"
+            android:id="@+id/service_ordering_purchase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

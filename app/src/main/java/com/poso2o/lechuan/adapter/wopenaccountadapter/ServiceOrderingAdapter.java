@@ -17,12 +17,12 @@ import java.util.List;
  * Created by Administrator on 2018/3/15 0015.
  */
 
-public class ServiceOrderingTrialAdapter extends BaseAdapter {
+public class ServiceOrderingAdapter extends BaseAdapter {
 
     private Context context;
     private List<ServiceOrderingTrial> data;
 
-    public ServiceOrderingTrialAdapter(Context context, List<ServiceOrderingTrial> data) {
+    public ServiceOrderingAdapter(Context context, List<ServiceOrderingTrial> data) {
         this.data = data;
         this.context = context;
     }
@@ -47,28 +47,28 @@ public class ServiceOrderingTrialAdapter extends BaseAdapter {
         final ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_wopen_trial, null);
-            viewHolder.tv_wopen_trial_gao = (TextView) convertView.findViewById(R.id.tv_wopen_trial_gao);
-            viewHolder.tv_wopen_trial_money = (TextView) convertView.findViewById(R.id.tv_wopen_trial_money);
-            viewHolder.tv_wopen_trial_quan = (TextView) convertView.findViewById(R.id.tv_wopen_trial_quan);
-            viewHolder.rb_wopen_trial_one = (RadioButton) convertView.findViewById(R.id.rb_wopen_trial_one);
-            viewHolder.ll_wopen_trial = convertView.findViewById(R.id.ll_wopen_trial);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_service_ordering, null);
+            viewHolder.service_ordering_gao = (TextView) convertView.findViewById(R.id.service_ordering_gao);
+            viewHolder.service_ordering_money = (TextView) convertView.findViewById(R.id.service_ordering_money);
+            viewHolder.service_ordering_quan = (TextView) convertView.findViewById(R.id.service_ordering_quan);
+            viewHolder.service_ordering_one = (RadioButton) convertView.findViewById(R.id.service_ordering_one);
+            viewHolder.service_ordering_group = convertView.findViewById(R.id.service_ordering_group);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tv_wopen_trial_gao.setText(data.get(position).getService_name());
-        viewHolder.tv_wopen_trial_money.setText(data.get(position).getAmount());
-        viewHolder.tv_wopen_trial_quan.setText(data.get(position).getRemark().replace("\\n", "\n"));
+        viewHolder.service_ordering_gao.setText(data.get(position).getService_name());
+        viewHolder.service_ordering_money.setText(data.get(position).getAmount());
+        viewHolder.service_ordering_quan.setText(data.get(position).getRemark().replace("\\n", "\n"));
 
         // 单选
         if (selected == position) {
-            viewHolder.rb_wopen_trial_one.setChecked(true);
+            viewHolder.service_ordering_one.setChecked(true);
         } else {
-            viewHolder.rb_wopen_trial_one.setChecked(false);
+            viewHolder.service_ordering_one.setChecked(false);
         }
-        viewHolder.ll_wopen_trial.setOnClickListener(new View.OnClickListener() {
+        viewHolder.service_ordering_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemAddClick.onItemClick(position);
@@ -79,15 +79,16 @@ public class ServiceOrderingTrialAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        private TextView tv_wopen_trial_gao, tv_wopen_trial_money, tv_wopen_trial_quan;
-        private RadioButton rb_wopen_trial_one;
-        private View ll_wopen_trial;
+        private TextView service_ordering_gao, service_ordering_money, service_ordering_quan;
+        private RadioButton service_ordering_one;
+        private View service_ordering_group;
     }
 
     private int selected;
 
-
-    //回调接口
+    /**
+     * 回调接口
+     */
     public int getSelected() {
         return selected;
     }
@@ -101,7 +102,7 @@ public class ServiceOrderingTrialAdapter extends BaseAdapter {
         public void onItemClick(int position); //传递boolean类型数据给activity
     }
 
-    // add click callback
+    // add click callback在别人表明自己是某样东西的粉丝之后，还去当面diss这样东西，
     OnAddClickListener onItemAddClick;
 
     public void setOnAddClickListener(OnAddClickListener onItemAddClick) {

@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.activity.wopenaccount;
+package com.poso2o.lechuan.activity.vdian;
 
 import android.content.Intent;
 import android.view.View;
@@ -6,15 +6,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.adapter.wopenaccountadapter.ServiceOrderingTrialAdapter;
+import com.poso2o.lechuan.adapter.wopenaccountadapter.ServiceOrderingAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrialBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
+import com.poso2o.lechuan.util.Toast;
 
 import java.util.Collections;
 
@@ -27,24 +27,33 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
 
     public static final String IS_TRY = "is_try";
 
-    private TextView tv_title;
-    private Button bt_wopen_try;
-    private Button bt_wopen_trial_order;
-    private ListView lsv_wopen_trim;
+    /**
+     * 试用
+     */
+    private Button service_ordering_try;
+
+    /**
+     * 购买
+     */
+    private Button service_ordering_purchase;
+
+    /**
+     * 数据列表
+     */
+    private ListView service_ordering_list;
+
     private String service_name, amount, service_id, service_type;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_wopen_service_ordering_trial;
+        return R.layout.activity_service_ordering;
     }
 
     @Override
     protected void initView() {
-        tv_title = (TextView) findViewById(R.id.tv_title);
-
-        bt_wopen_try = (Button) findViewById(R.id.bt_wopen_try);
-        bt_wopen_trial_order = (Button) findViewById(R.id.bt_wopen_trial_order);
-        lsv_wopen_trim = (ListView) findViewById(R.id.lsv_wopen_trim);
+        service_ordering_try = (Button) findViewById(R.id.service_ordering_try);
+        service_ordering_purchase = (Button) findViewById(R.id.service_ordering_purchase);
+        service_ordering_list = (ListView) findViewById(R.id.service_ordering_list);
     }
 
     @Override
@@ -54,13 +63,10 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
             setTitle("服务订购/试用");
         } else {
             setTitle("服务订购");
-            bt_wopen_try.setVisibility(View.GONE);
+            service_ordering_try.setVisibility(View.GONE);
         }
 
-//        tv_title.setText(getResources().getString(R.string.service_orderint_trial));
-        tv_title.setTextColor(getResources().getColor(R.color.text_type));
-
-        //获取服务的信息
+        // 获取服务的信息
         EmpowermentManager.getInstance().trialListDate(this, new IRequestCallBack() {
 
             @Override
@@ -68,15 +74,15 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
                 Gson gson = new Gson();
                 final ServiceOrderingTrialBean trial = gson.fromJson(result.toString(), ServiceOrderingTrialBean.class);
                 Collections.reverse(trial.list);// 倒序
-                final ServiceOrderingTrialAdapter adapter = new ServiceOrderingTrialAdapter(ServiceOrderingActivity.this, trial.list);
-                lsv_wopen_trim.setAdapter(adapter);
-                setListViewHeightOnChildren(lsv_wopen_trim);
+                final ServiceOrderingAdapter adapter = new ServiceOrderingAdapter(ServiceOrderingActivity.this, trial.list);
+                service_ordering_list.setAdapter(adapter);
+                setListViewHeightOnChildren(service_ordering_list);
                 service_id = trial.list.get(0).getService_id();
                 amount = trial.list.get(0).getAmount();
                 service_name = trial.list.get(0).getService_name();
                 service_type = trial.list.get(0).getService_type();
-                //单选
-                adapter.setOnAddClickListener(new ServiceOrderingTrialAdapter.OnAddClickListener() {
+                // 单选
+                adapter.setOnAddClickListener(new ServiceOrderingAdapter.OnAddClickListener() {
 
                     @Override
                     public void onItemClick(int position) {
@@ -92,20 +98,20 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
 
             @Override
             public void onFailed(int tag, String msg) {
-
+                Toast.show(activity, msg);
             }
         });
     }
 
     @Override
     protected void initListener() {
-        bt_wopen_trial_order.setOnClickListener(this);
+        service_ordering_purchase.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_wopen_trial_order:
+            case R.id.service_ordering_purchase:
                 // 点击立即订购
                 if (service_id != null) {
                     Intent i = new Intent();
@@ -120,8 +126,7 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
         }
     }
 
-
-    // 计算listview的高度
+    // 计算listView的高度
     public void setListViewHeightOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {

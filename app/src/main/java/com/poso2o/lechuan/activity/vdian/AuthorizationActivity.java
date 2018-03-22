@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.activity.wopenaccount;
+package com.poso2o.lechuan.activity.vdian;
 
 import android.content.Intent;
 import android.os.Bundle;
