@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.vdian;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
@@ -30,7 +31,6 @@ import org.json.JSONObject;
  * Created by Administrator on 2018/3/14 0014.
  */
 public class VdianPaymentActivity extends BaseActivity {
-
     /**
      * 支付类型、支付金额
      */
@@ -69,7 +69,33 @@ public class VdianPaymentActivity extends BaseActivity {
         vdian_payment_money.setText(amount);
         vdian_payment_wechat.setOnClickListener(new View.OnClickListener() {
 
+        // 发起微信支付
+        EmpowermentManager.getInstance().trialTranslateDate(this, service_id, new IRequestCallBack() {
+
             @Override
+            public void onResult(int tag, final Object result) {
+                vdian_payment_wechat.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            JSONObject json = new JSONObject(result.toString());
+
+                            PayReq req = new PayReq();
+                            req.appId = json.getString("appid");
+                            req.partnerId = json.getString("partnerid");
+                            req.prepayId = json.getString("prepayid");
+                            req.nonceStr = json.getString("noncestr");
+                            req.timeStamp = json.getString("timestamp");
+                            req.packageValue = json.getString("package");
+                            req.sign = json.getString("sign");
+
+                            api.sendReq(req);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             public void onClick(View v) {
                 weixinPayment(service_id);
             }

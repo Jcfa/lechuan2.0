@@ -4,60 +4,78 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_ordr_click"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:clickable="true"
         android:background="@drawable/orderinfo_main_bg">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/date_icon" />
-
-        <TextView
-            android:id="@+id/tv_order_info_bgin_time"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:textSize="14dp"
-            android:text="02-12"
-            android:textColor="@color/textBlack" />
-
-        <TextView
-            android:id="@+id/tv_visibility"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_ordr_click"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="至"
-            android:textSize="14dp"
-            android:textColor="@color/textBlack" />
+            android:layout_centerVertical="true"
+            android:clickable="true">
 
-        <TextView
-            android:id="@+id/tv_order_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="2dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="03-11"
-            android:textSize="14dp"
-            android:textColor="@color/textBlack" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/date_icon" />
+
+            <TextView
+                android:id="@+id/tv_order_info_bgin_time"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="02-12"
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_visibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="至"
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_order_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="2dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="03-11"
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/iv_order_time_visibility"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/pull_down_icon"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <ImageView
-            android:id="@+id/iv_order_time_visibility"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:id="@+id/iv_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:src="@mipmap/pull_down_icon"
+            android:clickable="true"
+            android:src="@mipmap/search_image"
             android:visibility="gone" />
-    </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>

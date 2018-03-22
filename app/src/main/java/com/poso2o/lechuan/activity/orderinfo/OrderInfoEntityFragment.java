@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
@@ -42,6 +43,8 @@ public class OrderInfoEntityFragment extends BaseFragment {
     private List<DataBean> data;
     private TextView tvNum, tvMoeny;
     private boolean aute = false;
+    private String search;
+    private EditText etSearch;
 
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
         rlv = (RecyclerView) view.findViewById(R.id.rlv_order_entity);
         tvNum = (TextView) view.findViewById(R.id.tv_order_info_num);
         tvMoeny = (TextView) view.findViewById(R.id.tv_order_info_moeny);
+        etSearch = (EditText) view.findViewById(R.id.et_search);
     }
 
     @Override
@@ -68,6 +72,12 @@ public class OrderInfoEntityFragment extends BaseFragment {
         }
         initNet(beginTime, endTime, currPage);
 
+       /* //进行搜索  点击时
+        if (search.equals("search")) {
+            etSearch.setVisibility(View.VISIBLE);
+        } else {
+            etSearch.setVisibility(View.GONE);
+        }*/
     }
 
     private String beginTs, endTS;
@@ -169,5 +179,9 @@ public class OrderInfoEntityFragment extends BaseFragment {
         } else {
             initNet(str, end, currPage);
         }
+    }
+
+    public void showSearch(String search) {
+        this.search = search;
     }
 }
