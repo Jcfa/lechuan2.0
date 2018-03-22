@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="工 号"
+            android:text="工号"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -47,7 +47,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_order_name"
-            android:text="营 业 员"
+            android:text="营业员"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -57,8 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="150dp"
-            android:text="销 售"
+            android:layout_marginLeft="165dp"
+            android:text="销售"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -77,7 +77,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tv_order_zm"
-            android:text="任 务 额"
+            android:text="任务额"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
-            android:text="达 标 率"
+            android:text="达标率"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
     </RelativeLayout>

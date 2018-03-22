@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.login.LoginActivity;
 import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.activity.vdian.EmpowermentActivity;
 import com.poso2o.lechuan.activity.vdian.VdianActivity;
@@ -106,7 +107,6 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initNetRequest(String beginTime, String endTime) {
-        Log.d("cbf", "b = " + beginTime + "  e = " + endTime);
         OrderInfoSellManager.getOrderInfo().orderInfoSell(activity, beginTime, endTime, new IRequestCallBack<OrderInfoSellCountBean>() {
             @Override
             public void onResult(int tag, OrderInfoSellCountBean result) {
@@ -264,7 +264,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPrimecostActivity.class));
                 break;
             case R.id.ll_order_exit:
-                finish();
+                startActivity(new Intent(OrderInfoMainActivity.this, LoginActivity.class));
                 break;
         }
     }
