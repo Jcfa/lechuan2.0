@@ -879,11 +879,11 @@
 
         <!--微店开通公众号-->
         <activity android:name=".activity.wopenaccount.EmpowermentActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activity.wopenaccount.OpenNumberActivity"/>
-        <activity android:name=".activity.wopenaccount.ServiceOrderActivity"/>
+        <activity android:name=".activity.wopenaccount.ApplyOAActivity"/>
+        <activity android:name=".activity.wopenaccount.VdianPaymentActivity"/>
         <activity android:name=".activity.wopenaccount.StardOpenActivity"/>
         <activity android:name=".activity.wopenaccount.AuthorizationActivity"/>
-        <activity android:name=".activity.wopenaccount.ServiceOrderingTrialActivity"/>
+        <activity android:name=".activity.wopenaccount.ServiceOrderingActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoMemberActivity" />
 
         <!-- 蓝牙广播服务 -->

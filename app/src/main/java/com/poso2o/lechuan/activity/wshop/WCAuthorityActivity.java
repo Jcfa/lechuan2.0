@@ -15,18 +15,8 @@ import android.widget.ImageView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
-import com.poso2o.lechuan.base.BaseApplication;
-import com.poso2o.lechuan.configs.AppConfig;
-import com.poso2o.lechuan.dialog.BindSuccessDialog;
 import com.poso2o.lechuan.http.HttpAPI;
-import com.poso2o.lechuan.tool.print.Print;
-import com.poso2o.lechuan.util.FileUtils;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * Created by mr zhang on 2017/12/5.
@@ -139,6 +129,7 @@ public class WCAuthorityActivity extends BaseActivity {
         wechat_authorize_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setResult(RESULT_OK);// TODO 测试代码，记得删除
                 finish();
             }
         });

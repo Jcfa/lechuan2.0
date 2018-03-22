@@ -20,22 +20,22 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/lv_wopen_rabutz"
+            android:id="@+id/empower_have_oa"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:background="@drawable/gray_stroke_bg"
+            android:background="@drawable/green_stroke_bg"
             android:gravity="center|left"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/rb_wopen_z"
+                android:id="@+id/empower_have_oa_select"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="4dp"
                 android:gravity="center"
-                android:src="@drawable/notselected"/>
+                android:src="@drawable/icon_not_select"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_wopen_lz"
+                    android:id="@+id/empower_have_oa_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="我有公众号"
@@ -51,7 +51,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/tv_wopen_hz"
+                    android:id="@+id/empower_have_oa_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -64,7 +64,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lv_wopen_rabuty"
+            android:id="@+id/empower_not_oa"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
@@ -74,13 +74,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/rb_wopen_y"
+                android:id="@+id/empower_not_oa_select"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="4dp"
                 android:gravity="center"
-                android:src="@drawable/notselected"/>
+                android:src="@drawable/icon_not_select"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_wopen_ly"
+                    android:id="@+id/empower_not_oa_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="尚无公众号"
@@ -96,7 +96,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/tv_wopen_hy"
+                    android:id="@+id/empower_not_oa_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -180,7 +180,7 @@
         android:background="@color/common_background"/>
 
     <RelativeLayout
-        android:id="@+id/rv_wopen_empo_number"
+        android:id="@+id/empower_apply_oa"
         android:layout_width="match_parent"
         android:layout_height="60dp">
 
@@ -222,7 +222,7 @@
             android:gravity="center|left">
 
             <TextView
-                android:id="@+id/tv_wopen_wei_stand"
+                android:id="@+id/empower_apply_oa_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="13dp"
@@ -245,7 +245,7 @@
         style="@style/horizontal_line"/>
 
     <RelativeLayout
-        android:id="@+id/rv_wopen_empo_auth"
+        android:id="@+id/empower_oa_empower"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/common_background">
@@ -260,7 +260,7 @@
             android:gravity="center|left">
 
             <TextView
-                android:id="@+id/tv_wopen_empo_two"
+                android:id="@+id/empower_oa_empower_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -289,14 +289,14 @@
             android:gravity="center|left">
 
             <TextView
-                android:id="@+id/tv_wopen_empo_auth"
+                android:id="@+id/empower_oa_empower_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="13dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textColor="@color/placeholder_30"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -311,7 +311,7 @@
         style="@style/horizontal_line"/>
 
     <RelativeLayout
-        android:id="@+id/rv_wopen_trim"
+        android:id="@+id/empower_ordering"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/common_background">
@@ -326,7 +326,7 @@
             android:gravity="center|left">
 
             <TextView
-                android:id="@+id/tv_wopen_empo_three"
+                android:id="@+id/empower_ordering_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -361,7 +361,7 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textColor="@color/placeholder_30"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
 
             <ImageView
                 android:layout_width="wrap_content"

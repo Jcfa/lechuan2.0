@@ -12,6 +12,8 @@ import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 
 /**
+ * 授权说明
+ *
  * Created by Administrator on 2018/3/14 0014.
  */
 public class AuthorizationActivity extends BaseActivity implements View.OnClickListener {
@@ -20,48 +22,50 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
 
     private static final int REQUEST_WEIXIN_BIND = 12;
 
-    private TextView tv_title, tv_wopen_auth_w, tv_wopen_auth_s;
-    //点击公众号授权
-    private Button bt_wopen_auth_qian;
+    /**
+     * 提示文本
+     */
+    private TextView authorization_hint_01, authorization_hint_02;
+
+    /**
+     * 点击公众号授权
+     */
+    private Button authorization_to_empower;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_wopen_authorization;
+        return R.layout.activity_authorization;
     }
 
     @Override
     protected void initView() {
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_wopen_auth_w = (TextView) findViewById(R.id.tv_wopen_auth_w);
-        tv_wopen_auth_s = (TextView) findViewById(R.id.tv_wopen_auth_s);
-        bt_wopen_auth_qian = (Button) findViewById(R.id.bt_wopen_auth_qian);
+        authorization_hint_01 = (TextView) findViewById(R.id.authorization_hint_01);
+        authorization_hint_02 = (TextView) findViewById(R.id.authorization_hint_02);
+        authorization_to_empower = (Button) findViewById(R.id.authorization_to_empower);
     }
 
     @Override
     protected void initData() {
         setTitle("授权说明");
-//        tv_title.setText(getResources().getString(R.string.authorization_statement));
-        tv_title.setTextColor(getResources().getColor(R.color.text_type));
-        String w = "日进斗金老板管理app <font color='#FF0000'>不会</font> 将您的公众号登陆账号和密码上传到服务器。";
-        String s = "<font color='#B2000000'>-删除app后，日进斗金服务端</font><font color='#FF0000'>不会保留您的隐私信息。</font>";
-        tv_wopen_auth_w.setText(Html.fromHtml(w));
-        tv_wopen_auth_s.setText(Html.fromHtml(s));
+        String w = "-日进斗金老板管理app <font color='#FF0000'>不会</font> 将您的公众号登陆账号和密码上传到服务器。";
+        String s = "-删除app后，日进斗金服务端<font color='#FF0000'>不会保留您的隐私信息。</font>";
+        authorization_hint_01.setText(Html.fromHtml(w));
+        authorization_hint_02.setText(Html.fromHtml(s));
     }
 
     @Override
     protected void initListener() {
-        bt_wopen_auth_qian.setOnClickListener(this);
+        authorization_to_empower.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_wopen_auth_qian:
-                //进入授权页面
+            case R.id.authorization_to_empower:// 进入授权页面
                 Intent intent = new Intent();
                 intent.setClass(AuthorizationActivity.this, WCAuthorityActivity.class);
-                intent.putExtra(WCAuthorityActivity.BIND_TYPE, REQUEST_WEIXIN_BIND);
-                startActivityForResult(intent, 10);
+                intent.putExtra(WCAuthorityActivity.BIND_TYPE, 1);
+                startActivityForResult(intent, REQUEST_WEIXIN_BIND);
                 break;
         }
     }
@@ -73,8 +77,8 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
             switch (requestCode) {
                 case REQUEST_WEIXIN_BIND:// 微信绑定
                     Bundle bundle = new Bundle();
-                    bundle.putBoolean(ServiceOrderingTrialActivity.IS_TRY, true);
-                    startActivityForResult(ServiceOrderingTrialActivity.class, REQUEST_SERVICE_PURCHASE);
+                    bundle.putBoolean(ServiceOrderingActivity.IS_TRY, true);
+                    startActivityForResult(ServiceOrderingActivity.class, bundle, REQUEST_SERVICE_PURCHASE);
                     break;
 
                 case REQUEST_SERVICE_PURCHASE:// 服务订购

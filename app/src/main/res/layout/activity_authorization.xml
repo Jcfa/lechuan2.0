@@ -15,15 +15,16 @@
             android:id="@+id/rv_wopen_auth_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp">
+            android:layout_margin="15dp">
 
             <TextView
                 android:id="@+id/tv_wopen_auth_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:textColor="@color/textBlack"
                 android:text="1."
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_wopen_auth_certification"
@@ -32,69 +33,66 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/tv_wopen_auth_one"
                 android:text="安全声明"
-                android:textSize="20sp"/>
-
-
+                android:textColor="@color/textBlack"
+                android:textSize="18sp"/>
+            
             <TextView
-                android:id="@+id/tv_wopen_auth_w"
+                android:id="@+id/authorization_hint_01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_wopen_auth_certification"
                 android:layout_below="@+id/tv_wopen_auth_certification"
-                android:layout_marginTop="15dp"
-                android:textSize="15sp"/>
+                android:layout_marginTop="14dp"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/tv_wopen_auth_s"
+                android:id="@+id/authorization_hint_02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_wopen_auth_w"
-                android:layout_below="@+id/tv_wopen_auth_w"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/placeholder_70"
-                android:textSize="15sp"/>
-
-
+                android:layout_below="@+id/authorization_hint_01"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"/>
+            
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/rv_wopen_auth_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/bt_wopen_auth_qian"
+            android:layout_above="@+id/authorization_to_empower"
             android:layout_below="@+id/rv_wopen_auth_one"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
 
             <TextView
                 android:id="@+id/tv_wopen_auth_fu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:textColor="@color/textBlack"
                 android:text="2."
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_wopen_auth_charge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textBlack"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/tv_wopen_auth_fu"
                 android:text="公众号菜单"
-                android:textSize="20sp"/>
-
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_wopen_auth_d"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:textColor="@color/textBlack"
                 android:layout_below="@+id/tv_wopen_auth_charge"
                 android:layout_marginTop="14dp"
                 android:text="-授权后，若您的公众号底部菜单已设置，将会被新的菜单覆盖，见下图。"
-                android:textSize="15sp"/>
-
+                android:textSize="14sp"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -102,20 +100,21 @@
                 android:layout_below="@+id/tv_wopen_auth_d"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ex_shop_logo"/>
+                android:scaleType="centerInside"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/icon_vdian_yanshi"/>
 
         </RelativeLayout>
 
         <Button
-            android:id="@+id/bt_wopen_auth_qian"
+            android:id="@+id/authorization_to_empower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:background="@drawable/green_radius5_bg"
             android:text="我已同意，前往授权"
             android:textColor="@color/colorWhite"/>

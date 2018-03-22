@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,9 +22,9 @@ public class ServiceOrderingTrialAdapter extends BaseAdapter {
     private Context context;
     private List<ServiceOrderingTrial> data;
 
-    public ServiceOrderingTrialAdapter(Context context,List<ServiceOrderingTrial> data){
-        this.data=data;
-        this.context=context;
+    public ServiceOrderingTrialAdapter(Context context, List<ServiceOrderingTrial> data) {
+        this.data = data;
+        this.context = context;
     }
 
     @Override
@@ -46,27 +45,27 @@ public class ServiceOrderingTrialAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
-        if (convertView==null){
-            viewHolder=new ViewHolder();
-            convertView= LayoutInflater.from(context).inflate(R.layout.item_wopen_trial,null);
-            viewHolder.tv_wopen_trial_gao=(TextView)convertView.findViewById(R.id.tv_wopen_trial_gao);
-            viewHolder.tv_wopen_trial_money=(TextView)convertView.findViewById(R.id.tv_wopen_trial_money);
-            viewHolder.tv_wopen_trial_quan=(TextView)convertView.findViewById(R.id.tv_wopen_trial_quan);
-            viewHolder.rb_wopen_trial_one=(RadioButton)convertView.findViewById(R.id.rb_wopen_trial_one);
-            viewHolder.ll_wopen_trial=(View)convertView.findViewById(R.id.ll_wopen_trial);
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_wopen_trial, null);
+            viewHolder.tv_wopen_trial_gao = (TextView) convertView.findViewById(R.id.tv_wopen_trial_gao);
+            viewHolder.tv_wopen_trial_money = (TextView) convertView.findViewById(R.id.tv_wopen_trial_money);
+            viewHolder.tv_wopen_trial_quan = (TextView) convertView.findViewById(R.id.tv_wopen_trial_quan);
+            viewHolder.rb_wopen_trial_one = (RadioButton) convertView.findViewById(R.id.rb_wopen_trial_one);
+            viewHolder.ll_wopen_trial = convertView.findViewById(R.id.ll_wopen_trial);
             convertView.setTag(viewHolder);
-        }else {
-            viewHolder=(ViewHolder)convertView.getTag();
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         viewHolder.tv_wopen_trial_gao.setText(data.get(position).getService_name());
         viewHolder.tv_wopen_trial_money.setText(data.get(position).getAmount());
-        viewHolder.tv_wopen_trial_quan.setText(data.get(position).getRemark().replace("\\n","\n"));
+        viewHolder.tv_wopen_trial_quan.setText(data.get(position).getRemark().replace("\\n", "\n"));
 
-        //单选
-        if (selected==position){
+        // 单选
+        if (selected == position) {
             viewHolder.rb_wopen_trial_one.setChecked(true);
-        }else {
+        } else {
             viewHolder.rb_wopen_trial_one.setChecked(false);
         }
         viewHolder.ll_wopen_trial.setOnClickListener(new View.OnClickListener() {
@@ -76,11 +75,11 @@ public class ServiceOrderingTrialAdapter extends BaseAdapter {
             }
         });
 
-
         return convertView;
     }
-    class ViewHolder{
-        private TextView tv_wopen_trial_gao,tv_wopen_trial_money,tv_wopen_trial_quan;
+
+    class ViewHolder {
+        private TextView tv_wopen_trial_gao, tv_wopen_trial_money, tv_wopen_trial_quan;
         private RadioButton rb_wopen_trial_one;
         private View ll_wopen_trial;
     }

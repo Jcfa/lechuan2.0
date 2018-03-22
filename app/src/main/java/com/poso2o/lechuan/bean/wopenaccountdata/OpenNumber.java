@@ -1,18 +1,19 @@
 package com.poso2o.lechuan.bean.wopenaccountdata;
 
+import com.poso2o.lechuan.util.NumberFormatUtils;
+
 import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/3/16 0016.
  */
-
 public class OpenNumber implements Serializable {
     private String wechar_authentication_amount;
     private String remark;
     private String agency_amount;
 
     public String getWechar_authentication_amount() {
-        return wechar_authentication_amount;
+        return NumberFormatUtils.format(wechar_authentication_amount);
     }
 
     public void setWechar_authentication_amount(String wechar_authentication_amount) {
@@ -28,7 +29,7 @@ public class OpenNumber implements Serializable {
     }
 
     public String getAgency_amount() {
-        return agency_amount;
+        return NumberFormatUtils.format(agency_amount);
     }
 
     public void setAgency_amount(String agency_amount) {

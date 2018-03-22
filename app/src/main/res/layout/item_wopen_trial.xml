@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/ll_wopen_trial">
+<LinearLayout
+    android:id="@+id/ll_wopen_trial"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/rv_wopen_trial_one"
         android:layout_width="match_parent"
@@ -14,8 +18,8 @@
             android:id="@+id/rb_wopen_trial_one"
             android:layout_width="30dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
             android:button="@null"
             android:drawableBottom="@drawable/select_trial_checked"
             android:paddingBottom="12dp"/>
@@ -24,36 +28,37 @@
             android:id="@+id/rv_wopen_trial_gao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/tv_wopen_trial_gao"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="高级版"
-                android:textSize="18dp"
-                android:gravity="center|left"
                 android:layout_marginLeft="55dp"
-                android:textColor="@color/placeholder_70"/>
+                android:gravity="center|left"
+                android:text="高级版"
+                android:textColor="@color/placeholder_70"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/tv_wopen_trial_one_yuan"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
-                android:text="元/年"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:text="元/年"/>
 
             <TextView
                 android:id="@+id/tv_wopen_trial_money"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_toLeftOf="@+id/tv_wopen_trial_one_yuan"
-                android:layout_alignTop="@+id/tv_wopen_trial_one_yuan"
                 android:layout_alignBottom="@+id/tv_wopen_trial_one_yuan"
+                android:layout_alignTop="@+id/tv_wopen_trial_one_yuan"
                 android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/tv_wopen_trial_one_yuan"
                 android:gravity="center"
                 android:text="5998"
-                android:textSize="18dp"
-                android:textColor="@color/colorRed"/>
+                android:textColor="@color/colorRed"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/tv_wopen_trial_quan"
@@ -61,14 +66,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_wopen_trial_gao"
                 android:layout_marginLeft="55dp"
+                android:singleLine="false"
                 android:text="1.公众号+微商城的全部功能"
-                android:textColor="@color/placeholder_30"
-                android:singleLine="false"/>
-
-
-
-
+                android:textColor="@color/placeholder_30"/>
 
         </RelativeLayout>
+
     </RelativeLayout>
+
 </LinearLayout>
