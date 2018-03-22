@@ -42,7 +42,7 @@ public class OrderInfoMemberActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tvTitle.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK) + ">" + "会员管理");
+        tvTitle.setText("会员管理");
         rlv.setLayoutManager(new LinearLayoutManager(activity));
         OrderInfoMemberManager.getsInstance().oInfoMember(activity, new IRequestCallBack<OrderInfoMemberBean>() {
             @Override

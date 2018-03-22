@@ -53,7 +53,7 @@ public class OrderIOnfoStaffDetailBean {
         private String assignments;
 
         public String getOrder_amounts() {
-            double staff_dc = Double.parseDouble(completion_rate);
+            double staff_dc = Double.parseDouble(order_amounts);
             BigDecimal bg1 = new BigDecimal(staff_dc);
             double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
             if (order_amounts == null || order_amounts.equals(""))

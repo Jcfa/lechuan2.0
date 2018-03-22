@@ -28,7 +28,9 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     private TextView tvTitle;
     private RecyclerView rlvPaper;
     private OrderInfoPaperAdapter adapter;
-    private int type=1;
+    private int type = 1;
+    private TextView tv_order_sell_many_total, tv_order_zm_total;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_orderinfo_paper;
@@ -38,12 +40,14 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     protected void initView() {
         tvTitle = (TextView) findViewById(R.id.tv_title);
         rlvPaper = (RecyclerView) findViewById(R.id.rlv_order_sell_list);
+        tv_order_sell_many_total = (TextView) findViewById(R.id.tv_order_sell_many_total);
+        tv_order_zm_total = (TextView) findViewById(R.id.tv_order_zm_total);
 
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK) + ">" + "库存管理");
+        tvTitle.setText("库存管理");
         rlvPaper.setLayoutManager(new LinearLayoutManager(activity));
         OrderInfoPaperManager.getsInsatcne().orderInfoPaperApi(activity, new IRequestCallBack<OrderInfoPaperBean>() {
             @Override
@@ -55,13 +59,15 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 } else {
                     adapter = new OrderInfoPaperAdapter(activity, data);
                     rlvPaper.setAdapter(adapter);
+                    tv_order_sell_many_total.setText(paperBean.getTotal().getTotalnums());
+                    tv_order_zm_total.setText(paperBean.getTotal().getTotalamounts());
                     adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
                         @Override
                         public void onItemClickListener(View view, int position) {
                             OrderInfoPaperBean.DataBean dataBean = data.get(position);
-                            OrderPaperDetailDialog dialog=new OrderPaperDetailDialog(activity);
+                            OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(activity);
                             dialog.show();
-                            dialog.setData(dataBean.getGuid(),"",type);
+                            dialog.setData(dataBean.getGuid(), "", type);
                         }
                     });
                 }

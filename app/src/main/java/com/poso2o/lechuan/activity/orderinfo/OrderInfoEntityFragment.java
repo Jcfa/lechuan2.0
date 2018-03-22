@@ -115,13 +115,13 @@ public class OrderInfoEntityFragment extends BaseFragment {
                             public void onResult(int tag, OrderInfoBean infoBeans) {
                                 dismissLoading();
                                 infoBean = infoBeans;
-                                data = infoBeans.getData();
+                                List<DataBean> data = infoBeans.getData();
                                 if (data == null || data.size() < 0) {
                                     Toast.show(context, "数据为空");
                                 } else {
                                     adapter.setData(data);
-                                    tvNum.setText("合计数量:" + infoBean.getTotal().getTotal_num());
-                                    tvMoeny.setText("合计金额:" + infoBean.getTotal().getTotal_amount());
+                                    tvNum.setText(": " + infoBean.getTotal().getTotal_num());
+                                    tvMoeny.setText(": " + infoBean.getTotal().getTotal_amount());
                                 }
 
                             }

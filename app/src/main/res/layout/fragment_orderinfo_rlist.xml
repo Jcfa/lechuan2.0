@@ -26,12 +26,33 @@
         android:background="@drawable/white">
 
         <TextView
-            android:id="@+id/tv_order_info_num"
+            android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="合计数量:"
+            android:text="合计数量"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv_order_info_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/tv1"
+            android:text=":0.00"
+            android:textColor="@color/colorOrange"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_order_info_moeny"
+            android:text="合计金额"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -41,9 +62,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
             android:layout_marginRight="10dp"
-            android:text="合计金额:"
-            android:textColor="@color/textBlack"
+            android:text="0.00"
+            android:textColor="@color/colorOrange"
             android:textSize="14dp" />
 
     </RelativeLayout>

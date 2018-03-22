@@ -14,8 +14,8 @@
         android:background="@drawable/orderinfo_main_bg">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/date_icon" />

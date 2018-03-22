@@ -94,76 +94,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rlv_dialog"
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
-
-                <ImageView
-                    android:id="@+id/iv_entity_head"
-                    android:layout_width="60dp"
-                    android:layout_height="70dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/expicture" />
-
-                <TextView
-                    android:id="@+id/tv_entity_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/iv_entity_head"
-                    android:text="名字"
-                    android:textColor="@color/textBlack"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_entity_hh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_entity_name"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toRightOf="@+id/iv_entity_head"
-                    android:text="-/-"
-                    android:textColor="@color/textBlack"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_entity_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/iv_entity_head"
-                    android:text="123.00"
-                    android:textColor="@color/textBlack"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_entity_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="100dp"
-                    android:text="21ss"
-                    android:textColor="@color/color_999999"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_entity_money"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="25dp"
-                    android:text="123.00"
-                    android:textColor="@color/color_999999"
-                    android:textSize="12dp" />
-            </RelativeLayout>
+                android:layout_height="wrap_content" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -199,7 +133,32 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="123.0"
-                    android:textColor="#ba2323"
+                    android:textColor="@color/color_FF6537"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="开单时间:"
+                    android:textColor="@color/textBlack"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_entity_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="25dp"
+                    android:text="2018-03-22 22:23:00"
+                    android:textColor="@color/color_999999"
                     android:textSize="12dp" />
             </RelativeLayout>
 
@@ -214,7 +173,8 @@
                     android:layout_marginLeft="15dp"
                     android:text="整单打折:"
                     android:textColor="@color/textBlack"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
+
 
                 <TextView
                     android:id="@+id/tv_entity_dis"
@@ -239,7 +199,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="支付方式:"
                     android:textColor="@color/textBlack"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_way"
@@ -264,7 +224,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="应收金额:"
                     android:textColor="@color/textBlack"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_account_money"
@@ -288,7 +248,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="实收金额:"
                     android:textColor="@color/textBlack"
-                    android:textSize="16dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_paid_money"

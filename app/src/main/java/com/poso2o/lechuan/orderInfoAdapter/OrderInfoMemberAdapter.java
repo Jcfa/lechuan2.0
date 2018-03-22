@@ -55,11 +55,11 @@ public class OrderInfoMemberAdapter extends RecyclerView.Adapter<OrderInfoMember
     @Override
     public void onBindViewHolder(OrderInfoMemberAdapter.Vholder holder, int position) {
         OrderInfoMemberBean.DataBean dataBean = list.get(position);
-        holder.tvXuhao.setText(position + "");
-        holder.tvName.setText(dataBean.getNick());
-        holder.tvCjs.setText(dataBean.getOrdernum());
-        holder.tvCje.setText(dataBean.getOrderamount());
-        holder.tvYe.setText(dataBean.getAmounts());
+        holder.tvXuhao.setText(dataBean.getNick());
+        holder.tvName.setText(dataBean.getOrdernum());
+        holder.tvCjs.setText(dataBean.getOrderamount());
+        holder.tvCje.setText(dataBean.getAmounts());
+        holder.tvYe.setText(dataBean.getPoints());//积分
         holder.itemView.setTag(position);
 
     }

@@ -64,8 +64,7 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
         String begin = CalendarUtil.getFirstDay();
         tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
-        String nick = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK);
-        tvNick.setText(nick + ">" + "我的订单");
+        tvNick.setText("我的订单");
         initTime(begin,nowDay);
     }
 

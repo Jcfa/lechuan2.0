@@ -75,7 +75,7 @@ public class OrderInfoSellAdapter extends RecyclerView.Adapter<OrderInfoSellAdap
     public void onBindViewHolder(Vholder holder, final int position) {
         OrderInfoSellBean.DataBean dataBean = dataBeen.get(position);
         holder.tvOrderGCount.setText(dataBean.getTotalnum());
-        holder.tvOrderGDes.setText(dataBean.getSizeid());
+        holder.tvOrderGDes.setText(dataBean.getColorid() + "/" + dataBean.getSizeid());
         holder.tvOrderGPrice.setText(dataBean.getPrice());
         holder.tvOrderGName.setText(dataBean.getName());
         Glide.with(context).load(dataBean.getImage222()).into(holder.ivPaperHead);

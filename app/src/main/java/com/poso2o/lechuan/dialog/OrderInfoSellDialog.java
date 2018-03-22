@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.dialog;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellDetailBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoGoodsManager;
 import com.poso2o.lechuan.util.Toast;
+
+import java.math.BigDecimal;
 
 /**
  * Created by ${cbf} on 2018/3/17 0017.
@@ -79,17 +82,22 @@ public class OrderInfoSellDialog extends BaseDialog {
                         tvName.setText(sellDetailBean.getName());
                         tvHnumber.setText(sellDetailBean.getBh());//编号
                         Glide.with(context).load(sellDetailBean.getImage222()).error(R.drawable.expicture).into(ivHead);
-                        tvSpf.setText(sellDetailBean.getSizeid());//规格
-                        tvPrice.setText(sellDetailBean.getPrice() + "  成本:" + sellDetailBean.getFprice());//价格
+                        tvSpf.setText(sellDetailBean.getColorid() + "/" + sellDetailBean.getSizeid());//规格
+                        tvPrice.setText(sellDetailBean.getPrice() + "         成本:" + sellDetailBean.getFprice());//价格
                         tvSpfNum.setText(sellDetailBean.getTotal_num());
-                        tvSpfKc.setText(sellDetailBean.getKcnum());//库存
-                        tvSpfProfits.setText(sellDetailBean.getTotal_amount());
-                        String total_amount = sellDetailBean.getTotal_amount();//销售金额
                         String fprice = sellDetailBean.getFprice();//成本价
-                        String kcnum = sellDetailBean.getKcnum();//库存数量
+                        String kcnum = sellDetailBean.getTotal_num();//库存数量
+
+                        double cbPrice = Double.parseDouble(fprice) * Double.parseDouble(kcnum);
+                        tvSpfKc.setText(cbPrice + "");//成本价格=库存数量*成本价
+
+                        tvSpfMoney.setText(sellDetailBean.getTotal_amount());
+                        String total_amount = sellDetailBean.getTotal_amount();//销售金额
                         //利润=销售金额-（成本价*库存数量）
-                        Double spfMoney = Double.parseDouble(total_amount) - (Double.parseDouble(fprice) * Integer.parseInt(kcnum));
-                        tvSpfMoney.setText(spfMoney + "");//利润
+                        Double spfMoney = Double.parseDouble(total_amount) - cbPrice;
+                        BigDecimal bd = new BigDecimal(spfMoney);
+                        BigDecimal money = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+                        tvSpfProfits.setText(money + "");//利润
 
 
                     }

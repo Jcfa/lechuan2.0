@@ -3,23 +3,34 @@ package com.poso2o.lechuan.activity.orderinfo;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoPrimeCostBean;
+import com.poso2o.lechuan.bean.orderInfo.OrderMothsDetailBean;
 import com.poso2o.lechuan.dialog.CalendarDialog;
 import com.poso2o.lechuan.dialog.OrderPaperDetailDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoPrimeCostManager;
+import com.poso2o.lechuan.manager.orderInfomanager.OrderPaperDetailManager;
 import com.poso2o.lechuan.orderInfoAdapter.OrderInfoPaperAdapter;
 import com.poso2o.lechuan.orderInfoAdapter.OrderInfoPrimeAdapter;
+import com.poso2o.lechuan.orderInfoAdapter.OrderMothsDetailAdapter;
 import com.poso2o.lechuan.util.CalendarUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,13 +43,13 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
     private TextView tvTitle;
     //成本    收入          支出      利润
     private TextView tvcbPrice, tvinPrice, tvspPrice, tvpfPrice;
-    //开始时间  结束时间
-    private TextView tvBeginTime, tvEndTime;
-    private boolean isBeginTime;
-    private String beginTime;
-    private String endTime;
     private RecyclerView rlv;
     private int type = 2;
+    private LinearLayout llCenter;
+    private TextView tv_qchu, tv_shouc, tv_kc, tv_price, tv_select_time;
+    private Spinner spinner;
+    private List<String> timeList = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected int getLayoutResId() {
@@ -52,24 +63,65 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
         tvinPrice = (TextView) findViewById(R.id.tv_order_income_price);
         tvspPrice = (TextView) findViewById(R.id.tv_order_spend_price);
         tvpfPrice = (TextView) findViewById(R.id.tv_order_profits_price);
-        tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
-        tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
         rlv = (RecyclerView) findViewById(R.id.rlv_order_pc_list);
+        llCenter = (LinearLayout) findViewById(R.id.ll_order_center);
+        tv_qchu = (TextView) findViewById(R.id.tv_qchu);
+        tv_shouc = (TextView) findViewById(R.id.tv_shouc);
+        tv_kc = (TextView) findViewById(R.id.tv_kc);
+        tv_price = (TextView) findViewById(R.id.tv_price);
+        tv_select_time = (TextView) findViewById(R.id.tv_select_time);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK) + ">" + "月损益表");
+        tvTitle.setText("月损益表");
         rlv.setLayoutManager(new LinearLayoutManager(activity));
         //默认当前时间
         String nowDay = CalendarUtil.getTodayDate();
-        //本月第一天
-        String begin = CalendarUtil.getFirstDay();
-        tvBeginTime.setText(begin);
-        tvEndTime.setText(nowDay);
         //网络访问
         initNet(nowDay);
+        //隐藏图标
+        llCenter.setVisibility(View.GONE);
+        timeList.add("2015");
+        timeList.add("2016");
+        timeList.add("2017");
+        timeList.add("2018");
+        timeList.add("2019");
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, timeList);
+        //第三步：为适配器设置下拉列表下拉时的菜单样式。
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //第四步：将适配器添加到下拉列表上
+        spinner.setAdapter(adapter);
+        spinner.setSelection(3,true);
+        //第五步：为下拉列表设置各种事件的响应，这个事响应菜单被选中
+        spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                String item = adapter.getItem(arg2);
+                /* 将所选mySpinner 的值带入myTextView 中*/
+                initNet(item + "-12-01");
+                /* 将mySpinner 显示*/
+                arg0.setVisibility(View.VISIBLE);
+            }
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+                arg0.setVisibility(View.VISIBLE);
+            }
+        });
+        /*下拉菜单弹出的内容选项触屏事件处理*/
+        spinner.setOnTouchListener(new Spinner.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+        /*下拉菜单弹出的内容选项焦点改变事件处理*/
+        spinner.setOnFocusChangeListener(new Spinner.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+
+            }
+        });
+
 
     }
 
@@ -77,7 +129,56 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
      * 网络访问
      */
     private void initNet(final String begin) {
-        OrderInfoPrimeCostManager.getsInstance().oPrimeCostInfo(activity, begin, new IRequestCallBack<OrderInfoPrimeCostBean>() {
+        OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi(activity, begin, new IRequestCallBack<OrderMothsDetailBean>() {
+            @Override
+            public void onResult(int tag, OrderMothsDetailBean detailBean) {
+                activity.dismissLoading();
+                List<OrderMothsDetailBean.ListBean> list = detailBean.getList();
+                double profit = 0;
+                double income = 0;
+                double spend = 0;
+                double fprice = 0;
+                for (int i = 0; i < list.size(); i++) {
+                    profit += Double.parseDouble(list.get(i).getClear_profit());
+                    income += Double.parseDouble(list.get(i).getPrimecost_amount());
+                    spend += Double.parseDouble(list.get(i).getSales_amount());
+                    fprice += Double.parseDouble(list.get(i).getDel_amount());
+                }
+                BigDecimal bg = new BigDecimal(profit);
+                BigDecimal bg2 = new BigDecimal(income);
+                BigDecimal bg3 = new BigDecimal(spend);
+                double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                tv_qchu.setText(value3 + "");
+                tv_shouc.setText(fprice + "");
+                tv_kc.setText(value2 + "");
+                tv_price.setText(value + "");
+                tv_qchu.setTextColor(getResources().getColor(R.color.color_FF6537));
+                tv_shouc.setTextColor(getResources().getColor(R.color.color_FF6537));
+                tv_kc.setTextColor(getResources().getColor(R.color.color_FF6537));
+                tv_price.setTextColor(getResources().getColor(R.color.color_FF6537));
+//                    tvPrice.setText("净利润" + value + "收入 " + value2 + " 支出 " + value3);
+                OrderMothsDetailAdapter adapter = new OrderMothsDetailAdapter(detailBean.getList(), type);
+                rlv.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                activity.dismissLoading();
+                Toast.show(activity, msg);
+
+            }
+        });
+
+
+
+
+
+
+
+       /* OrderInfoPrimeCostManager.getsInstance().oPrimeCostInfo(activity, begin, new IRequestCallBack<OrderInfoPrimeCostBean>() {
             @Override
             public void onResult(int tag, OrderInfoPrimeCostBean costBean) {
                 dismissLoading();
@@ -85,14 +186,15 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
                 if (data == null || data.size() < 0) {
                     Toast.show(activity, "数据为空");
                 } else {
-                    for (int i = 0; i < data.size(); i++) {
+                    //图标数据跟下面一样  所以隐藏掉 有需要再开启
+                  *//*  for (int i = 0; i < data.size(); i++) {
                         OrderInfoPrimeCostBean.DataBean dataBean = data.get(i);
                         tvcbPrice.setText(dataBean.getTotal_primecost());
                         tvinPrice.setText(dataBean.getAdd_amounts());
                         tvpfPrice.setText(dataBean.getTotal_profit());
                         tvspPrice.setText(dataBean.getDel_amount());
 
-                    }
+                    }*//*
                     OrderInfoPrimeAdapter adapter = new OrderInfoPrimeAdapter(data);
                     rlv.setAdapter(adapter);
                     adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
@@ -113,85 +215,18 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
                 Toast.show(activity, msg);
 
             }
-        });
+        });*/
     }
 
 
     @Override
     protected void initListener() {
-        tvBeginTime.setOnClickListener(this);
-        tvEndTime.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_order_info_bgin_time:
-                isBeginTime = true;
-                setCalender();
-                break;
-            case R.id.tv_order_end_time:
-                isBeginTime = false;
-                setCalender();
-                break;
-        }
 
     }
 
-    /**
-     * 获取时间  传参时只能如果小于10的好必须前面补个0
-     * 不然会出现接口数据不一定 数据都为0
-     * <p>
-     * 注意:也不能参str  因为不是当前你所点击的当前时间
-     */
-    private void setCalender() {
-        final CalendarDialog calendarDialog = new CalendarDialog(this);
-        calendarDialog.show();
-        calendarDialog.setOnDateSelectListener(new CalendarDialog.OnDateSelectListener() {
-            @Override
-            public void onDateSelect(CustomDate date) {
-                if (date == null) return;
-                String month;
-                if (date.getMonth() < 10) {
-                    month = "0" + date.getMonth();
-                } else {
-                    month = date.getMonth() + "";
-                }
-                String dateT = date.getYear() + "-" + month + "-" + date.getDay();
-                if (isBeginTime) {
-                    String str = tvEndTime.getText().toString();
-                    if (str == null || str.equals("")) {
-                        tvBeginTime.setText(dateT);
-                        beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
-                        calendarDialog.dismiss();
-                    } else if (CalendarUtil.TimeCompare(dateT, str)) {
-                        tvBeginTime.setText(dateT);
-                        beginTime = CalendarUtil.timeStamp(dateT + " 00:00:00");
-                        calendarDialog.dismiss();
-                        String begin = CalendarUtil.stampToDate(beginTime);
-                        initNet(begin);
-                    } else {
-                        Toast.show(activity, "选择的时间范围不正确");
-                    }
-                } else {
-                    String str = tvBeginTime.getText().toString();
-                    if (str == null || str.equals("")) {
-                        tvEndTime.setText(dateT);
-                        endTime = CalendarUtil.timeStamp(dateT + " 23:59:59");
-                        calendarDialog.dismiss();
-                    } else if (CalendarUtil.TimeCompare(str, dateT)) {
-                        tvEndTime.setText(dateT);
-                        endTime = CalendarUtil.timeStamp(dateT + " 23:59:59");
-                        calendarDialog.dismiss();
-                        String begin = CalendarUtil.stampToDate(endTime);
-                        initNet(begin);
-                    } else {
-                        Toast.show(activity, "选择的时间范围不正确");
-                    }
-                }
-            }
-        });
-
-    }
 }

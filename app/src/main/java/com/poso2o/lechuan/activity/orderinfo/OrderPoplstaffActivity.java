@@ -58,7 +58,7 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
         chooseTime(begin, nowDay);
         tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
-        tv_title.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK) + ">" + "人员业绩");
+        tv_title.setText("人员业绩");
 
         rlv.setLayoutManager(new LinearLayoutManager(activity));
         initNetApi();
@@ -72,8 +72,8 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
                 List<OrderInfoPoplStaffBean.ListBean> list = poplStaffBean.getList();
                 OrderInfoPoplStaffAdapter adapter = new OrderInfoPoplStaffAdapter(activity, list);
                 rlv.setAdapter(adapter);
-                tvSellTotal.setText("合计销售金额:" + poplStaffBean.getTotal().getTotal_order_amounts());
-                tvSellTotalTask.setText("合计任务金额:" + poplStaffBean.getTotal().getTotal_assignments());
+                tvSellTotal.setText(poplStaffBean.getTotal().getTotal_order_amounts());
+                tvSellTotalTask.setText( poplStaffBean.getTotal().getTotal_assignments());
 
             }
 

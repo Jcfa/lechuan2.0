@@ -37,9 +37,9 @@ public class OrderMothsDetailAdapter extends RecyclerView.Adapter<OrderMothsDeta
     public void onBindViewHolder(OrderMothsDetailAdapter.Vholder holder, int position) {
         OrderMothsDetailBean.ListBean listsBean = data.get(position);
         holder.tvSpg.setText(listsBean.getCreate_date());
-        holder.tvQchu.setText(listsBean.getPrimecost_amount());
+        holder.tvQchu.setText(listsBean.getSales_amount());
         holder.tvShouc.setText(listsBean.getDel_amount());
-        holder.tvKc.setText(listsBean.getSales_amount());
+        holder.tvKc.setText(listsBean.getPrimecost_amount());
         holder.tvPrice.setText(listsBean.getClear_profit());
 
 
