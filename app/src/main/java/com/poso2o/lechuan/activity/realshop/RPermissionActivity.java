@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.lidroid.xutils.db.annotation.Check;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.powerdata.PowerData;

@@ -61,7 +61,7 @@ public class OrderInfoPaperAdapter extends RecyclerView.Adapter<OrderInfoPaperAd
         OrderInfoPaperBean.DataBean dataBean = lists.get(position);
         Glide.with(context).load(dataBean.getImage222()).error(R.drawable.ex_shop_logo).into(holder.iv_order_sell_head);
         holder.tv_order_paperName.setText(dataBean.getName());
-        holder.tv_order_paper_price.setText(dataBean.getPrice());
+        holder.tv_order_paper_price.setText(dataBean.getFprice());
         holder.tv_order_paper_moeny.setText(dataBean.getTotalamount());
         holder.tv_order_paper_count.setText(dataBean.getTotalnum());
         //设置Tag值来进行点击的事件的触发 也就是相应的位置

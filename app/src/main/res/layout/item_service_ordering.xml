@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_wopen_trial"
+<LinearLayout
+    android:id="@+id/service_ordering_group"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#fff"
     android:orientation="vertical">
-    
+
     <RelativeLayout
         android:id="@+id/rv_wopen_trial_one"
         android:layout_width="match_parent"
@@ -13,14 +15,14 @@
         android:layout_marginTop="20dp">
 
         <RadioButton
-            android:id="@+id/rb_wopen_trial_one"
+            android:id="@+id/service_ordering_one"
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:button="@null"
             android:drawableBottom="@drawable/select_trial_checked"
-            android:paddingBottom="12dp" />
+            android:paddingBottom="12dp"/>
 
         <RelativeLayout
             android:id="@+id/rv_wopen_trial_gao"
@@ -28,14 +30,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_wopen_trial_gao"
+                android:id="@+id/service_ordering_gao"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="55dp"
                 android:gravity="center|left"
                 android:text="高级版"
                 android:textColor="@color/placeholder_70"
-                android:textSize="18dp" />
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/tv_wopen_trial_one_yuan"
@@ -43,10 +45,10 @@
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="元/年" />
+                android:text="元/年"/>
 
             <TextView
-                android:id="@+id/tv_wopen_trial_money"
+                android:id="@+id/service_ordering_money"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignBottom="@+id/tv_wopen_trial_one_yuan"
@@ -55,23 +57,22 @@
                 android:layout_toLeftOf="@+id/tv_wopen_trial_one_yuan"
                 android:gravity="center"
                 android:text="5998"
-                android:textColor="@color/colorRed"
-                android:textSize="18dp" />
+                android:textColor="@color/text_type"
+                android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/tv_wopen_trial_quan"
+                android:id="@+id/service_ordering_quan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_wopen_trial_gao"
+                android:layout_below="@+id/service_ordering_gao"
                 android:layout_marginLeft="55dp"
                 android:singleLine="false"
                 android:text="1.公众号+微商城的全部功能"
-                android:textColor="@color/placeholder_30" />
+                android:textSize="14sp"
+                android:textColor="@color/placeholder_30"/>
 
         </RelativeLayout>
+
     </RelativeLayout>
-    
-    <View
-        style="@style/under_line_C7C7C7"
-        android:layout_margin="10dp"/>
+
 </LinearLayout>

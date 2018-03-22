@@ -62,11 +62,11 @@ public class OrderPaperDetailManager extends BaseManager {
     }
 
     //月损益表详情
-    public void orderMothsDetailApi(BaseActivity activity, String shopid, String begin_date, final IRequestCallBack requestCallBack) {
+    public void orderMothsDetailApi(BaseActivity activity, String begin_date, final IRequestCallBack requestCallBack) {
         final Request<String> request = getStringRequest(RMemberHttpAPI.O_REQUEST_MOTHS_DETAIL_INFO);
         request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
-        request.add("shopid", shopid);
+        request.add("shopid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("czy", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("begin_date", begin_date);
         activity.request(ORDER_LIST, request, new HttpListener<String>() {

@@ -13,7 +13,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    />
 
     <!--相机、录像权限-->
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -59,12 +58,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- USB打印机权限 -->
     <uses-feature android:name="android.hardware.usb.host"/>
+
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"/>
 
     <permission
         android:name="com.poso2o.lechuan.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature"/>
+
     <application
         android:name="com.poso2o.lechuan.base.BaseApplication"
         android:allowBackup="true"
@@ -76,8 +77,7 @@
         <activity
             android:name="com.poso2o.lechuan.activity.MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:launchMode="singleTask">
 
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
@@ -90,8 +90,7 @@
         <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
         <activity
             android:name="com.poso2o.lechuan.activity.login.StartActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -99,111 +98,106 @@
             </intent-filter>
         </activity>
 
-
         <!--登录-->
         <activity
             android:name="com.poso2o.lechuan.activity.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--注册-->
         <activity
             android:name="com.poso2o.lechuan.activity.login.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--忘记密码-->
         <activity
             android:name="com.poso2o.lechuan.activity.login.ForgetPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--修改密码-->
         <activity
             android:name="com.poso2o.lechuan.activity.login.UpdatePasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--绑定微信登录-->
         <activity
             android:name="com.poso2o.lechuan.activity.login.WxBindActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--佣金详情列表-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.CommissionDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--领取详情列表-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.AcceptDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--红包详情列表-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.RedPacketDetailActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--红包收支记录-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.RedPacketRecordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--佣金设置-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.CommissionSettingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--邀请好友抢红包-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.InvitationFriendsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!---->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.PosterDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--我的-用户信息-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.UserInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--编辑信息-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.EditTextActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--编辑手机号码-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.EditPhoneActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--佣金结算-->
         <activity
             android:name="com.poso2o.lechuan.activity.topup.CommissionSettleActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--批量邀请粉丝-->
         <activity
             android:name="com.poso2o.lechuan.activity.mine.InvitationFansActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name="com.poso2o.lechuan.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name="com.poso2o.lechuan.wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -217,17 +211,17 @@
                 <data android:scheme="tencentwx730df332c5011c13"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:screenOrientation="behind"/>
+
         <!--商家首页面-->
         <activity
             android:name=".activity.realshop.RShopMainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
             <!--<intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -238,239 +232,195 @@
         <!--实体店界面-->
         <activity
             android:name=".activity.realshop.RShopActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店设置页-->
         <activity
             android:name=".activity.realshop.MenuSettingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店详情页-->
         <activity
             android:name=".activity.realshop.RShopInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店商品详情页-->
         <activity
             android:name=".activity.goods.GoodsDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--蓝牙页面-->
 
         <!--条码打印页-->
         <activity
             android:name=".activity.print.PrintBarcodeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店商品上传页面-->
         <activity
             android:name=".activity.goods.RGoodsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <!--微店商品导入页面-->
-        <activity
-            android:name=".activity.wshop.VdianImportGoodsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店目录页面-->
         <activity
             android:name=".activity.goods.CatalogActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店目录界面-->
         <activity
             android:name=".activity.realshop.RCatalogActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店商品颜色页面-->
         <activity
             android:name=".activity.goods.ColorActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店颜色界面-->
         <activity
             android:name=".activity.realshop.RColorActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--编辑供应商页面-->
         <activity
             android:name=".activity.goods.EditSupplierActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--编辑实体店商品页面-->
         <activity
             android:name=".activity.goods.EditGoodsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店商品名称类-->
         <activity
             android:name=".activity.goods.GoodsNameActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--商品分类页面-->
         <activity
             android:name=".activity.realshop.GoodsTypeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店商品尺寸页面-->
         <activity
             android:name=".activity.goods.SizeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店商品尺寸页面-->
         <activity
             android:name=".activity.realshop.RSizeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--商品规格页面-->
         <activity
             android:name=".activity.goods.SpecActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--供应商页面-->
         <activity
             android:name=".activity.goods.SupplierActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--商品单位页面-->
         <activity
             android:name=".activity.goods.UnitActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店会员界面-->
         <activity
             android:name=".activity.realshop.MemberActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店员工界面-->
         <activity
             android:name=".activity.realshop.MenuStaffActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店员工编辑页面-->
         <activity
             android:name=".activity.realshop.EditStaffActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店员工职位页面-->
         <activity
             android:name=".activity.realshop.PositionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店职位权限编辑界面-->
         <activity
             android:name=".activity.wshop.PositionPermissionEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店报表页面-->
         <activity
             android:name=".activity.realshop.RReportActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店交接明细页面-->
         <activity
             android:name=".activity.realshop.RTransferActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店交接详情页面-->
         <activity
             android:name=".activity.realshop.TranslateDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店商品库存页面-->
         <activity
             android:name=".activity.realshop.RStockActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店月损益页面-->
         <activity
             android:name=".activity.realshop.RMonthProfitActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店月损益设置页面-->
         <activity
             android:name=".activity.realshop.RMonthProfitSetActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <!--实体店人员业绩页面-->
         <activity
             android:name=".activity.realshop.RAchievementActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店人员业绩设置页面-->
         <activity
             android:name=".activity.realshop.RAchievementSetActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店热销排行页面-->
         <activity
             android:name=".activity.realshop.RHotSaleActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店营销界面-->
         <activity
             android:name=".activity.realshop.RMarketActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店营销满减活动界面-->
         <activity
             android:name=".activity.realshop.PerReduceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店营销满减活动详情界面-->
         <activity
             android:name=".activity.realshop.PerReduceInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店营销折扣商品界面-->
         <activity
             android:name=".activity.realshop.DiscountGoodsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店营销优惠券页面-->
         <activity
             android:name=".activity.realshop.CouponActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店营销优惠券详情页面-->
         <activity
@@ -492,16 +442,6 @@
             android:name=".activity.wshop.WShopDesActivity"
             android:screenOrientation="portrait"/>
 
-        <!--微店主页-->
-        <activity
-            android:name=".activity.wshop.VdianActivity"
-            android:screenOrientation="portrait"/>
-
-        <!--微店主页-->
-        <activity
-            android:name=".activity.wshop.VdianShopInfoActivity"
-            android:screenOrientation="portrait"/>
-
         <!--企业认证页面-->
         <activity
             android:name=".activity.realshop.CompanyDefineActivity"
@@ -511,39 +451,33 @@
         <!--微信公众号绑定界面-->
         <activity
             android:name=".activity.wshop.WCAuthorityActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--绑定微信支付页面-->
         <activity
             android:name=".activity.wshop.WBindPayActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店界面-->
         <activity
             android:name=".activity.wshop.WShopActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店商品详情界面-->
         <activity
             android:name=".activity.wshop.WGoodsDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店编辑商品界面-->
         <activity
             android:name=".activity.wshop.WEditGoodsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--公众号界面-->
         <activity
             android:name=".activity.realshop.OfficalAccountActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--公众号助手-->
         <activity
@@ -553,14 +487,12 @@
         <!--文章添加广告页面-->
         <activity
             android:name=".activity.oa.ArticleAdActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--公众号文章搜索界面-->
         <activity
             android:name=".activity.realshop.ArticleSearchActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <!--广告选择商品界面-->
@@ -571,67 +503,56 @@
         <!--文章预览页面-->
         <activity
             android:name=".activity.realshop.ArtPreviewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--微店导入商品界面-->
         <activity
             android:name=".activity.wshop.WImportGoodsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
         <!--我要开店页面-->
         <activity
             android:name=".activity.realshop.OpenShopActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--实体店功能介绍-->
         <activity
             android:name=".activity.realshop.RShopDesActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--乐传服务页面-->
         <activity
             android:name=".activity.wshop.LechuanServiceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--服务套餐选择页面-->
         <activity
             android:name=".activity.wshop.ServiceSelectActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--乐传服务支付方式选择界面-->
         <activity
             android:name=".activity.wshop.SelectPayActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--老版本职位权限界面-->
         <activity
             android:name=".activity.realshop.RPermissionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
             android:name=".activity.realshop.EditPositionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
             android:name=".activity.realshop.CropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--发布-->
         <activity
             android:name="com.poso2o.lechuan.activity.publish.PublishActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--充值-->
         <activity
@@ -671,80 +592,67 @@
         <!--广告详情-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.PosterDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告搜索页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.PosterSearchActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告评论-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.PosterCommentActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告红包详情-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.PosterRedBagActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告佣金详情页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.PosterCommissionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告我的发布-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyPublishActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告我的收藏-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyCollectionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告我的关注-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyFollowActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告我的粉丝-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyFansActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告商家店铺评论页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.ShopCommentActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告商家店铺评论页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.MyScrollViewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--广告商家公开店铺页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.poster.OpenHomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--订单页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
 
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
@@ -757,105 +665,88 @@
         <!--订单列表页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--订单修改价格页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderPriceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--修改订单地址页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderAddressActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--修改订单备注页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderRemarkActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--订单发货页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderDeliveryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--物流公司页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.LogisticsCompanyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--批量发货页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.BatchDeliveryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--批量发货页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.BatchDeliveryNextActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--物流信息页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.LogisticsInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--修改物流页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.LogisticsModifyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--订单评论页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderEvaluateActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--订单详情页面-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.OrderInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--省市区地址选择-->
         <activity
             android:name="com.poso2o.lechuan.activity.order.AddressSelectActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--打印机 - 选择货币-->
         <activity
             android:name="com.poso2o.lechuan.activity.print.CurrencySelectActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--打印机 - 首页-->
         <activity
             android:name="com.poso2o.lechuan.printer.PrinterBluetoothActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--打印机 - 连接蓝牙设备-->
         <activity
             android:name="com.poso2o.lechuan.printer.BluetoothDeviceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
 
         <!--公众号助手-自由编辑发布页-->
-
         <activity
             android:name=".activity.oa.FreeEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"/>
+
         <!--公众号服务订购页面-->
         <activity android:name=".activity.official.OaServiceActivity"/>
 
@@ -873,18 +764,57 @@
         <activity android:name=".activity.orderinfo.OrderEntityShopActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoSellActivity"/>
         <activity android:name=".activity.orderinfo.OrderInfoMainActivity"/>
-        <activity android:name=".activity.orderinfo.OrderInfoPaperActivity" />
-        <activity android:name=".activity.orderinfo.OrderPoplstaffActivity" />
-        <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity" />
+        <activity android:name=".activity.orderinfo.OrderInfoPaperActivity"/>
+        <activity android:name=".activity.orderinfo.OrderPoplstaffActivity"/>
+        <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity"/>
 
         <!--微店开通公众号-->
-        <activity android:name=".activity.wopenaccount.EmpowermentActivity" android:launchMode="singleTask"/>
-        <activity android:name=".activity.wopenaccount.OpenNumberActivity"/>
-        <activity android:name=".activity.wopenaccount.ServiceOrderActivity"/>
-        <activity android:name=".activity.wopenaccount.StardOpenActivity"/>
-        <activity android:name=".activity.wopenaccount.AuthorizationActivity"/>
-        <activity android:name=".activity.wopenaccount.ServiceOrderingTrialActivity"/>
-        <activity android:name=".activity.orderinfo.OrderInfoMemberActivity" />
+        <activity
+            android:name=".activity.vdian.EmpowermentActivity"
+            android:launchMode="singleTask"/>
+
+        <!--开通公众号-->
+        <activity
+            android:name=".activity.vdian.ApplyOAActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--开通状态-->
+        <activity
+            android:name=".activity.vdian.ApplyStatusActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--授权说明-->
+        <activity
+            android:name=".activity.vdian.AuthorizationActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--服务订购-->
+        <activity
+            android:name=".activity.vdian.ServiceOrderingActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--微店支付-->
+        <activity
+            android:name=".activity.vdian.VdianPaymentActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--微店主页-->
+        <activity
+            android:name=".activity.vdian.VdianActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--微店主页-->
+        <activity
+            android:name=".activity.vdian.VdianShopInfoActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--微店商品导入页面-->
+        <activity
+            android:name=".activity.vdian.VdianImportGoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".activity.orderinfo.OrderInfoMemberActivity"/>
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">

@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="排名"
+            android:text="工 号"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -47,7 +47,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_order_name"
-            android:text="营业员"
+            android:text="营 业 员"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="150dp"
-            android:text="库存最高"
+            android:text="销 售"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -77,7 +77,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tv_order_zm"
-            android:text="任务"
+            android:text="任 务 额"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
-            android:text="达标最高"
+            android:text="达 标 率"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
     </RelativeLayout>
@@ -110,33 +110,47 @@
         android:layout_marginRight="10dp"
         android:background="@color/colorWhite" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_sell_total"
+            android:id="@+id/tv_staff"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="合计销售额:0.0"
+            android:text="合计:"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
         <TextView
+            android:id="@+id/tv_sell_total"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="80dp"
+            android:layout_toRightOf="@+id/tv_staff"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0.000000"
+            android:textColor="@color/colorOrange"
+            android:textSize="14dp" />
+
+        <TextView
             android:id="@+id/tv_sell_total_task"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="合计任务额:0.0"
+            android:text="0.00000"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.activity.wshop;
+package com.poso2o.lechuan.activity.vdian;
 
 import android.Manifest;
 import android.content.ContentValues;

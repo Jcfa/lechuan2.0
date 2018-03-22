@@ -18,9 +18,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.wshop.VdianActivity;
-import com.poso2o.lechuan.activity.wshop.VdianImportGoodsActivity;
-import com.poso2o.lechuan.activity.wshop.VdianShopInfoActivity;
+import com.poso2o.lechuan.activity.vdian.VdianActivity;
+import com.poso2o.lechuan.activity.vdian.VdianImportGoodsActivity;
+import com.poso2o.lechuan.activity.vdian.VdianShopInfoActivity;
 import com.poso2o.lechuan.activity.wshop.WGoodsDetailActivity;
 import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.adapter.GoodsListAdapter;

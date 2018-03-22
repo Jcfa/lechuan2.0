@@ -111,51 +111,52 @@ public class OrderPaperDetailDialog extends BaseDialog {
      */
     public void setData(String guid, String begin, final int type) {
         if (type == 1) {
-            OrderPaperDetailManager.getOrderInfo().orderPaperDetailApi((BaseActivity) context, guid, new IRequestCallBack<OrderPaperDetailBean>() {
-                @Override
-                public void onResult(int tag, OrderPaperDetailBean detailBean) {
-                    ((BaseActivity) context).dismissLoading();
-                    Glide.with(context).load(detailBean.getImage222()).error(R.drawable.expicture).into(ivHead);
-                    tvName.setText(detailBean.getName());
-                    tvPrice.setText(detailBean.getPrice() + " 成本" + detailBean.getFprice());
-                    double profit = 0;
-                    double income = 0;
-                    double totalPrice = 0;
-                    for (int i = 0; i < detailBean.getLists().size(); i++) {
-                        profit += Double.parseDouble(detailBean.getLists().get(i).getSales_num());
-                        income += Double.parseDouble(detailBean.getLists().get(i).getNum());
-                        totalPrice += Double.parseDouble(detailBean.getFprice());
+            OrderPaperDetailManager.getOrderInfo().orderPaperDetailApi((BaseActivity) context, guid,
+                    new IRequestCallBack<OrderPaperDetailBean>() {
+                        @Override
+                        public void onResult(int tag, OrderPaperDetailBean detailBean) {
+                            ((BaseActivity) context).dismissLoading();
+                            Glide.with(context).load(detailBean.getImage222()).error(R.drawable.expicture).into(ivHead);
+                            tvName.setText(detailBean.getName());
+                            String fprice = detailBean.getFprice();
+                            tvPrice.setText(detailBean.getPrice() + " 成本" + fprice);
+                            int profit = 0;
+                            int income = 0;
+                            double totalPrice = 0;
+                            for (int i = 0; i < detailBean.getLists().size(); i++) {
+                                profit += Integer.parseInt(detailBean.getLists().get(i).getSales_num());
+                                income += Integer.parseInt(detailBean.getLists().get(i).getNum());
+                            }
+                            totalPrice += Double.parseDouble(detailBean.getFprice());
+                            BigDecimal bg3 = new BigDecimal(totalPrice);
+                            double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                            double moeny = value3 * income;
+                            tvTotalshouc.setText(profit + "");
+                            tvTotalKc.setText(income + "");
+                            tvTotalPrice.setText(moeny + "");
+                            OrderPaperDetailAdapter adapter = new OrderPaperDetailAdapter(detailBean.getLists(), fprice, type);
+                            rlvDialog.setAdapter(adapter);
 
-                    }
-                    BigDecimal bg1 = new BigDecimal(profit);
-                    BigDecimal bg2 = new BigDecimal(income);
-                    BigDecimal bg3 = new BigDecimal(totalPrice);
-                    double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    tvTotalshouc.setText(value1 + "");
-                    tvTotalKc.setText(value2 + "");
-                    tvTotalPrice.setText(value3 + "");
-                    OrderPaperDetailAdapter adapter = new OrderPaperDetailAdapter(detailBean.getLists(), detailBean.getFprice(), type);
-                    rlvDialog.setAdapter(adapter);
+                        }
 
-                }
+                        @Override
+                        public void onFailed(int tag, String msg) {
+                            ((BaseActivity) context).dismissLoading();
+                            Toast.show(context, msg);
 
-                @Override
-                public void onFailed(int tag, String msg) {
-                    ((BaseActivity) context).dismissLoading();
-                    Toast.show(context, msg);
-
-                }
-            });
+                        }
+                    });
         } else if (type == 2) {
-            rl_member_vis.setVisibility(View.GONE);
+            rl_member_vis.setVisibility(View.VISIBLE);
+            tv_public_second.setVisibility(View.VISIBLE);
             tv_public_frist.setText("时间");
             tv_public_second.setText("营业收入");
             tv_public_thrid.setText("销售成本");
             tv_public_fourth.setText("日常支出");
             tv_public_fifth.setText("净利润");
-            OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi((BaseActivity) context, guid, begin, new IRequestCallBack<OrderMothsDetailBean>() {
+            tvPrice.setVisibility(View.GONE);
+            tvQchu.setVisibility(View.VISIBLE);
+            OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi((BaseActivity) context,  begin, new IRequestCallBack<OrderMothsDetailBean>() {
                 @Override
                 public void onResult(int tag, OrderMothsDetailBean detailBean) {
                     ((BaseActivity) context).dismissLoading();
@@ -168,10 +169,12 @@ public class OrderPaperDetailDialog extends BaseDialog {
                     double profit = 0;
                     double income = 0;
                     double spend = 0;
+                    double fprice = 0;
                     for (int i = 0; i < list.size(); i++) {
                         profit += Double.parseDouble(list.get(i).getClear_profit());
                         income += Double.parseDouble(list.get(i).getPrimecost_amount());
                         spend += Double.parseDouble(list.get(i).getSales_amount());
+                        fprice += Double.parseDouble(list.get(i).getDel_amount());
                     }
                     BigDecimal bg = new BigDecimal(profit);
                     BigDecimal bg2 = new BigDecimal(income);
@@ -179,7 +182,14 @@ public class OrderPaperDetailDialog extends BaseDialog {
                     double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                     double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                     double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    tvPrice.setText("净利润" + value + "收入 " + value2 + " 支出 " + value3);
+                    tvQchu.setText(value3 + "");
+                    tvTotalshouc.setText(fprice + "");
+                    tv_member_num.setText(value2 + "");
+                    tv_member_money.setText(value + "");
+                    tvTotalshouc.setTextColor(context.getResources().getColor(R.color.color_FF6537));
+                    tv_member_num.setTextColor(context.getResources().getColor(R.color.color_FF6537));
+                    tv_member_money.setTextColor(context.getResources().getColor(R.color.color_FF6537));
+//                    tvPrice.setText("净利润" + value + "收入 " + value2 + " 支出 " + value3);
                     OrderMothsDetailAdapter adapter = new OrderMothsDetailAdapter(detailBean.getList(), type);
                     rlvDialog.setAdapter(adapter);
 
@@ -210,7 +220,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
                     ((BaseActivity) context).dismissLoading();
                     Glide.with(context)
                             .load(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_LOGO))
-                            .error(R.drawable.expicture)
+                            .error(R.mipmap.employee_manage)
                             .into(ivHead);
                     tvName.setText(memberDetailBean.getGroupname());
 
@@ -223,9 +233,9 @@ public class OrderPaperDetailDialog extends BaseDialog {
                         countMoney += Float.parseFloat(data.get(i).getPayment_amount());
                         BigDecimal bg = new BigDecimal(countMoney);
                         double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                        tv_member_num.setText(countNum + "");
                         tv_member_money.setText(value + "");
                     }
+                    tv_member_num.setText(lists.size()+"");
                     OrderMemberDetailAdapter adapter = new OrderMemberDetailAdapter(lists);
                     rlvDialog.setAdapter(adapter);
 

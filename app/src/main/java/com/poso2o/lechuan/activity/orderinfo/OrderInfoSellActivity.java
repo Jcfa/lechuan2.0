@@ -71,7 +71,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initData() {
-        tvTitle.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_NICK) + ">" + "畅销商品");
+        tvTitle.setText("畅销商品");
         //默认为当天时间
         String nowDay = CalendarUtil.getTodayDate();
         //本月第一天
@@ -204,7 +204,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                 showCalender();
                 break;
             case R.id.tv_order_sell_many:
-                Toast.show(activity, "点击了");
+//                Toast.show(activity, "点击了");
                 break;
         }
 

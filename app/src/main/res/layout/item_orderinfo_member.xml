@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="2dp"
+            android:gravity="center"
             android:text="111"
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
@@ -26,7 +27,8 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="60dp"
+            android:gravity="center"
             android:text="姓名啊"
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
@@ -37,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="150dp"
+            android:layout_marginRight="135dp"
             android:text="成交数"
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
@@ -49,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="60dp"
+            android:layout_marginRight="75dp"
             android:gravity="center"
             android:text="成交额"
             android:textColor="@color/color_999999"
@@ -62,8 +64,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="10dp"
             android:text="余额"
+            android:gravity="center"
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include layout="@layout/layout_title"/>
 
@@ -12,51 +14,54 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/lv_wopen_num_one"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/colorGray_light"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_height="5dp"
+                android:background="@color/common_background"
+                android:orientation="horizontal"/>
+
             <LinearLayout
                 android:id="@+id/lv_wopen_num_cost"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_num_one">
+                android:layout_height="48dp"
+                android:layout_below="@+id/lv_wopen_num_one"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="4dp"
                     android:layout_height="match_parent"
-                    android:background="@color/colorGreen"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreen"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="费用说明"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="费用说明"/>
+
             </LinearLayout>
-            <LinearLayout
+
+            <View
                 android:id="@+id/lv_wopen_num_underline"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_num_cost"></LinearLayout>
+                android:layout_below="@+id/lv_wopen_num_cost"
+                style="@style/horizontal_line"/>
+
             <RelativeLayout
                 android:id="@+id/rv_wopen_num_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_below="@+id/lv_wopen_num_underline"
                 android:layout_marginBottom="20dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="35dp"
-                android:layout_below="@+id/lv_wopen_num_underline">
+                android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/tv_wopen_number_one"
                     android:layout_width="wrap_content"
@@ -68,33 +73,35 @@
                     android:id="@+id/tv_wopen_number_certification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/tv_wopen_number_one"
-                    android:text="认证费"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="认证费"/>
+
                 <TextView
                     android:id="@+id/tv_wopen_number_yuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="元"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:text="元"/>
+
                 <TextView
-                    android:id="@+id/tv_wopen_number_wechar_authentication_amount"
+                    android:id="@+id/apply_oa_approve_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/tv_wopen_number_yuan"
                     android:text="300.00"
-                    android:layout_marginRight="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/colorOrange"/>
+                    android:textColor="@color/colorOrange"
+                    android:textSize="15sp"/>
 
                 <TextView
                     android:id="@+id/tv_wopen_number_w"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_wopen_number_certification"
                     android:layout_alignLeft="@+id/tv_wopen_number_certification"
                     android:layout_alignRight="@+id/tv_wopen_number_yuan"
+                    android:layout_below="@+id/tv_wopen_number_certification"
                     android:layout_marginTop="15dp"
                     android:text="微信公众平台申请微信认证，需一次性支付300元/次审核服务费用。"/>
 
@@ -105,9 +112,9 @@
                     android:layout_alignLeft="@+id/tv_wopen_number_w"
                     android:layout_alignRight="@+id/tv_wopen_number_w"
                     android:layout_below="@+id/tv_wopen_number_w"
+                    android:layout_marginTop="15dp"
                     android:text="温馨提示:"
-                    android:textColor="@color/colorRed_Press"
-                    android:layout_marginTop="15dp"/>
+                    android:textColor="@color/colorRed_Press"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -118,7 +125,6 @@
                     android:text="若认证审核失败，审核费用不予退还，微信平台会通知您不填资料的最后提交期限，在此期间请您及时不填资料。"/>
 
 
-
             </RelativeLayout>
 
 
@@ -126,11 +132,12 @@
                 android:id="@+id/rv_wopen_num_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rv_wopen_num_one"
                 android:layout_marginBottom="20dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="35dp"
-                android:layout_below="@+id/rv_wopen_num_one">
+                android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/tv_wopen_number_fu"
                     android:layout_width="wrap_content"
@@ -142,33 +149,35 @@
                     android:id="@+id/tv_wopen_number_charge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/tv_wopen_number_fu"
-                    android:text="代办费"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="代办费"/>
+
                 <TextView
                     android:id="@+id/tv_wopen_number_xyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="元"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:text="元"/>
+
                 <TextView
-                    android:id="@+id/tv_wopen_number_agency_amount"
+                    android:id="@+id/apply_oa_agency_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/tv_wopen_number_xyuan"
                     android:text="200.00"
-                    android:layout_marginRight="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/colorOrange"/>
+                    android:textColor="@color/colorOrange"
+                    android:textSize="15sp"/>
 
                 <TextView
                     android:id="@+id/tv_wopen_number_d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_wopen_number_charge"
                     android:layout_alignLeft="@+id/tv_wopen_number_charge"
                     android:layout_alignRight="@+id/tv_wopen_number_xyuan"
+                    android:layout_below="@+id/tv_wopen_number_charge"
                     android:layout_marginTop="15dp"
                     android:text="客服协助您完成公众号账号注册>资料填写>公众号认证>微店开设的服务费用。"/>
 
@@ -177,80 +186,87 @@
                     android:id="@+id/tv_wopen_number_zyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="元"
-                    android:layout_below="@+id/tv_wopen_number_d"
-                    android:layout_marginTop="20dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_below="@+id/tv_wopen_number_d"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="元"/>
 
                 <TextView
                     android:id="@+id/tv_wopen_number_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/tv_wopen_number_zyuan"
                     android:layout_alignBottom="@+id/tv_wopen_number_zyuan"
                     android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/tv_wopen_number_zyuan"
                     android:text="500.00"
+                    android:textStyle="bold"
                     android:textColor="@color/colorOrange"
-                    android:textSize="18dp"/>
+                    android:textSize="15sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="费用总计："
-                    android:textSize="18dp"
-                    android:textColor="@color/color_262626"
                     android:layout_alignParentBottom="true"
-                    android:layout_toStartOf="@+id/tv_wopen_number_count" />
+                    android:layout_toStartOf="@+id/tv_wopen_number_count"
+                    android:text="费用总计："
+                    android:textStyle="bold"
+                    android:textColor="@color/color_262626"
+                    android:textSize="15sp"/>
+
             </RelativeLayout>
 
 
             <LinearLayout
                 android:id="@+id/lv_wopen_num_two_x"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/rv_wopen_num_two"></LinearLayout>
+                android:layout_height="5dp"
+                android:layout_below="@+id/rv_wopen_num_two"
+                android:background="@color/common_background"
+                android:orientation="horizontal"/>
+
             <LinearLayout
                 android:id="@+id/lv_wopen_num_reserve"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_num_two_x">
+                android:layout_height="48dp"
+                android:layout_below="@+id/lv_wopen_num_two_x"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="4dp"
                     android:layout_height="match_parent"
-                    android:background="@color/colorGreen"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreen"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="材料准备"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="材料准备"/>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lv_wopen_num_reserve_line"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_num_reserve"></LinearLayout>
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lv_wopen_num_reserve"
+                android:background="@color/line"
+                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:id="@+id/tv_wopen_number_condition"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_below="@+id/lv_wopen_num_reserve_line"
                 android:layout_marginBottom="20dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="35dp"
-                android:orientation="vertical"
-                android:layout_below="@+id/lv_wopen_num_reserve_line">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -287,125 +303,135 @@
             <LinearLayout
                 android:id="@+id/lv_wopen_num_three_x"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/tv_wopen_number_condition"></LinearLayout>
+                android:layout_height="5dp"
+                android:layout_below="@+id/tv_wopen_number_condition"
+                android:background="@color/common_background"
+                android:orientation="horizontal"/>
+
             <LinearLayout
                 android:id="@+id/lv_wopen_num_information"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_num_three_x">
+                android:layout_height="48dp"
+                android:layout_below="@+id/lv_wopen_num_three_x"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="4dp"
                     android:layout_height="match_parent"
-                    android:background="@color/colorGreen"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorGreen"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="联系方式"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="联系方式"/>
+                
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lv_wopen_num_information_line"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_num_information"></LinearLayout>
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lv_wopen_num_information"
+                android:background="@color/line"
+                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:id="@+id/lv_wopen_number_contacts"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/lv_wopen_num_information_line">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="联系人:"
-                    android:layout_marginLeft="35dp"
-                    android:gravity="center"/>
+                    android:layout_marginLeft="25dp"
+                    android:gravity="center"
+                    android:text="联系人:"/>
 
                 <EditText
-                    android:id="@+id/ed_wopen_number_attn"
+                    android:id="@+id/apply_oa_contacts"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:text="周晓晴"
-                    android:gravity="center|left"
                     android:layout_marginLeft="10dp"
                     android:background="@null"
-                    android:textSize="15dp"
-                    android:textColor="@color/textBlack"/>
+                    android:gravity="center|left"
+                    android:text="周小琴"
+                    android:textColor="@color/textBlack"
+                    android:textSize="15sp"/>
+                
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lv_wopen_num_contacts_line"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lv_wopen_number_contacts"
                 android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_number_contacts"></LinearLayout>
+                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:id="@+id/lv_wopen_number_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/lv_wopen_num_contacts_line">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="手机号:"
-                    android:layout_marginLeft="35dp"
-                    android:gravity="center"/>
+                    android:layout_marginLeft="25dp"
+                    android:gravity="center"
+                    android:text="手机号:"/>
 
                 <EditText
-                    android:id="@+id/et_wopen_number_mobile"
+                    android:id="@+id/apply_oa_mobile"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:text="1345698751"
-                    android:gravity="center|left"
                     android:layout_marginLeft="10dp"
                     android:background="@null"
-                    android:textSize="15dp"
-                    android:textColor="@color/textBlack"/>
+                    android:gravity="center|left"
+                    android:text="1345698751"
+                    android:textColor="@color/textBlack"
+                    android:textSize="15sp"/>
+                
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lv_wopen_num_mobile_line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_below="@+id/lv_wopen_number_mobile"
                 android:background="@color/colorGray_light"
-                android:orientation="horizontal"
-                android:layout_below="@+id/lv_wopen_number_mobile"></LinearLayout>
+                android:orientation="horizontal"/>
 
             <TextView
                 android:id="@+id/tv_wopen_number_last"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lv_wopen_num_mobile_line"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="15dp"
                 android:text="请核对您的联系方式，若有误请进行修改~"/>
 
             <Button
-                android:id="@+id/bt_wopen_number_pay"
+                android:id="@+id/apply_oa_to_pay"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/tv_wopen_number_last"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/green_radius5_bg"
-                android:text="前往缴费"
                 android:gravity="center"
-                android:textColor="@color/colorWhite"
-                android:layout_marginBottom="20dp"/>
+                android:text="前往缴费"
+                android:textColor="@color/colorWhite"/>
+
         </RelativeLayout>
+
     </ScrollView>
 
 </LinearLayout>

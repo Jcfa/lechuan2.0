@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.orderInfo.OrderPaperDetailBean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -37,11 +38,14 @@ public class OrderPaperDetailAdapter extends RecyclerView.Adapter<OrderPaperDeta
     @Override
     public void onBindViewHolder(OrderPaperDetailAdapter.Vholder holder, int position) {
         OrderPaperDetailBean.ListsBean listsBean = data.get(position);
-        holder.tvPrice.setText(fprice);//成本价格
+        double v = Double.parseDouble(fprice) * Double.parseDouble(listsBean.getNum());
+        BigDecimal bg = new BigDecimal(v);
+        double money = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        holder.tvPrice.setText(money + "");//成本价格
         holder.tvKc.setText(listsBean.getNum());
         holder.tvShouc.setText(listsBean.getSales_num());
-        holder.tvSpg.setText(listsBean.getColorid());
-        holder.tvQchu.setText("0");
+        holder.tvSpg.setText(listsBean.getColorid() + "/" + listsBean.getSizeid());
+        holder.tvQchu.setVisibility(View.INVISIBLE);
 
 
     }
