@@ -27,7 +27,8 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_order_sell_head"
             android:text="1100"
-            android:textColor="@color/placeholder_70" />
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_paper_price"
@@ -37,7 +38,8 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_order_sell_head"
             android:text="9.00"
-            android:textColor="@color/color_FF6537" />
+            android:textColor="@color/color_FF6537"
+            android:textSize="12dp" />
 
 
         <TextView
@@ -46,9 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="110dp"
+            android:layout_marginRight="115dp"
+            android:gravity="center"
             android:text="11"
-            android:textColor="@color/placeholder_70" />
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_order_paper_moeny"
@@ -58,7 +62,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:text="11"
-            android:textColor="@color/placeholder_70" />
+            android:textColor="@color/color_999999"
+            android:textSize="12dp" />
     </RelativeLayout>
 
     <View

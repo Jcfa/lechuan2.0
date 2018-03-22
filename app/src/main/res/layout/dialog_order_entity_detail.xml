@@ -23,8 +23,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="店铺:"
-                android:textColor="@color/grgray"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/tv_entity_dnumber"
@@ -34,7 +34,8 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
                 android:text="订单:"
-                android:textColor="@color/grgray" />
+                android:textColor="@color/textBlack"
+                android:textSize="12dp" />
 
             <ImageView
                 android:id="@+id/iv_paper_click_close"
@@ -49,7 +50,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -59,8 +60,8 @@
             android:layout_marginLeft="90dp"
             android:gravity="center"
             android:text="商品"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,8 +70,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="100dp"
             android:text="数量"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,8 +80,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="30dp"
             android:text="金额"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <ScrollView
@@ -103,7 +104,7 @@
                     android:layout_height="70dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/expicture" />
 
                 <TextView
@@ -114,8 +115,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@+id/iv_entity_head"
                     android:text="名字"
-                    android:textColor="#000"
-                    android:textSize="14dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_hh"
@@ -126,8 +127,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_toRightOf="@+id/iv_entity_head"
                     android:text="-/-"
-                    android:textColor="#000"
-                    android:textSize="14dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_price"
@@ -138,8 +139,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/iv_entity_head"
                     android:text="123.00"
-                    android:textColor="#000"
-                    android:textSize="14dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_num"
@@ -149,8 +150,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="100dp"
                     android:text="21ss"
-                    android:textColor="#000"
-                    android:textSize="14dp" />
+                    android:textColor="@color/color_999999"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_money"
@@ -160,7 +161,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="123.00"
-                    android:textColor="#000" />
+                    android:textColor="@color/color_999999"
+                    android:textSize="12dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -186,8 +188,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="100dp"
                     android:text="22ss"
-                    android:textColor="@color/grgray"
-                    android:textSize="16dp" />
+                    android:textColor="@color/color_999999"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_total_money"
@@ -198,7 +200,7 @@
                     android:layout_marginRight="25dp"
                     android:text="123.0"
                     android:textColor="#ba2323"
-                    android:textSize="16dp" />
+                    android:textSize="12dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -211,7 +213,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:text="整单打折:"
-                    android:textSize="16dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_dis"
@@ -221,7 +224,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="88.00%"
-                    android:textColor="#000" />
+                    android:textColor="@color/color_999999"
+                    android:textSize="12dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -234,7 +238,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:text="支付方式:"
-                    android:textSize="16dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_way"
@@ -244,7 +249,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="现金"
-                    android:textColor="#000" />
+                    android:textColor="@color/color_999999"
+                    android:textSize="12dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -257,7 +263,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:text="应收金额:"
-                    android:textSize="16dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/tv_entity_account_money"
@@ -267,7 +274,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="123564"
-                    android:textColor="#000" />
+                    android:textColor="@color/color_999999" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -280,6 +287,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:text="实收金额:"
+                    android:textColor="@color/textBlack"
                     android:textSize="16dp" />
 
                 <TextView
@@ -290,7 +298,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="123564"
-                    android:textColor="#000" />
+                    android:textColor="@color/color_999999"
+                    android:textSize="12dp" />
             </RelativeLayout>
         </LinearLayout>
 

@@ -11,6 +11,7 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.orderInfo.DataBean;
 import com.poso2o.lechuan.dialog.OrderEntityDetailDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +22,20 @@ public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntity
     private Context context;
     private List<DataBean> data;
 
-    public OrderInfoEntityAdapter(Context context, List<DataBean> data) {
+    public OrderInfoEntityAdapter(Context context) {
         this.context = context;
+        this.data = new ArrayList<>();
+        notifyDataSetChanged();
+    }
+    public void setData(List<DataBean> data) {
         this.data = data;
         notifyDataSetChanged();
     }
 
+    public void AddData(List<DataBean> data) {
+        this.data.addAll(data);
+        notifyDataSetChanged();
+    }
     @Override
     public OrderInfoEntityAdapter.Vholder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_orderinf_entity, parent, false);
@@ -56,15 +65,7 @@ public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntity
         return data == null ? 0 : data.size();
     }
 
-    public void setData(List<DataBean> data) {
-        this.data = data;
-        notifyDataSetChanged();
-    }
 
-    public void AddData(List<DataBean> data) {
-        this.data.addAll(data);
-        notifyDataSetChanged();
-    }
 
     public class Vholder extends RecyclerView.ViewHolder {
 

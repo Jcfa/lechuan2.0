@@ -1,11 +1,8 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;

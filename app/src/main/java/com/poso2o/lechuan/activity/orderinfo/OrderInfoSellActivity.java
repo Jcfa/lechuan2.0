@@ -48,7 +48,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     private int cuurapge = 1;
     private int apg;
     private TextView tvTitle;
-    private List<OrderInfoSellBean.DataBean> data;
+    private List<OrderInfoSellBean.DataBean> data = new ArrayList<>();
 
     @Override
     protected int getLayoutResId() {
@@ -78,26 +78,11 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         String begin = CalendarUtil.getFirstDay();
         tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
-        initNet(begin, nowDay, cuurapge);
-        //自动加载  第一次进来时
         if (isClick == false) {
-            refreshLayout.autoRefresh();
-            isClick = true;
+            refreshLayout.autoRefresh(200);
         }
+        initNet(begin, nowDay, cuurapge);
         rlvSellList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new OrderInfoSellAdapter(activity, data, beginTs, endTs);
-        rlvSellList.setAdapter(adapter);
-      /*  adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
-            @Override
-            public void onItemClickListener(View view, int position) {
-                OrderInfoSellDialog dialog = new OrderInfoSellDialog(activity);
-                dialog.show();
-                dialog.setData(beginTime, endTime,
-                        data.get(position).getGuid(),
-                        data.get(position).getColorid(),
-                        data.get(position).getSizeid());
-            }
-        });*/
 
     }
 
@@ -115,6 +100,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     private String endTs;
 
     private void initRequestApi(final String beginTime, final String endTime, final int cuurapge) {
+        refreshLayout.autoRefresh(200);
         this.beginTs = beginTime;
         this.endTs = endTime;
         OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTime, endTime, cuurapge + "", new IRequestCallBack() {
@@ -123,11 +109,8 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                 dismissLoading();
                 OrderInfoSellBean sellBean = (OrderInfoSellBean) result;
                 data = sellBean.getData();
-                if (data == null || data.size() < 0) {
-                    Toast.show(activity, "数据为空");
-                } else {
-                    adapter.setData(data);
-                }
+                adapter = new OrderInfoSellAdapter(activity, data, beginTs, endTs);
+                rlvSellList.setAdapter(adapter);
             }
 
             @Override
@@ -143,6 +126,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     protected void initListener() {
         tvBeginTime.setOnClickListener(this);
         tvEndTime.setOnClickListener(this);
+        tvSellMany.setOnClickListener(this);
 
         llOrderClick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,12 +134,31 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
 
             }
         });
-        tvSellMany.setOnClickListener(this);
+
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 cuurapge = 1;
-//                initNet(beginTs, endTs, cuurapge);
+                OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
+                    @Override
+                    public void onResult(int tag, Object result) {
+                        dismissLoading();
+                        OrderInfoSellBean sellBean = (OrderInfoSellBean) result;
+                        data = sellBean.getData();
+                        if (data == null || data.size() < 0) {
+                            Toast.show(activity, "数据为空");
+                        } else {
+                            adapter.setData(data);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(int tag, String msg) {
+                        dismissLoading();
+                        Toast.show(activity, msg);
+
+                    }
+                });
                 refreshlayout.finishRefresh(2000);
             }
         });
@@ -163,7 +166,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 cuurapge++;
-//                initNet(beginTs, endTs, cuurapge);
                 OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
                     @Override
                     public void onResult(int tag, Object result) {
@@ -174,17 +176,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                             Toast.show(activity, "数据为空");
                         } else {
                             adapter.addData(data);
-                           /* adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
-                                @Override
-                                public void onItemClickListener(View view, int position) {
-                                    OrderInfoSellDialog dialog = new OrderInfoSellDialog(activity);
-                                    dialog.show();
-                                    dialog.setData(beginTime, endTime,
-                                            data.get(position).getGuid(),
-                                            data.get(position).getColorid(),
-                                            data.get(position).getSizeid());
-                                }
-                            });*/
                         }
                     }
 
@@ -192,7 +183,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                     public void onFailed(int tag, String msg) {
                         dismissLoading();
                         Toast.show(activity, msg);
-
                     }
                 });
                 refreshLayout.finishLoadmore(2000);
@@ -215,15 +205,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.tv_order_sell_many:
                 Toast.show(activity, "点击了");
-
-                boolean pressed = tvSellMany.isFocusable();
-                if (pressed == false) {
-                    isClick = true;
-                    tvSellMany.setText("销售最少");
-                }
-                if (isClick = true) {
-                    tvSellMany.setText("销售最多");
-                }
                 break;
         }
 

@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="规格"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="期初"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="售出"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="库存"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
 
         <TextView
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="成本价格"
-            android:textColor="@color/grgray"
+            android:textColor="@color/color_999999"
             android:textSize="12dp" />
     </LinearLayout>
 
