@@ -123,9 +123,16 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
             Toast.show(context,"请添加要发布的文章");
             return;
         }
+        //计算已添加广告的篇数
+        int adNum = 0;
+        for (Article art : ArticleDataManager.getInstance().getSelectData()){
+            if (art.content.contains("poso2o_editor_ad_template_item")){
+                adNum++;
+            }
+        }
         PublishConfirmDialog confirmDialog = new PublishConfirmDialog(getContext(),onPublishListener);
         confirmDialog.show();
-        confirmDialog.setPublishInfo(ArticleDataManager.getInstance().getSelectData().size(),1);
+        confirmDialog.setPublishInfo(ArticleDataManager.getInstance().getSelectData().size(),adNum);
     }
     private PublishConfirmDialog.OnPublishListener onPublishListener = new PublishConfirmDialog.OnPublishListener() {
         @Override
@@ -183,6 +190,7 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
     public void onItemDelete(int position, Article article) {
         ArticleDataManager.getInstance().removeSelectData(article);
         mAdapter.notifyDataSetChanged(ArticleDataManager.getInstance().getSelectData());
+        publishClickable();
     }
 
     /**

@@ -11,139 +11,155 @@
 
         <ImageView
             android:id="@+id/art_ad_back"
-            style="@style/iv_back"/>
+            style="@style/iv_back" />
 
         <TextView
             style="@style/text_title"
-            android:text="文章详情"/>
+            android:text="文章详情" />
 
         <TextView
             android:id="@+id/article_detail_preview"
             android:layout_width="60dp"
             android:layout_height="32dp"
             android:layout_gravity="center_vertical|right"
-            android:text="预览"
-            android:gravity="center"
-            android:background="@drawable/selector_frame_circular_bead"
-            android:textColor="@color/color_00BCB4"
             android:layout_marginRight="10dp"
-            android:textSize="@dimen/z_text_small"/>
+            android:background="@drawable/selector_frame_circular_bead"
+            android:gravity="center"
+            android:text="预览"
+            android:textColor="@color/color_00BCB4"
+            android:textSize="@dimen/z_text_small" />
 
     </FrameLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:background="@color/lineBg"/>
+        android:background="@color/lineBg" />
 
-    <ScrollView
-        android:id="@+id/scroll_layout"
+    <RelativeLayout
+        android:id="@+id/relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.poso2o.lechuan.view.LazyScrollView
+            android:id="@+id/scroll_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <WebView
-                android:id="@+id/art_detail_web"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp" />
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-            <View style="@style/horizontal_line_gray" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_tiny"
-                android:gravity="center_vertical" >
-
-                <TextView
-                    android:id="@+id/tag_ad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/spacing_middle"
-                    android:text="添加广告:"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="@dimen/textSize_normal" />
-
-                <TextView
-                    android:id="@+id/ad_model_name"
-                    style="@style/text_9E9E9E_14"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/tag_ad"
-                    android:hint="请选择广告模版" />
-
-                <ImageView
-                    android:id="@+id/show_ad_models"
-                    android:layout_width="@dimen/height_tiny"
+                <WebView
+                    android:id="@+id/art_detail_web"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/spacing_middle"
-                    android:src="@mipmap/arrow_less" />
+                    android:layout_marginBottom="10dp" />
+
+                <View style="@style/horizontal_line_gray" />
+
+                <LinearLayout
+                    android:id="@+id/add_ad_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_tiny"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tag_ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:text="添加广告:"
+                        android:textColor="@color/colorOrange"
+                        android:textSize="@dimen/textSize_normal" />
+
+                    <TextView
+                        android:id="@+id/ad_model_name"
+                        style="@style/text_9E9E9E_14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tag_ad"
+                        android:layout_weight="1"
+                        android:hint="请选择广告模版" />
+
+                    <ImageView
+                        android:id="@+id/show_ad_models"
+                        android:layout_width="@dimen/height_tiny"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/spacing_middle"
+                        android:src="@mipmap/arrow_less" />
+                </LinearLayout>
+
+                <View style="@style/horizontal_line_gray" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView_ad_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_small"
+                    android:background="@color/color_EEEEEE"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                    <TextView
+                        android:id="@+id/add_to_renewals"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/shape_per_reduce"
+                        android:gravity="center"
+                        android:text="加入草稿箱"
+                        android:textSize="@dimen/z_text_small" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:id="@+id/add_to_publish"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/selector_sign_btn"
+                        android:gravity="center"
+                        android:text="添加到发布"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/z_text_small" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
-            <View style="@style/horizontal_line_gray" />
+        </com.poso2o.lechuan.view.LazyScrollView>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView_ad_model"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/art_to_bottom"
+            android:layout_width="50dp"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:src="@mipmap/arrow_more" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_small"
-                android:background="@color/color_EEEEEE"
-                android:gravity="center_vertical">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:id="@+id/add_to_renewals"
-                    android:layout_width="120dp"
-                    android:layout_height="36dp"
-                    android:text="加入草稿箱"
-                    android:textSize="@dimen/z_text_small"
-                    android:gravity="center"
-                    android:background="@drawable/shape_per_reduce"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:id="@+id/add_to_publish"
-                    android:layout_width="120dp"
-                    android:layout_height="36dp"
-                    android:text="添加到发布"
-                    android:textSize="@dimen/z_text_small"
-                    android:textColor="@android:color/white"
-                    android:gravity="center"
-                    android:background="@drawable/selector_sign_btn"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    </RelativeLayout>
 
 </LinearLayout>

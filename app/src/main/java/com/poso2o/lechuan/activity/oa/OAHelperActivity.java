@@ -256,17 +256,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             }
         }else if(viewType == 2) {
             //公众号
-            if (lessDay()){
-                //公众号服务没到期
-                if (!oaServiceInfoFragment.isVisible()){
-                    replaceFragment(R.id.oa_content, oaServiceInfoFragment);
-                }
-            }else {
-                //公众号服务已到期
-                if (!oaSetupFragment.isVisible()) {
-                    replaceFragment(R.id.oa_content, oaSetupFragment);
-                }
-            }
+            replaceFragment(R.id.oa_content, oaSetupFragment);
         }
     }
 

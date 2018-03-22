@@ -1,229 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/white"
         android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/oa_set_wopen_trim"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="@dimen/z_oa_set_padding_left">
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/oa_set_text_common"
-                android:text="文章篇数："/>
-
-            <TextView
-                android:id="@+id/oa_set_article_num"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="4dp"
-                android:gravity="center"
-                style="@style/oa_set_text_common"
-                android:drawableRight="@mipmap/pull_down_icon"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:background="@drawable/shape_per_reduce"
-                android:text="3"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="篇"
-                style="@style/oa_set_text_common"
-                android:layout_marginLeft="6dp"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/oa_set_article_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¥12.00"
-                android:layout_marginRight="10dp"
-                style="@style/oa_set_price_common"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/oa_set_hint_common"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="96dp"
-            android:text="（每日可在资讯库仲选用文章的篇数）"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="运营方式："
-            style="@style/oa_set_text_common"
-            android:paddingLeft="@dimen/z_oa_set_padding_left"
-            android:layout_marginTop="@dimen/z_oa_set_padding_height"/>
-
-        <LinearLayout
-            android:id="@+id/self_run_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/z_oa_set_padding_left"
-            android:layout_marginTop="@dimen/z_oa_set_padding_height">
-
-            <TextView
-                android:id="@+id/oa_self_running"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/oa_set_text_common"
-                android:text="自主运营"
-                android:drawableLeft="@mipmap/item_no_select"
-                android:drawablePadding="4dp"/>
-
-            <TextView
-                android:id="@+id/self_running_price"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="免费"
-                android:gravity="right"
-                android:visibility="invisible"
-                android:textSize="@dimen/z_text_small"
-                android:textColor="@color/color_999999"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/self_run_des"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/oa_set_hint_common"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="6dp"
-            android:text="您可自主发布文章、自主编辑/插入广告等。"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/z_oa_set_padding_height">
-
-            <TextView
-                android:id="@+id/oa_supper_running"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/oa_set_text_common"
-                android:paddingLeft="@dimen/z_oa_set_padding_left"
-                android:text="代运营"
-                android:drawableLeft="@mipmap/item_select"
-                android:drawablePadding="4dp"/>
-
-            <TextView
-                android:id="@+id/supper_running_price"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                style="@style/oa_set_price_common"
-                android:gravity="right"
-                android:text="¥128.00"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/oa_set_hint_common"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="6dp"
-            android:lineSpacingMultiplier="1.2"
-            android:text="省事、省力，无需费心。\n为您提供最新的文章资讯，定时发布文章等服务内容。"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="购买时长："
-            style="@style/oa_set_text_common"
-            android:layout_marginLeft="@dimen/z_oa_set_padding_left"
-            android:layout_marginTop="@dimen/z_oa_set_padding_height"/>
-
-        <LinearLayout
-            android:id="@+id/oa_packages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_marginTop="4dp"
-            android:background="@color/color_EEEEEE"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="14dp"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="服务费用："
-                style="@style/oa_set_text_common"
-                android:layout_marginLeft="@dimen/z_oa_set_padding_left"/>
-
-            <TextView
-                android:id="@+id/oa_total_pay"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                style="@style/oa_set_price_common"
-                android:text="¥408.00"
-                android:gravity="right"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/oa_total_formula"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/oa_set_hint_common"
-            android:layout_marginLeft="30dp"
-            android:text="可选文章（3篇）*一个月（280.00）+代运营（128.00）"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:background="@color/color_EEEEEE"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/buy_now"
-            android:layout_width="120dp"
+        <Button
+            android:id="@+id/oa_set_buy_service"
+            android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
-            android:text="立即购买"
-            android:textSize="@dimen/z_text_normal"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            android:background="@drawable/selector_bg_buy_now"
-            android:layout_marginBottom="60dp"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/orange_radio5_bg"
+            android:text="续费"
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 

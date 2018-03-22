@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.adapter.ArticleSearchHistoryAdapter;
+import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.adapter.OAArticleListAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.article.Article;
@@ -169,6 +170,7 @@ public class ArticleSearchActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onResume() {
         super.onResume();
+        if (articleAdapter != null)articleAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -191,29 +193,6 @@ public class ArticleSearchActivity extends BaseActivity implements View.OnClickL
     //搜索
     private void toSearchArticle(String keywords,final int pageType) {
         showLoading("正在搜索 " + keywords + " 相关文章...");
-        /*ArticleDataManager.getInstance().loadListData(this, 22, keywords, 1, new IRequestCallBack() {
-            @Override
-            public void onResult(int tag, Object result) {
-                dismissLoading();
-                AllArticleData allArticleData = (AllArticleData) result;
-                search_history.setVisibility(View.GONE);
-                article_search_result.setVisibility(View.VISIBLE);
-                if (articleAdapter == null) initArticleAdapter();
-                if (allArticleData != null && allArticleData.list.size() > 0) {
-                    tips_no_article.setVisibility(View.GONE);
-                    articleAdapter.notifyDatas(allArticleData.list,selectArt);
-                } else {
-                    tips_no_article.setVisibility(View.VISIBLE);
-                    articleAdapter.notifyDatas(null,selectArt);
-                }
-            }
-
-            @Override
-            public void onFailed(int tag, String msg) {
-                dismissLoading();
-                Toast.show(context,msg);
-            }
-        });*/
         ArticleDataManager.getInstance().loadListData((BaseActivity) context, articlesType, keywords, pageType, new com.poso2o.lechuan.manager.article.ArticleDataManager.OnLoadListDataCallback() {
 
             @Override
@@ -264,48 +243,17 @@ public class ArticleSearchActivity extends BaseActivity implements View.OnClickL
         article_search_recycler.setLayoutManager(linearLayoutManager);
         article_search_recycler.setAdapter(articleAdapter);
 
-        /*articleAdapter.setOnArticleListener(new OASearchArtAdapter.OnArticleListener() {
+        articleAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<Article>() {
             @Override
-            public void onFavoriteClick(int position, ArticleData articleData) {
-                if (articleData.has_collect == 0){
-                    //收藏文章
-                    favoriteArticle(position,articleData);
-                }else if (articleData.has_collect == 1){
-                    //取消收藏文章
-                    cancelFavorite(position,articleData);
-                }
-            }
-
-            @Override
-            public void onSendClick(int position, ArticleData articleData,boolean isAdd) {
+            public void onItemClick(Article item) {
+                Article article = ArticleDataManager.getInstance().findSelectData((Article) item);
+                if (article == null) article = (Article) item;
                 Intent intent = new Intent();
-                intent.setAction(SEARCH_ARTICLE_CHANGE_BROAD);
-                intent.putExtra(OfficalAccountActivity.SENDING_ARTICLE_DATA,articleData);
-                sendBroadcast(intent);
-                if (isAdd){
-                    articleData.inLine = true;
-                }else {
-                    articleData.inLine = false;
-                    ArticleData temp = null;
-                    for (ArticleData art : selectArt){
-                        if (art.articles_id.equals(articleData.articles_id)){
-                            temp = art;
-                        }
-                    }
-                    if (temp != null)selectArt.remove(temp);
-                }
+                intent.putExtra(ArticleAdActivity.ART_DATA,article);
+                intent.setClass(getApplication(),ArticleAdActivity.class);
+                startActivity(intent);
             }
-
-            @Override
-            public void onArticleClick(int position, ArticleData articleData) {
-                Intent intent = new Intent();
-                intent.setClass(context, ArticleAdActivity.class);
-                intent.putExtra(ArticleAdActivity.ART_DATA,articleData);
-                intent.putExtra(FROM_ART_SEARCH,true);
-                intent.putExtra(ArticleAdActivity.SENDING_ART_NUM,selectArt.size());
-                startActivityForResult(intent,ArticleAdActivity.ART_DETAIL_CODE);
-            }
-        });*/
+        });
     }
 
     //保存搜索历史
