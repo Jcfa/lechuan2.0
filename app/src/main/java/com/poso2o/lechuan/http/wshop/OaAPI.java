@@ -31,4 +31,7 @@ public class OaAPI {
 
     //公众号服务信息
     public static final String OA_SERVICE_INFO_URL = V_MAIN_URL +  "AdOperationModeManage.htm?Act=getOperationMode";
+
+    //默认的模板列表
+    public static final String OA_DEFAULT_TEMPLATE = V_MAIN_URL + "TemplateAdManage.htm?Act=myADList";
 }

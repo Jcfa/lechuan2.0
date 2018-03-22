@@ -11,7 +11,7 @@ public class Article implements Serializable, Cloneable {
     /**
      * 资讯ID
      */
-    public long articles_id = 0L;
+    public String articles_id = "";
 
     /**
      * 类型:1=时尚 2=美食 3=健康 99=自编文章

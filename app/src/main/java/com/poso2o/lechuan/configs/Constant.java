@@ -30,6 +30,8 @@ public interface Constant {
 
     String TYPE = "type";
 
+    int SELF_ARTICLE = 99;
+
     /**
      * 添加商品是否缓存
      */

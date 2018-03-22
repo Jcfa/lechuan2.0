@@ -135,11 +135,12 @@ public class OAArticleListAdapter extends BaseAdapter<OAArticleListAdapter.Artic
             @Override
             public void onClick(View v) {
                 if (manager.findSelectData(item) == null) {
-                    manager.addSelectData(item);
+                    if (manager.addSelectData(context,item))
+                        notifyDataSetChanged();
                 } else {
                     manager.removeSelectData(item);
+                    notifyDataSetChanged();
                 }
-                notifyDataSetChanged();
             }
         });
     }

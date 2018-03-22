@@ -19,6 +19,7 @@ import com.poso2o.lechuan.fragment.oa.OASetupFragment;
 import com.poso2o.lechuan.fragment.oa.OaServiceInfoFragment;
 import com.poso2o.lechuan.fragment.oa.OaSetModelFragment;
 import com.poso2o.lechuan.fragment.oa.PublishDraftFragment;
+import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 import static android.view.View.GONE;
@@ -50,6 +51,11 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
      * 底部按钮：资讯，发布，设置
      */
     private TextView oa_article, oa_publish, oa_setup;
+
+    /**
+     * 发布文章的数量
+     */
+    private TextView oa_publish_num;
 
     /**
      * 标题栏按钮：搜索，筛选
@@ -109,6 +115,8 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
 
         oa_article_search = findView(R.id.oa_article_search);
         oa_article_filtrate = findView(R.id.oa_article_filtrate);
+
+        oa_publish_num = findView(R.id.oa_publish_num);
 
         oa_article = findView(R.id.oa_article);
         oa_publish = findView(R.id.oa_publish);
@@ -284,6 +292,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
      * 点击资讯
      */
     private void clickArticle(){
+        viewType = 0;
         if (!oaArticleFragment.isVisible()) {
             oa_title_tag.setVisibility(GONE);
             oa_article_search.setVisibility(VISIBLE);
@@ -299,6 +308,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
      */
     private void clickPublish(){
         viewType = 1;
+        setArtNum();
         if (!oaPublishFragment.isVisible()) {
             oa_title_tag.setVisibility(VISIBLE);
             oa_article_search.setVisibility(GONE);
@@ -362,7 +372,11 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onEvent(EventBean event) {
         super.onEvent(event);
-        if (event.code == EventBean.CODE_TO_COLLECT_LIST)toSelectArt();
+        if (event.code == EventBean.CODE_TO_COLLECT_LIST){
+            toSelectArt();
+        }else if (event.code == EventBean.CODE_ART_NUM_CHANGE){
+            setArtNum();
+        }
     }
 
     //是否还有公众号服务
@@ -390,5 +404,16 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     private void setSearchVisible(int visible){
         oa_article_search.setVisibility(visible);
         oa_article_filtrate.setVisibility(visible);
+    }
+
+    //设置文章数
+    private void setArtNum(){
+        int num = ArticleDataManager.getInstance().getSelectData().size();
+        if (num == 0 || viewType == 1){
+            oa_publish_num.setVisibility(GONE);
+        }else {
+            oa_publish_num.setVisibility(VISIBLE);
+            oa_publish_num.setText(num + "");
+        }
     }
 }

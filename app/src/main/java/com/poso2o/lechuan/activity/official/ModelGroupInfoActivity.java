@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.oa.FreeEditActivity;
 import com.poso2o.lechuan.adapter.ItemOaGroupModelAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.oa.TemplateBean;
@@ -26,6 +27,8 @@ import com.poso2o.lechuan.util.NumberFormatUtils;
 public class ModelGroupInfoActivity extends BaseActivity {
 
     public static final String TEMPLATE_GROUP_DATA = "template_group";
+    //是否为选择模板页面
+    public static final String TAG_CHANGE_TEMPLATE = "change_template";
 
     //返回
     private ImageView model_groups_back;
@@ -37,6 +40,8 @@ public class ModelGroupInfoActivity extends BaseActivity {
     private ItemOaGroupModelAdapter modelAdapter;
 
     private TemplateGroup templateGroup;
+    //是否为选择模板页面
+    private boolean select_template = false;
 
     @Override
     protected int getLayoutResId() {
@@ -82,6 +87,7 @@ public class ModelGroupInfoActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)return;
         templateGroup = (TemplateGroup) bundle.get(TEMPLATE_GROUP_DATA);
+        select_template = bundle.getBoolean(TAG_CHANGE_TEMPLATE,false);
         if (templateGroup == null)return;
         template_group_name.setText(templateGroup.group_name);
         modelAdapter.notifyData(templateGroup.templates);
@@ -89,10 +95,17 @@ public class ModelGroupInfoActivity extends BaseActivity {
 
     //模板详情跳转
     private void goToDetail(TemplateBean templateBean){
-        Intent intent = new Intent();
-        intent.setClass(this,ModelEditActivity.class);
-        intent.putExtra(ModelEditActivity.TEMPLATE_INFO,templateBean);
-        intent.putExtra(ModelEditActivity.TEMPLATE_GROUP_ID,templateGroup.group_id);
-        startActivity(intent);
+        if (select_template){
+            Intent intent = new Intent();
+            intent.putExtra(FreeEditActivity.DATA_TEMPLATE,templateBean);
+            setResult(RESULT_OK,intent);
+            finish();
+        }else {
+            Intent intent = new Intent();
+            intent.setClass(this,ModelEditActivity.class);
+            intent.putExtra(ModelEditActivity.TEMPLATE_INFO,templateBean);
+            intent.putExtra(ModelEditActivity.TEMPLATE_GROUP_ID,templateGroup.group_id);
+            startActivity(intent);
+        }
     }
 }

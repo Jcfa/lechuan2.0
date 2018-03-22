@@ -212,7 +212,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         if (bundle == null) return;
         article = (Article) bundle.get(ART_DATA);
         renewals_id = (String) bundle.get(RENEWALS_ID);
-        from_publish = bundle.getBoolean(FROM_PUBLISH_LIST,false);
+        from_publish = !(ArticleDataManager.getInstance().findSelectData(article) == null);
         if (from_publish)add_to_publish.setText("保存");
         if (TextUtil.isNotEmpty(renewals_id))add_to_renewals.setText("保存草稿");
         final String str = article.content;
@@ -430,8 +430,8 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                ArticleDataManager.getInstance().addSelectData(article);
-                ArticleAdActivity.this.finish();
+                if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                    ArticleAdActivity.this.finish();
             }
 
             @Override
@@ -485,15 +485,16 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                     article.content = html;
                     if (TextUtil.isNotEmpty(renewals_id)){
                         //稿件详情，先删除稿件，然后添加到发布列表
-                        delRenewals();
+                        if (ArticleDataManager.getInstance().addAble(getApplication(),article))
+                            delRenewals();
                     }else if (from_publish){
                         //发布列表文章详情，保存新的文章内容
                         ArticleDataManager.getInstance().updateSelectData(article);
                         ArticleAdActivity.this.finish();
                     }else {
                         //资讯列表的文章详情，添加到发布列表
-                        ArticleDataManager.getInstance().addSelectData(article);
-                        ArticleAdActivity.this.finish();
+                        if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                            ArticleAdActivity.this.finish();
                     }
                 }
             }

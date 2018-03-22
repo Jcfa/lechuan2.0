@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.image.SelectImagesActivity;
+import com.poso2o.lechuan.activity.official.ModelGroupInfoActivity;
 import com.poso2o.lechuan.activity.realshop.AdGoodsActivity;
 import com.poso2o.lechuan.activity.realshop.ArtPreviewActivity;
 import com.poso2o.lechuan.adapter.ADTemplateAdapter;
@@ -24,9 +25,11 @@ import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
+import com.poso2o.lechuan.bean.oa.DefaultTemplates;
 import com.poso2o.lechuan.bean.oa.TemplateBean;
 import com.poso2o.lechuan.bean.oa.TemplateGroup;
 import com.poso2o.lechuan.bean.oa.TemplateGroups;
+import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
@@ -34,6 +37,7 @@ import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
+import com.poso2o.lechuan.util.RandomStringUtil;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
@@ -51,6 +55,11 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
     private static final int CODE_OPEN_PIC = 1301;
     //选择商品
     private static final int CODE_SELECT_GOODS = 1302;
+    //切换模板
+    private static final int CODE_CHANGE_MODEL = 1303;
+
+    //选择模板数据
+    public static final String DATA_TEMPLATE = "select_tempate";
 
     private View free_edit_view;
 
@@ -87,6 +96,8 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
     private ADTemplateAdapter mTemplateAdapter;
     private ArrayList<TemplateGroup> templatesGroup;
     private ArrayList<TemplateBean> templates = new ArrayList<>();
+    //当前选择的模板
+    private TemplateBean templateBean;
 
     @Override
     protected int getLayoutResId() {
@@ -134,6 +145,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
         mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>() {
             @Override
             public void onItemClick(TemplateBean item) {
+                templateBean = item;
                 select_template_name.setText(item.template_name);
                 webview_edit.loadUrl("javascript:emptyAdTemplate()");
                 webview_edit.loadUrl("javascript:appendBase64HTML('" + item.content + "')");
@@ -181,6 +193,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.oa_template_change:
                 //切换模板
+                toChangeTemplate();
                 break;
             case R.id.oa_template_goods:
                 //选择插入商品
@@ -225,6 +238,14 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
 
                     }
                     break;
+                case CODE_CHANGE_MODEL:
+                    templateBean = (TemplateBean) data.getExtras().get(DATA_TEMPLATE);
+                    if (templateBean != null){
+                        select_template_name.setText(templateBean.template_name);
+                        webview_edit.loadUrl("javascript:emptyAdTemplate()");
+                        webview_edit.loadUrl("javascript:appendBase64HTML('" + templateBean.content + "')");
+                    }
+                    break;
             }
         }
     }
@@ -262,8 +283,8 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                     addToRenewals(article);
                 }else if (type == 2){
                     article.content = html;
-                    ArticleDataManager.getInstance().addSelectData(article);
-                    FreeEditActivity.this.finish();
+                    if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                        FreeEditActivity.this.finish();
                 }
             }
         });
@@ -300,7 +321,8 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                                 return;
                             }else {
                                 article.pic = s.substring(1,s.length()-1);
-                                article.articles_type = 99;//99代表自编
+                                article.articles_type = Constant.SELF_ARTICLE;//99代表自编
+                                article.articles_id = RandomStringUtil.getOrderId(3,"abcdefghijklmnopqrstuvwxyz");
                                 getHtml(type,article);
                             }
                         }
@@ -371,17 +393,13 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
         recyclerView_template.setAdapter(mTemplateAdapter);
 
         showLoading();
-        ModelGroupManager.getModelGroupManager().modelGroups(this, new IRequestCallBack() {
+        ModelGroupManager.getModelGroupManager().defaultTemplates(this, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                TemplateGroups templateGroups = (TemplateGroups) result;
-                if (templateGroups != null && templateGroups.list != null) {
-                    templatesGroup = templateGroups.list;
-                    if (templatesGroup == null)return;
-                    for (TemplateGroup templateGroup : templatesGroup){
-                        templates.addAll(templateGroup.templates);
-                    }
+                DefaultTemplates defaultTemplates = (DefaultTemplates) result;
+                if (defaultTemplates != null && defaultTemplates.list != null) {
+                    templates = defaultTemplates.list;
                     mTemplateAdapter.notifyDataSetChanged(templates);
                 }
             }
@@ -389,6 +407,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
+                Toast.show(getApplication(),msg);
             }
         });
     }
@@ -442,6 +461,37 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                 Toast.show(getApplication(),msg);
             }
         });
+    }
+
+    //跳转切换模板
+    private void toChangeTemplate(){
+        if (templateBean == null){
+            Toast.show(getApplication(),"您当前还没选择模板");
+            return;
+        }
+        TemplateGroup group = ModelGroupManager.getModelGroupManager().findTemplateGroup(templateBean.group_id);
+        if (group == null){
+            showLoading();
+            ModelGroupManager.getModelGroupManager().modelGroups(this, new IRequestCallBack() {
+                @Override
+                public void onResult(int tag, Object result) {
+                    dismissLoading();
+                    toChangeTemplate();
+                }
+
+                @Override
+                public void onFailed(int tag, String msg) {
+                    dismissLoading();
+                    Toast.show(getApplication(),"获取数据失败");
+                }
+            });
+        }else {
+            Intent intent = new Intent();
+            intent.setClass(getApplication(), ModelGroupInfoActivity.class);
+            intent.putExtra(ModelGroupInfoActivity.TEMPLATE_GROUP_DATA,group);
+            intent.putExtra(ModelGroupInfoActivity.TAG_CHANGE_TEMPLATE,true);
+            startActivityForResult(intent,CODE_CHANGE_MODEL);
+        }
     }
 
 }
