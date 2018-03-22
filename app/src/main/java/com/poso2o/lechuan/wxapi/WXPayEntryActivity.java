@@ -48,17 +48,19 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             if (resp.errCode == 0) {
                 Toast.show(this, "微信支付成功！");
 
-                Intent i=new Intent();
+                Intent i = new Intent();
                 i.setAction(Constant.BROADCAST_WEIXIN_TOP_UP);
                 sendBroadcast(i);
-               // BroadcastManager.sendBroadcast(Constant.BROADCAST_WEIXIN_TOP_UP);
-                EventBus.getDefault().post(new PayEvent(1,PayEvent.WEIXIN_TYPE));
+                // BroadcastManager.sendBroadcast(Constant.BROADCAST_WEIXIN_TOP_UP);
+                EventBus.getDefault().post(new PayEvent(1, PayEvent.WEIXIN_TYPE));
             } else if (resp.errCode == -1) {
 //                Toast.show(this, R.string.toast_top_up_fail);
                 Toast.show(this, "微信支付失败！");
-
-
-//                EventBus.getDefault().post(new PayEvent(0,PayEvent.WEIXIN_TYPE));
+                EventBus.getDefault().post(new PayEvent(0,PayEvent.WEIXIN_TYPE));
+            } else if (resp.errCode == -2) {
+//                Toast.show(this, R.string.toast_top_up_fail);
+                Toast.show(this, "用户取消支付！");
+                EventBus.getDefault().post(new PayEvent(2,PayEvent.WEIXIN_TYPE));
             }
         }
         finish();

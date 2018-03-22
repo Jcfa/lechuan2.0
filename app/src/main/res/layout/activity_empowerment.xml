@@ -199,7 +199,7 @@
                 android:gravity="center"
                 android:text="步骤一："
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -208,7 +208,7 @@
                 android:gravity="center"
                 android:text="开通公众号"
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -230,12 +230,12 @@
                 android:gravity="center"
                 android:text="未开通"
                 android:textColor="@color/placeholder_30"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@mipmap/icon_arrow_right_32"/>
+                android:src="@mipmap/icon_arrow_right_32" />
 
         </LinearLayout>
 
