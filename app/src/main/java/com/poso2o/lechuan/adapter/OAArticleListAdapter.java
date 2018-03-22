@@ -178,8 +178,8 @@ public class OAArticleListAdapter extends BaseAdapter<OAArticleListAdapter.Artic
                 } else {
                     item.collectnums--;
                     if (articlesType == ArticleDataManager.COLLECT) {
-                        data.remove(position);
-                        notifyItemRemoved(position);
+                        data.remove(item);
+                        notifyDataSetChanged();
                     } else {
                         tv_collect.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_collect, 0, 0, 0);
                         tv_collect.setText(Long.toString(item.collectnums));

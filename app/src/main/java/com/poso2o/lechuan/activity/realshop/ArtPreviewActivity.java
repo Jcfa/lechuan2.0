@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.articledata.ArticleData;
 import com.poso2o.lechuan.tool.print.Print;
 
@@ -49,13 +50,10 @@ public class ArtPreviewActivity extends BaseActivity {
         art_preview_web.loadUrl("file:///android_asset/android_web_view.html");
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) return;
-        ArticleData articleData = (ArticleData) bundle.get(ArticleAdActivity.ART_DATA);
-        if (articleData == null) return;
-        final String str = articleData.content;
+        final String str = (String) bundle.get(ArticleAdActivity.ART_DATA);
         art_preview_web.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                Print.println("新文章预览：" + str);
                 if (newProgress == 100) art_preview_web.loadUrl("javascript:setBODYHTML('" + str + "')");
             }
         });

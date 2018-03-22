@@ -16,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -37,11 +38,14 @@ import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
+import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
+import com.poso2o.lechuan.view.LazyScrollView;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -65,15 +69,20 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
     public static final int AD_GOODS_CODE = 1310;
 
     //滚动布局
-    private ScrollView scroll_layout;
+    private LazyScrollView scroll_layout;
     //返回
     private ImageView art_ad_back;
     //预览
     private TextView article_detail_preview;
 
+    //滑动到底部悬浮键
+    private ImageView art_to_bottom;
+
     //文章详情
     private WebView art_detail_web;
 
+    //广告布局
+    private LinearLayout add_ad_layout;
     //模板名称
     private TextView ad_model_name;
     //展开收起模板
@@ -120,7 +129,11 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
 
         article_detail_preview = findView(R.id.article_detail_preview);
 
+        art_to_bottom = findView(R.id.art_to_bottom);
+
         art_detail_web = findView(R.id.art_detail_web);
+
+        add_ad_layout = findView(R.id.add_ad_layout);
 
         ad_model_name = findView(R.id.ad_model_name);
 
@@ -146,6 +159,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         show_ad_models.setOnClickListener(this);
         add_to_renewals.setOnClickListener(this);
         add_to_publish.setOnClickListener(this);
+        art_to_bottom.setOnClickListener(this);
 
         mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>(){
             @Override
@@ -154,6 +168,17 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 String str = item.content;
                 art_detail_web.loadUrl("javascript:emptyAdTemplate()");
                 art_detail_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
+            }
+        });
+
+        scroll_layout.setOnScrollListener(new LazyScrollView.OnScrollListener() {
+            @Override
+            public void onScroll(int l, int t, int oldl, int oldt) {
+                if (scroll_layout.getScrollY() + scroll_layout.getHeight() - scroll_layout.getPaddingTop() - scroll_layout.getPaddingBottom() > scroll_layout.getChildAt(0).getHeight() - 200){
+                    art_to_bottom.setVisibility(View.GONE);
+                }else {
+                    art_to_bottom.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -175,6 +200,9 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.add_to_publish:
                 getHtml(2);
+                break;
+            case R.id.art_to_bottom:
+                scroll_layout.smoothScrollTo(0,Integer.MAX_VALUE);
                 break;
         }
     }
@@ -220,6 +248,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100)
+                    art_detail_web.loadUrl("javascript:setTitleHTML('" + article.title + "')");
                     art_detail_web.loadUrl("javascript:setHTML('" + str + "')");
             }
         });

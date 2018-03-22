@@ -83,29 +83,29 @@ public class OARenewalsFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void initView() {
-        oa_set_article_num = (TextView) view.findViewById(R.id.oa_set_article_num);
-        oa_set_article_price = (TextView) view.findViewById(R.id.oa_set_article_price);
-
-        self_run_layout = (LinearLayout) view.findViewById(R.id.self_run_layout);
-        oa_self_running = (TextView) view.findViewById(R.id.oa_self_running);
-        self_running_price = (TextView) view.findViewById(R.id.self_running_price);
-        self_run_des = (TextView) view.findViewById(R.id.self_run_des);
-
-        oa_supper_running = (TextView) view.findViewById(R.id.oa_supper_running);
-        supper_running_price = (TextView) view.findViewById(R.id.supper_running_price);
-
-        oa_packages = (LinearLayout) view.findViewById(R.id.oa_packages);
-
-        oa_total_pay = (TextView) view.findViewById(R.id.oa_total_pay);
-        oa_total_formula = (TextView) view.findViewById(R.id.oa_total_formula);
-
-        buy_now = (TextView) view.findViewById(R.id.buy_now);
-        buy_now.setText("确认续费");
+//        oa_set_article_num = (TextView) view.findViewById(R.id.oa_set_article_num);
+//        oa_set_article_price = (TextView) view.findViewById(R.id.oa_set_article_price);
+//
+//        self_run_layout = (LinearLayout) view.findViewById(R.id.self_run_layout);
+//        oa_self_running = (TextView) view.findViewById(R.id.oa_self_running);
+//        self_running_price = (TextView) view.findViewById(R.id.self_running_price);
+//        self_run_des = (TextView) view.findViewById(R.id.self_run_des);
+//
+//        oa_supper_running = (TextView) view.findViewById(R.id.oa_supper_running);
+//        supper_running_price = (TextView) view.findViewById(R.id.supper_running_price);
+//
+//        oa_packages = (LinearLayout) view.findViewById(R.id.oa_packages);
+//
+//        oa_total_pay = (TextView) view.findViewById(R.id.oa_total_pay);
+//        oa_total_formula = (TextView) view.findViewById(R.id.oa_total_formula);
+//
+//        buy_now = (TextView) view.findViewById(R.id.buy_now);
+//        buy_now.setText("确认续费");
     }
 
     @Override
     public void initData() {
-        oaServiceInfo = ((OAHelperActivity)context).getOAServiceInfo();
+//        oaServiceInfo = ((OAHelperActivity)context).getOAServiceInfo();
         if (oaServiceInfo == null)return;
         if (oaServiceInfo.news_operation_mode == 1){
             self_run_layout.setVisibility(View.GONE);
@@ -130,23 +130,23 @@ public class OARenewalsFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.oa_set_article_num:
-                clickNum();
-                break;
-            case R.id.oa_self_running:
-                changeRunning(0);
-                break;
-            case R.id.oa_supper_running:
-                changeRunning(1);
-                break;
-            case R.id.buy_now:
-                Intent toBuy = new Intent();
-                toBuy.setClass(context, OaServiceActivity.class);
-                toBuy.putExtra(OaServiceActivity.OA_RUNNING_TYPE,type);
-                toBuy.putExtra(OaServiceActivity.OA_SERVICE_DATA,groupView.getSelectItem());
-                toBuy.putExtra(OaServiceActivity.OA_SERVICE_PRICE,oa_total_pay.getText().toString());
-                getActivity().startActivityForResult(toBuy,8001);
-                break;
+//            case R.id.oa_set_article_num:
+//                clickNum();
+//                break;
+//            case R.id.oa_self_running:
+//                changeRunning(0);
+//                break;
+//            case R.id.oa_supper_running:
+//                changeRunning(1);
+//                break;
+//            case R.id.buy_now:
+//                Intent toBuy = new Intent();
+//                toBuy.setClass(context, OaServiceActivity.class);
+//                toBuy.putExtra(OaServiceActivity.OA_RUNNING_TYPE,type);
+//                toBuy.putExtra(OaServiceActivity.OA_SERVICE_DATA,groupView.getSelectItem());
+//                toBuy.putExtra(OaServiceActivity.OA_SERVICE_PRICE,oa_total_pay.getText().toString());
+//                getActivity().startActivityForResult(toBuy,8001);
+//                break;
         }
     }
 
