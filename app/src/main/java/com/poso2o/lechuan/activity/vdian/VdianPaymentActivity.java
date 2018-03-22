@@ -69,44 +69,16 @@ public class VdianPaymentActivity extends BaseActivity {
         vdian_payment_money.setText(amount);
         vdian_payment_wechat.setOnClickListener(new View.OnClickListener() {
 
-        // 发起微信支付
-        EmpowermentManager.getInstance().trialTranslateDate(this, service_id, new IRequestCallBack() {
-
             @Override
-            public void onResult(int tag, final Object result) {
-                vdian_payment_wechat.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            JSONObject json = new JSONObject(result.toString());
-
-                            PayReq req = new PayReq();
-                            req.appId = json.getString("appid");
-                            req.partnerId = json.getString("partnerid");
-                            req.prepayId = json.getString("prepayid");
-                            req.nonceStr = json.getString("noncestr");
-                            req.timeStamp = json.getString("timestamp");
-                            req.packageValue = json.getString("package");
-                            req.sign = json.getString("sign");
-
-                            api.sendReq(req);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            public void onClick(View v) {
+            public void onClick(View view) {
                 weixinPayment(service_id);
             }
         });
-        // 注册广播
-        service_type = Integer.valueOf(getIntent().getStringExtra("service_type"));
     }
+        @Override
+        protected void initListener () {
 
-    @Override
-    protected void initListener() {
-    }
+        }
 
     @Override
     public void onPayResult(PayEvent event) {
@@ -124,15 +96,10 @@ public class VdianPaymentActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     private void weixinPayment(String service_id) {
         showLoading();
         // 发起微信支付
-        EmpowermentManager.getInstance().trialTranslateDate(this, service_id, new IRequestCallBack<String>() {
+        EmpowermentManager.getInstance().trialTranslateDate(activity, service_id, new IRequestCallBack<String>() {
             @Override
             public void onResult(int tag, final String result) {
                 dismissLoading();
@@ -159,16 +126,5 @@ public class VdianPaymentActivity extends BaseActivity {
                 dismissLoading();
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // 注销动态广播
-        if (service_type == 3) {
-            unregisterReceiver(fuWuReceived);
-        } else if (service_type == 4) {
-            unregisterReceiver(received);
-        }
     }
 }
