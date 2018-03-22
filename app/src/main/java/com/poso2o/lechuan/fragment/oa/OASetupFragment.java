@@ -10,17 +10,15 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.wopenaccount.ServiceOrderActivity;
+import com.poso2o.lechuan.activity.vdian.ServiceOrderingActivity;
 import com.poso2o.lechuan.adapter.OaServiceAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
 import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
 import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrialBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.layoutmanager.MyLinearLayoutManager;
-import com.poso2o.lechuan.manager.wopenaccountmanager.ServiceOrderinTrialManager;
+import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
 import com.poso2o.lechuan.util.Toast;
-import com.poso2o.lechuan.views.FullyLinearLayoutManager;
 
 /**
  * 公众号设置界面
@@ -93,7 +91,7 @@ public class OASetupFragment extends BaseFragment implements View.OnClickListene
                     i.putExtra("amount", amount);
                     i.putExtra("service_name", service_name);
                     i.putExtra("service_type",service_type);
-                    i.setClass(getContext(), ServiceOrderActivity.class);
+                    i.setClass(getContext(), ServiceOrderingActivity.class);
                     startActivity(i);
                 }
                 break;
@@ -103,8 +101,7 @@ public class OASetupFragment extends BaseFragment implements View.OnClickListene
     private void initService() {
         //获取服务的信息
         showLoading();
-        ServiceOrderinTrialManager manager = new ServiceOrderinTrialManager();
-        manager.TrialListDate((BaseActivity) getActivity(), new IRequestCallBack() {
+        EmpowermentManager.getInstance().trialListDate((BaseActivity) getActivity(), new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();

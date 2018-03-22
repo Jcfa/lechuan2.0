@@ -83,11 +83,6 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     private OASetupFragment oaSetupFragment;
 
     /**
-     * 设置界面（公众号续费）
-     */
-    private OaServiceInfoFragment oaServiceInfoFragment;
-
-    /**
      * 设置界面（模板）
      */
     private OaSetModelFragment oaSetModelFragment;
@@ -132,7 +127,6 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         oaPublishFragment = new OAPublishFragment();
         draftFragment = new PublishDraftFragment();
         oaSetupFragment = new OASetupFragment();
-        oaServiceInfoFragment = new OaServiceInfoFragment();
         oaSetModelFragment = new OaSetModelFragment();
 
         addFragment(R.id.oa_content, oaPublishFragment);
@@ -236,14 +230,6 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         tv.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
     }
 
-    public void publishFragmentChangePager(int position){
-        if(position==0){
-            findView(R.id.oa_title_publish).performClick();
-        }else{
-            findView(R.id.oa_title_draft).performClick();
-        }
-    }
-
     /**
      * 发布还是公众号
      */
@@ -325,17 +311,6 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         setTitle("");
         switchTag(oa_setup, R.mipmap.icon_oa_setup_on);
         oa_title_publish.performClick();
-        /*if (lessDay()){
-            //公众号服务没到期
-            if (!oaServiceInfoFragment.isVisible()){
-                replaceFragment(R.id.oa_content, oaServiceInfoFragment);
-            }
-        }else {
-            //公众号服务已到期
-            if (!oaSetupFragment.isVisible()) {
-                replaceFragment(R.id.oa_content, oaSetupFragment);
-            }
-        }*/
     }
 
     /**
@@ -352,7 +327,6 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         if (resultCode != RESULT_OK)return;
         if (requestCode == 8001){
             //购买服务成功
-            replaceFragment(R.id.oa_content, oaServiceInfoFragment);
         }else if (requestCode == 8002){
             //购买或续费模板成功
             if (oaSetModelFragment != null)oaSetModelFragment.requestData();
@@ -372,11 +346,6 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     //是否还有公众号服务
     private boolean lessDay(){
         return SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS) > 0 ? true : false;
-    }
-
-    //提供获取已购买的服务信息方法
-    public OaServiceInfo getOAServiceInfo(){
-        return oaServiceInfoFragment.getServiceInfo();
     }
 
     //跳转到续费页面

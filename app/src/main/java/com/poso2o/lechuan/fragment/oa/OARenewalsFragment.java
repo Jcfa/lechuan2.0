@@ -105,7 +105,7 @@ public class OARenewalsFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void initData() {
-        oaServiceInfo = ((OAHelperActivity)context).getOAServiceInfo();
+//        oaServiceInfo = ((OAHelperActivity)context).getOAServiceInfo();
         if (oaServiceInfo == null)return;
         if (oaServiceInfo.news_operation_mode == 1){
             self_run_layout.setVisibility(View.GONE);
