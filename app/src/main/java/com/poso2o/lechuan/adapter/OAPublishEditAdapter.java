@@ -136,7 +136,7 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         if (mData == null) {
             return 1;
-        } else if (mData.size() > 8) {
+        } else if (mData.size() > 7) {
             return 8;
         }
         return mData.size() + 1;

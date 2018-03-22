@@ -7,10 +7,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.login.StartActivity;
 import com.poso2o.lechuan.activity.oa.OAHelperActivity;
-import com.poso2o.lechuan.activity.realshop.OfficalAccountActivity;
-import com.poso2o.lechuan.activity.wshop.VdianActivity;
+import com.poso2o.lechuan.activity.vdian.EmpowermentActivity;
+import com.poso2o.lechuan.activity.vdian.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
 import com.poso2o.lechuan.dialog.CalendarDialog;
@@ -20,6 +19,8 @@ import com.poso2o.lechuan.util.CalendarUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
+
+import static com.poso2o.lechuan.util.SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP;
 
 /**
  * Created by ${cbf} on 2018/3/12 0012.
@@ -203,7 +204,11 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OrderInfoMainActivity.this, VdianActivity.class));
+                if (SharedPreferencesUtils.getInt(KEY_USER_HAS_WEBSHOP, 0) == 1) {
+                    startActivity(VdianActivity.class);
+                } else {
+                    startActivity(EmpowermentActivity.class);
+                }
 
             }
         });

@@ -322,7 +322,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:gravity="center|right"
-            android:text="净 利 润"
+            android:text="净利 润"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
     </LinearLayout>
