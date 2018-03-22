@@ -23,200 +23,211 @@
     <LinearLayout
         android:id="@+id/ll_order_center"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ll_order_main_time"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/orderinfo_main_bg"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:orientation="horizontal">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rl_order_sell"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:layout_marginLeft="2dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/iv_order_center_head"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignBottom="@+id/tv1"
-                android:layout_alignTop="@+id/tv_order_sell_price"
-                android:layout_marginLeft="4dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon_sale_data" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/clock_pic" />
 
-            <TextView
-                android:id="@+id/tv_order_sell_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@+id/iv_order_center_head"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="0.00"
-                android:textColor="@drawable/selector_text_report"
-                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_order_sell_price"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/iv_order_center_head"
-                android:gravity="center"
-                android:text="销售额"
-                android:textColor="@color/sbc_snippet_text"
-                android:textSize="12sp" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_order_sell_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="0.00"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="3dp"
+                    android:text="销售额"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/lineBg" />
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@color/divider" />
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/rl_order_aim"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:layout_height="60dp"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/iv_order_aim_head"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignBottom="@+id/tv2"
-                android:layout_alignTop="@+id/tv_order_aim_price"
-                android:layout_marginLeft="4dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon_target_data" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dollar_pic" />
 
-            <TextView
-                android:id="@+id/tv_order_aim_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@+id/iv_order_aim_head"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="0.000000"
-                android:textColor="@drawable/selector_text_report"
-                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_order_aim_price"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/iv_order_aim_head"
-                android:gravity="center"
-                android:text="目标额"
-                android:textColor="@color/sbc_snippet_text"
-                android:textSize="12sp" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_order_aim_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="0.0"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="2dp"
+                    android:text="目标额"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/lineBg" />
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@color/divider" />
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/rl_order_complete"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:layout_height="60dp"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/iv_order_complete_head"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignBottom="@+id/tv3"
-                android:layout_alignTop="@+id/tv_order_complete_price"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon_finish_rate" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/fangfang_pic" />
 
-            <TextView
-                android:id="@+id/tv_order_complete_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@+id/iv_order_complete_head"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="0.00"
-                android:textColor="@color/sbc_snippet_text"
-                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_order_complete_price"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/iv_order_complete_head"
-                android:gravity="center"
-                android:text="完成率"
-                android:textColor="@color/sbc_snippet_text"
-                android:textSize="12sp" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_order_complete_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="0.00"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:text="完成率"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/lineBg" />
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@color/divider" />
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/rl_order_gpm"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:layout_height="60dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/iv_order_gpm_head"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignBottom="@+id/tv4"
-                android:layout_alignTop="@+id/tv_order_gpm_price"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon_gross_profit_data" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/gross_profit_pic" />
 
-            <TextView
-                android:id="@+id/tv_order_gpm_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@+id/iv_order_gpm_head"
-                android:ellipsize="end"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:singleLine="true"
-                android:text="0.00"
-                android:textColor="@color/sbc_snippet_text"
-                android:textSize="12sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_order_gpm_price"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/iv_order_gpm_head"
-                android:gravity="center"
-                android:text="毛利润"
-                android:textColor="@color/sbc_snippet_text"
-                android:textSize="12sp" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_order_gpm_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="0.00"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:text="毛利润"
+                    android:textColor="@color/sbc_snippet_text"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
