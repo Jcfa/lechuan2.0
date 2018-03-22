@@ -11,7 +11,7 @@ public class Article implements Serializable, Cloneable {
     /**
      * 资讯ID
      */
-    public long articles_id = 0L;
+    public String articles_id = "";
 
     /**
      * 类型:1=时尚 2=美食 3=健康 99=自编文章
@@ -73,11 +73,6 @@ public class Article implements Serializable, Cloneable {
      * 资讯详情URL
      */
     public String articles_url = "";
-
-    /**
-     * 是否已添加了广告，本地字段，后台没有
-     */
-    public boolean is_ad = false;
 
     /**
      * 是否收藏

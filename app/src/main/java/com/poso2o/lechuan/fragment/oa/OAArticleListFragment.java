@@ -115,6 +115,12 @@ public class OAArticleListFragment extends BaseFragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        notifyList();
+    }
+
     public void loadData(final int pageType) {
         ArticleDataManager.getInstance().loadListData((BaseActivity) context, articlesType, "", pageType, new ArticleDataManager.OnLoadListDataCallback() {
 
@@ -137,6 +143,11 @@ public class OAArticleListFragment extends BaseFragment {
         oa_article_list_swipe.setRefreshing(false);
         oa_article_list_swipe.setRefreshing(true);
         loadData(FIRST);
+    }
+
+    //刷新本地数据
+    public void notifyList(){
+        if (oaArticleListAdapter != null)oaArticleListAdapter.notifyDataSetChanged();
     }
 
     /**

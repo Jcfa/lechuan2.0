@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/iv_order_sell_head"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:scaleType="centerCrop"
@@ -27,7 +27,8 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_order_sell_head"
             android:text="10"
-            android:textColor="@color/placeholder_70" />
+            android:textSize="12dp"
+            android:textColor="@color/color_999999" />
 
         <TextView
             android:id="@+id/tv_order_goodsName_des"
@@ -37,6 +38,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_order_sell_head"
             android:text="无规格"
+            android:textSize="12dp"
             android:textColor="@color/placeholder_70" />
 
         <TextView
@@ -47,6 +49,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_order_sell_head"
             android:text="9.00"
+            android:textSize="12dp"
             android:textColor="@color/color_FF6537" />
 
         <TextView
@@ -57,7 +60,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:text="11"
-            android:textColor="@color/placeholder_70" />
+            android:textSize="12dp"
+            android:textColor="@color/textBlack" />
     </RelativeLayout>
 
     <View

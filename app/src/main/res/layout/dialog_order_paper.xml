@@ -30,8 +30,8 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
                 android:text="敏抽"
-                android:textColor="#000"
-                android:textSize="16dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_paper_detail_price"
@@ -40,7 +40,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="2dp"
-                android:text="1050 成本:1050.00"
+                android:text="0.00 成本:0.00"
                 android:textColor="#c74825" />
 
             <ImageView
@@ -71,8 +71,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="规格"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_public_second"
@@ -83,8 +83,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="期初"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_public_thrid"
@@ -95,8 +95,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="售出"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_public_fourth"
@@ -107,8 +107,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="库存"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_public_fifth"
@@ -119,8 +119,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="成本价格"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
     </LinearLayout>
 
     <View
@@ -161,8 +161,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="合计"
-                android:textColor="@color/grgray"
-                android:textSize="12dp" />
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tv_qchu"
@@ -173,7 +173,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/grgray"
+                android:textColor="@color/color_999999"
                 android:textSize="12dp" />
 
             <TextView
@@ -185,7 +185,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/grgray"
+                android:textColor="@color/color_999999"
                 android:textSize="12dp" />
 
             <TextView
@@ -197,7 +197,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/grgray"
+                android:textColor="@color/color_999999"
                 android:textSize="12dp" />
 
             <TextView
@@ -209,7 +209,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="0.00"
-                android:textColor="@color/grgray"
+                android:textColor="@color/color_999999"
                 android:textSize="12dp" />
         </LinearLayout>
 

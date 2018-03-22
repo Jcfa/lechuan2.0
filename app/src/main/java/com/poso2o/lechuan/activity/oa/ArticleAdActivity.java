@@ -107,9 +107,6 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<TemplateGroup> templatesGroup;
     private ArrayList<TemplateBean> templates = new ArrayList<>();
 
-    //当前广告模板id
-    private String add_ad_id = null;
-
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_article_ad;
@@ -157,7 +154,6 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 String str = item.content;
                 art_detail_web.loadUrl("javascript:emptyAdTemplate()");
                 art_detail_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
-                add_ad_id = item.template_id;
             }
         });
     }
@@ -216,7 +212,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         if (bundle == null) return;
         article = (Article) bundle.get(ART_DATA);
         renewals_id = (String) bundle.get(RENEWALS_ID);
-        from_publish = bundle.getBoolean(FROM_PUBLISH_LIST,false);
+        from_publish = !(ArticleDataManager.getInstance().findSelectData(article) == null);
         if (from_publish)add_to_publish.setText("保存");
         if (TextUtil.isNotEmpty(renewals_id))add_to_renewals.setText("保存草稿");
         final String str = article.content;
@@ -434,8 +430,8 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                ArticleDataManager.getInstance().addSelectData(article);
-                ArticleAdActivity.this.finish();
+                if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                    ArticleAdActivity.this.finish();
             }
 
             @Override
@@ -489,33 +485,20 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                     article.content = html;
                     if (TextUtil.isNotEmpty(renewals_id)){
                         //稿件详情，先删除稿件，然后添加到发布列表
-                        delRenewals();
+                        if (ArticleDataManager.getInstance().addAble(getApplication(),article))
+                            delRenewals();
                     }else if (from_publish){
                         //发布列表文章详情，保存新的文章内容
                         ArticleDataManager.getInstance().updateSelectData(article);
                         ArticleAdActivity.this.finish();
                     }else {
                         //资讯列表的文章详情，添加到发布列表
-                        ArticleDataManager.getInstance().addSelectData(article);
-                        ArticleAdActivity.this.finish();
+                        if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                            ArticleAdActivity.this.finish();
                     }
                 }
             }
         });
     }
 
-    /**
-     * 判断是否已添加了广告
-     */
-    private boolean isAddAD(){
-        art_detail_web.evaluateJavascript("javascript:getTemplateExist('" + add_ad_id + "')", new ValueCallback<String>() {
-            @Override
-            public void onReceiveValue(String s) {
-                if (s.equals("0")){
-                    add_ad_id = null;
-                }
-            }
-        });
-        return add_ad_id == null;
-    }
 }

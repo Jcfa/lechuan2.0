@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,6 +46,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
     private RecyclerView rlvDialog;
     private TextView tv_public_frist, tv_public_second, tv_public_thrid, tv_public_fourth, tv_public_fifth;
     private TextView tvTotalshouc, tvTotalKc, tvTotalPrice;
+    private TextView tvQchu;
 
     public OrderPaperDetailDialog(Context context) {
         super(context);
@@ -67,7 +69,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
         tv_public_thrid = (TextView) findViewById(R.id.tv_public_thrid);
         tv_public_fourth = (TextView) findViewById(R.id.tv_public_fourth);
         tv_public_fifth = (TextView) findViewById(R.id.tv_public_fifth);
-
+        tvQchu = (TextView) findViewById(R.id.tv_qchu);
         rlvDialog = (RecyclerView) findViewById(R.id.rlv_dalog);
         ivClose = (ImageView) findViewById(R.id.iv_paper_click_close);
 
@@ -175,8 +177,8 @@ public class OrderPaperDetailDialog extends BaseDialog {
                     BigDecimal bg2 = new BigDecimal(income);
                     BigDecimal bg3 = new BigDecimal(spend);
                     double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    double value2 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    double value3 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                     tvPrice.setText("净利润" + value + "收入 " + value2 + " 支出 " + value3);
                     OrderMothsDetailAdapter adapter = new OrderMothsDetailAdapter(detailBean.getList(), type);
                     rlvDialog.setAdapter(adapter);
@@ -200,6 +202,8 @@ public class OrderPaperDetailDialog extends BaseDialog {
             tv_public_fourth.setText("数量");
             tv_public_fifth.setText("成交额");
             rl_member_vis.setVisibility(View.VISIBLE);
+            tvTotalshouc.setVisibility(View.INVISIBLE);
+            tvQchu.setVisibility(View.GONE);
             OrderPaperDetailManager.getOrderInfo().orderMemberDetailApi((BaseActivity) context, guid, new IRequestCallBack<OrderMemberDetailBean>() {
                 @Override
                 public void onResult(int tag, OrderMemberDetailBean memberDetailBean) {

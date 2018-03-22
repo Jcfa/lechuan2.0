@@ -19,6 +19,7 @@
 
         <include layout="@layout/layout_orderinfo_public" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl"
         android:layout_width="match_parent"
@@ -35,7 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="排名" />
+            android:text="排名"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_order_yyy"
@@ -44,7 +47,9 @@
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_order_name"
-            android:text="营业员" />
+            android:text="营业员"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
 
         <TextView
@@ -53,7 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="150dp"
-            android:text="库存最高" />
+            android:text="库存最高"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <ImageView
             android:id="@+id/iv_down"
@@ -70,7 +77,9 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/tv_order_zm"
-            android:text="任务" />
+            android:text="任务"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_order_zm"
@@ -78,7 +87,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
-            android:text="达标最高" />
+            android:text="达标最高"
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
     </RelativeLayout>
 
     <View
@@ -113,8 +124,8 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="合计销售额:0.0"
-            android:textColor="#121111"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_sell_total_task"
@@ -125,7 +136,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="合计任务额:0.0"
-            android:textColor="#121111"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
     </RelativeLayout>
 </RelativeLayout>

@@ -34,7 +34,7 @@ public class OrderInfoManager extends BaseManager {
         return infoManager;
     }
 
-    public void myOrderInfo(BaseActivity activity, String beginTime, String endTime, final IRequestCallBack callBack) {
+    public void myOrderInfo(BaseActivity activity, String beginTime, String endTime, String currPage, final IRequestCallBack callBack) {
         Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_INFO);
         request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
@@ -42,6 +42,7 @@ public class OrderInfoManager extends BaseManager {
         request.add("czy", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("begin_date", beginTime);
         request.add("close_date", endTime);
+        request.add("currPage", currPage);
         activity.request(ORDER_LIST, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
@@ -77,13 +78,13 @@ public class OrderInfoManager extends BaseManager {
                 if (response.startsWith("[") && response.endsWith("]")) {
                     response = "{\nlist\n:" + response + "}";
                 }
-                OrderInfoEntityDetailBean detailBean=new Gson().fromJson(response,OrderInfoEntityDetailBean.class);
-                callBack.onResult(ORDER_LIST,detailBean);
+                OrderInfoEntityDetailBean detailBean = new Gson().fromJson(response, OrderInfoEntityDetailBean.class);
+                callBack.onResult(ORDER_LIST, detailBean);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                callBack.onFailed(ORDER_LIST,response);
+                callBack.onFailed(ORDER_LIST, response);
 
             }
         }, true, true);

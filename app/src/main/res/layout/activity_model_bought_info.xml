@@ -22,17 +22,57 @@
             android:layout_width="56dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="70dp"
             android:text="预览"
             android:gravity="center"
             android:background="@drawable/selector_frame_circular_bead"
             android:textColor="@color/color_00BCB4"
             android:textSize="@dimen/z_text_normal"/>
 
+        <TextView
+            android:id="@+id/model_edit_save"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:text="保存"
+            android:textColor="@android:color/white"
+            android:background="@drawable/selector_sign_btn"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
     </FrameLayout>
 
     <View
         style="@style/under_line_C7C7C7"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/set_default_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选作默认模板"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/textBlack"
+            android:gravity="center_vertical"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@mipmap/item_no_select"
+            android:textSize="@dimen/z_text_small"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/z_text_little"
+            android:textColor="@color/color_999999"
+            android:text="（勾选后，将显示在文章广告模板中。）"/>
+
+    </LinearLayout>
 
     <WebView
         android:id="@+id/webview"
@@ -54,7 +94,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            android:src="@mipmap/icon_model_change"/>
+            android:src="@mipmap/icon_camera_128_8a"/>
 
         <View
             android:layout_width="1dp"
@@ -83,43 +123,6 @@
             android:scaleType="centerInside"
             android:background="@drawable/selector_common"
             android:src="@mipmap/icon_photos_128_8e"/>
-
-    </LinearLayout>
-
-    <View
-        style="@style/under_line_C7C7C7"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#EFEFEF">
-
-        <TextView
-            android:id="@+id/model_edit_back"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/selector_model_back"
-            android:text="返回"/>
-
-        <TextView
-            android:id="@+id/model_edit_save"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="保存"
-            android:textColor="@android:color/white"
-            android:background="@drawable/selector_sign_btn"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"/>
 
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.manager.article;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -8,12 +9,16 @@ import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
 import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.article.ArticleBean;
-import com.poso2o.lechuan.bean.articledata.ArticleData;
+import com.poso2o.lechuan.bean.event.EventBean;
+import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.HttpAPI;
 import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
+import com.poso2o.lechuan.util.Toast;
 import com.yanzhenjie.nohttp.rest.Request;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -41,6 +46,9 @@ public class ArticleDataManager extends BaseManager {
     private final int TAG_COLLECT_ID = 122;
 
     private final int PUBLISH_ARTICLE_ID = 123;
+
+    //已添加到发布列表的选文篇数
+    private int art_num = 0;
 
     /**
      * 公众号助手选中的数据
@@ -108,7 +116,7 @@ public class ArticleDataManager extends BaseManager {
      * @param articles_id
      * @param has_collect
      */
-    public void collect(BaseActivity baseActivity, long articles_id, int has_collect, final OnCollectCallback onCollectCallback) {
+    public void collect(BaseActivity baseActivity, String articles_id, int has_collect, final OnCollectCallback onCollectCallback) {
         Request<String> request;
         if (has_collect == 1) {
             request = getStringRequest(HttpAPI.ARTICLES_UNCOLLECT_API);
@@ -145,13 +153,50 @@ public class ArticleDataManager extends BaseManager {
      */
     private void removeSelectData(){
         oaSelectData.clear();
+        art_num = 0;
+        EventBean bean = new EventBean(EventBean.CODE_ART_NUM_CHANGE);
+        EventBus.getDefault().post(bean);
     }
 
     /**
      * 添加选择数据
      */
-    public void addSelectData(Article article) {
-        oaSelectData.add(article);
+    public boolean addSelectData(Context context,Article article) {
+        boolean add = addAble(context,article);
+        if (add){
+            oaSelectData.add(article);
+            if (article.articles_type != Constant.SELF_ARTICLE){
+                art_num++;
+                EventBean bean = new EventBean(EventBean.CODE_ART_NUM_CHANGE);
+                EventBus.getDefault().post(bean);
+            }
+        }
+        return add;
+    }
+
+    /**
+     * 是否能继续添加文章
+     * @param article
+     * @return
+     */
+    public boolean addAble(Context context,Article article){
+        boolean add = true;
+        if (oaSelectData.size() == 8){
+            add = false;
+            Toast.show(context,"最多只能发布8篇文章");
+        }else {
+            if (article.articles_type != Constant.SELF_ARTICLE){
+                if (art_num == 3){
+                    add = false;
+                    Toast.show(context,"最多只能选3篇文章");
+                }else {
+                    add = true;
+                }
+            }else {
+                add = true;
+            }
+        }
+        return add;
     }
 
     /**
@@ -161,6 +206,11 @@ public class ArticleDataManager extends BaseManager {
         article = findSelectData(article);
         if (article != null) {
             oaSelectData.remove(article);
+            if (article.articles_type != Constant.SELF_ARTICLE){
+                art_num--;
+                EventBean bean = new EventBean(EventBean.CODE_ART_NUM_CHANGE);
+                EventBus.getDefault().post(bean);
+            }
         }
     }
 
@@ -180,7 +230,7 @@ public class ArticleDataManager extends BaseManager {
      */
     public Article findSelectData(Article article) {
         for (Article item : oaSelectData) {
-            if (item.articles_id == article.articles_id) {
+            if (item.articles_id.equals(article.articles_id)) {
                 return item;
             }
         }

@@ -55,4 +55,29 @@ public class TemplateDataManager extends BaseManager {
             }
         }, false, false);
     }
+
+    /**
+     * 设置默认模板
+     * @param baseActivity
+     * @param template_id
+     * @param iRequestCallBack
+     */
+    public void setDefaultModel(BaseActivity baseActivity,String group_id,String template_id,final IRequestCallBack iRequestCallBack){
+        Request<String> request = getStringRequest(HttpAPI.OA_SET_DEFAULT_MODEL);
+        defaultParamNoShop(request);
+        request.add("template_id",template_id);
+        request.add("group_id",group_id);
+
+        baseActivity.request(001, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                iRequestCallBack.onResult(001,response);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                iRequestCallBack.onFailed(001,response);
+            }
+        },true,true);
+    }
 }

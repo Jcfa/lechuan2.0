@@ -18,7 +18,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/calendar_icon" />
+            android:src="@mipmap/date_icon" />
 
         <TextView
             android:id="@+id/tv_order_info_bgin_time"
@@ -27,8 +27,9 @@
             android:layout_marginLeft="5dp"
             android:clickable="true"
             android:gravity="center"
+            android:textSize="14dp"
             android:text="02-12"
-            android:textColor="#000" />
+            android:textColor="@color/textBlack" />
 
         <TextView
             android:id="@+id/tv_visibility"
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="至"
-            android:textColor="@color/color_262626" />
+            android:textSize="14dp"
+            android:textColor="@color/textBlack" />
 
         <TextView
             android:id="@+id/tv_order_end_time"
@@ -46,7 +48,8 @@
             android:clickable="true"
             android:gravity="center"
             android:text="03-11"
-            android:textColor="#000" />
+            android:textSize="14dp"
+            android:textColor="@color/textBlack" />
 
         <ImageView
             android:id="@+id/iv_order_time_visibility"

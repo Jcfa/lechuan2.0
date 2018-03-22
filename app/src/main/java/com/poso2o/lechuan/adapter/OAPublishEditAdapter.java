@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,17 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
             final Article article = mData.get(position);
             Glide.with(context).load(article.pic).thumbnail(0.1f).into(articleHolder.article_image);
             articleHolder.article_title.setText(article.title);
+
+            if (article.content.contains("poso2o_editor_ad_template_item")){
+                Drawable leftDrawable = context.getResources().getDrawable(R.mipmap.icon_ad_selected_blue_48);
+                leftDrawable.setBounds(0, 0, leftDrawable.getMinimumWidth(), leftDrawable.getMinimumHeight());
+                articleHolder.article_add.setCompoundDrawables(leftDrawable, null, null, null);
+            }else {
+                Drawable leftDrawable = context.getResources().getDrawable(R.mipmap.add_red_icon);
+                leftDrawable.setBounds(0, 0, leftDrawable.getMinimumWidth(), leftDrawable.getMinimumHeight());
+                articleHolder.article_add.setCompoundDrawables(leftDrawable, null, null, null);
+            }
+
             articleHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,9 +101,9 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
             articleHolder.article_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (oaPublishListener != null) {
-                        oaPublishListener.onItemAddAdvertised(position, article);
-                    }
+//                    if (oaPublishListener != null) {
+//                        oaPublishListener.onItemAddAdvertised(position, article);
+//                    }
                 }
             });
             articleHolder.article_close.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +136,7 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         if (mData == null) {
             return 1;
-        } else if (mData.size() > 8) {
+        } else if (mData.size() > 7) {
             return 8;
         }
         return mData.size() + 1;

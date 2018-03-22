@@ -22,8 +22,8 @@
             android:layout_marginLeft="2dp"
             android:layout_weight="1"
             android:text="序号"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="0dp"
@@ -32,8 +32,8 @@
             android:layout_marginLeft="2dp"
             android:layout_weight="1"
             android:text="姓名"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="0dp"
@@ -43,8 +43,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="成交数"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <ImageView
             android:layout_width="15dp"
@@ -62,8 +62,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="成交额"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <ImageView
             android:layout_width="15dp"
@@ -80,8 +80,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="余额"
-            android:textColor="@color/grgray"
-            android:textSize="16dp" />
+            android:textColor="@color/textBlack"
+            android:textSize="14dp" />
 
         <ImageView
             android:layout_width="15dp"

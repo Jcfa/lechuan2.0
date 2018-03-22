@@ -89,10 +89,10 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
         mFragmentlist.add(fashianListFragment);
         oaArticleAdapter = new OAArticleAdapter(getChildFragmentManager());
         oa_article_content.setAdapter(oaArticleAdapter);
-        oa_article_content.setCurrentItem(1);
-        switchTextView(oa_article_collect);
+        oa_article_content.setCurrentItem(2);
+        switchTextView(oa_article_fashion);
 
-        selectFragment = collectListFragment;
+        selectFragment = fashianListFragment;
     }
 
     @Override
@@ -112,9 +112,11 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
                         break;
                     case 1:
                         switchTextView(oa_article_collect);
+                        collectListFragment.notifyList();
                         break;
                     case 2:
                         switchTextView(oa_article_fashion);
+                        fashianListFragment.notifyList();
                         break;
                 }
                 selectFragment = oaArticleAdapter.getItem(position);
