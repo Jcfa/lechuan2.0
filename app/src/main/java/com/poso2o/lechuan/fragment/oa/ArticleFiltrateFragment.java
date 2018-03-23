@@ -8,9 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.adapter.ArticleFiltrateAdapter;
+import com.poso2o.lechuan.adapter.ArticleLabelAdapter;
+import com.poso2o.lechuan.adapter.ArticleTypeAdapter;
+import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
+import com.poso2o.lechuan.bean.oa.OaTypeAndLables;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.manager.oa.OaTypesManager;
 import com.poso2o.lechuan.util.ScreenInfo;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
+import com.poso2o.lechuan.util.Toast;
 
 import java.util.ArrayList;
 
@@ -25,18 +32,20 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
      * 类型列表
      */
     private RecyclerView filtrate_type_list;
-    private ArticleFiltrateAdapter typeAdapter;
+    private ArticleTypeAdapter typeAdapter;
 
     /**
      * 标签列表
      */
     private RecyclerView filtrate_tag_list;
-    private ArticleFiltrateAdapter tagAdapter;
+    private ArticleLabelAdapter tagAdapter;
 
     /**
      * 回调
      */
     private Callback callback;
+
+    private OaTypeAndLables typeAndLables;
 
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,26 +70,32 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
     @Override
     public void initData() {
         filtrate_type_list.setLayoutManager(new GridLayoutManager(context, 3));
-        ArrayList<String> types = new ArrayList<>();
-        types.add("推荐");
-        types.add("时尚");
-        types.add("美食");
-        types.add("娱乐");
-        types.add("居家");
-        types.add("旅游");
-        typeAdapter = new ArticleFiltrateAdapter(context, types);
+        typeAdapter = new ArticleTypeAdapter(context, null);
         filtrate_type_list.setAdapter(typeAdapter);
 
         filtrate_tag_list.setLayoutManager(new GridLayoutManager(context, 3));
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("美裙");
-        tags.add("明星");
-        tags.add("打扮");
-        tags.add("早点");
-        tags.add("街拍");
-        tags.add("睫毛膏");
-        tagAdapter = new ArticleFiltrateAdapter(context, tags);
+        tagAdapter = new ArticleLabelAdapter(context, null);
         filtrate_tag_list.setAdapter(tagAdapter);
+
+        showLoading();
+        OaTypesManager.getOaTypesManager().getTypesAndLabels((BaseActivity) getActivity(), new IRequestCallBack() {
+
+            @Override
+            public void onResult(int tag, Object result) {
+                dismissLoading();
+                typeAndLables = (OaTypeAndLables) result;
+                if (typeAndLables != null){
+                    typeAdapter.notifyDataSetChanged(typeAndLables.types.list);
+                    tagAdapter.notifyDataSetChanged(typeAndLables.labels.list);
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                Toast.show(getContext(),msg);
+            }
+        });
     }
 
     @Override
@@ -93,14 +108,45 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.filtrate_reset:
-
+                SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_OA_TYPES,"");
+                SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_OA_LAYBELS,"");
+                typeAdapter = new ArticleTypeAdapter(context,typeAndLables.types.list);
+                filtrate_type_list.setAdapter(typeAdapter);
+                tagAdapter = new ArticleLabelAdapter(context, typeAndLables.labels.list);
+                filtrate_tag_list.setAdapter(tagAdapter);
                 break;
 
             case R.id.filtrate_finish:
+                saveSelect();
                 callback.onFinish();
                 hideFragment(true);
                 break;
         }
+    }
+
+    //保存选择好的类型标签
+    private void saveSelect(){
+        ArrayList<String> types = typeAdapter.getSelects();
+        String t = "";
+        for (int i = 0;i<types.size();i++){
+            if (i == types.size()){
+                t = t + types.get(i);
+            }else {
+                t = t + types.get(i) + ",";
+            }
+        }
+        SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_OA_TYPES,t);
+
+        ArrayList<String> laybels = tagAdapter.getSelects();
+        String l = "";
+        for (int i = 0;i<laybels.size();i++){
+            if (i == laybels.size()){
+                l = l + laybels.get(i);
+            }else {
+                l = l + laybels.get(i) + ",";
+            }
+        }
+        SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_OA_LAYBELS,l);
     }
 
     /**

@@ -26,7 +26,7 @@ import com.poso2o.lechuan.views.FullyLinearLayoutManager;
  * <p>
  * Edit by Zhang on 2018/02/02
  */
-public class OASetupFragment extends BaseFragment implements View.OnClickListener {
+public class OAServiceFragment extends BaseFragment implements View.OnClickListener {
 
     private View view;
 

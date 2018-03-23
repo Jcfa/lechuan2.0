@@ -14,15 +14,24 @@ import com.poso2o.lechuan.base.BaseFragment;
 import java.util.ArrayList;
 
 /**
- * 公众号发布界面
- * <p>
- * Created by Jaydon on 2018/1/26.
+ * Created by mr zhang on 2018/3/22.
  */
-public class OAPublishFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
-    private PublishEditFragment mEditFragment;
-    private PublishDraftFragment mDraftFragment;
-    private OAFragmentPagerAdapter fragmentPagerAdapter;
+
+public class OaSetFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+
     private ViewPager mViewPager;
+
+    /**
+     * 设置界面（公众号购买）
+     */
+    private OAServiceFragment oaServiceFragment;
+
+    /**
+     * 设置界面（模板）
+     */
+    private OaSetModelFragment oaSetModelFragment;
+
+    private OAFragmentPagerAdapter fragmentPagerAdapter;
 
     private int p = 0;
 
@@ -34,19 +43,18 @@ public class OAPublishFragment extends BaseFragment implements ViewPager.OnPageC
     @Override
     public void initView() {
         mViewPager = findView(R.id.viewpager);
-        mEditFragment = new PublishEditFragment();
-        mDraftFragment = new PublishDraftFragment();
-        ArrayList<BaseFragment> fragments = new ArrayList<>();
-        fragments.add(mEditFragment);
-        fragments.add(mDraftFragment);
-        fragmentPagerAdapter = new OAFragmentPagerAdapter(getChildFragmentManager(), fragments);
-        mViewPager.setAdapter(fragmentPagerAdapter);
-        mViewPager.setCurrentItem(0);
     }
 
     @Override
     public void initData() {
-
+        oaServiceFragment = new OAServiceFragment();
+        oaSetModelFragment = new OaSetModelFragment();
+        ArrayList<BaseFragment> fragments = new ArrayList<>();
+        fragments.add(oaServiceFragment);
+        fragments.add(oaSetModelFragment);
+        fragmentPagerAdapter = new OAFragmentPagerAdapter(getChildFragmentManager(), fragments);
+        mViewPager.setAdapter(fragmentPagerAdapter);
+        mViewPager.setCurrentItem(0);
     }
 
     @Override
