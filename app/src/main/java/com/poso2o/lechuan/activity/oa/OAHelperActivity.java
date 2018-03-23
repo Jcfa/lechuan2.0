@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.oa;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,14 +10,12 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.realshop.ArticleSearchActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.event.EventBean;
-import com.poso2o.lechuan.bean.oa.OaServiceInfo;
 import com.poso2o.lechuan.fragment.oa.ArticleFiltrateFragment;
 import com.poso2o.lechuan.fragment.oa.ArticleFiltrateManager;
 import com.poso2o.lechuan.fragment.oa.OAArticleFragment;
 import com.poso2o.lechuan.fragment.oa.OAPublishFragment;
 import com.poso2o.lechuan.fragment.oa.OARenewalsFragment;
-import com.poso2o.lechuan.fragment.oa.OASetupFragment;
-import com.poso2o.lechuan.fragment.oa.OaServiceInfoFragment;
+import com.poso2o.lechuan.fragment.oa.OaSetFragment;
 import com.poso2o.lechuan.fragment.oa.OaSetModelFragment;
 import com.poso2o.lechuan.fragment.oa.PublishDraftFragment;
 import com.poso2o.lechuan.manager.article.ArticleDataManager;
@@ -73,19 +72,9 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     private OAPublishFragment oaPublishFragment;
 
     /**
-     * 草稿箱
+     * 设置页
      */
-    private PublishDraftFragment draftFragment;
-
-    /**
-     * 设置界面（公众号购买）
-     */
-    private OASetupFragment oaSetupFragment;
-
-    /**
-     * 设置界面（模板）
-     */
-    private OaSetModelFragment oaSetModelFragment;
+    private OaSetFragment oaSetFragment;
 
     /**
      * 文章筛选
@@ -124,10 +113,10 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         setTitle("");
 
         oaArticleFragment = new OAArticleFragment();
+
         oaPublishFragment = new OAPublishFragment();
-        draftFragment = new PublishDraftFragment();
-        oaSetupFragment = new OASetupFragment();
-        oaSetModelFragment = new OaSetModelFragment();
+
+        oaSetFragment = new OaSetFragment();
 
         addFragment(R.id.oa_content, oaPublishFragment);
 
@@ -237,12 +226,10 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         setPublishTitle();
         if (viewType == 1){
             // 发布编辑
-            if (!oaPublishFragment.isVisible()){
-                replaceFragment(R.id.oa_content, oaPublishFragment);
-            }
+            oaPublishFragment.setFragment(0);
         }else if(viewType == 2) {
             //公众号
-            replaceFragment(R.id.oa_content, oaSetupFragment);
+            oaSetFragment.setFragment(0);
         }
     }
 
@@ -253,14 +240,10 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         setDraftTitle();
         if (viewType == 1){
             // 稿件箱
-            if (!draftFragment.isVisible()){
-                replaceFragment(R.id.oa_content, draftFragment);
-            }
+            oaPublishFragment.setFragment(1);
         }else if(viewType == 2) {
             //模板
-            if (!oaSetModelFragment.isVisible()) {
-                replaceFragment(R.id.oa_content, oaSetModelFragment);
-            }
+            oaSetFragment.setFragment(1);
         }
     }
 
@@ -294,7 +277,11 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             setTitle("");
             replaceFragment(R.id.oa_content, oaPublishFragment);
             switchTag(oa_publish, R.mipmap.icon_wechat_on);
-            oa_title_publish.performClick();
+            if (oaPublishFragment.getPosition() == 0){
+                setPublishTitle();
+            }else {
+                setDraftTitle();
+            }
         }
     }
 
@@ -303,14 +290,21 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
      */
     private void clickSet(){
         viewType = 2;
-        oa_title_tag.setVisibility(VISIBLE);
-        oa_article_search.setVisibility(GONE);
-        oa_article_filtrate.setVisibility(GONE);
-        oa_title_publish.setText("公众号");
-        oa_title_draft.setText("模板");
-        setTitle("");
-        switchTag(oa_setup, R.mipmap.icon_oa_setup_on);
-        oa_title_publish.performClick();
+        if (!oaSetFragment.isVisible()){
+            oa_title_tag.setVisibility(VISIBLE);
+            oa_article_search.setVisibility(GONE);
+            oa_article_filtrate.setVisibility(GONE);
+            oa_title_publish.setText("公众号");
+            oa_title_draft.setText("模板");
+            setTitle("");
+            replaceFragment(R.id.oa_content, oaSetFragment);
+            switchTag(oa_setup, R.mipmap.icon_oa_setup_on);
+            if (oaSetFragment.getPosition() == 0){
+                setPublishTitle();
+            }else {
+                setDraftTitle();
+            }
+        }
     }
 
     /**
@@ -329,7 +323,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             //购买服务成功
         }else if (requestCode == 8002){
             //购买或续费模板成功
-            if (oaSetModelFragment != null)oaSetModelFragment.requestData();
+//            if (oaSetModelFragment != null)oaSetModelFragment.requestData();
         }
     }
 

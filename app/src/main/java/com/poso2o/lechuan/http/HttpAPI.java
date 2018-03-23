@@ -104,6 +104,11 @@ public class HttpAPI {
     public static String ARTICLES_LIST_API = SERVER_MAIN_API + "ArticlesManage.htm?Act=query";
 
     /**
+     * 文章类型、标签
+     */
+    public static String ARTICLE_TYPE_API = SERVER_MAIN_API + "ArticlesManage.htm?Act=typesAndLabels";
+
+    /**
      * 收藏列表
      */
     public static String ARTICLES_COLLECT_LIST_API = SERVER_MAIN_API + "ArticlesManage.htm?Act=myCollect";
