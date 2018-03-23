@@ -10,6 +10,7 @@ import com.poso2o.lechuan.bean.orderInfo.OrderInfoEntityDetailBean;
 import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.http.realshop.RMemberHttpAPI;
+import com.poso2o.lechuan.util.DeviceNetUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.yanzhenjie.nohttp.rest.Request;
 
@@ -46,6 +47,7 @@ public class OrderInfoManager extends BaseManager {
         activity.request(ORDER_LIST, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
+                DeviceNetUtil.onSuccess();
                 //解决旧版接口数据结构不统一问题
                 if (response.startsWith("[") && response.endsWith("]")) {
                     response = "{\nlist\n:" + response + "}";
@@ -57,6 +59,7 @@ public class OrderInfoManager extends BaseManager {
             @Override
             public void onFailed(int what, String response) {
                 callBack.onFailed(ORDER_LIST, response);
+                DeviceNetUtil.onError();
 
             }
         }, true, true);
@@ -80,6 +83,38 @@ public class OrderInfoManager extends BaseManager {
                 }
                 OrderInfoEntityDetailBean detailBean = new Gson().fromJson(response, OrderInfoEntityDetailBean.class);
                 callBack.onResult(ORDER_LIST, detailBean);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                callBack.onFailed(ORDER_LIST, response);
+
+            }
+        }, true, true);
+    }
+
+
+    /**
+     * 根据订单id进行查询搜索
+     */
+    public void searchOrderInfo(BaseActivity activity, String beginTime, String endTime, String keywords, final IRequestCallBack callBack) {
+        Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_INFO);
+        request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        request.add("shopid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("czy", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("begin_date", beginTime);
+        request.add("close_date", endTime);
+        request.add("keywords", keywords);
+        activity.request(ORDER_LIST, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                //解决旧版接口数据结构不统一问题
+                if (response.startsWith("[") && response.endsWith("]")) {
+                    response = "{\nlist\n:" + response + "}";
+                }
+                OrderInfoBean infoBean = new Gson().fromJson(response, OrderInfoBean.class);
+                callBack.onResult(ORDER_LIST, infoBean);
             }
 
             @Override

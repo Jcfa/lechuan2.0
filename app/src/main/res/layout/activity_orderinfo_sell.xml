@@ -16,6 +16,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_defult_null"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="10dp"
@@ -72,5 +73,13 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+    <TextView
+        android:id="@+id/iv_default_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_defult_null"
+        android:gravity="center"
+        android:text="畅销商品数据为空!"
+        android:textColor="@color/textBlack"
+        android:visibility="visible" />
 </LinearLayout>

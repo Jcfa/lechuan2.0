@@ -49,6 +49,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     private int apg;
     private TextView tvTitle;
     private List<OrderInfoSellBean.DataBean> data = new ArrayList<>();
+    private TextView iv_default_null;
 
     @Override
     protected int getLayoutResId() {
@@ -65,6 +66,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
         refreshLayout = (SmartRefreshLayout) findViewById(R.id.swip_refreshlayout);
         tvTitle = (TextView) findViewById(R.id.tv_title);
+        iv_default_null = (TextView) findViewById(R.id.iv_default_null);
 
 
     }
@@ -116,7 +118,8 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
-                Toast.show(activity, msg);
+                iv_default_null.setVisibility(View.VISIBLE);
+                refreshLayout.setVisibility(View.GONE);
 
             }
         });
@@ -148,18 +151,23 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                         if (data == null || data.size() < 0) {
                             Toast.show(activity, "数据为空");
                         } else {
-                            adapter.setData(data);
+                            if (data == null) {
+                                iv_default_null.setVisibility(View.VISIBLE);
+                                refreshLayout.setVisibility(View.GONE);
+                            } else
+                                adapter.setData(data);
                         }
                     }
 
                     @Override
                     public void onFailed(int tag, String msg) {
                         dismissLoading();
-                        Toast.show(activity, msg);
+                        iv_default_null.setVisibility(View.VISIBLE);
+                        refreshLayout.setVisibility(View.GONE);
 
                     }
                 });
-                refreshlayout.finishRefresh(2000);
+                refreshlayout.finishRefresh(200);
             }
         });
         refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
@@ -182,10 +190,11 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                     @Override
                     public void onFailed(int tag, String msg) {
                         dismissLoading();
-                        Toast.show(activity, msg);
+                        iv_default_null.setVisibility(View.VISIBLE);
+                        refreshLayout.setVisibility(View.GONE);
                     }
                 });
-                refreshLayout.finishLoadmore(2000);
+                refreshLayout.finishLoadmore(200);
 
             }
         });
@@ -251,5 +260,24 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                 }
             }
         });
+    }
+
+    @Override
+    public void onEvent(String action) {
+        super.onEvent(action);
+        if (action.equals("网络请求成功")) {
+            rlvSellList.setVisibility(View.VISIBLE);
+            iv_default_null.setVisibility(View.GONE);
+        } else if (action.equals("网络未连接")) {
+            rlvSellList.setVisibility(View.GONE);
+            iv_default_null.setVisibility(View.VISIBLE);
+        } else if (action.equals("网络已连接")) {
+            rlvSellList.setVisibility(View.VISIBLE);
+            iv_default_null.setVisibility(View.GONE);
+            initRequestApi(beginTs, endTs, cuurapge);
+        } else if (action.equals("网络请求失败")) {
+            rlvSellList.setVisibility(View.GONE);
+            iv_default_null.setVisibility(View.VISIBLE);
+        }
     }
 }

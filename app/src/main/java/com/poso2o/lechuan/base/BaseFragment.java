@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -13,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.poso2o.lechuan.configs.Constant;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.Serializable;
 
@@ -51,6 +56,15 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //注册EventBus接收
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
     public abstract View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
     public abstract void initView();
@@ -61,6 +75,7 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 通过视图ID获取视图引用
+     *
      * @param resId
      * @param <T>
      * @return
@@ -72,6 +87,7 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 获取颜色值
+     *
      * @param resId
      * @return
      */
@@ -159,6 +175,7 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 申请权限，有权限直接返回true
+     *
      * @param permission
      * @return
      */
@@ -168,6 +185,7 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 申请权限，有权限直接返回true
+     *
      * @param permission
      * @return
      */
@@ -176,7 +194,7 @@ public abstract class BaseFragment extends Fragment {
         if (Build.VERSION.SDK_INT > 22) {
             if (getActivity().checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                 // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义）
-                requestPermissions(new String[] { permission }, requestCode);
+                requestPermissions(new String[]{permission}, requestCode);
                 return false;
             } else {
                 return true;
@@ -200,12 +218,14 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 调用单参数申请权限方法，重写此方法
      */
-    protected void onRequestPermissionsResult(boolean isSucceed) {}
+    protected void onRequestPermissionsResult(boolean isSucceed) {
+    }
 
     // TODO Fragment管理
 
     /**
      * 往布局中添加Fragment
+     *
      * @param resId
      * @param fragment
      */
@@ -217,6 +237,7 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 替换布局中的Fragment
+     *
      * @param resId
      * @param fragment
      */
@@ -260,4 +281,21 @@ public abstract class BaseFragment extends Fragment {
         void hide(boolean isCancel);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    /**
+     * EventBus接收器
+     *
+     * @param action
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(String action) {
+//        ToastUtlis.ToastShow_Short(getContext(),action);
+    }
 }

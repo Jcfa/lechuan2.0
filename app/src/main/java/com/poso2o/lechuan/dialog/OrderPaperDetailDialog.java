@@ -46,7 +46,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
     private RecyclerView rlvDialog;
     private TextView tv_public_frist, tv_public_second, tv_public_thrid, tv_public_fourth, tv_public_fifth;
     private TextView tvTotalshouc, tvTotalKc, tvTotalPrice;
-    private TextView tvQchu;
+    private TextView tvQchu, tv_spg;
 
     public OrderPaperDetailDialog(Context context) {
         super(context);
@@ -79,6 +79,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
         tvTotalshouc = (TextView) findViewById(R.id.tv_shouc);
         tvTotalKc = (TextView) findViewById(R.id.tv_kc);
         tvTotalPrice = (TextView) findViewById(R.id.tv_price);
+        tv_spg = (TextView) findViewById(R.id.tv_spg);
 
     }
 
@@ -156,7 +157,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
             tv_public_fifth.setText("净利润");
             tvPrice.setVisibility(View.GONE);
             tvQchu.setVisibility(View.VISIBLE);
-            OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi((BaseActivity) context,  begin, new IRequestCallBack<OrderMothsDetailBean>() {
+            OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi((BaseActivity) context, begin, new IRequestCallBack<OrderMothsDetailBean>() {
                 @Override
                 public void onResult(int tag, OrderMothsDetailBean detailBean) {
                     ((BaseActivity) context).dismissLoading();
@@ -204,7 +205,6 @@ public class OrderPaperDetailDialog extends BaseDialog {
             });
 
         } else if (type == 3) {
-            tvPrice.setVisibility(View.GONE);
             tv_public_frist.setText("时间");
             tv_public_second.setVisibility(View.GONE);
             tv_public_second.setWidth(2);
@@ -214,16 +214,19 @@ public class OrderPaperDetailDialog extends BaseDialog {
             rl_member_vis.setVisibility(View.VISIBLE);
             tvTotalshouc.setVisibility(View.INVISIBLE);
             tvQchu.setVisibility(View.GONE);
+            tv_spg.setVisibility(View.GONE);
             OrderPaperDetailManager.getOrderInfo().orderMemberDetailApi((BaseActivity) context, guid, new IRequestCallBack<OrderMemberDetailBean>() {
                 @Override
                 public void onResult(int tag, OrderMemberDetailBean memberDetailBean) {
                     ((BaseActivity) context).dismissLoading();
                     Glide.with(context)
-                            .load(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_LOGO))
+                            .load("")
                             .error(R.mipmap.employee_manage)
+                            .placeholder(R.mipmap.employee_manage)
                             .into(ivHead);
                     tvName.setText(memberDetailBean.getGroupname());
-
+                    tvPrice.setText(memberDetailBean.getMobile());
+                    tvPrice.setTextColor(context.getResources().getColor(R.color.textBlack));
                     List<OrderMemberDetailBean.ListsBean> lists = memberDetailBean.getLists();
                     int countNum = 0;
                     double countMoney = 0.00;
@@ -233,9 +236,13 @@ public class OrderPaperDetailDialog extends BaseDialog {
                         countMoney += Float.parseFloat(data.get(i).getPayment_amount());
                         BigDecimal bg = new BigDecimal(countMoney);
                         double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                        tv_member_money.setText(value + "");
+                        tv_member_money.setText("成交额:" + value + "");
+                        tv_member_money.setTextSize(14);
+                        tv_member_money.setTextColor(context.getResources().getColor(R.color.textBlack));
                     }
-                    tv_member_num.setText(lists.size()+"");
+                    tv_member_num.setText("共" + lists.size() + "笔订单");
+                    tv_member_num.setTextSize(14);
+                    tv_member_num.setTextColor(context.getResources().getColor(R.color.textBlack));
                     OrderMemberDetailAdapter adapter = new OrderMemberDetailAdapter(lists);
                     rlvDialog.setAdapter(adapter);
 

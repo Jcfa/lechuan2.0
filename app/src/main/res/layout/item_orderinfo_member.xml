@@ -69,13 +69,10 @@
             android:gravity="center"
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
-
     </RelativeLayout>
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/color_EEEEEE" />
+        android:layout_height="2dp"
+        android:background="@color/lineBg" />
+
 </LinearLayout>

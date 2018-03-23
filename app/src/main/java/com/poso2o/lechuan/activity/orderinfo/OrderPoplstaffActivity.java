@@ -3,6 +3,7 @@ package com.poso2o.lechuan.activity.orderinfo;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
@@ -32,6 +33,9 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
     private RecyclerView rlv;
     private TextView tvSellTotal, tv_title;
     private TextView tvSellTotalTask;
+    //显示网络异常和为空的情况
+    private TextView iv_default_null;
+    private LinearLayout ll_default_null;
 
     @Override
     protected int getLayoutResId() {
@@ -46,6 +50,9 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
         tvSellTotal = (TextView) findViewById(R.id.tv_sell_total);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tvSellTotalTask = (TextView) findViewById(R.id.tv_sell_total_task);
+        iv_default_null = (TextView) findViewById(R.id.iv_default_null);
+        ll_default_null = (LinearLayout) findViewById(R.id.ll_default_null);
+
     }
 
     @Override
@@ -73,7 +80,7 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
                 OrderInfoPoplStaffAdapter adapter = new OrderInfoPoplStaffAdapter(activity, list);
                 rlv.setAdapter(adapter);
                 tvSellTotal.setText(poplStaffBean.getTotal().getTotal_order_amounts());
-                tvSellTotalTask.setText( poplStaffBean.getTotal().getTotal_assignments());
+                tvSellTotalTask.setText(poplStaffBean.getTotal().getTotal_assignments());
 
             }
 
@@ -81,6 +88,9 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
             public void onFailed(int tag, String msg) {
                 dismissLoading();
                 Toast.show(activity, msg);
+                iv_default_null.setVisibility(View.VISIBLE);
+                rlv.setVisibility(View.GONE);
+                ll_default_null.setVisibility(View.GONE);
 
             }
         });
@@ -164,5 +174,28 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
                 }
             }
         });
+    }
+
+    @Override
+    public void onEvent(String action) {
+        super.onEvent(action);
+        if (action.equals("网络请求成功")) {
+            rlv.setVisibility(View.VISIBLE);
+            iv_default_null.setVisibility(View.GONE);
+            ll_default_null.setVisibility(View.GONE);
+        } else if (action.equals("网络未连接")) {
+            rlv.setVisibility(View.GONE);
+            iv_default_null.setVisibility(View.VISIBLE);
+            ll_default_null.setVisibility(View.GONE);
+        } else if (action.equals("网络已连接")) {
+            rlv.setVisibility(View.VISIBLE);
+            ll_default_null.setVisibility(View.VISIBLE);
+            iv_default_null.setVisibility(View.GONE);
+            initNetApi();
+        } else if (action.equals("网络请求失败")) {
+            ll_default_null.setVisibility(View.GONE);
+            rlv.setVisibility(View.GONE);
+            iv_default_null.setVisibility(View.VISIBLE);
+        }
     }
 }
