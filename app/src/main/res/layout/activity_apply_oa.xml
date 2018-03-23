@@ -360,7 +360,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@null"
                     android:gravity="center|left"
-                    android:text="周小琴"
+                    android:text=""
                     android:textColor="@color/textBlack"
                     android:textSize="15sp"/>
                 
@@ -394,7 +394,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@null"
                     android:gravity="center|left"
-                    android:text="1345698751"
+                    android:text=""
                     android:textColor="@color/textBlack"
                     android:textSize="15sp"/>
                 

@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.dialog.CalendarDialog;
@@ -25,12 +26,13 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
     private TextView tvBeginTime;
     private TextView tvEndTime;
     private ImageView ivVisibility;
-    private LinearLayout llOrderClick;
+    private LinearLayout llOrderClick, ll_v;
     private TextView today, tomad, trecently, trecentlys, tlastm, tv_visibility;
     private TextView tvOrderHao, tvOrderNum, tvOrderMoney, tvOrderSaleName, tvNick;
     private boolean isBeginTime;
     private String beginTime, endTime;
     private OrderInfoEntityFragment infoEntityFragment;
+    private String search = "search";
 
     @Override
     protected int getLayoutResId() {
@@ -52,6 +54,7 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
         tvOrderMoney = (TextView) findViewById(R.id.tv_order_money);
         tvOrderSaleName = (TextView) findViewById(R.id.tv_order_salesname);
         florderContent = (FrameLayout) findViewById(R.id.fl_order_entity_content);
+        ll_v = (LinearLayout) findViewById(R.id.ll_v);
 
     }
 
@@ -65,10 +68,10 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
         tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
         tvNick.setText("我的订单");
-        initTime(begin,nowDay);
+        initTime(begin, nowDay);
     }
 
-    private void initTime(String begin,String endTime) {
+    private void initTime(String begin, String endTime) {
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
         infoEntityFragment = new OrderInfoEntityFragment();
@@ -96,6 +99,10 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
             case R.id.tv_order_end_time:
                 isBeginTime = false;
                 showCalender();
+                break;
+            case R.id.iv_search:
+                infoEntityFragment.showSearch(search);
+                ll_v.setVisibility(View.GONE);
                 break;
         }
     }
@@ -145,7 +152,7 @@ public class OrderEntityShopActivity extends BaseActivity implements View.OnClic
     }
 
     private void initTimes(String str, String end) {
-        infoEntityFragment.onInstance(str,end);
+        infoEntityFragment.onInstance(str, end);
     }
 
 }

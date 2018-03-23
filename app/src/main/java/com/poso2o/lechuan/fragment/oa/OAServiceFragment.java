@@ -19,6 +19,7 @@ import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrialBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
 import com.poso2o.lechuan.util.Toast;
+import com.poso2o.lechuan.views.FullyLinearLayoutManager;
 
 /**
  * 公众号设置界面

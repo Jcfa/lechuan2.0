@@ -15,6 +15,6 @@ public class PayEvent {
         this.payType = payType;
     }
 
-    public int code = 0;//0失败，1成功
+    public int code = 0;//0失败，1成功,2取消
     public int payType = 0;//1微信，2支付宝
 }

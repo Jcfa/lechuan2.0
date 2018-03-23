@@ -280,7 +280,7 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="时 间"
+            android:text="时间"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -290,7 +290,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="收  入"
+            android:text="收入"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -301,7 +301,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="成  本"
+            android:text="成本"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -311,7 +311,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="支  出"
+            android:text="支出"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
@@ -319,10 +319,10 @@
             android:id="@+id/tv_order_zm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+           android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:gravity="center|right"
-            android:text="净利 润"
+            android:text="净利润"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
     </LinearLayout>
