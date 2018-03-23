@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
+import com.poso2o.lechuan.util.NumberUtils;
 
 import java.util.ArrayList;
 
@@ -32,9 +33,9 @@ public class OaServiceAdapter extends BaseAdapter<OaServiceAdapter.ServiceVH, Se
 
     @Override
     public void initItemView(ServiceVH holder, final ServiceOrderingTrial item, final int position) {
-        holder.wopen_trial_gao.setText(item.getService_name());
-        holder.wopen_trial_money.setText(item.getAmount());
-        holder.wopen_trial_quan.setText(item.getRemark().replace("\\n","\n"));
+        holder.wopen_trial_gao.setText(item.service_name);
+        holder.wopen_trial_money.setText(NumberUtils.format2(item.original_amount));
+        holder.wopen_trial_quan.setText(item.remark.replace("\\n","\n"));
 
         //单选
         if (selected==position){

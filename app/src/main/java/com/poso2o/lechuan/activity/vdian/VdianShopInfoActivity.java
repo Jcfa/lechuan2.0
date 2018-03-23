@@ -23,16 +23,19 @@ import com.poso2o.lechuan.activity.realshop.CropActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.shopdata.ShopData;
 import com.poso2o.lechuan.configs.Constant;
+import com.poso2o.lechuan.dialog.SetupBindAccountsDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.tool.image.ImageCompressTool;
 import com.poso2o.lechuan.util.ImageManage;
 import com.poso2o.lechuan.util.ImageUtils;
+import com.poso2o.lechuan.util.TimeUtil;
 import com.poso2o.lechuan.util.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Jaydon on 2018/3/14.
@@ -42,6 +45,8 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     private static final int PICTURE = 10086;
 
     private static final int CODE_SELECT_ADDRESS = 10087;
+    private static final int SERVICE_RENEW = 10088;//服务续费
+    private static final int WEIXIN_SCANNING_CODE = 10090;//调用微信扫码
 
     /**
      * 保存
@@ -175,18 +180,26 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         }
         shop_info_accounts.setText(accounts.toString());
         // 套餐
-        if (shopData.has_webshop == 1) {
-            shop_info_taocan.setText(shopData.webshop_service_name);
-            shop_info_expire.setText(shopData.webshop_service_date);
-        } else if (shopData.has_webshop_try == 1) {
-            shop_info_taocan.setText("试用中");
-            shop_info_expire.setText("剩余 " + shopData.webshop_service_days + " 天");
+//        if (shopData.has_webshop == 1) {
+//            shop_info_taocan.setText(shopData.webshop_service_name);
+//            shop_info_expire.setText(shopData.webshop_service_date);
+//        } else if (shopData.has_webshop_try == 1) {
+//            shop_info_taocan.setText("试用中");
+//            shop_info_expire.setText("剩余 " + shopData.webshop_service_days + " 天");
+//        }
+        shop_info_taocan.setText(shopData.buy_service_name);
+        if (shopData.buy_service_days > 0) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_YEAR, shopData.buy_service_days);
+            calendar.getTimeInMillis();
+            shop_info_expire.setText(TimeUtil.longToDateString(calendar.getTimeInMillis(), "yyyy-MM-dd"));
+        } else {
+            shop_info_expire.setText("已到期");
         }
     }
 
     private void loadShopData() {
         WShopManager.getrShopManager().wShopInfo(this, new IRequestCallBack<ShopData>() {
-
             @Override
             public void onResult(int tag, ShopData result) {
                 if (result == null) {
@@ -245,7 +258,8 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.shop_info_renew:
-                Toast.show(this, "待开发");
+//                Toast.show(this, "待开发");
+                startActivityForResult(new Intent(activity, ServiceOrderingActivity.class), SERVICE_RENEW);
                 break;
         }
     }
@@ -254,7 +268,32 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
      * 显示设置收款帐号
      */
     private void showSetupAccountDialog() {
-        Toast.show(this, "待开发");
+//        Toast.show(this, "待开发");
+        SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity, shopData);
+        bindAccountsDialog.show(new SetupBindAccountsDialog.Callback() {
+            @Override
+            public void onResult() {
+                openWeixinScanning();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+    }
+
+    /**
+     * 打开微信扫一扫
+     */
+    private void openWeixinScanning() {
+        try {
+            Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
+            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+            startActivityForResult(intent, 1);
+        } catch (Exception e) {
+            Toast.show(activity, "打开微信失败！");
+        }
     }
 
     /**
@@ -329,6 +368,9 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (WEIXIN_SCANNING_CODE == requestCode) {
+            Toast.show(activity, "onActivityResult:" + resultCode);
+        }
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PICTURE:
@@ -346,20 +388,24 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                 case UCrop.RESULT_ERROR:    // 裁剪图片错误
                     handleCropError(data);
                     break;
+                case SERVICE_RENEW://续费页返回刷新
+                    loadShopData();
+                    break;
             }
         }
     }
 
     /**
      * 绝对路径转URI
+     *
      * @param context
      * @param filePath
      * @return
      */
     public Uri getImageContentUri(Context context, String filePath) {
         Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[] { MediaStore.Images.Media._ID }, MediaStore.Images.Media.DATA + "=? ",
-                new String[] { filePath }, null);
+                new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
         if (cursor != null && cursor.moveToFirst()) {
             int id = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns._ID));
             Uri baseUri = Uri.parse("content://media/external/images/media");
@@ -387,7 +433,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     /**
      * 地址选择返回
      */
-    private void onAddressResult(Intent data){
+    private void onAddressResult(Intent data) {
         Bundle bundle = data.getExtras();
         if (bundle != null) {
             String provinceId = bundle.getString(AddressSelectActivity.KEY_PROVINCE_ID);
@@ -413,8 +459,8 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
      */
     private void handleCropResult(Intent result) {
         final Uri resultUri = UCrop.getOutput(result);
-        if (null != resultUri ) {
-            String path = ImageCompressTool.getInstance(activity).compressImage(resultUri.getEncodedPath(),720,1080,100*1024);
+        if (null != resultUri) {
+            String path = ImageCompressTool.getInstance(activity).compressImage(resultUri.getEncodedPath(), 720, 1080, 100 * 1024);
             editShopLogo(path);
         } else {
             Toast.show(activity, "无法剪切选择图片");
@@ -436,6 +482,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                 shop_info_picture.setImageBitmap(bitmap);
                 setResult(RESULT_OK);
             }
+
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();

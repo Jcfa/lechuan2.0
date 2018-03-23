@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/service_ordering_group"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
@@ -14,15 +13,16 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp">
 
-        <RadioButton
+        <ImageView
             android:id="@+id/service_ordering_one"
             android:layout_width="30dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="20dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:button="@null"
-            android:drawableBottom="@drawable/select_trial_checked"
-            android:paddingBottom="12dp"/>
+            android:padding="5dp"
+            android:src="@drawable/select_trial_checked" />
 
         <RelativeLayout
             android:id="@+id/rv_wopen_trial_gao"
@@ -37,7 +37,7 @@
                 android:gravity="center|left"
                 android:text="高级版"
                 android:textColor="@color/placeholder_70"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_wopen_trial_one_yuan"
@@ -45,7 +45,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="元/年"/>
+                android:text="元/年" />
 
             <TextView
                 android:id="@+id/service_ordering_money"
@@ -56,9 +56,9 @@
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/tv_wopen_trial_one_yuan"
                 android:gravity="center"
-                android:text="5998"
-                android:textColor="@color/text_type"
-                android:textSize="18sp"/>
+                android:text="0.00"
+                android:textColor="@color/color_orange_gray_selector"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/service_ordering_quan"
@@ -66,13 +66,48 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/service_ordering_gao"
                 android:layout_marginLeft="55dp"
-                android:singleLine="false"
                 android:text="1.公众号+微商城的全部功能"
-                android:textSize="14sp"
-                android:textColor="@color/placeholder_30"/>
+                android:textColor="@color/placeholder_30"
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/service_ordering_renew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/service_ordering_renew_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="现套餐价：0.00元"
+            android:textColor="@color/textBlack"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/service_ordering_renew_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="余额：0.00元=原套餐0.00元/年-已用0.00元/1月"
+            android:padding="5dp"
+            android:textColor="@color/textBlack"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/service_ordering_renew_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="应补金额：0.00元"
+            android:padding="5dp"
+            android:textColor="@color/textBlack"
+            android:textSize="16dp" />
+    </LinearLayout>
 
 </LinearLayout>

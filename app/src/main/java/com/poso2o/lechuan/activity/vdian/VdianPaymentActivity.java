@@ -18,6 +18,7 @@ import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
 import com.poso2o.lechuan.tool.print.Print;
+import com.poso2o.lechuan.util.NumberUtils;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -62,11 +63,11 @@ public class VdianPaymentActivity extends BaseActivity {
         api.registerApp(AppConfig.WEIXIN_APPID);
         setTitle("服务订购");
         // 获取传过来的信息
-        final String service_id = getIntent().getStringExtra("service_id");
+        final int service_id = getIntent().getIntExtra("service_id",0);
         String service_name = getIntent().getStringExtra("service_name");
-        String amount = getIntent().getStringExtra("amount");
+        double amount = getIntent().getDoubleExtra("amount",0.00);
         vdian_payment_type.setText(service_name);
-        vdian_payment_money.setText(amount);
+        vdian_payment_money.setText(NumberUtils.format2(amount));
         vdian_payment_wechat.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -96,10 +97,10 @@ public class VdianPaymentActivity extends BaseActivity {
         }
     }
 
-    private void weixinPayment(String service_id) {
+    private void weixinPayment(int service_id) {
         showLoading();
         // 发起微信支付
-        EmpowermentManager.getInstance().trialTranslateDate(activity, service_id, new IRequestCallBack<String>() {
+        EmpowermentManager.getInstance().trialTranslateDate(activity, service_id+"", new IRequestCallBack<String>() {
             @Override
             public void onResult(int tag, final String result) {
                 dismissLoading();
@@ -126,5 +127,12 @@ public class VdianPaymentActivity extends BaseActivity {
                 dismissLoading();
             }
         });
+    }
+
+    /**
+     * 显示绑定收款帐号的dialog
+     */
+    private void showBindAccountDialog(){
+
     }
 }
