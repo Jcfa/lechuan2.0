@@ -46,6 +46,9 @@ public class OaSetModelFragment extends BaseFragment {
     private OaSetModelAdapter allAdapter;
     private TemplateGroups allTemplateGroup;
 
+    //是否需要刷新列表
+    private boolean is_change = false;
+
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = View.inflate(context, R.layout.fragment_oa_set_model,null);
@@ -123,6 +126,7 @@ public class OaSetModelFragment extends BaseFragment {
         ModelGroupManager.getModelGroupManager().modelGroups((BaseActivity) context, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
+                is_change = false;
                 allTemplateGroup = (TemplateGroups) result;
                 setAdapter(1,allTemplateGroup);
             }
@@ -151,5 +155,21 @@ public class OaSetModelFragment extends BaseFragment {
 
     public void requestData(){
         modelGroups();
+    }
+
+    @Override
+    public void onEvent(String action) {
+        super.onEvent(action);
+        if (action.equals("refresh_model_group")){
+            is_change = true;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (is_change){
+            modelGroups();
+        }
     }
 }

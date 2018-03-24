@@ -27,7 +27,7 @@
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="14sp"
+                android:textSize="@dimen/textSize_title"
                 android:textColor="@color/colorOrange"
                 android:background="@drawable/shape_oa_title_tag_select"
                 android:text="发布"/>
@@ -41,7 +41,7 @@
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="14sp"
+                android:textSize="@dimen/textSize_title"
                 android:textColor="@color/textGray"
                 android:text="稿件箱"/>
 

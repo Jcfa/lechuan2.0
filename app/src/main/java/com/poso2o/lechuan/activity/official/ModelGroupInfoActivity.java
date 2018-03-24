@@ -97,7 +97,7 @@ public class ModelGroupInfoActivity extends BaseActivity {
         if (resultCode == RESULT_OK){
             if (requestCode == CODE_TEMPLATE_DETAIL){
                 is_change = true;
-//                refreshGroup();
+                ModelGroupInfoActivity.this.finish();
             }
         }
     }

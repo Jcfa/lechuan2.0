@@ -17,6 +17,7 @@ import com.poso2o.lechuan.activity.oa.FreeEditActivity;
 import com.poso2o.lechuan.activity.realshop.AdGoodsActivity;
 import com.poso2o.lechuan.activity.realshop.ArtPreviewActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.event.EventBean;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
 import com.poso2o.lechuan.bean.oa.Template;
 import com.poso2o.lechuan.bean.oa.TemplateBean;
@@ -24,6 +25,8 @@ import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.manager.oa.TemplateDataManager;
 import com.poso2o.lechuan.util.Toast;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.umeng.socialize.utils.DeviceConfig.context;
 
@@ -181,6 +184,8 @@ public class ModelEditActivity extends BaseActivity implements View.OnClickListe
                 public void onResult(int tag, Object result) {
                     dismissLoading();
                     Toast.show(getApplication(),"设置成功");
+                    EventBean event = new EventBean(EventBean.CODE_SET_DEFAULT_MUDEL);
+                    EventBus.getDefault().post("refresh_model_group");
                     setResult(RESULT_OK);
                     ModelEditActivity.this.finish();
                 }

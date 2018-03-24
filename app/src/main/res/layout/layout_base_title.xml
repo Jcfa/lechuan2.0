@@ -22,7 +22,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text=""
-        android:textColor="@color/textBlack"
+        android:textColor="@color/color_FF6537"
         android:textSize="@dimen/textSize_title" />
 
     <View

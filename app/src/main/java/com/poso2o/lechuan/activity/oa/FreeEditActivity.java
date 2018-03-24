@@ -1,4 +1,5 @@
 package com.poso2o.lechuan.activity.oa;
+import android.Manifest;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +43,7 @@ import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
 
+import java.security.Permission;
 import java.util.ArrayList;
 
 /**
@@ -201,7 +203,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.oa_template_image:
                 //选择插入图片
-                AppUtil.openPhoto(this,this,CODE_OPEN_PIC);
+                openPicture();
                 break;
             case R.id.free_edit_draft:
                 //添加到草稿箱
@@ -301,6 +303,20 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
             free_edit_hide_template.setImageResource(R.mipmap.arrow_less);
             recycler_line.setVisibility(View.VISIBLE);
         }
+    }
+
+    //打开相册
+    private void openPicture(){
+        applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
+            @Override
+            public void onPermissionResult(boolean b) {
+                if (b){
+                    AppUtil.openPhoto(getApplication(),FreeEditActivity.this,CODE_OPEN_PIC);
+                }else {
+                    Toast.show(getApplication(),"请允许该应用打开相册");
+                }
+            }
+        });
     }
 
     private void changeToArticle(final int type){

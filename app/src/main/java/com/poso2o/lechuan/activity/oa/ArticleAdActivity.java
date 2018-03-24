@@ -499,10 +499,16 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onReceiveValue(String html) {
                 if (type == 0){
-                    Intent intent = new Intent();
-                    intent.setClass(getApplication(),ArtPreviewActivity.class);
-                    intent.putExtra(ArticleAdActivity.ART_DATA,html);
-                    startActivity(intent);
+                    final String h = html;
+                    art_detail_web.evaluateJavascript("getTitleHTML()", new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String value) {
+                            Intent intent = new Intent();
+                            intent.setClass(getApplication(),ArtPreviewActivity.class);
+                            intent.putExtra(ArticleAdActivity.ART_DATA,value + h);
+                            startActivity(intent);
+                        }
+                    });
                 }else if (type == 1){
                     article.content = html;
                     if (TextUtil.isEmpty(renewals_id)){

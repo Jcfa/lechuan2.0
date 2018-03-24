@@ -22,6 +22,8 @@ public class EventBean {
     public static final int CODE_TO_COLLECT_LIST = 1006;
     //发布文章数变化
     public static final int CODE_ART_NUM_CHANGE = 1007;
+    //设置默认模板成功
+    public static final int CODE_SET_DEFAULT_MUDEL = 1008;
     public int code = 0;
     public int id = -1;
 
