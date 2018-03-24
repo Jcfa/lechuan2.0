@@ -57,7 +57,7 @@ public class OrderInfoExitApp extends BaseDialog {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppUtil.exitApp((BaseActivity) context, false);
+                AppUtil.exitApp((BaseActivity) context, true);
             }
         });
 

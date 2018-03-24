@@ -85,6 +85,10 @@ public class SharedPreferencesUtils {
      */
     public static final String KEY_USER_HAS_WEBSHOP = "has_webshop";
     /**
+     * 绑定微信收款账号的二维码
+     */
+    public static final String KEY_USER_BIND_ACCOUNT_QRCODE = "bind_account_qrcode";
+    /**
      * 企业认证状态
      */
     public static final String KEY_USER_SHOP_VERIFY = "has_shop_verify";
@@ -139,12 +143,12 @@ public class SharedPreferencesUtils {
     public static final String KEY_OA_ARTICLE_SEARCH_HISTORY = "oa_article_search_history";
 
     /**
-     *  文章已选择的类型
+     * 文章已选择的类型
      */
     public static final String KEY_OA_TYPES = "oa_types";
 
     /**
-     *  文章已选择的标签
+     * 文章已选择的标签
      */
     public static final String KEY_OA_LAYBELS = "oa_laybels";
 
@@ -216,6 +220,7 @@ public class SharedPreferencesUtils {
         put(KEY_USER_SHOP_VERIFY, loginBean.has_shop_verify);//int 1=未认证，2=申请认证，3=认证通过，4=认证不通过
         put(KEY_USER_HAS_SHOP, loginBean.has_shop);//int 是否有实体店，0=无，1=有
         put(KEY_USER_HAS_WEBSHOP, loginBean.has_webshop);//int 是否有微店，0=无，1=有
+        put(KEY_USER_BIND_ACCOUNT_QRCODE, loginBean.shop_bank_binding_url);//绑定微信收款账号的二维码
     }
 
     /**

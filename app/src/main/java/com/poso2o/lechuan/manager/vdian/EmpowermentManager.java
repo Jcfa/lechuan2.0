@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.manager.wopenaccountmanager;
+package com.poso2o.lechuan.manager.vdian;
 
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
@@ -6,7 +6,6 @@ import com.poso2o.lechuan.http.CallServer;
 import com.poso2o.lechuan.http.HttpAPI;
 import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.vdian.VdianCatalogManager;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.yanzhenjie.nohttp.rest.Request;
 

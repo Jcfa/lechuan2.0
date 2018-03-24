@@ -11,9 +11,9 @@ import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.adapter.wopenaccountadapter.ServiceOrderingAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
-import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrialBean;
+import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrialBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
+import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
 import com.poso2o.lechuan.util.Toast;
 
 import java.util.Collections;

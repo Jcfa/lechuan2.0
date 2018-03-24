@@ -14,12 +14,11 @@ import com.poso2o.lechuan.activity.vdian.ServiceOrderingActivity;
 import com.poso2o.lechuan.adapter.OaServiceAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
-import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
-import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrialBean;
+import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrial;
+import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrialBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
+import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
 import com.poso2o.lechuan.util.Toast;
-import com.poso2o.lechuan.views.FullyLinearLayoutManager;
 
 /**
  * 公众号设置界面

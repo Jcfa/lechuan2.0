@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.bean.wopenaccountdata;
+package com.poso2o.lechuan.bean.vdian;
 
 import com.poso2o.lechuan.bean.BaseListBean;
 

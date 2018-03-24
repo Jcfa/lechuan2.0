@@ -43,6 +43,7 @@
 
 
             <ImageView
+                android:id="@+id/iv_qrcode"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
@@ -120,12 +121,13 @@
                 android:text="2.进入微信扫码页面，点击右上角  图标，点击“从相册中选择图片”。" />
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
                 android:layout_gravity="center_horizontal"
+                android:scaleType="centerInside"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/bind_wx_account_1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,12 +137,13 @@
                 android:text="3.进入相册，选择第一张二维码图片，即可自动完成扫描绑定。" />
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/ic_launcher" />
+                android:scaleType="centerInside"
+                android:src="@drawable/bind_wx_account_1" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/case_performance_logo"
+            android:layout_width="@dimen/height_middle"
+            android:layout_height="@dimen/height_middle"
+            android:layout_margin="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/case_performance_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXXXXXXXXX店"
+                android:textColor="@color/color_5E5E5E"
+                android:textSize="@dimen/textSize_large" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/case_performance_wx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="微信号：1641213"
+                    android:textColor="@color/color_5E5E5E"
+                    android:textSize="@dimen/textSize_normal" />
+
+                <TextView
+                    android:id="@+id/case_performance_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="月发文123篇"
+                    android:textColor="@color/color_5E5E5E"
+                    android:textSize="@dimen/textSize_normal" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="功能介绍："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:id="@+id/case_performance_function"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="广州华购计算机科技有限公司-功能介绍"
+            android:textColor="@color/color_5E5E5E"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信认证："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/textSize_middle" />
+
+        <TextView
+            android:id="@+id/case_performance_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="广州华购计算机科技有限公司"
+            android:textColor="@color/color_5E5E5E"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+</LinearLayout>
