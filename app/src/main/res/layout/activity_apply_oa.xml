@@ -361,6 +361,7 @@
                     android:background="@null"
                     android:gravity="center|left"
                     android:text=""
+                    android:maxLength="12"
                     android:textColor="@color/textBlack"
                     android:textSize="15sp"/>
                 
@@ -395,6 +396,8 @@
                     android:background="@null"
                     android:gravity="center|left"
                     android:text=""
+                    android:inputType="phone"
+                    android:maxLength="11"
                     android:textColor="@color/textBlack"
                     android:textSize="15sp"/>
                 

@@ -330,15 +330,16 @@
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="2dp"
         android:layout_below="@+id/rl"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/line" />
+        android:background="@color/lineBg" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rlv_order_pc_list"
         android:layout_width="match_parent"
+        android:layout_marginTop="2dp"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll1"
         android:layout_below="@+id/rl"
@@ -415,4 +416,13 @@
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/iv_default_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl"
+        android:gravity="center"
+        android:text="月损订单数据为空!"
+        android:textColor="@color/textBlack"
+        android:visibility="gone" />
 </RelativeLayout>

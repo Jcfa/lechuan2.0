@@ -88,7 +88,6 @@ public class OrderEntityDetailDialog extends BaseDialog {
     }
 
     public void setNetData(String order_id) {
-        Log.d("cbf", "order_id= " + order_id);
         OrderInfoManager.getInfoManager().orderEntityDetailApi((BaseActivity) context, order_id,
                 new IRequestCallBack<OrderInfoEntityDetailBean>() {
                     @Override

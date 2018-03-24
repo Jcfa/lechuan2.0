@@ -346,13 +346,6 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
     }
 
     /**
-     * 显示绑定收款帐号
-     */
-    private void showSetupBindAccountsDialog() {
-
-    }
-
-    /**
      * 刷新店铺数据
      */
     private void refreshShopData() {

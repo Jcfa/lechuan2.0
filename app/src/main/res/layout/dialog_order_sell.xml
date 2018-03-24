@@ -91,10 +91,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.1dp"
+                android:layout_height="2dp"
                 android:layout_below="@+id/tv_sell_hnumber"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_EEEEEE" />
+                android:background="@color/lineBg" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -126,10 +126,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_below="@+id/tv_sell_spf"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_EEEEEE" />
+                android:background="@color/lineBg" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -161,10 +161,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_below="@+id/tv_sell_spf_num"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_EEEEEE" />
+                android:background="@color/lineBg" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -196,10 +196,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_below="@+id/tv_sell_spf_money"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_EEEEEE" />
+                android:background="@color/lineBg" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -231,10 +231,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_below="@+id/tv_sell_spf_kc"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_EEEEEE" />
+                android:background="@color/lineBg" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -265,10 +265,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_below="@+id/tv_sell_spf_profits"
                 android:layout_marginTop="10dp"
-                android:background="@color/color_EEEEEE" />
+                android:background="@color/lineBg" />
         </RelativeLayout>
 
     </RelativeLayout>

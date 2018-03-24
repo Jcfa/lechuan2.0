@@ -62,11 +62,11 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="2dp"
         android:layout_below="@+id/rl1"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/line" />
+        android:background="@color/lineBg" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rlv_order_sell_list"
@@ -74,6 +74,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rl2"
         android:layout_below="@+id/view"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/colorWhite" />
@@ -126,4 +127,13 @@
             android:textColor="@color/colorOrange"
             android:textSize="14dp" />
     </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_default_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl1"
+        android:gravity="center"
+        android:text="库存订单数据为空!"
+        android:textColor="@color/textBlack"
+        android:visibility="gone" />
 </RelativeLayout>

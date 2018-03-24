@@ -26,23 +26,22 @@ import java.util.Collections;
 public class ServiceOrderingActivity extends BaseActivity implements View.OnClickListener {
 
     public static final String IS_TRY = "is_try";
-
     /**
      * 试用
      */
     private Button service_ordering_try;
-
     /**
      * 购买
      */
     private Button service_ordering_purchase;
-
     /**
      * 数据列表
      */
     private ListView service_ordering_list;
 
-    private String service_name, amount, service_id, service_type;
+    private String service_name;
+    private  double amount;
+    private int service_id, service_type;
 
     @Override
     protected int getLayoutResId() {
@@ -68,7 +67,6 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
 
         // 获取服务的信息
         EmpowermentManager.getInstance().trialListDate(this, new IRequestCallBack() {
-
             @Override
             public void onResult(int tag, Object result) {
                 Gson gson = new Gson();
@@ -77,25 +75,23 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
                 final ServiceOrderingAdapter adapter = new ServiceOrderingAdapter(ServiceOrderingActivity.this, trial.list);
                 service_ordering_list.setAdapter(adapter);
                 setListViewHeightOnChildren(service_ordering_list);
-                service_id = trial.list.get(0).getService_id();
-                amount = trial.list.get(0).getAmount();
-                service_name = trial.list.get(0).getService_name();
-                service_type = trial.list.get(0).getService_type();
+                service_id = trial.list.get(0).service_id;
+                amount = trial.list.get(0).amount;
+                service_name = trial.list.get(0).service_name;
+                service_type = trial.list.get(0).service_type;
                 // 单选
                 adapter.setOnAddClickListener(new ServiceOrderingAdapter.OnAddClickListener() {
-
                     @Override
                     public void onItemClick(int position) {
                         adapter.setSelected(position);
                         adapter.notifyDataSetChanged();
-                        service_id = trial.list.get(position).getService_id();
-                        amount = trial.list.get(position).getAmount();
-                        service_name = trial.list.get(position).getService_name();
-                        service_type = trial.list.get(position).getService_type();
+                        service_id = trial.list.get(position).service_id;
+                        amount = trial.list.get(position).amount;
+                        service_name = trial.list.get(position).service_name;
+                        service_type = trial.list.get(position).service_type;
                     }
                 });
             }
-
             @Override
             public void onFailed(int tag, String msg) {
                 Toast.show(activity, msg);
@@ -113,7 +109,7 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.service_ordering_purchase:
                 // 点击立即订购
-                if (service_id != null) {
+                if (service_id >0) {
                     Intent i = new Intent();
                     i.putExtra("service_id", service_id);
                     i.putExtra("amount", amount);

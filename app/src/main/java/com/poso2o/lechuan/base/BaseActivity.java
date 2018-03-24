@@ -3,7 +3,9 @@ package com.poso2o.lechuan.base;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +22,7 @@ import com.poso2o.lechuan.bean.mine.InvitationBean;
 import com.poso2o.lechuan.bean.mine.UserInfoBean;
 import com.poso2o.lechuan.broadcast.BroadcastManager;
 import com.poso2o.lechuan.configs.Constant;
+import com.poso2o.lechuan.configs.StateConstant;
 import com.poso2o.lechuan.constant.BroadcastAction;
 import com.poso2o.lechuan.dialog.BeInvitedDialog;
 import com.poso2o.lechuan.dialog.InvitationDistributionDialog;
@@ -29,6 +32,7 @@ import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.HttpResponseListener;
 import com.poso2o.lechuan.manager.main.ActivityManager;
 import com.poso2o.lechuan.manager.poster.MyFansDataManager;
+import com.poso2o.lechuan.receiver.NetStatusReceiver;
 import com.poso2o.lechuan.version.VersionUpdate;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
@@ -72,9 +76,10 @@ public abstract class BaseActivity extends FragmentActivity {
     private RequestQueue mQueue;
 
     /**
-     *  请求权限回调
+     * 请求权限回调
      */
     private OnPermissionListener onPermissionListener;
+    private NetStatusReceiver netStatusReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,11 @@ public abstract class BaseActivity extends FragmentActivity {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        //初始化广播（网络状态变化）
+        netStatusReceiver = new NetStatusReceiver();
+        setRegisterReceiver(netStatusReceiver);//注册
+        setNetListener();//设置监听
+
         // 初始化请求队列，传入的参数是请求并发值。
         mQueue = NoHttp.newRequestQueue(3);
         onCreate2(savedInstanceState);
@@ -93,6 +103,43 @@ public abstract class BaseActivity extends FragmentActivity {
         initView();
         initData();
         initListener();
+    }
+
+    /**
+     * 进行网络状态的判断
+     * 实现断线重连效果
+     * 也就是心跳机制原理
+     */
+    private void setNetListener() {
+        netStatusReceiver.setNetStateListener(new NetStatusReceiver.INetStatusListener() {
+
+            @Override
+            public void getNetState(int state) {
+                if (state == NetStatusReceiver.NETSTATUS_INAVAILABLE) {
+                    EventBus.getDefault().post("网络未连接");
+                    StateConstant.NetWork_Connect = false;
+                } else {
+                    if (StateConstant.NetWork_Connect)
+                        return;
+                    EventBus.getDefault().post("网络已连接");
+                    StateConstant.NetWork_Connect = true;
+                }
+            }
+        });
+
+    }
+
+    private boolean mReceiverTag = false;
+    /**
+     * 过滤广播
+     * */
+    private void setRegisterReceiver(NetStatusReceiver netReceiver) {
+        if (!mReceiverTag) {
+            IntentFilter filter = new IntentFilter();
+            mReceiverTag = true;
+            filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+            this.registerReceiver(netReceiver, filter);
+        }
     }
 
     private void initBase() {
@@ -334,6 +381,12 @@ public abstract class BaseActivity extends FragmentActivity {
         }
 
         ActivityManager.getActivityManager().finishActivity(activity);
+
+        if (mReceiverTag) {   //判断广播是否注册
+            mReceiverTag = false;   //Tag值 赋值为false 表示该广播已被注销
+            this.unregisterReceiver(netStatusReceiver);//注销广播
+        }
+
         super.onDestroy();
         onDestroy2();
     }
@@ -441,10 +494,11 @@ public abstract class BaseActivity extends FragmentActivity {
 
     /**
      * 申请权限，有回调
+     *
      * @param permission
      * @param permissionListener
      */
-    public void applyForPermission(String permission,OnPermissionListener permissionListener){
+    public void applyForPermission(String permission, OnPermissionListener permissionListener) {
         onPermissionListener = permissionListener;
         // 判断Android版本
         if (Build.VERSION.SDK_INT > 22) {
@@ -452,10 +506,10 @@ public abstract class BaseActivity extends FragmentActivity {
                 // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义）
                 requestPermissions(new String[]{permission}, REQUEST_PERMISSION);
             } else {
-                if (onPermissionListener != null)onPermissionListener.onPermissionResult(true);
+                if (onPermissionListener != null) onPermissionListener.onPermissionResult(true);
             }
         } else {
-            if (onPermissionListener != null)onPermissionListener.onPermissionResult(true);
+            if (onPermissionListener != null) onPermissionListener.onPermissionResult(true);
         }
     }
 
@@ -474,7 +528,7 @@ public abstract class BaseActivity extends FragmentActivity {
      * 调用单参数申请权限方法，重写此方法
      */
     protected void onRequestPermissionsResult(boolean isSucceed) {
-        if (onPermissionListener != null)onPermissionListener.onPermissionResult(isSucceed);
+        if (onPermissionListener != null) onPermissionListener.onPermissionResult(isSucceed);
     }
 
     // TODO Fragment管理
@@ -546,6 +600,16 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     /**
+     * EventBus接收器
+     *
+     * @param action
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(String action) {
+
+    }
+
+    /**
      * 邀请分销提示
      */
     private void showInvitationDistribution(final InvitationBean event) {
@@ -569,7 +633,7 @@ public abstract class BaseActivity extends FragmentActivity {
         }
     }
 
-    public interface OnPermissionListener{
+    public interface OnPermissionListener {
         void onPermissionResult(boolean b);
     }
 }

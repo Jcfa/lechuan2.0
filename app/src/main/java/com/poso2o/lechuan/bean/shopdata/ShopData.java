@@ -103,6 +103,12 @@ public class ShopData implements Serializable {
 
     /** 商家提现银行-账号 */
     public String shop_bank_account_no = "";
+    /**
+     * 微店-店铺信息显示的服务套餐名称、服务到期时间
+     */
+    public String buy_service_name = "";
+    public int buy_service_id = 0;
+    public int buy_service_days = 0;
 
 
     // 旧服装版补充字段

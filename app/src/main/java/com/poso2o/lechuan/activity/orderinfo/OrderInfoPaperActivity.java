@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
@@ -30,6 +31,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     private OrderInfoPaperAdapter adapter;
     private int type = 1;
     private TextView tv_order_sell_many_total, tv_order_zm_total;
+    private TextView tv_default_null;
+    private RelativeLayout rl_default_null;
 
     @Override
     protected int getLayoutResId() {
@@ -42,6 +45,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         rlvPaper = (RecyclerView) findViewById(R.id.rlv_order_sell_list);
         tv_order_sell_many_total = (TextView) findViewById(R.id.tv_order_sell_many_total);
         tv_order_zm_total = (TextView) findViewById(R.id.tv_order_zm_total);
+        tv_default_null = (TextView) findViewById(R.id.tv_default_null);
+        rl_default_null = (RelativeLayout) findViewById(R.id.rl2);
 
     }
 
@@ -49,6 +54,11 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     protected void initData() {
         tvTitle.setText("库存管理");
         rlvPaper.setLayoutManager(new LinearLayoutManager(activity));
+        initNetApi();
+
+    }
+
+    private void initNetApi() {
         OrderInfoPaperManager.getsInsatcne().orderInfoPaperApi(activity, new IRequestCallBack<OrderInfoPaperBean>() {
             @Override
             public void onResult(int tag, OrderInfoPaperBean paperBean) {
@@ -77,11 +87,11 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
-                Toast.show(activity, msg);
+                tv_default_null.setVisibility(View.VISIBLE);
+                rl_default_null.setVisibility(View.GONE);
+                rlvPaper.setVisibility(View.GONE);
             }
         });
-
-
     }
 
     @Override
@@ -95,6 +105,29 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.iv_back:
                 break;
+        }
+    }
+
+    @Override
+    public void onEvent(String action) {
+        super.onEvent(action);
+        if (action.equals("网络请求成功")) {
+            rlvPaper.setVisibility(View.VISIBLE);
+            rl_default_null.setVisibility(View.VISIBLE);
+            tv_default_null.setVisibility(View.GONE);
+        } else if (action.equals("网络未连接")) {
+            rlvPaper.setVisibility(View.GONE);
+            rl_default_null.setVisibility(View.GONE);
+            tv_default_null.setVisibility(View.VISIBLE);
+        } else if (action.equals("网络已连接")) {
+            rlvPaper.setVisibility(View.VISIBLE);
+            rl_default_null.setVisibility(View.VISIBLE);
+            tv_default_null.setVisibility(View.GONE);
+            initNetApi();
+        } else if (action.equals("网络请求失败")) {
+            rlvPaper.setVisibility(View.GONE);
+            rl_default_null.setVisibility(View.GONE);
+            tv_default_null.setVisibility(View.VISIBLE);
         }
     }
 }

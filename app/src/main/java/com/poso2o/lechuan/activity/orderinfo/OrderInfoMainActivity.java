@@ -1,25 +1,25 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.activity.login.LoginActivity;
 import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.activity.vdian.EmpowermentActivity;
 import com.poso2o.lechuan.activity.vdian.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
 import com.poso2o.lechuan.dialog.CalendarDialog;
+import com.poso2o.lechuan.dialog.OrderInfoExitApp;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoSellManager;
 import com.poso2o.lechuan.util.CalendarUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
+import com.yanzhenjie.nohttp.tools.NetUtils;
 
 import static com.poso2o.lechuan.util.SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP;
 
@@ -50,6 +50,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     //销售额 目标额 完成率 毛利润
     private TextView tvSellPrice, tvAimPrice, tvComPletePrice, tvGpmPrice;
     private TextView tvNick;
+    private OrderInfoExitApp detailDialog;
 
     @Override
     protected int getLayoutResId() {
@@ -129,7 +130,6 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         tvAimPrice.setText(data.getAssignment());
         tvComPletePrice.setText(data.getCompletion_rate() + "%");
         tvGpmPrice.setText(data.getGross_profit());
-
     }
 
     private void setCalender() {
@@ -257,14 +257,15 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
             //会员管理  //畅销 1
             case R.id.ll_order_members:
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoSellActivity.class));
-
                 break;
             //改  损益 1
             case R.id.ll_order_public_hao:
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderInfoPrimecostActivity.class));
                 break;
+            //退出登录
             case R.id.ll_order_exit:
-                startActivity(new Intent(OrderInfoMainActivity.this, LoginActivity.class));
+                detailDialog = new OrderInfoExitApp(this);
+                detailDialog.show();
                 break;
         }
     }

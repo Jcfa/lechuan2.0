@@ -40,7 +40,9 @@ public class OAServiceFragment extends BaseFragment implements View.OnClickListe
     /**
      * 服务名称，价格，id，类型
      */
-    private String service_name, amount, service_id, service_type;
+    private String service_name;
+    private  double amount;
+    private int service_id, service_type;
 
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,10 +76,10 @@ public class OAServiceFragment extends BaseFragment implements View.OnClickListe
             public void onItemClick(int position, ServiceOrderingTrial item) {
                 serviceAdapter.setSelected(position);
                 serviceAdapter.notifyDataSetChanged();
-                service_id = item.getService_id();
-                amount = item.getAmount();
-                service_name = item.getService_name();
-                service_type = item.getService_type();
+                service_id = item.service_id;
+                amount = item.amount;
+                service_name = item.service_name;
+                service_type = item.service_type;
             }
         });
     }
@@ -86,7 +88,7 @@ public class OAServiceFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.oa_set_buy_service:
-                if (service_id!=null) {
+                if (service_id>0) {
                     Intent i = new Intent();
                     i.putExtra("service_id", service_id);
                     i.putExtra("amount", amount);
@@ -110,10 +112,10 @@ public class OAServiceFragment extends BaseFragment implements View.OnClickListe
                 final ServiceOrderingTrialBean trial = gson.fromJson(result.toString(), ServiceOrderingTrialBean.class);
                 serviceAdapter.notifyDataSetChanged(trial.list);
                 //默认第一项
-                service_id = trial.list.get(0).getService_id();
-                amount = trial.list.get(0).getAmount();
-                service_name = trial.list.get(0).getService_name();
-                service_type = trial.list.get(0).getService_type();
+                service_id = trial.list.get(0).service_id;
+                amount = trial.list.get(0).amount;
+                service_name = trial.list.get(0).service_name;
+                service_type = trial.list.get(0).service_type;
             }
 
             @Override

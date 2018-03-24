@@ -18,7 +18,7 @@ import static com.umeng.socialize.utils.DeviceConfig.context;
 
 /**
  * 开通授权界面
- *
+ * <p>
  * Created by Administrator on 2018/3/13 0013.
  */
 public class EmpowermentActivity extends BaseActivity implements View.OnClickListener {
@@ -109,7 +109,6 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
     public void loadStates() {
         // 获取开通状态
         EmpowermentManager.getInstance().OpenStateDate(this, new IRequestCallBack() {
-
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
@@ -120,7 +119,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 service_name = osb.getService_name();
                 amount = osb.getAmount();
                 payment_time = osb.getPayment_time();
-                if (Integer.valueOf(osb.getState()) != null) {
+                if (osb.getState() == OpenStandBean.WAIT_OPEN_STATE) {//去开通
                     // 点击无公众号
                     empower_have_oa.setBackgroundResource(R.drawable.gray_stroke_bg);
                     empower_not_oa.setBackgroundResource(R.drawable.green_stroke_bg);
@@ -138,22 +137,14 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                     empower_ordering_tag.setText("步骤三：");
                     empower_oa_empower.setBackgroundColor(getResources().getColor(R.color.common_background));
                     empower_oa_empower.setEnabled(false);
-//                    if (Integer.valueOf(osb.getState())==0){
-//                        state=Integer.valueOf(osb.getState());
-//                        tv_wopen_wei_stand.setText("去开通");
-//                        rv_wopen_empo_auth.setClickable(false);
-//                        rv_wopen_trim.setClickable(false);
-//                    }else if (Integer.valueOf(osb.getState())==1){
-//                        state=Integer.valueOf(osb.getState());
-//                        tv_wopen_wei_stand.setText("已缴费，待开通");
-//                        rv_wopen_empo_auth.setClickable(false);
-//                        rv_wopen_trim.setClickable(false);
-//                    }else if (Integer.valueOf(osb.getState())==2){
-//                        state=Integer.valueOf(osb.getState());
-//                        tv_wopen_wei_stand.setText("已开通");
-//                        rv_wopen_empo_auth.setClickable(true);
-//                        rv_wopen_trim.setClickable(false);
-//                    }
+                    empower_apply_oa_hint.setText("去开通");
+                    findView(R.id.iv_checked_state).setVisibility(View.GONE);
+                } else if (osb.getState() == OpenStandBean.PAY_COSE_STATE) {//已经缴费、待开通
+                    empower_apply_oa_hint.setText("已缴费、待开通");
+                    findView(R.id.iv_checked_state).setVisibility(View.VISIBLE);
+                } else if (osb.getState() == OpenStandBean.HAS_OPENED_STATE) {//已经开通
+                    empower_apply_oa_hint.setText("已开通");
+                    findView(R.id.iv_checked_state).setVisibility(View.VISIBLE);
                 }
 
             }

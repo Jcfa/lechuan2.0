@@ -27,6 +27,7 @@ public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntity
         this.data = new ArrayList<>();
         notifyDataSetChanged();
     }
+
     public void setData(List<DataBean> data) {
         this.data = data;
         notifyDataSetChanged();
@@ -36,6 +37,13 @@ public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntity
         this.data.addAll(data);
         notifyDataSetChanged();
     }
+
+    //刷新adapter方法  做搜索使用
+    public void updateListView(List<DataBean> newlists) {
+        data = newlists;  //重新赋值
+        notifyDataSetChanged();  //刷新
+    }
+
     @Override
     public OrderInfoEntityAdapter.Vholder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_orderinf_entity, parent, false);
@@ -64,7 +72,6 @@ public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntity
     public int getItemCount() {
         return data == null ? 0 : data.size();
     }
-
 
 
     public class Vholder extends RecyclerView.ViewHolder {

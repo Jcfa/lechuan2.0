@@ -41,6 +41,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="2dp"
                 android:text="0.00 成本:0.00"
+                android:textSize="14dp"
                 android:textColor="#c74825" />
 
             <ImageView
@@ -126,7 +127,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_below="@+id/llss"
         android:background="@color/color_EEEEEE" />
 
@@ -135,6 +136,7 @@
         android:id="@+id/rlv_dalog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
         android:layout_above="@+id/rl_member_vis"
         android:layout_below="@+id/llss"
         android:background="@color/colorWhite" />

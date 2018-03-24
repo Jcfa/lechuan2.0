@@ -50,6 +50,9 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
     private Spinner spinner;
     private List<String> timeList = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+    private TextView iv_default_null;
+    private LinearLayout ll1;
+    private String nowDay;
 
     @Override
     protected int getLayoutResId() {
@@ -65,10 +68,12 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
         tvpfPrice = (TextView) findViewById(R.id.tv_order_profits_price);
         rlv = (RecyclerView) findViewById(R.id.rlv_order_pc_list);
         llCenter = (LinearLayout) findViewById(R.id.ll_order_center);
+        ll1 = (LinearLayout) findViewById(R.id.ll1);
         tv_qchu = (TextView) findViewById(R.id.tv_qchu);
         tv_shouc = (TextView) findViewById(R.id.tv_shouc);
         tv_kc = (TextView) findViewById(R.id.tv_kc);
         tv_price = (TextView) findViewById(R.id.tv_price);
+        iv_default_null = (TextView) findViewById(R.id.iv_default_null);
         tv_select_time = (TextView) findViewById(R.id.tv_select_time);
         spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -79,7 +84,7 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
         tvTitle.setText("月损益表");
         rlv.setLayoutManager(new LinearLayoutManager(activity));
         //默认当前时间
-        String nowDay = CalendarUtil.getTodayDate();
+        nowDay = CalendarUtil.getTodayDate();
         //网络访问
         initNet(nowDay);
         //隐藏图标
@@ -94,7 +99,7 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //第四步：将适配器添加到下拉列表上
         spinner.setAdapter(adapter);
-        spinner.setSelection(3,true);
+        spinner.setSelection(3, true);
         //第五步：为下拉列表设置各种事件的响应，这个事响应菜单被选中
         spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -167,8 +172,9 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
             @Override
             public void onFailed(int tag, String msg) {
                 activity.dismissLoading();
-                Toast.show(activity, msg);
-
+                iv_default_null.setVisibility(View.VISIBLE);
+                ll1.setVisibility(View.GONE);
+                rlv.setVisibility(View.GONE);
             }
         });
 
@@ -229,4 +235,27 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
 
     }
 
+    @Override
+    public void onEvent(String action) {
+        super.onEvent(action);
+        if (action.equals("网络请求成功")) {
+            iv_default_null.setVisibility(View.GONE);
+            ll1.setVisibility(View.VISIBLE);
+            rlv.setVisibility(View.VISIBLE);
+        } else if (action.equals("网络未连接")) {
+            iv_default_null.setVisibility(View.VISIBLE);
+            ll1.setVisibility(View.GONE);
+            rlv.setVisibility(View.GONE);
+        } else if (action.equals("网络已连接")) {
+            iv_default_null.setVisibility(View.GONE);
+            ll1.setVisibility(View.VISIBLE);
+            rlv.setVisibility(View.VISIBLE);
+            initNet(nowDay);
+        } else if (action.equals("网络请求失败")) {
+            iv_default_null.setVisibility(View.VISIBLE);
+            ll1.setVisibility(View.GONE);
+            rlv.setVisibility(View.GONE);
+
+        }
+    }
 }

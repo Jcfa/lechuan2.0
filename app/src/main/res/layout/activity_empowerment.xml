@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_title"/>
+    <include layout="@layout/layout_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/common_background"/>
+        android:background="@color/common_background" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="4dp"
                 android:gravity="center"
-                android:src="@drawable/icon_not_select"/>
+                android:src="@drawable/icon_not_select" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:text="我有公众号"
                     android:textColor="@color/textGreen"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/empower_have_oa_content"
@@ -57,7 +56,7 @@
                     android:layout_marginTop="5dp"
                     android:text="一键授权开设微店"
                     android:textColor="@color/placeholder_70"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -80,7 +79,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="4dp"
                 android:gravity="center"
-                android:src="@drawable/icon_not_select"/>
+                android:src="@drawable/icon_not_select" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="尚无公众号"
                     android:textColor="@color/textGray"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/empower_not_oa_content"
@@ -102,7 +101,7 @@
                     android:layout_marginTop="5dp"
                     android:text="专人助你开通公众号"
                     android:textColor="@color/placeholder_30"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -114,7 +113,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/common_background"/>
+        android:background="@color/common_background" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -132,7 +131,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/projector"/>
+                android:src="@drawable/projector" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,7 +140,7 @@
                 android:gravity="center"
                 android:text="演示及案例"
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -163,12 +162,12 @@
                 android:gravity="center"
                 android:text="去查看"
                 android:textColor="@color/placeholder_30"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@mipmap/icon_arrow_right_32"/>
+                android:src="@mipmap/icon_arrow_right_32" />
 
         </LinearLayout>
 
@@ -177,7 +176,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/common_background"/>
+        android:background="@color/common_background" />
 
     <RelativeLayout
         android:id="@+id/empower_apply_oa"
@@ -221,11 +220,17 @@
             android:layout_marginTop="10dp"
             android:gravity="center|left">
 
+            <ImageView
+                android:id="@+id/iv_checked_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/checked_32_icon"
+                android:visibility="gone"/>
+
             <TextView
                 android:id="@+id/empower_apply_oa_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="13dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:text="未开通"
@@ -241,8 +246,7 @@
 
     </RelativeLayout>
 
-    <View
-        style="@style/horizontal_line"/>
+    <View style="@style/horizontal_line" />
 
     <RelativeLayout
         android:id="@+id/empower_oa_empower"
@@ -266,7 +270,7 @@
                 android:gravity="center"
                 android:text="步骤二："
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -275,7 +279,7 @@
                 android:gravity="center"
                 android:text="公众号授权"
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -296,19 +300,18 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textColor="@color/placeholder_30"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@mipmap/icon_arrow_right_32"/>
+                android:src="@mipmap/icon_arrow_right_32" />
 
         </LinearLayout>
 
     </RelativeLayout>
 
-    <View
-        style="@style/horizontal_line"/>
+    <View style="@style/horizontal_line" />
 
     <RelativeLayout
         android:id="@+id/empower_ordering"
@@ -332,7 +335,7 @@
                 android:gravity="center"
                 android:text="步骤三："
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -341,7 +344,7 @@
                 android:gravity="center"
                 android:text="服务订购/试用"
                 android:textColor="@color/placeholder_70"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -361,18 +364,17 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:textColor="@color/placeholder_30"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@mipmap/icon_arrow_right_32"/>
+                android:src="@mipmap/icon_arrow_right_32" />
 
         </LinearLayout>
 
     </RelativeLayout>
 
-    <View
-        style="@style/horizontal_line"/>
+    <View style="@style/horizontal_line" />
 
 </LinearLayout>

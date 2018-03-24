@@ -234,6 +234,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="25dp"
                     android:text="123564"
+                    android:textSize="12dp"
                     android:textColor="@color/color_999999" />
             </RelativeLayout>
 

@@ -7,6 +7,7 @@ import com.poso2o.lechuan.bean.orderInfo.OrderInfoMemberBean;
 import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.http.realshop.RMemberHttpAPI;
+import com.poso2o.lechuan.util.DeviceNetUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.yanzhenjie.nohttp.rest.Request;
 
@@ -39,6 +40,7 @@ public class OrderInfoMemberManager extends BaseManager {
             @Override
             public void onSucceed(int what, String response) {
                 //解决旧版接口数据结构不统一问题
+                DeviceNetUtil.onSuccess();
                 if (response.startsWith("[") && response.endsWith("]")) {
                     response = "{\nlist\n:" + response + "}";
                 }
@@ -49,6 +51,7 @@ public class OrderInfoMemberManager extends BaseManager {
             @Override
             public void onFailed(int what, String response) {
                 callBack.onFailed(what, response);
+                DeviceNetUtil.onError();
 
             }
         }, true, true);

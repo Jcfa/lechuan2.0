@@ -14,7 +14,11 @@ public class OpenStandBean implements Serializable {
     private String payment_time;
     private String build_time;
     private String mobile;
-    private String state;
+    private int state = 0;
+
+    public static int WAIT_OPEN_STATE = 0;//未缴费、未开通
+    public static int PAY_COSE_STATE = 1;//已经缴费、未开通
+    public static int HAS_OPENED_STATE = 2;//已经开通
 
     public String getAttn() {
         return attn;
@@ -72,11 +76,11 @@ public class OpenStandBean implements Serializable {
         this.mobile = mobile;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 }
