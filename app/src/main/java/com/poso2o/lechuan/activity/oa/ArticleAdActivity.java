@@ -156,7 +156,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
     protected void initListener() {
         art_ad_back.setOnClickListener(this);
         article_detail_preview.setOnClickListener(this);
-        show_ad_models.setOnClickListener(this);
+        add_ad_layout.setOnClickListener(this);
         add_to_renewals.setOnClickListener(this);
         add_to_publish.setOnClickListener(this);
         art_to_bottom.setOnClickListener(this);
@@ -189,7 +189,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             case R.id.art_ad_back:
                 finish();
                 break;
-            case R.id.show_ad_models:
+            case R.id.add_ad_layout:
                 showOrNot();
                 break;
             case R.id.article_detail_preview:

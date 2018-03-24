@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="您的稿件箱比脸都干净^o^"
+        android:text="您的草稿箱比脸都干净^o^"
         android:textColor="@color/color_999999"
         android:textSize="@dimen/z_text_normal"
         android:visibility="gone"/>

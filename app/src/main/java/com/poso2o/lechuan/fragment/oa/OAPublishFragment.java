@@ -66,6 +66,7 @@ public class OAPublishFragment extends BaseFragment implements ViewPager.OnPageC
             ((OAHelperActivity) getActivity()).setPublishTitle();
         }else{
             ((OAHelperActivity) getActivity()).setDraftTitle();
+            if (mDraftFragment != null)mDraftFragment.refreshDraft();
         }
     }
 

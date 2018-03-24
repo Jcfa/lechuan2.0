@@ -16,7 +16,10 @@ import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.oa.TemplateBean;
 import com.poso2o.lechuan.bean.oa.TemplateGroup;
 import com.poso2o.lechuan.configs.Constant;
+import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.util.NumberFormatUtils;
+import com.poso2o.lechuan.util.Toast;
 
 /**
  * Created by mr zhang on 2018/2/5.
@@ -26,6 +29,8 @@ import com.poso2o.lechuan.util.NumberFormatUtils;
 
 public class ModelGroupInfoActivity extends BaseActivity {
 
+    //模板详情跳转
+    private static final int CODE_TEMPLATE_DETAIL = 1510;
     public static final String TEMPLATE_GROUP_DATA = "template_group";
     //是否为选择模板页面
     public static final String TAG_CHANGE_TEMPLATE = "change_template";
@@ -42,6 +47,9 @@ public class ModelGroupInfoActivity extends BaseActivity {
     private TemplateGroup templateGroup;
     //是否为选择模板页面
     private boolean select_template = false;
+
+    //默认模板变更过
+    private boolean is_change = false;
 
     @Override
     protected int getLayoutResId() {
@@ -71,6 +79,7 @@ public class ModelGroupInfoActivity extends BaseActivity {
         model_groups_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (is_change)setResult(RESULT_OK);
                 finish();
             }
         });
@@ -81,6 +90,16 @@ public class ModelGroupInfoActivity extends BaseActivity {
                 goToDetail(templateBean);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK){
+            if (requestCode == CODE_TEMPLATE_DETAIL){
+                is_change = true;
+//                refreshGroup();
+            }
+        }
     }
 
     private void setGroupData(){
@@ -105,7 +124,27 @@ public class ModelGroupInfoActivity extends BaseActivity {
             intent.setClass(this,ModelEditActivity.class);
             intent.putExtra(ModelEditActivity.TEMPLATE_INFO,templateBean);
             intent.putExtra(ModelEditActivity.TEMPLATE_GROUP_ID,templateGroup.group_id);
-            startActivity(intent);
+            startActivityForResult(intent,CODE_TEMPLATE_DETAIL);
         }
+    }
+
+    private void refreshGroup(){
+        showLoading();
+        ModelGroupManager.getModelGroupManager().modelGroupInfo(this, templateGroup.group_id, new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object result) {
+                dismissLoading();
+                templateGroup = (TemplateGroup) result;
+                if (templateGroup != null){
+                    modelAdapter.notifyData(templateGroup.templates);
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                Toast.show(getApplication(),msg);
+            }
+        });
     }
 }

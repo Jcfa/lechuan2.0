@@ -18,22 +18,11 @@
             android:text="模板详情"/>
 
         <TextView
-            android:id="@+id/edit_model_preview"
-            android:layout_width="56dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="70dp"
-            android:text="预览"
-            android:gravity="center"
-            android:background="@drawable/selector_frame_circular_bead"
-            android:textColor="@color/color_00BCB4"
-            android:textSize="@dimen/z_text_normal"/>
-
-        <TextView
             android:id="@+id/model_edit_save"
             android:layout_width="56dp"
             android:layout_height="30dp"
             android:text="保存"
+            android:visibility="gone"
             android:textColor="@android:color/white"
             android:background="@drawable/selector_sign_btn"
             android:layout_gravity="center_vertical|right"
@@ -41,6 +30,19 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/edit_model_preview"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="70dp"
+            android:text="预览"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/selector_frame_circular_bead"
+            android:textColor="@color/color_00BCB4"
+            android:textSize="@dimen/z_text_normal"/>
 
     </FrameLayout>
 
@@ -78,7 +80,9 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
     <View
         style="@style/under_line_C7C7C7"/>
@@ -87,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"
+        android:visibility="gone"
         android:background="@android:color/white">
 
         <ImageView

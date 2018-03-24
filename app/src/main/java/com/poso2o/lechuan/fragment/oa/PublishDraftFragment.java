@@ -100,9 +100,6 @@ public class PublishDraftFragment extends BaseFragment implements SwipeRefreshLa
     @Override
     public void onResume() {
         super.onResume();
-        if (RenewalsManager.getRenewalsManager().getOperateState()){
-            initRenewalsData();
-        }
     }
 
     /**
@@ -166,4 +163,10 @@ public class PublishDraftFragment extends BaseFragment implements SwipeRefreshLa
             });
         }
     };
+
+    public void refreshDraft(){
+        if (RenewalsManager.getRenewalsManager().getOperateState()){
+            initRenewalsData();
+        }
+    }
 }

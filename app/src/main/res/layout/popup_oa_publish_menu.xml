@@ -25,7 +25,7 @@
         android:ems="4"
         android:gravity="center"
         android:background="@drawable/selector_popup_menu_bg"
-        android:text="存稿件箱"
+        android:text="存草稿箱"
         android:textColor="@color/color_EEEEEE"
         android:textSize="@dimen/textSize_middle" />
 

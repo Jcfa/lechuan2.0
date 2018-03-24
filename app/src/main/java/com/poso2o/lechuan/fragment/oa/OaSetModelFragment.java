@@ -21,6 +21,7 @@ import com.poso2o.lechuan.bean.oa.TemplateGroups;
 import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
+import com.poso2o.lechuan.tool.image.ImageCompressTool;
 
 /**
  * Created by mr zhang on 2018/2/5.
@@ -29,6 +30,8 @@ import com.poso2o.lechuan.manager.oa.ModelGroupManager;
  */
 
 public class OaSetModelFragment extends BaseFragment {
+
+    private static final int CODE_GROUP_INFO = 1110;
 
     private View view;
 
@@ -90,7 +93,7 @@ public class OaSetModelFragment extends BaseFragment {
                 Intent intent = new Intent();
                 intent.setClass(context, ModelGroupInfoActivity.class);
                 intent.putExtra(ModelGroupInfoActivity.TEMPLATE_GROUP_DATA,templateGroup);
-                startActivity(intent);
+                startActivityForResult(intent,CODE_GROUP_INFO);
             }
 
             @Override
@@ -105,6 +108,14 @@ public class OaSetModelFragment extends BaseFragment {
             public void onModelGroupContinue(TemplateGroup templateGroup) {
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CODE_GROUP_INFO){
+            showLoading();
+            requestData();
+        }
     }
 
     //请求模板组列表数据

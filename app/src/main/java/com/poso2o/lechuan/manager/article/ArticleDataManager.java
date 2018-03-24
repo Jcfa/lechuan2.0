@@ -50,6 +50,9 @@ public class ArticleDataManager extends BaseManager {
     //已添加到发布列表的选文篇数
     private int art_num = 0;
 
+    //记录已收藏文章的id
+    private String collect_id = "";
+
     /**
      * 公众号助手选中的数据
      */
@@ -96,6 +99,12 @@ public class ArticleDataManager extends BaseManager {
                         currPage--;
                         callback.onFail(baseActivity.getString(R.string.toast_no_more_data));
                     } else {
+                        if (articles_type == COLLECT){
+                            collect_id = "";
+                            for (int i = 0; i<articleBean.list.size(); i++){
+                                collect_id = collect_id + articleBean.list.get(i).articles_id + ",";
+                            }
+                        }
                         callback.onSucceed(articleBean.list);
                     }
                 } else {
@@ -116,7 +125,7 @@ public class ArticleDataManager extends BaseManager {
      * @param articles_id
      * @param has_collect
      */
-    public void collect(BaseActivity baseActivity, String articles_id, int has_collect, final OnCollectCallback onCollectCallback) {
+    public void collect(BaseActivity baseActivity,final String articles_id, final int has_collect, final OnCollectCallback onCollectCallback) {
         Request<String> request;
         if (has_collect == 1) {
             request = getStringRequest(HttpAPI.ARTICLES_UNCOLLECT_API);
@@ -130,6 +139,15 @@ public class ArticleDataManager extends BaseManager {
             @Override
             public void onSucceed(int what, String response) {
                 Log.i(this.getClass().getSimpleName(), response);
+                if (has_collect == 1){
+                    String[] str = collect_id.split(articles_id);
+                    collect_id = "";
+                    for (int i=0; i<str.length; i++){
+                        collect_id = collect_id + str[i];
+                    }
+                }else {
+                    collect_id = collect_id + articles_id + ",";
+                }
                 onCollectCallback.onSucceed(null);
             }
 
@@ -138,6 +156,11 @@ public class ArticleDataManager extends BaseManager {
                 onCollectCallback.onFail(response);
             }
         }, true, false);
+    }
+
+    //获取收藏文章的id
+    public String getCollect_id(){
+        return collect_id;
     }
 
     /**

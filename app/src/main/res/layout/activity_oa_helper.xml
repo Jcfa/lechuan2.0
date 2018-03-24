@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/common_background"
     android:id="@+id/rootview_oa"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <FrameLayout
@@ -116,11 +117,11 @@
 
             <TextView
                 android:id="@+id/oa_publish_num"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:background="@mipmap/icon_num_bg_red_64"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="28dp"
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:visibility="gone"

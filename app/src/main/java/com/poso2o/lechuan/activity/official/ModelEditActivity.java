@@ -181,6 +181,7 @@ public class ModelEditActivity extends BaseActivity implements View.OnClickListe
                 public void onResult(int tag, Object result) {
                     dismissLoading();
                     Toast.show(getApplication(),"设置成功");
+                    setResult(RESULT_OK);
                     ModelEditActivity.this.finish();
                 }
 

@@ -38,6 +38,12 @@ public class RenewalsAdapter extends BaseAdapter<RenewalsAdapter.RenewalsVH,Rene
         holder.articleCollect.setText(item.articles.collectnums + "");
         holder.articleShare.setText(item.articles.sharenums + "");
 
+        if (item.articles.isCollect()) {
+            holder.articleCollect.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_collect_selected, 0, 0, 0);
+        } else {
+            holder.articleCollect.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_collect, 0, 0, 0);
+        }
+
         holder.icon_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

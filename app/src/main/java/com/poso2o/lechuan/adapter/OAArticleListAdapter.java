@@ -106,9 +106,12 @@ public class OAArticleListAdapter extends BaseAdapter<OAArticleListAdapter.Artic
         holder.article_item_look.setText(Long.toString(item.readnums));
         // 收藏
         holder.article_item_collect.setText(Long.toString(item.collectnums));
-        if (item.isCollect()) {
+        if (ArticleDataManager.getInstance().getCollect_id().contains(item.articles_id)) {
+            //是否收藏以本地数据为准，因为存在数据不同步问题
+            item.has_collect = 1;
             holder.article_item_collect.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_collect_selected, 0, 0, 0);
         } else {
+            item.has_collect = 0;
             holder.article_item_collect.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_collect, 0, 0, 0);
         }
         holder.article_item_collect.setOnClickListener(new View.OnClickListener() {

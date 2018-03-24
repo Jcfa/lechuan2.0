@@ -105,7 +105,8 @@ public class ModelGroupManager extends BaseManager {
         baseActivity.request(MODEL_GROUP_INFO_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                iRequestCallBack.onResult(MODEL_GROUP_INFO_ID,response);
+                TemplateGroup templateGroup = new Gson().fromJson(response,TemplateGroup.class);
+                iRequestCallBack.onResult(MODEL_GROUP_INFO_ID,templateGroup);
             }
 
             @Override
