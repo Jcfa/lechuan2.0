@@ -73,4 +73,5 @@ public interface Constant {
      * 选择文章变更广播
      */
     String BROADCAST_SELECT_ARTICLE = "poso2o.lechuan.broadcast.article.select.article";
+    String LECHUAN_ROOT_DIR = "lechuan/qrcode";
 }

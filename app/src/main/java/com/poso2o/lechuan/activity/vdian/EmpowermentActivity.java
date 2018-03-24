@@ -9,9 +9,9 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
-import com.poso2o.lechuan.bean.wopenaccountdata.OpenStandBean;
+import com.poso2o.lechuan.bean.vdian.OpenStandBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
+import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
 import com.poso2o.lechuan.util.Toast;
 
 import static com.umeng.socialize.utils.DeviceConfig.context;
@@ -164,6 +164,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
         empower_ordering.setOnClickListener(this);
         empower_oa_empower.setOnClickListener(this);
         empower_apply_oa.setOnClickListener(this);
+        findView(R.id.case_performance).setOnClickListener(this);
     }
 
     @Override
@@ -243,6 +244,9 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                     // 已开通状态
                     empower_apply_oa.setClickable(false);
                 }
+                break;
+            case R.id.case_performance:
+                startActivity(CasePerformanceActivity.class);
                 break;
         }
     }

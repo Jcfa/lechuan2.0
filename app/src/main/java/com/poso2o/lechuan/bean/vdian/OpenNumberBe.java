@@ -1,8 +1,6 @@
-package com.poso2o.lechuan.bean.wopenaccountdata;
+package com.poso2o.lechuan.bean.vdian;
 
 import com.poso2o.lechuan.bean.BaseListBean;
-
-import java.io.Serializable;
 
 /**
  * Created by Administrator on 2018/3/16 0016.

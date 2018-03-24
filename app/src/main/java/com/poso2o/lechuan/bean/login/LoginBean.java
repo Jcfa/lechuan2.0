@@ -35,5 +35,6 @@ public class LoginBean {
     public String token = "";
     public String openid = "";//openId微信绑定标识
     public int has_shop_verify = 0;//微店认证状态,1=未认证，2=申请认证，3=认证通过，4=认证不通过
+    public String shop_bank_binding_url = "";//绑定收款账号的二维码
 //    }
 }

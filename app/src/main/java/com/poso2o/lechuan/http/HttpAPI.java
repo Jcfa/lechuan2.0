@@ -7,6 +7,7 @@ package com.poso2o.lechuan.http;
 public class HttpAPI {
     //http://fuzhuang.poso2o.com/user.htm?Act=login&loginname=13016079579&password=123456
     public static String SERVER_MAIN_API = "http://wechat.poso2o.com/";
+    public static String LC_SERVER_MAIN_API = "http://wechat.poso2o.com/";
 //    public static String SERVER_MAIN_API = "http://fuzhuang.poso2o.com/";
 //public static String SERVER_MAIN_API = "http://192.168.10.153:8080/";
 

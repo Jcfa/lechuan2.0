@@ -2,8 +2,6 @@ package com.poso2o.lechuan.adapter.wopenaccountadapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -12,14 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
+import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrial;
 import com.poso2o.lechuan.util.NumberUtils;
 
 import java.util.List;

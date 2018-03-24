@@ -116,6 +116,7 @@
         android:background="@color/common_background" />
 
     <RelativeLayout
+        android:id="@+id/case_performance"
         android:layout_width="match_parent"
         android:layout_height="60dp">
 

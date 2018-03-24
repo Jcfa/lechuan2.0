@@ -1,16 +1,14 @@
 package com.poso2o.lechuan.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
-import com.poso2o.lechuan.bean.wopenaccountdata.ServiceOrderingTrial;
+import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrial;
 import com.poso2o.lechuan.util.NumberUtils;
 
 import java.util.ArrayList;

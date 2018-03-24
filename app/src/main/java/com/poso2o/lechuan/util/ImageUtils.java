@@ -79,6 +79,8 @@ public class ImageUtils {
                 } else {
                     if (matrix.get(x, y)) {//如果有黑块点，记录信息
                         pixels[y * width + x] = 0xff000000;//记录黑块信息
+                    }else{
+                        pixels[y * width + x] = 0xffffffff;//其中WHILTE是我自己定义的一个静态变量，值为0xffffffff（即白色）
                     }
                 }
             }

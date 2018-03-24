@@ -1,4 +1,4 @@
-package com.poso2o.lechuan.bean.wopenaccountdata;
+package com.poso2o.lechuan.bean.vdian;
 
 import java.io.Serializable;
 

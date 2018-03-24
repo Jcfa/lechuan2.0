@@ -1,8 +1,6 @@
 package com.poso2o.lechuan.activity.vdian;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,9 +12,8 @@ import com.poso2o.lechuan.bean.event.PayEvent;
 import com.poso2o.lechuan.broadcast.wopenbroad.WeiXinFuWuReceived;
 import com.poso2o.lechuan.broadcast.wopenbroad.WeiXinKaiReceived;
 import com.poso2o.lechuan.configs.AppConfig;
-import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
+import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
 import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.NumberUtils;
 import com.tencent.mm.opensdk.modelpay.PayReq;

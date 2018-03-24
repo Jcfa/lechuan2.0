@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.MainActivity;
 import com.poso2o.lechuan.activity.orderinfo.OrderInfoMainActivity;
@@ -37,6 +38,7 @@ import static com.poso2o.lechuan.util.SharedPreferencesUtils.KEY_USER_SERVICE_DA
 
 public class StartActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private List<ImageView> dotViews = new ArrayList<>();
+    private List<View> mViews = new ArrayList<>();
     private ImageView ivDot;//白色圆点
     private float mDistance;
     private boolean mExist = false;
@@ -77,11 +79,11 @@ public class StartActivity extends BaseActivity implements ViewPager.OnPageChang
         LayoutInflater inflater = getLayoutInflater();
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.addOnPageChangeListener(this);
-        List<View> views = new ArrayList<>();
-        views.add(inflater.inflate(R.layout.layout_login_pager1, null));
-        views.add(inflater.inflate(R.layout.layout_login_pager1, null));
-        views.add(inflater.inflate(R.layout.layout_login_pager1, null));
-        ViewPagerAdapter adapter = new ViewPagerAdapter(views);
+        mViews = new ArrayList<>();
+        mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
+        mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
+        mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
+        ViewPagerAdapter adapter = new ViewPagerAdapter(mViews);
         viewPager.setAdapter(adapter);
         dotViews.add((ImageView) findView(R.id.iv_dot1));
         dotViews.add((ImageView) findView(R.id.iv_dot2));
@@ -95,6 +97,7 @@ public class StartActivity extends BaseActivity implements ViewPager.OnPageChang
             }
         });
 
+        setViewpagerPic(0);
     }
 
     @Override
@@ -104,7 +107,7 @@ public class StartActivity extends BaseActivity implements ViewPager.OnPageChang
         String token = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN);
         if (!TextUtil.isEmpty(uid) && !TextUtil.isEmpty(token) && !mExist) {//已经登录过直接去首页
 //            if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SELECTED_TYPE) == Constant.MERCHANT_TYPE) {
-                toRShopMainActivity();
+            toRShopMainActivity();
 //            } else {
 //                toMainActivity();
 //            }
@@ -148,11 +151,18 @@ public class StartActivity extends BaseActivity implements ViewPager.OnPageChang
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivDot.getLayoutParams();
         params.leftMargin = (int) leftMargin;
         ivDot.setLayoutParams(params);
+        setViewpagerPic(position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    private void setViewpagerPic(int position) {
+        View view = mViews.get(position);
+        ImageView pic = (ImageView) view.findViewById(R.id.pic);
+        pic.setImageResource(R.mipmap.logo_g);
     }
 
     @Override

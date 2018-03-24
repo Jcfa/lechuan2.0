@@ -9,10 +9,10 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
-import com.poso2o.lechuan.bean.wopenaccountdata.OpenNumber;
-import com.poso2o.lechuan.bean.wopenaccountdata.OpenNumberBe;
+import com.poso2o.lechuan.bean.vdian.OpenNumber;
+import com.poso2o.lechuan.bean.vdian.OpenNumberBe;
 import com.poso2o.lechuan.http.IRequestCallBack;
-import com.poso2o.lechuan.manager.wopenaccountmanager.EmpowermentManager;
+import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
 import com.poso2o.lechuan.util.Toast;
 
 /**
