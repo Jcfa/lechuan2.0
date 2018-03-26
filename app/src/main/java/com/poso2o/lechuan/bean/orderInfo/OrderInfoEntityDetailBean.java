@@ -30,12 +30,12 @@ public class OrderInfoEntityDetailBean {
      * order_num : 1
      * addr_name :
      * order_date : 2018-03-09 17:38:31.0
-     *
+     * <p>
      * products : [{"sizeid":"L","remark":"","no":"0","colorid":"蓝色","barcode":"00002","discount":
      * "100.00","fprice":"38.00","amount":"138.00","guid":"aa674378efd75556abd4b941cdfaa0c2"
      * ,"unit":"","num":"1","price":"138.00","name":"优衣库2015日系学院风连衣裙",
      * "bh":"00216","image222":"http://img01.poso2o.com/20180111/ad9acf95b3e01804_222_222.jpg"}]
-     *
+     * <p>
      * order_discount : 100.00
      * addr_provincename :
      * addr_cityname :
@@ -192,6 +192,10 @@ public class OrderInfoEntityDetailBean {
     }
 
     public String getOrder_amount() {
+        int anInt = Integer.parseInt(order_num);
+        String price = getProducts().get(0).getPrice();
+        if (anInt < 0)
+            return "-" + price;
         return order_amount;
     }
 

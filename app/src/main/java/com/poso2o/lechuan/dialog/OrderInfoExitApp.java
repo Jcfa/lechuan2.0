@@ -5,9 +5,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.manager.main.ActivityManager;
 import com.poso2o.lechuan.util.AppUtil;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 /**
  * Created by ${cbf} on 2018/3/23 0023.
@@ -57,7 +60,9 @@ public class OrderInfoExitApp extends BaseDialog {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppUtil.exitApp((BaseActivity) context, true);
+                //退出登录 清楚所有数据
+                SharedPreferencesUtils.clear();
+                ActivityManager.getActivityManager().finishAll();
             }
         });
 

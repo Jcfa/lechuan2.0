@@ -3,6 +3,10 @@ package com.poso2o.lechuan.dialog;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -46,7 +50,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
     private RecyclerView rlvDialog;
     private TextView tv_public_frist, tv_public_second, tv_public_thrid, tv_public_fourth, tv_public_fifth;
     private TextView tvTotalshouc, tvTotalKc, tvTotalPrice;
-    private TextView tvQchu, tv_spg;
+    private TextView tvQchu, tv_spg, tv_paper_detail_vip;
 
     public OrderPaperDetailDialog(Context context) {
         super(context);
@@ -80,6 +84,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
         tvTotalKc = (TextView) findViewById(R.id.tv_kc);
         tvTotalPrice = (TextView) findViewById(R.id.tv_price);
         tv_spg = (TextView) findViewById(R.id.tv_spg);
+        tv_paper_detail_vip = (TextView) findViewById(R.id.tv_paper_detail_vip);
 
     }
 
@@ -120,7 +125,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
                             Glide.with(context).load(detailBean.getImage222()).error(R.drawable.expicture).into(ivHead);
                             tvName.setText(detailBean.getName());
                             String fprice = detailBean.getFprice();
-                            tvPrice.setText(detailBean.getPrice() + " 成本" + fprice);
+                            tvPrice.setText(detailBean.getPrice() + "     成本" + fprice);
                             int profit = 0;
                             int income = 0;
                             double totalPrice = 0;
@@ -205,6 +210,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
             });
 
         } else if (type == 3) {
+            tv_paper_detail_vip.setVisibility(View.VISIBLE);
             tv_public_frist.setText("时间");
             tv_public_second.setVisibility(View.GONE);
             tv_public_second.setWidth(2);
@@ -212,7 +218,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
             tv_public_fourth.setText("数量");
             tv_public_fifth.setText("成交额");
             rl_member_vis.setVisibility(View.VISIBLE);
-            tvTotalshouc.setVisibility(View.INVISIBLE);
+            tvTotalshouc.setVisibility(View.GONE);
             tvQchu.setVisibility(View.GONE);
             tv_spg.setVisibility(View.GONE);
             OrderPaperDetailManager.getOrderInfo().orderMemberDetailApi((BaseActivity) context, guid, new IRequestCallBack<OrderMemberDetailBean>() {
@@ -224,7 +230,8 @@ public class OrderPaperDetailDialog extends BaseDialog {
                             .error(R.mipmap.employee_manage)
                             .placeholder(R.mipmap.employee_manage)
                             .into(ivHead);
-                    tvName.setText(memberDetailBean.getGroupname());
+                    tvName.setText(memberDetailBean.getNick());
+                    tv_paper_detail_vip.setText("(" + memberDetailBean.getGroupname() + ")");
                     tvPrice.setText(memberDetailBean.getMobile());
                     tvPrice.setTextColor(context.getResources().getColor(R.color.textBlack));
                     List<OrderMemberDetailBean.ListsBean> lists = memberDetailBean.getLists();
@@ -236,11 +243,13 @@ public class OrderPaperDetailDialog extends BaseDialog {
                         countMoney += Float.parseFloat(data.get(i).getPayment_amount());
                         BigDecimal bg = new BigDecimal(countMoney);
                         double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                        tv_member_money.setText("成交额:" + value + "");
+                        Spanned html = Html.fromHtml("成交额:<font color=\"#FF4F01\">" + value + "</font>");
+                        tv_member_money.setText(html);
                         tv_member_money.setTextSize(14);
                         tv_member_money.setTextColor(context.getResources().getColor(R.color.textBlack));
                     }
-                    tv_member_num.setText("共" + lists.size() + "笔订单");
+                    Spanned html = Html.fromHtml("共<font color=\"#FF4F01\">" + lists.size() + "</font>" + "笔订单");
+                    tv_member_num.setText(html);
                     tv_member_num.setTextSize(14);
                     tv_member_num.setTextColor(context.getResources().getColor(R.color.textBlack));
                     OrderMemberDetailAdapter adapter = new OrderMemberDetailAdapter(lists);

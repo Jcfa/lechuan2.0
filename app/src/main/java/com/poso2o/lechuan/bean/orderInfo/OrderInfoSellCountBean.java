@@ -1,5 +1,9 @@
 package com.poso2o.lechuan.bean.orderInfo;
 
+import android.util.Log;
+
+import com.poso2o.lechuan.util.InsertPoint;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -70,12 +74,21 @@ public class OrderInfoSellCountBean implements Serializable {
     }
 
     public String getAssignment() {
-        double staff_dc = Double.parseDouble(assignment);
-        BigDecimal bg1 = new BigDecimal(staff_dc);
-        double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        String assign = null;
+        StringBuilder sb = new StringBuilder();
+        int length = assignment.length();
+        if (length >= 5) {
+            assign = InsertPoint.Stringinsert(assignment);
+        } else {
+            double staff_dc = Double.parseDouble(assignment);
+            BigDecimal bg1 = new BigDecimal(staff_dc);
+            double value = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            assign = value + "";
+        }
+
         if (assignment == null && assignment.equals("0.00"))
             return "0.00";
-        return value1 + "";
+        return assign + "";
     }
 
     public void setAssignment(String assignment) {

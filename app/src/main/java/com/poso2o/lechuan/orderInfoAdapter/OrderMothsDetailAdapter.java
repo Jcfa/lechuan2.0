@@ -41,6 +41,7 @@ public class OrderMothsDetailAdapter extends RecyclerView.Adapter<OrderMothsDeta
         holder.tvShouc.setText(listsBean.getDel_amount());
         holder.tvKc.setText(listsBean.getPrimecost_amount());
         holder.tvPrice.setText(listsBean.getClear_profit());
+        holder.tvQchu.setVisibility(View.VISIBLE);
 
 
     }
