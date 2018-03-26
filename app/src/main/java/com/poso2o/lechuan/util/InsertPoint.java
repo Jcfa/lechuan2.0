@@ -1,9 +1,5 @@
 package com.poso2o.lechuan.util;
 
-import android.util.Log;
-
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

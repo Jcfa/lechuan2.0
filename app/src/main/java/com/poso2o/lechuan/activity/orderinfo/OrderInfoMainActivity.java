@@ -252,7 +252,6 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
             //月损益表  //业绩
             case R.id.ll_order_primecost:
                 startActivity(new Intent(OrderInfoMainActivity.this, OrderPoplstaffActivity.class));
-
                 break;
             //会员管理  //畅销 1
             case R.id.ll_order_members:
@@ -267,6 +266,14 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 detailDialog = new OrderInfoExitApp(this);
                 detailDialog.show();
                 break;
+        }
+    }
+
+    @Override
+    public void onEvent(String action) {
+        super.onEvent(action);
+        if (action.equals("网络已连接")) {
+            initNetRequest(beginTime, endTime);
         }
     }
 }

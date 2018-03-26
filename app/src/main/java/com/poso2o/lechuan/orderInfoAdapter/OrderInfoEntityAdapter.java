@@ -22,9 +22,9 @@ public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntity
     private Context context;
     private List<DataBean> data;
 
-    public OrderInfoEntityAdapter(Context context) {
+    public OrderInfoEntityAdapter(Context context, List<DataBean> list) {
         this.context = context;
-        this.data = new ArrayList<>();
+        this.data = list;
         notifyDataSetChanged();
     }
 
