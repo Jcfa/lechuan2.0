@@ -7,7 +7,7 @@
         android:id="@+id/lls"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="@color/bg_color"
+        android:background="@color/colorWhite"
         android:orientation="horizontal">
 
         <ImageView
@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/expicture" />
+            android:src="@mipmap/employee_manage" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -54,12 +54,17 @@
                 android:src="@drawable/ad_close_icon" />
         </RelativeLayout>
     </LinearLayout>
-
+    <View
+        android:id="@+id/view_lg"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/lls"
+        android:background="@color/lineBg" />
     <RelativeLayout
         android:id="@+id/llss"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/lls"
+        android:layout_below="@+id/view_lg"
         android:background="@color/colorWhite"
         android:orientation="horizontal">
 
