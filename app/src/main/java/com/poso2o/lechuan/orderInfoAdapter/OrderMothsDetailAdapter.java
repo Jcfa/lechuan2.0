@@ -10,6 +10,7 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.orderInfo.OrderMothsDetailBean;
 import com.poso2o.lechuan.bean.orderInfo.OrderPaperDetailBean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -38,7 +39,15 @@ public class OrderMothsDetailAdapter extends RecyclerView.Adapter<OrderMothsDeta
         OrderMothsDetailBean.ListBean listsBean = data.get(position);
         holder.tvSpg.setText(listsBean.getCreate_date());
         holder.tvQchu.setText(listsBean.getSales_amount());
-        holder.tvShouc.setText(listsBean.getDel_amount());
+        String delAmount = listsBean.getDel_amount();
+        BigDecimal bg3 = new BigDecimal(Double.parseDouble(delAmount));
+        double value = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+        String format = df.format(value);
+        if (value == 0.0) {
+            holder.tvShouc.setText("0.00");
+        } else
+            holder.tvShouc.setText(format);
         holder.tvKc.setText(listsBean.getPrimecost_amount());
         holder.tvPrice.setText(listsBean.getClear_profit());
         holder.tvQchu.setVisibility(View.VISIBLE);

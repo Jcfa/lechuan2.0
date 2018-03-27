@@ -11,29 +11,6 @@ import java.math.BigDecimal;
  */
 
 public class OrderInfoSellCountBean implements Serializable {
-
-    /**
-     * code : success
-     * msg : 销售统计
-     * data : {"nick":"时装周","completion_rate":0,"remaining_assignment":
-     * "110693.00","assignment":"0.00","gross_profit":"110693.00","order_amounts
-     * ":"110693.00","today_sales_number":0,"total_goods_number":376,"selling_cost":"0.00","today_sales_amounts":0}
-     * total : {}
-     */
-
-    /**
-     * nick : 时装周
-     * completion_rate : 0
-     * remaining_assignment : 110693.00
-     * assignment : 0.00
-     * gross_profit : 110693.00
-     * order_amounts : 110693.00
-     * today_sales_number : 0
-     * total_goods_number : 376
-     * selling_cost : 0.00
-     * today_sales_amounts : 0
-     */
-
     private String nick;
     private String completion_rate;
     private String remaining_assignment;
@@ -54,7 +31,7 @@ public class OrderInfoSellCountBean implements Serializable {
         double staff_dc = Double.parseDouble(completion_rate);
         BigDecimal bg1 = new BigDecimal(staff_dc);
         double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        if (completion_rate == null && completion_rate.equals("0.00"))
+        if (completion_rate == null && completion_rate.equals("0.0"))
             return "0.00";
         return value1 + "";
     }
@@ -80,10 +57,12 @@ public class OrderInfoSellCountBean implements Serializable {
             double staff_dc = Double.parseDouble(assignment);
             BigDecimal bg1 = new BigDecimal(staff_dc);
             double value = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-            assign = value + "";
+            java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+            assign = df.format(value);
+//            assign = value + "";
         }
 
-        if (assignment == null && assignment.equals("0.00"))
+        if (assignment == null && assignment.equals("0.0"))
             return "0.00";
         return assign + "";
     }
@@ -102,9 +81,11 @@ public class OrderInfoSellCountBean implements Serializable {
         } else {
             BigDecimal bg1 = new BigDecimal(staff_dc);
             double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-            assign = value1 + "";
+            java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+            assign = df.format(value1);
+//            assign = value1 + "";
         }
-        if (gross_profit == null && gross_profit.equals("0.00"))
+        if (gross_profit == null && gross_profit.equals("0.0"))
             return "0.00%";
         return assign + "";
     }
@@ -122,9 +103,11 @@ public class OrderInfoSellCountBean implements Serializable {
         } else {
             BigDecimal bg1 = new BigDecimal(staff_dc);
             double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-            assign = value1 + "";
+            java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+            assign = df.format(value1);
+//            assign = value1 + "";
         }
-        if (order_amounts == null && order_amounts.equals("0.00"))
+        if (order_amounts == null && order_amounts.equals("0.0"))
             return "0.00";
         return assign;
     }

@@ -135,10 +135,19 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
     //初始化网络数据
     private void initNetData(OrderInfoSellCountBean data) {
-        tvSellPrice.setText(data.getOrder_amounts());
-        tvAimPrice.setText(data.getAssignment());
+        if (data.getOrder_amounts().equals(".00")) {
+            tvSellPrice.setText("0.00");
+        } else
+            tvSellPrice.setText(data.getOrder_amounts());
+        if (data.getAssignment().equals(".00")) {
+            tvAimPrice.setText("0.00");
+        } else
+            tvAimPrice.setText(data.getAssignment());
         tvComPletePrice.setText(data.getCompletion_rate() + "%");
-        tvGpmPrice.setText(data.getGross_profit());
+        if (data.getGross_profit().equals(".00")) {
+            tvGpmPrice.setText("0.00");
+        } else
+            tvGpmPrice.setText(data.getGross_profit());
     }
 
     private void setCalender() {
