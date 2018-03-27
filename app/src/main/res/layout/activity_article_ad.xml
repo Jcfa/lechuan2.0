@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
-                android:orientation="vertical">
+                android:orientation="vertical" >
 
                 <WebView
                     android:id="@+id/art_detail_web"
@@ -157,7 +157,8 @@
             android:layout_height="36dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="36dp"
             android:src="@mipmap/arrow_more" />
 
     </RelativeLayout>

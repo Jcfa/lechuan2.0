@@ -88,4 +88,9 @@ public class Article implements Serializable, Cloneable {
         Article article = (Article) obj;
         return articles_id == article.articles_id;
     }
+
+    //添加的广告ID，本地临时字段，不提交服务器
+    public String ad_id = "";
+    //添加的广告名称，本地临时字段，不提交服务器
+    public String ad_name = "";
 }

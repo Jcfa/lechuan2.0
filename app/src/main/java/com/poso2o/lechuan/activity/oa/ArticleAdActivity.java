@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -39,6 +41,7 @@ import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
 import com.poso2o.lechuan.tool.print.Print;
+import com.poso2o.lechuan.util.AndroidBug5497Workaround;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
 import com.poso2o.lechuan.util.TextUtil;
@@ -51,7 +54,7 @@ import java.util.ArrayList;
 
 /**
  * Created by mr zhang on 2017/12/5.
- *
+ * <p>
  * 文章详情，或者稿件详情页
  */
 
@@ -101,6 +104,10 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
     private String data;
     private Uri uri;
 
+    //选中的广告模板ID
+    private String select_id = "";
+    private String select_name = "";
+
     /**
      * 记录上传图片下标
      */
@@ -123,6 +130,8 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
+//        AndroidBug5497Workaround.assistActivity(this);
+
         scroll_layout = findView(R.id.scroll_layout);
 
         art_ad_back = findView(R.id.art_ad_back);
@@ -161,11 +170,15 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         add_to_publish.setOnClickListener(this);
         art_to_bottom.setOnClickListener(this);
 
-        mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>(){
+        mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>() {
             @Override
             public void onItemClick(TemplateBean item) {
+                if (select_id.equals(item.template_id))return;
                 ad_model_name.setText(item.template_name);
                 String str = item.content;
+                select_id = item.template_id;
+                select_name = item.template_name;
+                mTemplateAdapter.notifyDataSetChanged(templates,select_id);
                 art_detail_web.loadUrl("javascript:emptyAdTemplate()");
                 art_detail_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
             }
@@ -174,13 +187,14 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         scroll_layout.setOnScrollListener(new LazyScrollView.OnScrollListener() {
             @Override
             public void onScroll(int l, int t, int oldl, int oldt) {
-                if (scroll_layout.getScrollY() + scroll_layout.getHeight() - scroll_layout.getPaddingTop() - scroll_layout.getPaddingBottom() > scroll_layout.getChildAt(0).getHeight() - 200){
+                if (scroll_layout.getScrollY() + scroll_layout.getHeight() - scroll_layout.getPaddingTop() - scroll_layout.getPaddingBottom() > scroll_layout.getChildAt(0).getHeight() - 200) {
                     art_to_bottom.setVisibility(View.GONE);
-                }else {
+                } else {
                     art_to_bottom.setVisibility(View.VISIBLE);
                 }
             }
         });
+
     }
 
     @Override
@@ -202,7 +216,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 getHtml(2);
                 break;
             case R.id.art_to_bottom:
-                scroll_layout.smoothScrollTo(0,Integer.MAX_VALUE);
+                scroll_layout.smoothScrollTo(0, Integer.MAX_VALUE);
                 break;
         }
     }
@@ -213,16 +227,16 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             cameraResult();
         } else if (requestCode == 002 && resultCode == RESULT_OK) {
             photoResult(data);
-        } else if (requestCode == AD_GOODS_CODE && resultCode == RESULT_OK){
+        } else if (requestCode == AD_GOODS_CODE && resultCode == RESULT_OK) {
             Goods goods = (Goods) data.getExtras().get(AdGoodsActivity.AD_ARTICLE_GOODS);
             //序列化对象
-            try{
+            try {
                 String str = new Gson().toJson(goods);
-                str = str.replaceAll("\n","");
+                str = str.replaceAll("\n", "");
                 String xmlStr = Base64.encodeToString(str.getBytes(), Base64.DEFAULT);
-                xmlStr = xmlStr.replaceAll("\n","");
+                xmlStr = xmlStr.replaceAll("\n", "");
                 art_detail_web.loadUrl("javascript:replaceGoodsItemInfo('" + xmlStr + "')");
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
         }
@@ -234,32 +248,33 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         art_detail_web.loadUrl("http://wechat.poso2o.com/editor/?v=2.0");
-        art_detail_web.addJavascriptInterface(ArticleAdActivity.this,"android");
+        art_detail_web.addJavascriptInterface(ArticleAdActivity.this, "android");
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) return;
         article = (Article) bundle.get(ART_DATA);
         renewals_id = (String) bundle.get(RENEWALS_ID);
         from_publish = !(ArticleDataManager.getInstance().findSelectData(article) == null);
-        if (from_publish)add_to_publish.setText("保存");
-        if (TextUtil.isNotEmpty(renewals_id))add_to_renewals.setText("保存草稿");
+        if (from_publish) add_to_publish.setText("保存");
+        if (TextUtil.isNotEmpty(renewals_id)) add_to_renewals.setText("保存草稿");
+        if (TextUtil.isNotEmpty(article.ad_name))ad_model_name.setText(article.ad_name);
         final String str = article.content;
         art_detail_web.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100)
                     art_detail_web.loadUrl("javascript:setTitleHTML('" + article.title + "')");
-                    art_detail_web.loadUrl("javascript:setHTML('" + str + "')");
+                art_detail_web.loadUrl("javascript:setHTML('" + str + "')");
             }
         });
     }
 
     //模板列表展开收起
-    private void showOrNot(){
-        if (recyclerView_ad_model.getVisibility() == View.VISIBLE){
+    private void showOrNot() {
+        if (recyclerView_ad_model.getVisibility() == View.VISIBLE) {
             recyclerView_ad_model.setVisibility(View.GONE);
             show_ad_models.setImageResource(R.mipmap.arrow_more);
-        }else {
+        } else {
             recyclerView_ad_model.setVisibility(View.VISIBLE);
             show_ad_models.setImageResource(R.mipmap.arrow_less);
             scroll_layout.post(new Runnable() {
@@ -271,12 +286,26 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    //删除广告模板回调
+    @JavascriptInterface
+    public void callDelClick(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                select_id = "";
+                select_name = "";
+                ad_model_name.setText("请选择模板");
+                mTemplateAdapter.notifyDataSetChanged(templates,select_id);
+            }
+        });
+    }
+
     //跳转商品选择页面
     @JavascriptInterface
-    public void toSelectGoods(){
+    public void toSelectGoods() {
         Intent intent = new Intent();
-        intent.setClass(getApplication(),AdGoodsActivity.class);
-        startActivityForResult(intent,AD_GOODS_CODE);
+        intent.setClass(getApplication(), AdGoodsActivity.class);
+        startActivityForResult(intent, AD_GOODS_CODE);
     }
 
     //打开相机
@@ -291,7 +320,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
     //打开相册
     @JavascriptInterface
     private void openPhoto() {
-        AppUtil.openPhoto(this,this,002);
+        AppUtil.openPhoto(this, this, 002);
     }
 
     //拍照返回
@@ -406,7 +435,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         recyclerView_ad_model.setLayoutManager(linearLayoutManager);
-        mTemplateAdapter = new ADTemplateAdapter(this,templates);
+        mTemplateAdapter = new ADTemplateAdapter(this, templates);
         recyclerView_ad_model.setAdapter(mTemplateAdapter);
 
         showLoading();
@@ -417,11 +446,11 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 TemplateGroups templateGroups = (TemplateGroups) result;
                 if (templateGroups != null && templateGroups.list != null) {
                     templatesGroup = templateGroups.list;
-                    if (templatesGroup == null)return;
-                    for (TemplateGroup templateGroup : templatesGroup){
+                    if (templatesGroup == null) return;
+                    for (TemplateGroup templateGroup : templatesGroup) {
                         templates.addAll(templateGroup.templates);
                     }
-                    mTemplateAdapter.notifyDataSetChanged(templates);
+                    mTemplateAdapter.notifyDataSetChanged(templates,article.ad_id);
                 }
             }
 
@@ -439,96 +468,99 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                Toast.show(getApplication(),"添加成功");
-                if (from_publish)ArticleDataManager.getInstance().removeSelectData(article);
+                Toast.show(getApplication(), "添加成功");
+                if (from_publish) ArticleDataManager.getInstance().removeSelectData(article);
                 ArticleAdActivity.this.finish();
             }
 
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
-                Toast.show(getApplication(),msg);
+                Toast.show(getApplication(), msg);
             }
         });
     }
 
     //删除稿件
-    private void delRenewals(){
+    private void delRenewals() {
         showLoading();
         RenewalsManager.getRenewalsManager().renewalsDel(this, renewals_id, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                if (ArticleDataManager.getInstance().addSelectData(getApplication(), article))
                     ArticleAdActivity.this.finish();
             }
 
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
-                Toast.show(getApplication(),msg);
+                Toast.show(getApplication(), msg);
             }
         });
     }
 
     //修改稿件
-    private void updateRenewals(){
+    private void updateRenewals() {
         showLoading();
         RenewalsManager.getRenewalsManager().renewalsEdit(this, renewals_id, article, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                Toast.show(getApplication(),"保存成功");
+                Toast.show(getApplication(), "保存成功");
                 ArticleAdActivity.this.finish();
             }
 
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
-                Toast.show(getApplication(),msg);
+                Toast.show(getApplication(), msg);
             }
         });
     }
 
     /**
      * 点击预览，获取HTML代码，然后传递跳转
-     * @param type  0：预览；1：加入草稿箱；2：添加到发布
+     *
+     * @param type 0：预览；1：加入草稿箱；2：添加到发布
      */
-    public void getHtml(final int type){
+    public void getHtml(final int type) {
         art_detail_web.evaluateJavascript("getAllHtml()", new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String html) {
-                if (type == 0){
+                if (type == 0) {
                     final String h = html;
                     art_detail_web.evaluateJavascript("getTitleHTML()", new ValueCallback<String>() {
                         @Override
                         public void onReceiveValue(String value) {
                             Intent intent = new Intent();
-                            intent.setClass(getApplication(),ArtPreviewActivity.class);
-                            intent.putExtra(ArticleAdActivity.ART_DATA,value + h);
+                            intent.setClass(getApplication(), ArtPreviewActivity.class);
+                            intent.putExtra(ArticleAdActivity.ART_DATA, value + h);
                             startActivity(intent);
                         }
                     });
-                }else if (type == 1){
+                } else if (type == 1) {
                     article.content = html;
-                    if (TextUtil.isEmpty(renewals_id)){
+                    if (TextUtil.isEmpty(renewals_id)) {
                         addToRenewals();
-                    }else {
+                    } else {
                         updateRenewals();
                     }
-                }else if (type == 2){
+                } else if (type == 2) {
                     article.content = html;
-                    if (TextUtil.isNotEmpty(renewals_id)){
+                    article.ad_id = select_id;
+                    article.ad_name = select_name;
+                    if (TextUtil.isNotEmpty(renewals_id)) {
                         //稿件详情，先删除稿件，然后添加到发布列表
-                        if (ArticleDataManager.getInstance().addAble(getApplication(),article))
+                        if (ArticleDataManager.getInstance().addAble(getApplication(), article))
                             delRenewals();
-                    }else if (from_publish){
+                    } else if (from_publish) {
                         //发布列表文章详情，保存新的文章内容
                         ArticleDataManager.getInstance().updateSelectData(article);
                         ArticleAdActivity.this.finish();
-                    }else {
+                    } else {
                         //资讯列表的文章详情，添加到发布列表
-                        if (ArticleDataManager.getInstance().addSelectData(getApplication(),article))
+                        if (ArticleDataManager.getInstance().addSelectData(getApplication(), article))
                             ArticleAdActivity.this.finish();
                     }
                 }
