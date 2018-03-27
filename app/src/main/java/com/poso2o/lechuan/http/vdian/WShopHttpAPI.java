@@ -33,4 +33,6 @@ public class WShopHttpAPI {
 
     // 绑定收款帐号
     public static final String SET_BANK_ACCOUNT = W_MAIN_API + "ShopManage.htm?Act=setBankAccount";
+    //乐传帐号详情
+    public static final String LC_ACCOUNT_DETAIL = W_MAIN_API + "UserAccountManage.htm?Act=info";
 }

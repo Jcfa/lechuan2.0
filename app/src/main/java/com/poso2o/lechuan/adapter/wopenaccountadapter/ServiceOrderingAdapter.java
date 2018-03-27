@@ -18,6 +18,7 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrial;
 import com.poso2o.lechuan.util.NumberUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,6 +70,7 @@ public class ServiceOrderingAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         ServiceOrderingTrial serviceOrderingTrial = data.get(position);
+        convertView.setEnabled(serviceOrderingTrial.enable);
         viewHolder.service_ordering_gao.setText(serviceOrderingTrial.service_name);
         viewHolder.service_ordering_money.setText(NumberUtils.format2(serviceOrderingTrial.original_amount));
         viewHolder.service_ordering_quan.setText(serviceOrderingTrial.remark.replace("\\n", "\n"));
@@ -158,5 +160,10 @@ public class ServiceOrderingAdapter extends BaseAdapter {
         ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("#FF6537"));
         span.setSpan(colorSpan, 5, span.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         textView.setText(span);
+    }
+
+    public void notifyDataSetChanged(ArrayList<ServiceOrderingTrial> serviceList) {
+        this.data = serviceList;
+        notifyDataSetChanged();
     }
 }

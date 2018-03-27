@@ -36,6 +36,7 @@ public class SharedPreferencesUtils {
      * 登录密码
      */
     public static final String KEY_USER_PASSWORD = "password";
+    public static final String KEY_USER_REMEMBER_PASSWORD = "remember_password";
     /**
      * 用户昵称
      */
@@ -60,6 +61,14 @@ public class SharedPreferencesUtils {
      * 乐传服务到期日期
      */
     public static final String KEY_USER_SERVICE_DATA = "service_date";
+    /**
+     * 公众号是否已授权
+     */
+    public static final String KEY_USER_AUTHORIZATION_OA = "authorization_oa";
+    /**
+     * 已购买的公众号服务ID
+     */
+    public static final String KEY_USER_SERVICE_ID_OA = "service_id_oa";
     /**
      * 乐传服务剩余天数
      */
@@ -242,6 +251,7 @@ public class SharedPreferencesUtils {
         put(KEY_USER_OPEN_ID, userInfo.openid);
         put(KEY_USER_HAS_SHOP, userInfo.has_shop);//int 是否有实体店，0=无，1=有
         put(KEY_USER_HAS_WEBSHOP, userInfo.has_webshop);//int 是否有微店，0=无，1=有
+        put(KEY_USER_SERVICE_ID_OA, userInfo.buy_service_id);//公众号服务ID
     }
 
     /**

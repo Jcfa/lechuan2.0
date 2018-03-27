@@ -9,9 +9,12 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.shopdata.ShopData;
 import com.poso2o.lechuan.bean.vdian.OpenStandBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
+import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 
 import static com.umeng.socialize.utils.DeviceConfig.context;
@@ -22,53 +25,32 @@ import static com.umeng.socialize.utils.DeviceConfig.context;
  * Created by Administrator on 2018/3/13 0013.
  */
 public class EmpowermentActivity extends BaseActivity implements View.OnClickListener {
-
-    /**
-     * 有公众号
-     */
+    //      有公众号
     private LinearLayout empower_have_oa;
     private ImageView empower_have_oa_select;
     private TextView empower_have_oa_title, empower_have_oa_content;
-
-    /**
-     * 无公众号
-     */
+    //     无公众号
     private LinearLayout empower_not_oa;
     private ImageView empower_not_oa_select;
     private TextView empower_not_oa_title, empower_not_oa_content;
-
-    /**
-     * 开通公众号
-     */
+    //      开通公众号
     private View empower_apply_oa;
     private TextView empower_apply_oa_hint;
-
-    /**
-     * 公众号授权
-     */
+    //     公众号授权
     private View empower_oa_empower;
     private TextView empower_oa_empower_tag, empower_oa_empower_hint;
-
-    /**
-     * 服务订购
-     */
+    //     服务订购
     private View empower_ordering;
     private TextView empower_ordering_tag;
-
-    /**
-     * 开通状态
-     */
+    //     开通状态
     private int state;
-
-    /**
-     * 联系方式
-     */
+    //     联系方式
     private String attn, mobile;
-
-    /**
-     * 服务信息
-     */
+    //服务信息
     private String service_name, amount, payment_time;
+    private int mServiceId = 0;//已购买的服务ID
+    private int mModuleId = 0;//模块ID,1=微店，2=公众号助手
+
 
     @Override
     protected int getLayoutResId() {
@@ -77,6 +59,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initView() {
+        mModuleId = getIntent().getIntExtra(AuthorizationActivity.KEY_MODULE_ID, 0);
         empower_have_oa = findView(R.id.empower_have_oa);
         empower_have_oa_select = findView(R.id.empower_have_oa_select);
         empower_have_oa_title = findView(R.id.empower_have_oa_title);
@@ -102,12 +85,12 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
     protected void initData() {
         setTitle("开通授权申请");
 
-        showLoading();
         loadStates();
     }
 
+    // 获取开通状态
     public void loadStates() {
-        // 获取开通状态
+        showLoading();
         EmpowermentManager.getInstance().OpenStateDate(this, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
@@ -116,42 +99,32 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 OpenStandBean osb = gson.fromJson(result.toString(), OpenStandBean.class);
                 attn = osb.getAttn();
                 mobile = osb.getMobile();
+                state = osb.getState();
                 service_name = osb.getService_name();
                 amount = osb.getAmount();
                 payment_time = osb.getPayment_time();
-                if (osb.getState() == OpenStandBean.WAIT_OPEN_STATE) {//去开通
-                    // 点击无公众号
-                    empower_have_oa.setBackgroundResource(R.drawable.gray_stroke_bg);
-                    empower_not_oa.setBackgroundResource(R.drawable.green_stroke_bg);
-                    empower_have_oa_select.setImageResource(R.drawable.icon_not_select);
-                    empower_not_oa_select.setImageResource(R.drawable.selected);
-
-                    empower_not_oa_title.setTextColor(getResources().getColor(R.color.textGreen));
-                    empower_not_oa_content.setTextColor(getResources().getColor(R.color.placeholder_70));
-
-                    empower_have_oa_title.setTextColor(getResources().getColor(R.color.textGray));
-                    empower_have_oa_content.setTextColor(getResources().getColor(R.color.placeholder_30));
-
-                    empower_apply_oa.setVisibility(View.VISIBLE);
-                    empower_oa_empower_tag.setText("步骤二：");
-                    empower_ordering_tag.setText("步骤三：");
-                    empower_oa_empower.setBackgroundColor(getResources().getColor(R.color.common_background));
-                    empower_oa_empower.setEnabled(false);
+                if (state == OpenStandBean.WAIT_OPEN_STATE) {//去开通
                     empower_apply_oa_hint.setText("去开通");
                     findView(R.id.iv_checked_state).setVisibility(View.GONE);
-                } else if (osb.getState() == OpenStandBean.PAY_COSE_STATE) {//已经缴费、待开通
+                    empower_not_oa.performClick();
+                    empower_oa_empower.setEnabled(false);
+                } else if (state == OpenStandBean.PAY_COSE_STATE) {//已经缴费、待开通
                     empower_apply_oa_hint.setText("已缴费、待开通");
                     findView(R.id.iv_checked_state).setVisibility(View.VISIBLE);
-                } else if (osb.getState() == OpenStandBean.HAS_OPENED_STATE) {//已经开通
+                    empower_oa_empower.setEnabled(false);
+                    empower_not_oa.performClick();
+                } else if (state == OpenStandBean.HAS_OPENED_STATE) {//已经开通
                     empower_apply_oa_hint.setText("已开通");
                     findView(R.id.iv_checked_state).setVisibility(View.VISIBLE);
+                    empower_oa_empower.setEnabled(true);
+                    empower_have_oa.performClick();
                 }
-
+//                loadServiceBuyState();
             }
 
             @Override
             public void onFailed(int tag, String msg) {
-                Toast.show(context, msg);
+                Toast.show(activity, msg);
                 dismissLoading();
             }
         });
@@ -161,7 +134,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
     protected void initListener() {
         empower_have_oa.setOnClickListener(this);
         empower_not_oa.setOnClickListener(this);
-        empower_ordering.setOnClickListener(this);
+//        empower_ordering.setOnClickListener(this);
         empower_oa_empower.setOnClickListener(this);
         empower_apply_oa.setOnClickListener(this);
         findView(R.id.case_performance).setOnClickListener(this);
@@ -184,7 +157,7 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 empower_apply_oa.setVisibility(View.GONE);
                 empower_oa_empower_tag.setText("步骤一：");
                 empower_ordering_tag.setText("步骤二：");
-                empower_oa_empower.setBackgroundResource(R.drawable.selector_white);
+//                empower_oa_empower.setBackgroundResource(R.drawable.selector_white);
                 empower_oa_empower.setEnabled(true);
                 break;
 
@@ -204,8 +177,12 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 empower_apply_oa.setVisibility(View.VISIBLE);
                 empower_oa_empower_tag.setText("步骤二：");
                 empower_ordering_tag.setText("步骤三：");
-                empower_oa_empower.setBackgroundColor(getResources().getColor(R.color.common_background));
-                empower_oa_empower.setEnabled(false);
+//                empower_oa_empower.setBackgroundColor(getResources().getColor(R.color.common_background));
+                if (state == OpenStandBean.HAS_OPENED_STATE) {//已开通
+                    empower_oa_empower.setEnabled(true);
+                }else{
+                    empower_oa_empower.setEnabled(false);
+                }
                 break;
 
             case R.id.empower_ordering:
@@ -218,6 +195,8 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
             case R.id.empower_oa_empower:
                 // 进入授权说明
                 Intent ia = new Intent();
+//                ia.putExtra(AuthorizationActivity.KEY_SERVICE_ID, mServiceId);
+                ia.putExtra(AuthorizationActivity.KEY_MODULE_ID, mModuleId);
                 ia.setClass(EmpowermentActivity.this, AuthorizationActivity.class);
                 startActivity(ia);
                 break;
@@ -243,9 +222,10 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
                 } else if (state == 2) {
                     // 已开通状态
                     empower_apply_oa.setClickable(false);
+                    empower_oa_empower.setEnabled(true);
                 }
                 break;
-            case R.id.case_performance:
+            case R.id.case_performance://演示及案例
                 startActivity(CasePerformanceActivity.class);
                 break;
         }

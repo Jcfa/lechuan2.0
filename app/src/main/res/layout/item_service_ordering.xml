@@ -3,7 +3,7 @@
     android:id="@+id/service_ordering_group"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff"
+    android:background="@drawable/color_enable_white_black"
     android:orientation="vertical">
 
     <RelativeLayout

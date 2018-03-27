@@ -3,6 +3,7 @@ package com.poso2o.lechuan.manager.wshopmanager;
 import com.google.gson.Gson;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
+import com.poso2o.lechuan.bean.mine.UserInfoBean;
 import com.poso2o.lechuan.bean.shopdata.BangDingData;
 import com.poso2o.lechuan.bean.shopdata.BindPayData;
 import com.poso2o.lechuan.bean.shopdata.ShopData;
@@ -78,6 +79,30 @@ public class WShopManager<T> extends BaseManager {
         },true,true);
     }
 
+    /**
+     * 获取乐传帐号详情
+     * @param baseActivity
+     * @param iRequestCallBack
+     */
+    public void getlcAccountDetailInfo(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack){
+
+        final Request<String> request = getStringRequest(WShopHttpAPI.LC_ACCOUNT_DETAIL);
+        defaultParam(request);
+        request.add("open_uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        baseActivity.request(W_SHOP_INFO_ID, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                UserInfoBean userInfoBean = new Gson().fromJson(response,UserInfoBean.class);
+                SharedPreferencesUtils.saveUserInfo(userInfoBean);
+                iRequestCallBack.onResult(W_SHOP_INFO_ID,userInfoBean);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                iRequestCallBack.onFailed(what, response);
+            }
+        },true,true);
+    }
     /**
      * 微店头像上传
      * @param baseActivity

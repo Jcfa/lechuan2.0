@@ -7,8 +7,8 @@ package com.poso2o.lechuan.http;
 public class HttpAPI {
     //http://fuzhuang.poso2o.com/user.htm?Act=login&loginname=13016079579&password=123456
     public static String SERVER_MAIN_API = "http://wechat.poso2o.com/";
-    public static String LC_SERVER_MAIN_API = "http://wechat.poso2o.com/";
-//    public static String SERVER_MAIN_API = "http://fuzhuang.poso2o.com/";
+    //    public static String LC_SERVER_MAIN_API = "http://wechat.poso2o.com/";
+    public static String FZ_SERVER_MAIN_API = "http://fuzhuang.poso2o.com/";
 //public static String SERVER_MAIN_API = "http://192.168.10.153:8080/";
 
     /**
@@ -30,12 +30,15 @@ public class HttpAPI {
      */
     // http://fuzhuang.poso2o.com/user.htm?Act=login&loginname=13016079579&password=123456
     public static String LOGIN_API = SERVER_MAIN_API + "UserManage.htm?Act=login";
+    public static String FZ_LOGIN_API = FZ_SERVER_MAIN_API + "user.htm?Act=login";
+    public static String FZ_REGISTER_API = FZ_SERVER_MAIN_API + "UserManage.htm?Act=regShop";
 //    public static String LOGIN_API = SERVER_MAIN_API + "user.htm?Act=login";
 
     /**
      * 注册
      */
     public static String REGISTER_API = SERVER_MAIN_API + "UserManage.htm?Act=reg";
+    public static String REGISTER_SHOP_API = SERVER_MAIN_API + "UserManage.htm?Act=regShop";
 
     /**
      * 重置密码

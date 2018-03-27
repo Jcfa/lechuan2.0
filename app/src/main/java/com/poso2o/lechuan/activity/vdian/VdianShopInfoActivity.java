@@ -268,8 +268,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
      * 显示设置收款帐号
      */
     private void showSetupAccountDialog() {
-//        Toast.show(this, "待开发");
-        SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity, shopData);
+        SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity);
         bindAccountsDialog.show(new SetupBindAccountsDialog.Callback() {
             @Override
             public void onResult() {
