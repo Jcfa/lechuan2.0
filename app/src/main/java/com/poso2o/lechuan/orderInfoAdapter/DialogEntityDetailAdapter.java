@@ -45,7 +45,7 @@ public class DialogEntityDetailAdapter extends RecyclerView.Adapter<DialogEntity
         holder.tvEntityMoney.setText(bean.getPrice());
         holder.tvEntityHH.setText(bean.getBh());
         holder.tv_entity_sizeid.setText(bean.getColorid() + "/" + bean.getSizeid());
-        holder.tvEntityPrice.setText("售出:" + bean.getPrice() + "成本:" + bean.getFprice());
+        holder.tvEntityPrice.setText("售价:" + bean.getPrice() + "      成本:" + bean.getFprice());
 
     }
 

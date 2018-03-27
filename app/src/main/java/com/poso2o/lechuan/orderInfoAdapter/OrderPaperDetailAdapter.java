@@ -45,7 +45,7 @@ public class OrderPaperDetailAdapter extends RecyclerView.Adapter<OrderPaperDeta
         holder.tvKc.setText(listsBean.getNum());
         holder.tvShouc.setText(listsBean.getSales_num());
         holder.tvSpg.setText(listsBean.getColorid() + "/" + listsBean.getSizeid());
-        holder.tvQchu.setVisibility(View.INVISIBLE);
+        holder.tvQchu.setVisibility(View.GONE);
 
 
     }

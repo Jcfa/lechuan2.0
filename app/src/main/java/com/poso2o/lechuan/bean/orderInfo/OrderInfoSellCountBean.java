@@ -1,5 +1,7 @@
 package com.poso2o.lechuan.bean.orderInfo;
 
+import com.poso2o.lechuan.util.InsertPoint;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -70,12 +72,20 @@ public class OrderInfoSellCountBean implements Serializable {
     }
 
     public String getAssignment() {
-        double staff_dc = Double.parseDouble(assignment);
-        BigDecimal bg1 = new BigDecimal(staff_dc);
-        double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        String assign = null;
+        int indexOf = assignment.indexOf(".");
+        if (indexOf >= 5) {
+            assign = InsertPoint.Stringinsert(assignment);
+        } else {
+            double staff_dc = Double.parseDouble(assignment);
+            BigDecimal bg1 = new BigDecimal(staff_dc);
+            double value = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            assign = value + "";
+        }
+
         if (assignment == null && assignment.equals("0.00"))
             return "0.00";
-        return value1 + "";
+        return assign + "";
     }
 
     public void setAssignment(String assignment) {
@@ -84,11 +94,19 @@ public class OrderInfoSellCountBean implements Serializable {
 
     public String getGross_profit() {
         double staff_dc = Double.parseDouble(gross_profit);
-        BigDecimal bg1 = new BigDecimal(staff_dc);
-        double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        //判断小数点前面有几位数
+        int indexOf = gross_profit.indexOf(".");
+        String assign = null;
+        if (indexOf >= 5) {
+            assign = InsertPoint.Stringinsert(gross_profit);
+        } else {
+            BigDecimal bg1 = new BigDecimal(staff_dc);
+            double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            assign = value1 + "";
+        }
         if (gross_profit == null && gross_profit.equals("0.00"))
             return "0.00%";
-        return value1 + "";
+        return assign + "";
     }
 
     public void setGross_profit(String gross_profit) {
@@ -97,11 +115,18 @@ public class OrderInfoSellCountBean implements Serializable {
 
     public String getOrder_amounts() {
         double staff_dc = Double.parseDouble(order_amounts);
-        BigDecimal bg1 = new BigDecimal(staff_dc);
-        double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        int indexOf = order_amounts.indexOf(".");
+        String assign = null;
+        if (indexOf >= 5) {
+            assign = InsertPoint.Stringinsert(order_amounts);
+        } else {
+            BigDecimal bg1 = new BigDecimal(staff_dc);
+            double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+            assign = value1 + "";
+        }
         if (order_amounts == null && order_amounts.equals("0.00"))
             return "0.00";
-        return value1 + "";
+        return assign;
     }
 
     public void setOrder_amounts(String order_amounts) {

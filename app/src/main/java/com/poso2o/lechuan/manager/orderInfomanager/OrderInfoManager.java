@@ -53,7 +53,8 @@ public class OrderInfoManager extends BaseManager {
                     response = "{\nlist\n:" + response + "}";
                 }
                 OrderInfoBean infoBean = new Gson().fromJson(response, OrderInfoBean.class);
-                callBack.onResult(ORDER_LIST, infoBean);
+                if (infoBean != null)
+                    callBack.onResult(ORDER_LIST, infoBean);
             }
 
             @Override

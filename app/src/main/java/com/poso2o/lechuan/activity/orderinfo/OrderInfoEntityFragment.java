@@ -145,8 +145,8 @@ public class OrderInfoEntityFragment extends BaseFragment {
                     public void onResult(int tag, OrderInfoBean infoBeans) {
                         dismissLoading();
                         infoBean = infoBeans;
-                        data = infoBeans.getData();
-                        adapter = new OrderInfoEntityAdapter(getContext());
+                        List<DataBean> data = infoBeans.getData();
+                        adapter = new OrderInfoEntityAdapter(getContext(), data);
                         rlv.setAdapter(adapter);
                     }
 

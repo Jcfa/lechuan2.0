@@ -106,7 +106,7 @@
                 android:layout_toRightOf="@+id/iv_order_aim_head"
                 android:gravity="center"
                 android:singleLine="true"
-                android:text="0.000000"
+                android:text="0.00"
                 android:textColor="@drawable/selector_text_report"
                 android:textSize="12sp" />
 
@@ -154,7 +154,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:singleLine="true"
-                android:text="0.00"
+                android:text="0.00%"
                 android:textColor="@color/sbc_snippet_text"
                 android:textSize="12sp" />
 
