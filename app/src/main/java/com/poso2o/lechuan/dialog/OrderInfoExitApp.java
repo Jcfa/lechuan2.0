@@ -61,7 +61,7 @@ public class OrderInfoExitApp extends BaseDialog {
             @Override
             public void onClick(View v) {
                 //退出登录 清楚所有数据
-                SharedPreferencesUtils.logout();
+                AppUtil.exitApp((BaseActivity) context, true);
                 ActivityManager.getActivityManager().finishAll();
             }
         });

@@ -41,7 +41,14 @@ public class OrderPaperDetailAdapter extends RecyclerView.Adapter<OrderPaperDeta
         double v = Double.parseDouble(fprice) * Double.parseDouble(listsBean.getNum());
         BigDecimal bg = new BigDecimal(v);
         double money = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        holder.tvPrice.setText(money + "");//成本价格
+        java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+        String format = df.format(money);
+        if (v == 0) {
+            holder.tvPrice.setText("0.00");//成本价格
+        } else {
+            holder.tvPrice.setText(format + "");//成本价格
+        }
+
         holder.tvKc.setText(listsBean.getNum());
         holder.tvShouc.setText(listsBean.getSales_num());
         holder.tvSpg.setText(listsBean.getColorid() + "/" + listsBean.getSizeid());

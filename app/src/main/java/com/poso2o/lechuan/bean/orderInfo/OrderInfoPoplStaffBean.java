@@ -46,12 +46,9 @@ public class OrderInfoPoplStaffBean {
         private String total_order_amounts;
 
         public String getTotal_assignments() {
-            double staff_dc = Double.parseDouble(total_assignments);
-            BigDecimal bg1 = new BigDecimal(staff_dc);
-            double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
             if (total_assignments == null || total_assignments.equals(""))
-                return "0.0";
-            return value1 + "";
+                return "0.00";
+            return total_assignments + ".00";
         }
 
         public void setTotal_assignments(String total_assignments) {
@@ -59,12 +56,9 @@ public class OrderInfoPoplStaffBean {
         }
 
         public String getTotal_order_amounts() {
-            double staff_dc = Double.parseDouble(total_order_amounts);
-            BigDecimal bg1 = new BigDecimal(staff_dc);
-            double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
             if (total_order_amounts == null || total_order_amounts.equals(""))
-                return "0.0";
-            return value1 + "";
+                return "0.00";
+            return total_order_amounts + "";
         }
 
         public void setTotal_order_amounts(String total_order_amounts) {
@@ -96,9 +90,7 @@ public class OrderInfoPoplStaffBean {
         }
 
         public String getOrder_amounts() {
-            BigDecimal bd = new BigDecimal(order_amounts);
-            bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-            return String.valueOf(bd);
+            return order_amounts + "";
         }
 
         public void setOrder_amounts(String order_amounts) {
@@ -124,9 +116,7 @@ public class OrderInfoPoplStaffBean {
         }
 
         public String getAssignments() {
-            BigDecimal bd = new BigDecimal(assignments);
-            bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-            return String.valueOf(bd);
+            return assignments + ".00";
         }
 
         public void setAssignments(String assignments) {

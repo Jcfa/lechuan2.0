@@ -247,9 +247,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="60dp"
-            android:textSize="14dp"
+            android:text=""
             android:textColor="@color/textBlack"
-            android:text="" />
+            android:textSize="14dp" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -277,7 +277,6 @@
             android:id="@+id/tv_order_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="时间"
@@ -319,9 +318,9 @@
             android:id="@+id/tv_order_zm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-           android:layout_marginRight="1dp"
+            android:layout_marginRight="1dp"
             android:layout_weight="1"
-            android:gravity="center|right"
+            android:gravity="center"
             android:text="净利润"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
@@ -339,12 +338,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rlv_order_pc_list"
         android:layout_width="match_parent"
-        android:layout_marginTop="2dp"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll1"
         android:layout_below="@+id/rl"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
         android:background="@color/colorWhite" />
 
     <LinearLayout
@@ -416,6 +415,7 @@
             android:textColor="@color/color_999999"
             android:textSize="12dp" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/iv_default_null"
         android:layout_width="match_parent"

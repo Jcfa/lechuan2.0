@@ -94,7 +94,7 @@ public class OrderInfoSellDialog extends BaseDialog {
                             lls.setVisibility(View.GONE);
                             llss.setVisibility(View.GONE);
                             view_lg.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             tvName.setText(sellDetailBean.getName());
                             tvHnumber.setText(sellDetailBean.getBh());//编号
                             Glide.with(context).load(sellDetailBean.getImage222()).error(R.drawable.expicture).into(ivHead);
@@ -105,15 +105,25 @@ public class OrderInfoSellDialog extends BaseDialog {
                             String kcnum = sellDetailBean.getTotal_num();//库存数量
 
                             double cbPrice = Double.parseDouble(fprice) * Double.parseDouble(kcnum);
-                            tvSpfKc.setText(cbPrice + "");//成本价格=库存数量*成本价
-
-                            tvSpfMoney.setText(sellDetailBean.getTotal_amount());
+                            java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+                            String format = df.format(cbPrice);
+                            if (cbPrice == 0) {
+                                tvSpfKc.setText("0.00");//成本价格=库存数量*成本价
+                            } else
+                                tvSpfKc.setText(format + "");//成本价格=库存数量*成本价
+                            String amount = sellDetailBean.getTotal_amount();
+                            tvSpfMoney.setText(amount);
                             String total_amount = sellDetailBean.getTotal_amount();//销售金额
                             //利润=销售金额-（成本价*库存数量）
                             Double spfMoney = Double.parseDouble(total_amount) - cbPrice;
                             BigDecimal bd = new BigDecimal(spfMoney);
                             BigDecimal money = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-                            tvSpfProfits.setText(money + "");//利润
+                            java.text.DecimalFormat dfs = new java.text.DecimalFormat("#.00");
+                            String format1 = dfs.format(money);
+                            if (format1.equals("0")) {
+                                tvSpfProfits.setText("0.00");//利润
+                            } else
+                                tvSpfProfits.setText(money + "");//利润
                         }
                     }
 

@@ -139,7 +139,12 @@ public class OrderPaperDetailDialog extends BaseDialog {
                             double moeny = value3 * income;
                             tvTotalshouc.setText(profit + "");
                             tvTotalKc.setText(income + "");
-                            tvTotalPrice.setText(moeny + "");
+                            java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+                            String format = df.format(moeny);
+                            if (moeny == 0) {
+                                tvTotalPrice.setText("0.00");
+                            } else
+                                tvTotalPrice.setText(format + "");
                             OrderPaperDetailAdapter adapter = new OrderPaperDetailAdapter(detailBean.getLists(), fprice, type);
                             rlvDialog.setAdapter(adapter);
 
@@ -243,8 +248,14 @@ public class OrderPaperDetailDialog extends BaseDialog {
                         countMoney += Float.parseFloat(data.get(i).getPayment_amount());
                         BigDecimal bg = new BigDecimal(countMoney);
                         double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                        Spanned html = Html.fromHtml("成交额:<font color=\"#FF4F01\">" + value + "</font>");
-                        tv_member_money.setText(html);
+                        java.text.DecimalFormat dfs = new java.text.DecimalFormat("#.00");
+                        String format = dfs.format(value);
+                        Spanned html = Html.fromHtml("成交额:<font color=\"#FF4F01\">" + format + "</font>");
+
+                        if (value == 0.0) {
+                            tv_member_money.setText("0.00");
+                        } else
+                            tv_member_money.setText(html);
                         tv_member_money.setTextSize(14);
                         tv_member_money.setTextColor(context.getResources().getColor(R.color.textBlack));
                     }

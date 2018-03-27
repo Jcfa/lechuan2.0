@@ -72,11 +72,13 @@
                 android:src="@drawable/ad_close_icon" />
         </RelativeLayout>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/lineBg" />
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorWhite"
@@ -84,10 +86,10 @@
 
         <TextView
             android:id="@+id/tv_staff_time"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="时间"
             android:textColor="@color/textBlack"
@@ -95,36 +97,37 @@
 
         <TextView
             android:id="@+id/tv_staff_xse"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="120dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="销售额"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_staff_rw2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="任务"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_staff_dbl"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="达标率"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

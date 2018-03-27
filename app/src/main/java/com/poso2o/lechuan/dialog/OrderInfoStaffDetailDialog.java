@@ -74,14 +74,13 @@ public class OrderInfoStaffDetailDialog extends BaseDialog {
 
     //名字  销售员id
     public void setDiaLogData(final String realname, String czyId) {
-        Log.v("cbf", "realname = " + realname + " czyId= " + czyId);
         OrderInfoPoplStaffManager.getsInstance().poplStaffDetailApi((BaseActivity) context, czyId, new IRequestCallBack<OrderIOnfoStaffDetailBean>() {
             @Override
             public void onResult(int tag, OrderIOnfoStaffDetailBean staffDetailBean) {
                 ((BaseActivity) context).dismissLoading();
                 tvPopleName.setText(realname);
                 List<OrderIOnfoStaffDetailBean.ListsBean> list = staffDetailBean.getLists();
-                double staff_xs = 0;
+                double staff_xs = 0.00;
                 double staff_rw = 0;
                 double staff_dc = 0;
                 for (int i = 0; i < list.size(); i++) {
@@ -95,8 +94,17 @@ public class OrderInfoStaffDetailDialog extends BaseDialog {
                 double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                tvStaffxs.setText("销售额:" + value1 + "");
-                tvstaffRw.setText("任务额:" + value2);
+                java.text.DecimalFormat dfs = new java.text.DecimalFormat("#.00");
+                String format = dfs.format(value1);
+                String format2 = dfs.format(value2);
+                if (staff_xs == 0.0) {
+                    tvStaffxs.setText("销售额:" + "0.00");
+                } else
+                    tvStaffxs.setText("销售额:" + format + "");
+                if (staff_rw == 0.0) {
+                    tvstaffRw.setText("任务额:" + "0.00");
+                } else
+                    tvstaffRw.setText("任务额:" + format2 + "");
                 tvStaffdc.setText("达成率:" + value3 + "%");
                 OrderInfoStaffDetailAdapter adapter = new OrderInfoStaffDetailAdapter(list);
                 rlv.setAdapter(adapter);
