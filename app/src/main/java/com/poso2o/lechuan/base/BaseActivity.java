@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.orderinfo.OrderInfoMainActivity;
 import com.poso2o.lechuan.bean.event.EventBean;
 import com.poso2o.lechuan.bean.event.PayEvent;
 import com.poso2o.lechuan.bean.mine.InvitationBean;
@@ -33,6 +34,7 @@ import com.poso2o.lechuan.http.HttpResponseListener;
 import com.poso2o.lechuan.manager.main.ActivityManager;
 import com.poso2o.lechuan.manager.poster.MyFansDataManager;
 import com.poso2o.lechuan.receiver.NetStatusReceiver;
+import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.version.VersionUpdate;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
@@ -130,9 +132,10 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     private boolean mReceiverTag = false;
+
     /**
      * 过滤广播
-     * */
+     */
     private void setRegisterReceiver(NetStatusReceiver netReceiver) {
         if (!mReceiverTag) {
             IntentFilter filter = new IntentFilter();
@@ -630,6 +633,7 @@ public abstract class BaseActivity extends FragmentActivity {
             });
             dialog.show();
 //        } else if (event.code.equals(InvitationBean.INVITATION_UNBIND_AGREE_CODE)) {
+        } else if (event.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {//绑定微信收款帐号成功
         }
     }
 

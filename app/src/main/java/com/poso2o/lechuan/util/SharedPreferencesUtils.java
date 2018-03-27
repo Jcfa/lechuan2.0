@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.poso2o.lechuan.base.BaseApplication;
 import com.poso2o.lechuan.bean.login.LoginBean;
 import com.poso2o.lechuan.bean.mine.UserInfoBean;
+import com.poso2o.lechuan.configs.Constant;
 
 /**
  * Created by Administrator on 2017-11-25.
@@ -62,13 +63,18 @@ public class SharedPreferencesUtils {
      */
     public static final String KEY_USER_SERVICE_DATA = "service_date";
     /**
-     * 公众号是否已授权
-     */
-    public static final String KEY_USER_AUTHORIZATION_OA = "authorization_oa";
-    /**
      * 已购买的公众号服务ID
      */
     public static final String KEY_USER_SERVICE_ID_OA = "service_id_oa";
+    /**
+     * 已购买的公众号服务剩余天数
+     */
+    public static final String KEY_USER_SERVICE_DAYS_OA = "service_days_oa";
+    /**
+     * 是否绑定收款帐号
+     */
+    public static final String KEY_USER_BIND_WX_ACCOUNT = "has_bank_binding";
+
     /**
      * 乐传服务剩余天数
      */
@@ -206,6 +212,16 @@ public class SharedPreferencesUtils {
     }
 
     /**
+     * 订购的服务ID是否有公众号助手的权限
+     *
+     * @return
+     */
+    public static boolean getOACompetence() {
+        int service_id = SharedPreferencesUtils.getInt(KEY_USER_SERVICE_ID_OA, 0);
+        return service_id == Constant.OA_SERVICE_ID || service_id == Constant.OA_SERVICE_ID2;
+    }
+
+    /**
      * 保存登录信息
      *
      * @param loginBean
@@ -229,14 +245,13 @@ public class SharedPreferencesUtils {
         put(KEY_USER_SHOP_VERIFY, loginBean.has_shop_verify);//int 1=未认证，2=申请认证，3=认证通过，4=认证不通过
         put(KEY_USER_HAS_SHOP, loginBean.has_shop);//int 是否有实体店，0=无，1=有
         put(KEY_USER_HAS_WEBSHOP, loginBean.has_webshop);//int 是否有微店，0=无，1=有
-        put(KEY_USER_BIND_ACCOUNT_QRCODE, loginBean.shop_bank_binding_url);//绑定微信收款账号的二维码
     }
 
     /**
      * 保存用户详情信息
      */
     public static void saveUserInfo(UserInfoBean userInfo) {
-        put(KEY_USER_NICK, userInfo.nick);//昵称
+//        put(KEY_USER_NICK, userInfo.nick);//昵称
         put(KEY_USER_ID, userInfo.uid);
         put(KEY_USER_TYPE, userInfo.user_type);//用户类型
         put(KEY_USER_MOBILE, userInfo.mobile);//手机号
@@ -251,7 +266,11 @@ public class SharedPreferencesUtils {
         put(KEY_USER_OPEN_ID, userInfo.openid);
         put(KEY_USER_HAS_SHOP, userInfo.has_shop);//int 是否有实体店，0=无，1=有
         put(KEY_USER_HAS_WEBSHOP, userInfo.has_webshop);//int 是否有微店，0=无，1=有
+        put(KEY_USER_BIND_ACCOUNT_QRCODE, userInfo.shop_bank_binding_url);//绑定微信收款账号的二维码
         put(KEY_USER_SERVICE_ID_OA, userInfo.buy_service_id);//公众号服务ID
+        put(KEY_USER_SERVICE_DAYS_OA, userInfo.buy_service_days);//公众号服务剩余天数
+        put(KEY_USER_BIND_WX_ACCOUNT, userInfo.has_bank_binding);//是否绑定微信收款帐号
+
     }
 
     /**
@@ -275,11 +294,11 @@ public class SharedPreferencesUtils {
         /**
          * 清除所有数据，只保留手机帐号和密码
          */
-        String phone = getString(KEY_USER_MOBILE);
-        String pw = getString(KEY_USER_PASSWORD);
+        String phone = getString(KEY_USER_ID);
+        String pw = getString(KEY_USER_REMEMBER_PASSWORD);
         clear();
-        put(KEY_USER_MOBILE, phone);
-        put(KEY_USER_PASSWORD, pw);
+        put(KEY_USER_ID, phone);
+        put(KEY_USER_REMEMBER_PASSWORD, pw);
         mEditor.commit();
     }
 }

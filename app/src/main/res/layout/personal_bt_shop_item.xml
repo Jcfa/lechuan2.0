@@ -31,31 +31,50 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_order_sell"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginLeft="10dp"
         android:layout_weight="1"
         android:background="@drawable/button_order_info_bg"
-        android:clickable="true"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:clickable="true">
 
-        <ImageView
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:src="@mipmap/icon_menu_online" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src="@mipmap/icon_menu_online" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="微店"
+                android:textColor="@color/sbc_snippet_text"
+                android:textSize="12dp" />
+
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_not_webshop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="微店"
-            android:textColor="@color/sbc_snippet_text"
-            android:textSize="12dp" />
-
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="未开通"
+            android:layout_margin="3dp"
+            android:padding="3dp"
+            android:visibility="gone"
+            android:background="@color/colorGray"
+            android:textColor="@color/colorGreen"
+            android:textSize="@dimen/textSize_tiny" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_order_paper"

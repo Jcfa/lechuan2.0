@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.vdian;
 
+import android.Manifest;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
 import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.NumberUtils;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -89,12 +91,26 @@ public class VdianPaymentActivity extends BaseActivity {
     @Override
     public void onPayResult(PayEvent event) {
         if (event.code == PayEvent.SUCCESS) {
-            if (mModuleId == Constant.BOSS_MODULE_WX) {
-                startActivity(VdianActivity.class);
-            } else if (mModuleId == Constant.BOSS_MODULE_OA) {
-                startActivity(OAHelperActivity.class);
+            //支付成功，是否绑定过收款帐号，未绑定提示绑定
+            if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT) != 1) {
+                applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
+                    @Override
+                    public void onPermissionResult(boolean b) {
+                        if (b) {
+                            showSetupAccountDialog();
+                        } else {
+                            Toast.show(activity, "获取不到相关权限，无法进行操作");
+                        }
+                    }
+                });
+            } else {
+                if (mModuleId == Constant.BOSS_MODULE_WX) {
+                    startActivity(VdianActivity.class);
+                } else if (mModuleId == Constant.BOSS_MODULE_OA) {
+                    startActivity(OAHelperActivity.class);
+                }
+                finish();
             }
-            finish();
 //            if (service_type == 4) {
 //                Intent i = new Intent();
 //                i.setClass(activity, EmpowermentActivity.class);
@@ -132,6 +148,7 @@ public class VdianPaymentActivity extends BaseActivity {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();
@@ -143,7 +160,6 @@ public class VdianPaymentActivity extends BaseActivity {
      * 显示设置收款帐号
      */
     private void showSetupAccountDialog() {
-//        Toast.show(this, "待开发");
         SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity);
         bindAccountsDialog.show(new SetupBindAccountsDialog.Callback() {
             @Override
@@ -173,8 +189,13 @@ public class VdianPaymentActivity extends BaseActivity {
 
     @Override
     public void onPushMessageEvent(InvitationBean event) {
-        if (event.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {
-            showSetupAccountDialog();
+        if (event.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {//绑定成功
+            if (mModuleId == Constant.BOSS_MODULE_WX) {
+                startActivity(VdianActivity.class);
+            } else if (mModuleId == Constant.BOSS_MODULE_OA) {
+                startActivity(OAHelperActivity.class);
+            }
+            finish();
         }
     }
 }

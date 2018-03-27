@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 
 import com.poso2o.lechuan.configs.Constant;
+import com.poso2o.lechuan.tool.print.Print;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,9 +51,9 @@ public class SaveImageThread extends Thread {
      */
     private void saveImageToPhotos(Context context, Bitmap bmp) {
         // 首先保存图片
-        File appDir = new File(Environment.getExternalStorageDirectory(), savePath);
+        File appDir = new File(Environment.getExternalStorageDirectory()+savePath);
         if (!appDir.exists()) {
-            appDir.mkdir();
+            appDir.mkdirs();
         }
         String fileName = System.currentTimeMillis() + ".jpg";
         File file = new File(appDir, fileName);

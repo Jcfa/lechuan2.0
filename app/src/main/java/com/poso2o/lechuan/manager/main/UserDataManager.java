@@ -92,7 +92,7 @@ public class UserDataManager<T> extends BaseManager {
                 saveUserInfo(loginBean);
                 callBack.onResult(TAG_LOGIN_ID, loginBean);
                 Toast.show(baseActivity, "登录成功！");
-                doRegisterToPhysical(baseActivity, account, loginBean.password);
+                doRegisterToPhysical(baseActivity, account, loginBean.password,loginBean.nick);
             }
 
             @Override
@@ -109,10 +109,11 @@ public class UserDataManager<T> extends BaseManager {
      * @param account
      * @param password
      */
-    public void doRegisterToPhysical(final BaseActivity baseActivity, final String account, final String password) {
+    public void doRegisterToPhysical(final BaseActivity baseActivity, final String account, final String password,String nick) {
         Request<String> request = getStringRequest(HttpAPI.REGISTER_SHOP_API);
         request.add("uid", account);
-        request.add("key", password);
+        request.add("token", password);
+        request.add("nick", nick);
         baseActivity.request(TAG_LOGIN_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {

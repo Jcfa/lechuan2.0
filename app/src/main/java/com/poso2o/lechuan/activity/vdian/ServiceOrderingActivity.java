@@ -77,11 +77,12 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
             setTitle("服务订购");
             service_ordering_try.setVisibility(View.GONE);
         }
-
+        showLoading();
         // 获取服务的信息
         EmpowermentManager.getInstance().trialListDate(this, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
+                dismissLoading();
                 Gson gson = new Gson();
                 final ServiceOrderingTrialBean trial = gson.fromJson(result.toString(), ServiceOrderingTrialBean.class);
                 Collections.reverse(trial.list);// 倒序
@@ -108,6 +109,7 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
 
             @Override
             public void onFailed(int tag, String msg) {
+                dismissLoading();
                 Toast.show(activity, msg);
             }
         });

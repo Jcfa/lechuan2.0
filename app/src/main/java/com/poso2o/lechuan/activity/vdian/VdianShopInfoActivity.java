@@ -30,6 +30,7 @@ import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.tool.image.ImageCompressTool;
 import com.poso2o.lechuan.util.ImageManage;
 import com.poso2o.lechuan.util.ImageUtils;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.TimeUtil;
 import com.poso2o.lechuan.util.Toast;
 
@@ -169,16 +170,19 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         shop_info_area.setText(shopData.province_name + " " + shopData.city_name + " " + shopData.area_name);
         shop_info_address.setText(shopData.address);
         // 收款账号
-        StringBuilder accounts = new StringBuilder(shopData.shop_bank_account_name).append("    ");
-        if (shopData.shop_bank_account_no != null && shopData.shop_bank_account_no.length() > 11) {
-            StringBuilder no = new StringBuilder(shopData.shop_bank_account_no);
-            no.replace(4, 11, "*******");
-            accounts.append(no.toString());
+//        StringBuilder accounts = new StringBuilder(shopData.shop_bank_account_name).append("    ");
+//        if (shopData.shop_bank_account_no != null && shopData.shop_bank_account_no.length() > 11) {
+//            StringBuilder no = new StringBuilder(shopData.shop_bank_account_no);
+//            no.replace(4, 11, "*******");
+//            accounts.append(no.toString());
+//        }
+//        if (TextUtils.isNotEmpty(shopData.shop_bank_name)) {
+//            accounts.append("(").append(shopData.shop_bank_name).append(")");
+//        }
+//        shop_info_accounts.setText(accounts.toString());
+        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT, 0) == 1) {
+            shop_info_accounts.setHint("已绑定");
         }
-        if (TextUtils.isNotEmpty(shopData.shop_bank_name)) {
-            accounts.append("(").append(shopData.shop_bank_name).append(")");
-        }
-        shop_info_accounts.setText(accounts.toString());
         // 套餐
 //        if (shopData.has_webshop == 1) {
 //            shop_info_taocan.setText(shopData.webshop_service_name);
@@ -188,9 +192,9 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
 //            shop_info_expire.setText("剩余 " + shopData.webshop_service_days + " 天");
 //        }
         shop_info_taocan.setText(shopData.buy_service_name);
-        if (shopData.buy_service_days > 0) {
+        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA) > 0) {
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DAY_OF_YEAR, shopData.buy_service_days);
+            calendar.add(Calendar.DAY_OF_YEAR, SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0));
             calendar.getTimeInMillis();
             shop_info_expire.setText(TimeUtil.longToDateString(calendar.getTimeInMillis(), "yyyy-MM-dd"));
         } else {
@@ -254,11 +258,19 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.shop_info_accounts_group:
-                showSetupAccountDialog();
+                applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
+                    @Override
+                    public void onPermissionResult(boolean b) {
+                        if (b) {
+                            showSetupAccountDialog();
+                        } else {
+                            Toast.show(activity, "获取不到相关权限，无法进行操作");
+                        }
+                    }
+                });
                 break;
 
             case R.id.shop_info_renew:
-//                Toast.show(this, "待开发");
                 startActivityForResult(new Intent(activity, ServiceOrderingActivity.class), SERVICE_RENEW);
                 break;
         }

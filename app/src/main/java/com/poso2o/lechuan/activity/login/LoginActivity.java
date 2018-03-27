@@ -68,7 +68,7 @@ public class LoginActivity extends BaseActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
-        etAccount.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_MOBILE));
+        etAccount.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         etAccount.setSelection(etAccount.length());
         etPassword = findView(R.id.et_password);
         etPassword.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_REMEMBER_PASSWORD));

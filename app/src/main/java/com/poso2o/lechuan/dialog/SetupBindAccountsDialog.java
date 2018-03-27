@@ -1,11 +1,16 @@
 package com.poso2o.lechuan.dialog;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -29,12 +34,13 @@ import com.poso2o.lechuan.util.Toast;
 public class SetupBindAccountsDialog extends BaseDialog {
     //    private Context mContext;
 //    private ShopData shopData;
+    private Activity activity;
     private Bitmap mBitmap;
     private Callback callback;
 
-    public SetupBindAccountsDialog(Context context) {
-        super(context);
-//        this.mContext = context;
+    public SetupBindAccountsDialog(Activity activity) {
+        super(activity);
+        this.activity = activity;
 //        this.shopData = shopData;
     }
 
@@ -45,14 +51,16 @@ public class SetupBindAccountsDialog extends BaseDialog {
 
     @Override
     public View setDialogContentView() {
-        return View.inflate(context, R.layout.dialog_setup_bind_accounts, null);
+        return View.inflate(activity, R.layout.dialog_setup_bind_accounts, null);
     }
 
     @Override
     public void initView() {
         ImageView iv_qrcode = findView(R.id.iv_qrcode);
         mBitmap = getQRCode();
-        iv_qrcode.setImageBitmap(mBitmap);
+        if (mBitmap != null) {
+            iv_qrcode.setImageBitmap(mBitmap);
+        }
     }
 
     @Override
@@ -65,6 +73,12 @@ public class SetupBindAccountsDialog extends BaseDialog {
         findView(R.id.bind_account_open_weixin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //检查系统是否开启了地理位置权限;
+                //注意：此时的Manifest的导入包路径import android.Manifest;
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                }
                 if (mBitmap != null) {
                     saveQRCode(mBitmap);
                 }
@@ -79,7 +93,6 @@ public class SetupBindAccountsDialog extends BaseDialog {
     }
 
     public interface Callback {
-
         void onResult();
 
         void onCancel();
@@ -108,6 +121,7 @@ public class SetupBindAccountsDialog extends BaseDialog {
                 return ImageUtils.createQrCode(url, logo, BarcodeFormat.QR_CODE, 35);
             } catch (WriterException e) {
                 e.printStackTrace();
+                Toast.show(context,"生成二维码异常");
             }
         }
         return null;
