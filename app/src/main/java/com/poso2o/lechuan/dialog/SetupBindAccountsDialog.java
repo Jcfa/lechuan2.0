@@ -28,14 +28,14 @@ import com.poso2o.lechuan.util.Toast;
  */
 public class SetupBindAccountsDialog extends BaseDialog {
     //    private Context mContext;
-    private ShopData shopData;
+//    private ShopData shopData;
     private Bitmap mBitmap;
     private Callback callback;
 
-    public SetupBindAccountsDialog(Context context, ShopData shopData) {
+    public SetupBindAccountsDialog(Context context) {
         super(context);
 //        this.mContext = context;
-        this.shopData = shopData;
+//        this.shopData = shopData;
     }
 
     public void show(Callback callback) {

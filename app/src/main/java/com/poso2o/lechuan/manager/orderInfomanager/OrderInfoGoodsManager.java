@@ -1,5 +1,7 @@
 package com.poso2o.lechuan.manager.orderInfomanager;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
@@ -82,7 +84,8 @@ public class OrderInfoGoodsManager extends BaseManager {
                     response = "{\nlist\n:" + response + "}";
                 }
                 OrderInfoSellDetailBean sellDetailBean = new Gson().fromJson(response, OrderInfoSellDetailBean.class);
-                callBack.onResult(ORDER_LIST, sellDetailBean);
+                if (sellDetailBean != null)
+                    callBack.onResult(ORDER_LIST, sellDetailBean);
             }
 
             @Override

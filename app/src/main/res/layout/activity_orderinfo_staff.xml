@@ -20,7 +20,7 @@
         <include layout="@layout/layout_orderinfo_public" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -33,20 +33,22 @@
 
         <TextView
             android:id="@+id/tv_order_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="工号"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_order_yyy"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/tv_order_name"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="营业员"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
@@ -54,10 +56,11 @@
 
         <TextView
             android:id="@+id/tv_order_sell_many"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="165dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="销售"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
@@ -72,25 +75,27 @@
 
         <TextView
             android:id="@+id/tv_order_renwu"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/tv_order_zm"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="任务额"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_order_zm"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="达标率"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <View
         android:id="@+id/view2"
@@ -106,9 +111,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
         android:background="@color/colorWhite" />
 
     <LinearLayout
@@ -138,7 +143,7 @@
             android:layout_toRightOf="@+id/tv_staff"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0.000000"
+            android:text="0.00"
             android:textColor="@color/colorOrange"
             android:textSize="14dp" />
 
@@ -151,7 +156,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0.00000"
+            android:text="0.00"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
     </LinearLayout>

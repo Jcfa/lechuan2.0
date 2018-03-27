@@ -92,7 +92,7 @@ public class BaseApplication extends Application {
 
         initWeiXin(mContext);
 
-        initQQ(mContext);
+//        initQQ(mContext);
 
         ZXingLibrary.initDisplayOpinion(this);
         if (shouldInit()) {

@@ -20,7 +20,7 @@ public class CasePerformanceManager extends BaseManager {
 
     private int CASE_PERFORMANCE = 1;
 
-    public String SERVICE_CASE_PERFORMANCE_URL = HttpAPI.LC_SERVER_MAIN_API + "ShopSampleShowManage.htm?";
+    public String SERVICE_CASE_PERFORMANCE_URL = HttpAPI.SERVER_MAIN_API + "ShopSampleShowManage.htm?";
 
     private static CasePerformanceManager instance;
 

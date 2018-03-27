@@ -53,12 +53,9 @@ public class OrderIOnfoStaffDetailBean {
         private String assignments;
 
         public String getOrder_amounts() {
-            double staff_dc = Double.parseDouble(order_amounts);
-            BigDecimal bg1 = new BigDecimal(staff_dc);
-            double value1 = bg1.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
             if (order_amounts == null || order_amounts.equals(""))
                 return "0.00";
-            return value1 + "";
+            return order_amounts + "";
         }
 
         public void setOrder_amounts(String order_amounts) {
@@ -88,8 +85,8 @@ public class OrderIOnfoStaffDetailBean {
 
         public String getAssignments() {
             if (assignments == null || assignments.equals(""))
-                return "0";
-            return assignments;
+                return "0.00";
+            return assignments + ".00";
         }
 
         public void setAssignments(String assignments) {

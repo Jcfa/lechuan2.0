@@ -46,12 +46,18 @@ public class MiMessageReceiver extends PushMessageReceiver {
         try {
             JSONObject object = new JSONObject(mMessage);
             String code = object.optString("code");
-            Gson gson = new Gson();
-            InvitationBean event = gson.fromJson(object.optString("data"), InvitationBean.class);
-            if (event != null) {
-                event.code = code;
-                mEvent = event;
+            mEvent = new InvitationBean();
+            if (code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {
+                mEvent.code = code;
                 new ForegroundRunning(context).start();
+            } else {
+                Gson gson = new Gson();
+                InvitationBean event = gson.fromJson(object.optString("data"), InvitationBean.class);
+                if (event != null) {
+                    event.code = code;
+                    mEvent = event;
+                    new ForegroundRunning(context).start();
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -72,10 +78,10 @@ public class MiMessageReceiver extends PushMessageReceiver {
             title = "解除分销";
             content = mEvent.nick + "解除了与您的分销关系。";
             NotificacationManager.getInstance().showNotification(mContext, title, content, mEvent, InnerMessageReceiver.ACTION_INVITE_UNBIND);
-//        } else if (mEvent != null && mEvent.code.equals(InvitationBean.INVITATION_UNBIND_AGREE_CODE)) {//同意解除分销关系的推送
-//            title = "解除成功";
-//            content = mEvent.shop_nick + "与您的分销关系已经解除。";
-//            NotificacationManager.getInstance().showNotification(mContext, title, content, mEvent, InnerMessageReceiver.ACTION_INVITE_UNBIND);
+        } else if (mEvent != null && mEvent.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {//绑定收款帐号
+            title = "绑定收款账号";
+            content = "微信收款账号绑定成功!";
+            NotificacationManager.getInstance().showNotification(mContext, title, content, mEvent, InnerMessageReceiver.ACTION_BIND_WX_ACCOUNT);
         }
     }
 

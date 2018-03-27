@@ -27,6 +27,7 @@ public class InnerMessageReceiver extends BroadcastReceiver {
     private final int BACKGROUND = 2;
     public static final String ACTION_INVITE_BIND = "com.poso2o.lechuan.INVITE_BIND";
     public static final String ACTION_INVITE_UNBIND = "com.poso2o.lechuan.INVITE_UNBIND";
+    public static final String ACTION_BIND_WX_ACCOUNT = "com.poso2o.lechuan.BIND_WX_ACCOUNT";
     private InvitationBean mEvent;
     private Context mContext;
 

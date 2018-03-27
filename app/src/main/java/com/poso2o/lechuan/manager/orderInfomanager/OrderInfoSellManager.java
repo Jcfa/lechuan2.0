@@ -31,7 +31,8 @@ public class OrderInfoSellManager extends BaseManager {
     public void orderInfoSell(BaseActivity activity, String begin, String close, final IRequestCallBack requestCallBack) {
         Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_MAIN_INFO);
         request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
-        request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+//        request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_PASSWORD));
         request.add("shopid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("czy", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("begin_date", begin);

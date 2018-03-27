@@ -63,6 +63,8 @@ public class OrderMothsDetailBean {
         }
 
         public String getClear_profit() {
+            if (clear_profit.equals("0.0"))
+                return "0.00";
             return clear_profit;
         }
 
@@ -79,6 +81,8 @@ public class OrderMothsDetailBean {
         }
 
         public String getSales_amount() {
+            if (sales_amount.equals("0.0"))
+                return "0.00";
             return sales_amount;
         }
 
@@ -87,6 +91,8 @@ public class OrderMothsDetailBean {
         }
 
         public String getDel_amount() {
+            if (del_amount.equals("0.0"))
+                return "0.00";
             return del_amount;
         }
 
@@ -103,6 +109,8 @@ public class OrderMothsDetailBean {
         }
 
         public String getPrimecost_amount() {
+            if (primecost_amount.equals("0.0"))
+                return "0.00";
             return primecost_amount;
         }
 

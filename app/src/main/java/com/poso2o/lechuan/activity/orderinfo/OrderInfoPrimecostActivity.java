@@ -139,10 +139,10 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
             public void onResult(int tag, OrderMothsDetailBean detailBean) {
                 activity.dismissLoading();
                 List<OrderMothsDetailBean.ListBean> list = detailBean.getList();
-                double profit = 0;
-                double income = 0;
-                double spend = 0;
-                double fprice = 0;
+                double profit = 0.00;
+                double income = 0.00;
+                double spend = 0.00;
+                double fprice = 0.00;
                 for (int i = 0; i < list.size(); i++) {
                     profit += Double.parseDouble(list.get(i).getClear_profit());
                     income += Double.parseDouble(list.get(i).getPrimecost_amount());
@@ -155,8 +155,13 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
                 double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+                String fprices = df.format(fprice);
+                if (fprice == 0.0) {
+                    tv_shouc.setText("0.00");
+                } else
+                    tv_shouc.setText(fprices + "");
                 tv_qchu.setText(value3 + "");
-                tv_shouc.setText(fprice + "");
                 tv_kc.setText(value2 + "");
                 tv_price.setText(value + "");
                 tv_qchu.setTextColor(getResources().getColor(R.color.color_FF6537));

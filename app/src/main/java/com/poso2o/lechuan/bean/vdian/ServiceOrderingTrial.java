@@ -16,4 +16,5 @@ public class ServiceOrderingTrial implements Serializable {
     public String service_name;//服务的名字
     public int service_type;//服务的序号
     public String unit;//年
+    public boolean enable=true;
 }

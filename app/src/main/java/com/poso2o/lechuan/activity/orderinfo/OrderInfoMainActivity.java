@@ -7,21 +7,30 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.OAHelperActivity;
+import com.poso2o.lechuan.activity.vdian.AuthorizationActivity;
 import com.poso2o.lechuan.activity.vdian.EmpowermentActivity;
+import com.poso2o.lechuan.activity.vdian.ServiceOrderingActivity;
 import com.poso2o.lechuan.activity.vdian.VdianActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.mine.UserInfoBean;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
+import com.poso2o.lechuan.bean.shopdata.ShopData;
+import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.dialog.CalendarDialog;
 import com.poso2o.lechuan.dialog.OrderInfoExitApp;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoSellManager;
+import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
+import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.CalendarUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.view.customcalendar.CustomDate;
 import com.yanzhenjie.nohttp.tools.NetUtils;
 
+import static com.poso2o.lechuan.util.SharedPreferencesUtils.KEY_USER_AUTHORIZATION_OA;
 import static com.poso2o.lechuan.util.SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP;
+import static com.poso2o.lechuan.util.SharedPreferencesUtils.KEY_USER_SERVICE_ID_OA;
 
 /**
  * Created by ${cbf} on 2018/3/12 0012.
@@ -111,9 +120,9 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         OrderInfoSellManager.getOrderInfo().orderInfoSell(activity, beginTime, endTime, new IRequestCallBack<OrderInfoSellCountBean>() {
             @Override
             public void onResult(int tag, OrderInfoSellCountBean result) {
-                dismissLoading();
                 OrderInfoSellCountBean sellCountBean = result;
                 initNetData(sellCountBean);
+                loadAccountDetailState();
             }
 
             @Override
@@ -126,10 +135,19 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
     //初始化网络数据
     private void initNetData(OrderInfoSellCountBean data) {
-        tvSellPrice.setText(data.getOrder_amounts());
-        tvAimPrice.setText(data.getAssignment());
+        if (data.getOrder_amounts().equals(".00")) {
+            tvSellPrice.setText("0.00");
+        } else
+            tvSellPrice.setText(data.getOrder_amounts());
+        if (data.getAssignment().equals(".00")) {
+            tvAimPrice.setText("0.00");
+        } else
+            tvAimPrice.setText(data.getAssignment());
         tvComPletePrice.setText(data.getCompletion_rate() + "%");
-        tvGpmPrice.setText(data.getGross_profit());
+        if (data.getGross_profit().equals(".00")) {
+            tvGpmPrice.setText("0.00");
+        } else
+            tvGpmPrice.setText(data.getGross_profit());
     }
 
     private void setCalender() {
@@ -201,15 +219,21 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         llOrderEntityShop.setOnClickListener(this);
         //   微店  1
         llOrderSell.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                if (SharedPreferencesUtils.getInt(KEY_USER_HAS_WEBSHOP, 0) == 1) {
-                    startActivity(VdianActivity.class);
-                } else {
-                    startActivity(EmpowermentActivity.class);
+                Print.println("KEY_USER_HAS_WEBSHOP=" + SharedPreferencesUtils.getInt(KEY_USER_HAS_WEBSHOP, 0));
+                Print.println("AUTHORIZATION_OA_FALSE=" + SharedPreferencesUtils.getInt(KEY_USER_AUTHORIZATION_OA, Constant.AUTHORIZATION_OA_FALSE));
+                if (SharedPreferencesUtils.getInt(KEY_USER_HAS_WEBSHOP, 0) == 1 && SharedPreferencesUtils.getInt(KEY_USER_AUTHORIZATION_OA, Constant.AUTHORIZATION_OA_FALSE) == Constant.AUTHORIZATION_OA_TRUE) {//有微店并授权了公众号
+                    if (SharedPreferencesUtils.getInt(KEY_USER_SERVICE_ID_OA, 0) > 0) {//已购买服务了
+                        startActivity(VdianActivity.class);
+                    } else {//未购买服务
+                        Intent intent = new Intent(activity, ServiceOrderingActivity.class);
+                        intent.putExtra(AuthorizationActivity.KEY_MODULE_ID, Constant.BOSS_MODULE_WX);
+                        startActivity(intent);
+                    }
+                } else {//没微店或没授权
+                    startActivity(new Intent(activity, EmpowermentActivity.class).putExtra(AuthorizationActivity.KEY_MODULE_ID, Constant.BOSS_MODULE_WX));
                 }
-
             }
         });
         // 微店  //库存 1
@@ -241,7 +265,17 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 break;
             //库存管理   //公众号助手 1
             case R.id.ll_order_paper:
-                startActivity(new Intent(this, OAHelperActivity.class));
+                if (SharedPreferencesUtils.getInt(KEY_USER_AUTHORIZATION_OA, Constant.AUTHORIZATION_OA_FALSE) == Constant.AUTHORIZATION_OA_TRUE) {//公众号已授权成功过了
+                    if (SharedPreferencesUtils.getInt(KEY_USER_SERVICE_ID_OA, 0) == Constant.OA_SERVICE_ID) {//已购买有公众号助手的服务
+                        startActivity(new Intent(activity, OAHelperActivity.class).putExtra(AuthorizationActivity.KEY_MODULE_ID, Constant.BOSS_MODULE_OA));
+                    } else {//未购买服务、或购买的服务没有公众号助手的权限
+                        Intent intent = new Intent(activity, ServiceOrderingActivity.class);
+                        intent.putExtra(AuthorizationActivity.KEY_MODULE_ID, Constant.BOSS_MODULE_OA);
+                        startActivity(intent);
+                    }
+                } else {//未授权
+                    startActivity(new Intent(activity, EmpowermentActivity.class).putExtra(AuthorizationActivity.KEY_MODULE_ID, Constant.BOSS_MODULE_OA));
+                }
 
                 break;
             //人员业绩   //会员1
@@ -267,6 +301,27 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 detailDialog.show();
                 break;
         }
+    }
+
+    /**
+     * 帐号的详情
+     */
+    private void loadAccountDetailState() {
+        WShopManager.getrShopManager().getlcAccountDetailInfo(this, new IRequestCallBack<UserInfoBean>() {
+            @Override
+            public void onResult(int tag, UserInfoBean result) {
+                dismissLoading();
+                if (result == null) {
+                    Toast.show(activity, "帐号信息失败");
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                Toast.show(activity, msg);
+                dismissLoading();
+            }
+        });
     }
 
     @Override

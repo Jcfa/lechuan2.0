@@ -88,8 +88,19 @@
 
         <!--启动页-->
         <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
+        <!--<activity-->
+            <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
+            <!--android:screenOrientation="portrait">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <!--登录-->
         <activity
-            android:name="com.poso2o.lechuan.activity.login.StartActivity"
+            android:name="com.poso2o.lechuan.activity.login.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -97,11 +108,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--登录-->
-        <activity
-            android:name="com.poso2o.lechuan.activity.login.LoginActivity"
-            android:screenOrientation="portrait" />
 
         <!--注册-->
         <activity
@@ -812,6 +818,10 @@
         <!--精选案例-->
         <activity
             android:name=".activity.vdian.CasePerformanceActivity"
+            android:screenOrientation="portrait" />
+        <!--精选案例详情-->
+        <activity
+            android:name=".activity.vdian.CasePerformanceDetailActivity"
             android:screenOrientation="portrait" />
 
         <!--微店商品导入页面-->

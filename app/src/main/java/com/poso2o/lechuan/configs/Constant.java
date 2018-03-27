@@ -51,6 +51,15 @@ public interface Constant {
 //    int MULTIPLE_TYPE = 3;//商家+分销商
 //    int MERCHANT_TYPE = 0;
 
+    /**
+     * 公众号论证，区分是微店还是公众号助手
+     */
+    int BOSS_MODULE_WX = 1;//微店
+    int BOSS_MODULE_OA = 2;//公众号助手
+    int OA_SERVICE_ID = 5;//可以使用公众号助手的service_id
+
+    int AUTHORIZATION_OA_TRUE=1;//公众号已授权成功
+    int AUTHORIZATION_OA_FALSE=0;//公众号未授权
 
     // TODO 广播相关 =======================================================================
 

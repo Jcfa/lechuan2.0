@@ -31,6 +31,8 @@ public class OrderInfoSellDetailBean {
     private String fprice;
 
     public String getTotal_amount() {
+        if (total_amount.equals("0.0"))
+            return "0.00";
         return total_amount;
     }
 

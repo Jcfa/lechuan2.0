@@ -66,12 +66,17 @@
                 android:src="@drawable/ad_close_icon" />
         </RelativeLayout>
     </LinearLayout>
-
+    <View
+        android:id="@+id/view_lg"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/lls"
+        android:background="@color/lineBg" />
     <LinearLayout
         android:id="@+id/llss"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@+id/lls"
+        android:layout_below="@+id/view_lg"
         android:background="@color/colorWhite"
         android:orientation="horizontal">
 

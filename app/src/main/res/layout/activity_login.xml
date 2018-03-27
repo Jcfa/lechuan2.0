@@ -108,10 +108,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/textSize_middle"
             android:checked="true"
             android:text="记住密码"
-            android:textColor="@color/textGreen" />
+            android:textColor="@color/textGreen"
+            android:textSize="@dimen/textSize_middle" />
 
         <TextView
             android:id="@+id/forget_password"
@@ -119,16 +119,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/textSize_middle"
             android:padding="5dp"
             android:text="忘记密码？"
-            android:textColor="@color/color_green_gray_press_selector" />
+            android:textColor="@color/color_green_gray_press_selector"
+            android:textSize="@dimen/textSize_middle" />
     </RelativeLayout>
 
     <Button
         android:id="@+id/btn_login"
         style="@style/common_button_red"
-        android:layout_width="match_parent"
+        android:layout_width="240dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:gravity="center"
         android:text="登录" />
 </LinearLayout>

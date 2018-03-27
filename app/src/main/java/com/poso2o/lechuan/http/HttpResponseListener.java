@@ -195,7 +195,10 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
                     //预处理后失败返回 目前也给返回数据结果
                     callback.onFailed(what, msg);
                 } else if (code.equals("loginout")) {
-                    String msg = json.getString("msg");
+                    String msg = json.has("msg") ? json.getString("msg") : "";
+                    if (msg.equals("")) {
+                        msg = json.has("data") ? json.getString("data") : "";
+                    }
                     //预处理后失败返回 目前也给返回数据结果
                     callback.onFailed(what, msg);
 //                    Toast.show(mActivity, msg);
