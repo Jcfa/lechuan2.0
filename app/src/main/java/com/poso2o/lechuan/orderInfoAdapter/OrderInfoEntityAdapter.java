@@ -20,11 +20,11 @@ import java.util.List;
 
 public class OrderInfoEntityAdapter extends RecyclerView.Adapter<OrderInfoEntityAdapter.Vholder> {
     private Context context;
-    private List<DataBean> data;
+    private List<DataBean> data=new ArrayList<>();
 
-    public OrderInfoEntityAdapter(Context context, List<DataBean> list) {
+    public OrderInfoEntityAdapter(Context context) {
         this.context = context;
-        this.data = list;
+        this.data = new ArrayList<>();
         notifyDataSetChanged();
     }
 

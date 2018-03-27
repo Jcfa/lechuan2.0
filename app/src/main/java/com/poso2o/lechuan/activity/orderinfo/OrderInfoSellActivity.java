@@ -50,6 +50,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     private TextView tvTitle;
     private List<OrderInfoSellBean.DataBean> data = new ArrayList<>();
     private TextView iv_default_null;
+    private OrderInfoSellBean sellBean;
 
     @Override
     protected int getLayoutResId() {
@@ -85,7 +86,8 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         }
         initNet(begin, nowDay, cuurapge);
         rlvSellList.setLayoutManager(new LinearLayoutManager(this));
-
+        adapter = new OrderInfoSellAdapter(activity, beginTs, endTs);
+        rlvSellList.setAdapter(adapter);
     }
 
     private void initNet(String beginTime, String endTime, int cuurapge) {
@@ -109,10 +111,13 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                OrderInfoSellBean sellBean = (OrderInfoSellBean) result;
+                sellBean = (OrderInfoSellBean) result;
                 data = sellBean.getData();
-                adapter = new OrderInfoSellAdapter(activity, data, beginTs, endTs);
-                rlvSellList.setAdapter(adapter);
+                if (cuurapge == 1) {
+                    adapter.setData(data);
+                } else {
+                    adapter.addData(data);
+                }
             }
 
             @Override
@@ -142,21 +147,22 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 cuurapge = 1;
-                OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
+                initRequestApi(beginTs, endTs, cuurapge);
+             /*   OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
                     @Override
                     public void onResult(int tag, Object result) {
                         dismissLoading();
-                        OrderInfoSellBean sellBean = (OrderInfoSellBean) result;
+                        sellBean = (OrderInfoSellBean) result;
                         data = sellBean.getData();
-                        if (data == null || data.size() < 0) {
+                     *//*   if (data == null || data.size() < 0) {
                             Toast.show(activity, "数据为空");
                         } else {
                             if (data == null) {
                                 iv_default_null.setVisibility(View.VISIBLE);
                                 refreshLayout.setVisibility(View.GONE);
-                            } else
+                            } else if (data != null)
                                 adapter.setData(data);
-                        }
+                        }*//*
                     }
 
                     @Override
@@ -166,7 +172,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                         refreshLayout.setVisibility(View.GONE);
 
                     }
-                });
+                });*/
                 refreshlayout.finishRefresh(200);
             }
         });
@@ -174,17 +180,18 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 cuurapge++;
-                OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
+                initRequestApi(beginTs, endTs, cuurapge);
+              /*  OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
                     @Override
                     public void onResult(int tag, Object result) {
                         dismissLoading();
-                        OrderInfoSellBean sellBean = (OrderInfoSellBean) result;
+                        sellBean = (OrderInfoSellBean) result;
                         data = sellBean.getData();
-                        if (data == null || data.size() < 0) {
+                     *//*   if (data == null || data.size() < 0) {
                             Toast.show(activity, "数据为空");
                         } else {
                             adapter.addData(data);
-                        }
+                        }*//*
                     }
 
                     @Override
@@ -193,7 +200,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                         iv_default_null.setVisibility(View.VISIBLE);
                         refreshLayout.setVisibility(View.GONE);
                     }
-                });
+                });*/
                 refreshLayout.finishLoadmore(200);
 
             }
@@ -266,6 +273,11 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     public void onEvent(String action) {
         super.onEvent(action);
         if (action.equals("网络请求成功")) {
+            if (cuurapge == 1) {
+                refreshLayout.finishRefresh(true);
+            } else {
+                refreshLayout.finishLoadmore(true);
+            }
             rlvSellList.setVisibility(View.VISIBLE);
             iv_default_null.setVisibility(View.GONE);
         } else if (action.equals("网络未连接")) {

@@ -131,6 +131,8 @@ public class OrderInfoEntityFragment extends BaseFragment {
         //进行断线重连机制  心跳机制原理
         initNet(begin, nowDay, currPage);
         rlv.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new OrderInfoEntityAdapter(getContext());
+        rlv.setAdapter(adapter);
     }
 
     private String beginTs, endTS;
@@ -146,8 +148,14 @@ public class OrderInfoEntityFragment extends BaseFragment {
                         dismissLoading();
                         infoBean = infoBeans;
                         List<DataBean> data = infoBeans.getData();
-                        adapter = new OrderInfoEntityAdapter(getContext(), data);
-                        rlv.setAdapter(adapter);
+                        if (currPage == 1) {
+                            adapter.setData(data);
+                            tvNum.setText(": " + infoBean.getTotal().getTotal_num());
+                            tvMoeny.setText(": " + infoBean.getTotal().getTotal_amount());
+                        } else {
+                            adapter.AddData(data);
+                        }
+
                     }
 
                     @Override
@@ -165,15 +173,16 @@ public class OrderInfoEntityFragment extends BaseFragment {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 currPage = 1;
-                swipeRefreshLayout.autoRefresh(200);
-                OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), beginTs, endTS, currPage + "",
+//                swipeRefreshLayout.autoRefresh(200);
+                initNet(beginTs, endTS, currPage);
+             /*   OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), beginTs, endTS, currPage + "",
                         new IRequestCallBack<OrderInfoBean>() {
                             @Override
                             public void onResult(int tag, OrderInfoBean infoBeans) {
                                 dismissLoading();
                                 infoBean = infoBeans;
                                 List<DataBean> data = infoBeans.getData();
-                                if (data == null || data.size() < 0) {
+                                if (data == null && data.size() < 0) {
                                     Toast.show(context, "数据为空");
                                 } else {
                                     adapter.setData(data);
@@ -189,7 +198,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
                                 rl_defult_null.setVisibility(View.GONE);
                                 iv_default_null.setVisibility(View.VISIBLE);
                             }
-                        });
+                        });*/
                 refreshlayout.finishRefresh(200);
             }
         });
@@ -197,7 +206,8 @@ public class OrderInfoEntityFragment extends BaseFragment {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 currPage++;
-                OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), beginTs, endTS, currPage + "",
+                initNet(beginTs, endTS, currPage);
+             /*   OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), beginTs, endTS, currPage + "",
                         new IRequestCallBack<OrderInfoBean>() {
                             @Override
                             public void onResult(int tag, OrderInfoBean infoBeans) {
@@ -215,7 +225,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
                                 rl_defult_null.setVisibility(View.GONE);
                                 iv_default_null.setVisibility(View.VISIBLE);
                             }
-                        });
+                        });*/
                 refreshlayout.finishLoadmore(200);
             }
         });
@@ -372,6 +382,11 @@ public class OrderInfoEntityFragment extends BaseFragment {
     public void onEvent(String action) {
         super.onEvent(action);
         if (action.equals("网络请求成功")) {
+            if (currPage == 1) {
+                swipeRefreshLayout.finishRefresh(true);
+            } else {
+                swipeRefreshLayout.finishLoadmore(true);
+            }
             rl_defult_null.setVisibility(View.VISIBLE);
             iv_default_null.setVisibility(View.GONE);
         } else if (action.equals("网络未连接")) {

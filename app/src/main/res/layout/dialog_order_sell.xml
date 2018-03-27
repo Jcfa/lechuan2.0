@@ -40,7 +40,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="2dp"
-                android:text="1050 成本:1050.00"
+                android:text="0.00 成本:0.00"
                 android:textColor="#c74825"
                 android:textSize="14dp" />
 
@@ -54,12 +54,14 @@
                 android:src="@drawable/ad_close_icon" />
         </RelativeLayout>
     </LinearLayout>
+
     <View
         android:id="@+id/view_lg"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@+id/lls"
         android:background="@color/lineBg" />
+
     <RelativeLayout
         android:id="@+id/llss"
         android:layout_width="match_parent"
@@ -90,7 +92,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="1111"
+                android:text="011"
                 android:textColor="@color/color_999999"
                 android:textSize="12dp" />
 
@@ -125,7 +127,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="无规格"
+                android:text="白色/M"
                 android:textColor="@color/color_999999"
                 android:textSize="12dp" />
 
@@ -278,5 +280,12 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_default_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="参数出现异常"
+        android:visibility="gone" />
 
 </RelativeLayout>
