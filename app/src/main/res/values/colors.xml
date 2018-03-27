@@ -93,7 +93,7 @@
 
     <color name="text_type">#FF6537</color>
     <!--登录按钮背景颜色-->
-    <color name="btn_login_bg">#42c1ac</color>
+    <color name="btn_login_bg">#60bcd4</color>
     <!--登录按钮按下颜色-->
-    <color name="btn_login_bg_preed">#32a1af</color>
+    <color name="btn_login_bg_preed">#00bcd4</color>
 </resources>
