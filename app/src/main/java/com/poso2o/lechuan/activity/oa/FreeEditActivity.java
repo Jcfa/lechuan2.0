@@ -275,11 +275,17 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
         webview_edit.evaluateJavascript("getAllHtml()", new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String html) {
+                final String str = html;
                 if (type == 0){
-                    Intent intent = new Intent();
-                    intent.setClass(getApplication(),ArtPreviewActivity.class);
-                    intent.putExtra(ArticleAdActivity.ART_DATA,html);
-                    startActivity(intent);
+                    webview_edit.evaluateJavascript("getTitleHTML()", new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String value) {
+                            Intent intent = new Intent();
+                            intent.setClass(getApplication(),ArtPreviewActivity.class);
+                            intent.putExtra(ArticleAdActivity.ART_DATA,value + str);
+                            startActivity(intent);
+                        }
+                    });
                 }else if (type == 1){
                     article.content = html;
                     addToRenewals(article);

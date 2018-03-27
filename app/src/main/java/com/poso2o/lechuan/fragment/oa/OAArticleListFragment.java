@@ -48,6 +48,8 @@ public class OAArticleListFragment extends BaseFragment {
     private SwipeRefreshLayout oa_article_list_swipe;
     private OAArticleListAdapter oaArticleListAdapter;
 
+    private ArrayList<Article> article_datas = new ArrayList<>();
+
     /**
      * 文章类型
      */
@@ -170,9 +172,10 @@ public class OAArticleListFragment extends BaseFragment {
             } else {
                 oa_article_list_hint.setVisibility(GONE);
             }
+            article_datas.clear();
         }
-        oa_article_list_hint.setVisibility(GONE);
-        oaArticleListAdapter.notifyDataSetChanged(data);
+        if (data != null)article_datas.addAll(data);
+        oaArticleListAdapter.notifyDataSetChanged(article_datas);
     }
 
     public void setOnItemClickListener(BaseAdapter.OnItemClickListener onItemClickListener) {
