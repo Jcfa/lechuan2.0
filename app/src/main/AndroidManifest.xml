@@ -573,6 +573,8 @@
         <activity
             android:name="com.poso2o.lechuan.activity.publish.ArticleDetailsActivity"
             android:screenOrientation="portrait" />
+        <!--新版文章详情页-->
+        <activity android:name=".activity.oa.ArticleInfoActivity"/>
 
         <!--选择商品-->
         <activity
