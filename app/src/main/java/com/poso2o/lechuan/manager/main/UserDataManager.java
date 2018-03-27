@@ -72,12 +72,11 @@ public class UserDataManager<T> extends BaseManager {
      * @param callBack     登录回调
      */
     public void doLogin(final BaseActivity baseActivity, final String account, final String password, final boolean remember, final IRequestCallBack callBack) {
-//        activity = baseActivity;
-        Request<String> request = getStringRequest(HttpAPI.LOGIN_API);
-//        request = defaultParam(request);
-        request.add("uid", account);
-        request.add("key", password);
-//        Log.i("doLogin", "doLogin_response:" + HttpAPI.LOGIN_API);
+        Request<String> request = getStringRequest(HttpAPI.FZ_LOGIN_API);
+//        request.add("uid", account);
+//        request.add("key", password);
+        request.add("loginname", account);
+        request.add("password", password);
         baseActivity.request(TAG_LOGIN_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
@@ -86,13 +85,38 @@ public class UserDataManager<T> extends BaseManager {
                 LoginBean loginBean = gson.fromJson(response, LoginBean.class);
 //                if (checkResult(baseActivity, loginBean)) {//登录成功
 //                    loginBean.data.account = account;
-                loginBean.password = remember ? password : "";
+//                loginBean.password = remember ? password : "";
+                if (remember) {
+                    SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_REMEMBER_PASSWORD, remember ? password : "");
+                }
                 saveUserInfo(loginBean);
                 callBack.onResult(TAG_LOGIN_ID, loginBean);
                 Toast.show(baseActivity, "登录成功！");
-//                } else {
-//                    Toast.show(baseActivity, "登录失败");
-//                }
+                doRegisterToPhysical(baseActivity, account, loginBean.password);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                Toast.show(baseActivity, response);
+            }
+        }, true, true);
+    }
+
+    /**
+     * 登录成功后注册到实体店
+     *
+     * @param baseActivity
+     * @param account
+     * @param password
+     */
+    public void doRegisterToPhysical(final BaseActivity baseActivity, final String account, final String password) {
+        Request<String> request = getStringRequest(HttpAPI.REGISTER_SHOP_API);
+        request.add("uid", account);
+        request.add("key", password);
+        baseActivity.request(TAG_LOGIN_ID, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+
             }
 
             @Override

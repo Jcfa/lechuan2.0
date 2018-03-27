@@ -134,9 +134,9 @@ public class EmpowermentManager extends BaseManager {
      */
     public void OpenStateDate(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
         final Request<String> request = getStringRequest(SERVICE_OPEN_STATE_URL);
-        request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
-        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
-        request.add("shop_id", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+//        request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+//        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+//        request.add("shop_id", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         defaultParam(request);
         baseActivity.request(TRIALID, request, new HttpListener<String>() {
             @Override

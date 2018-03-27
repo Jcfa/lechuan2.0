@@ -77,14 +77,14 @@ public class WCAuthorityActivity extends BaseActivity {
         }
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle == null){
+        if (bundle == null) {
             mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID);
-        }else {
+        } else {
             int type = bundle.getInt(BIND_TYPE);
-            if (type == 1){
-                mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + "&has_newsid=1";
-            }else {
-                mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID);
+            if (type == 1) {
+                mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + "&has_news=1";
+            } else {
+                mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + "&has_news=" + type;
             }
         }
         authorize_wechat.loadUrl(mUrl);

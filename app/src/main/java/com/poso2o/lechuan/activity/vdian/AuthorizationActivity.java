@@ -8,29 +8,34 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.configs.Constant;
+import com.poso2o.lechuan.tool.print.Print;
+import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 /**
  * 授权说明
- *
+ * <p>
  * Created by Administrator on 2018/3/14 0014.
  */
 public class AuthorizationActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST_SERVICE_PURCHASE = 11;
-
     private static final int REQUEST_WEIXIN_BIND = 12;
-
+    public static final String KEY_SERVICE_ID = "service_id";//购买的服务
+    public static final String KEY_MODULE_ID = "module_id";//1=微店、2=公众号助手
     /**
      * 提示文本
      */
     private TextView authorization_hint_01, authorization_hint_02;
-
     /**
      * 点击公众号授权
      */
     private Button authorization_to_empower;
+    private int mServiceId = 0;
+    private int mModuleId = 0;
 
     @Override
     protected int getLayoutResId() {
@@ -39,6 +44,9 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initView() {
+//        mServiceId = getIntent().getIntExtra(KEY_SERVICE_ID, 0);
+        mServiceId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_ID_OA, 0);
+        mModuleId = getIntent().getIntExtra(KEY_MODULE_ID, 0);
         authorization_hint_01 = (TextView) findViewById(R.id.authorization_hint_01);
         authorization_hint_02 = (TextView) findViewById(R.id.authorization_hint_02);
         authorization_to_empower = (Button) findViewById(R.id.authorization_to_empower);
@@ -64,7 +72,7 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
             case R.id.authorization_to_empower:// 进入授权页面
                 Intent intent = new Intent();
                 intent.setClass(AuthorizationActivity.this, WCAuthorityActivity.class);
-                intent.putExtra(WCAuthorityActivity.BIND_TYPE, 1);
+                intent.putExtra(WCAuthorityActivity.BIND_TYPE, 0);
                 startActivityForResult(intent, REQUEST_WEIXIN_BIND);
                 break;
         }
@@ -76,11 +84,32 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_WEIXIN_BIND:// 微信绑定
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean(ServiceOrderingActivity.IS_TRY, true);
-                    startActivityForResult(ServiceOrderingActivity.class, bundle, REQUEST_SERVICE_PURCHASE);
+                    SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_AUTHORIZATION_OA, Constant.AUTHORIZATION_OA_TRUE);
+                    Print.println("AUTHORIZATION_OA_TRUE:" + Constant.AUTHORIZATION_OA_TRUE);
+                    Print.println("KEY_USER_AUTHORIZATION_OA:" + SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_AUTHORIZATION_OA));
+                    if (mModuleId == Constant.BOSS_MODULE_OA) {//返回公众号助手
+                        if (mServiceId == Constant.OA_SERVICE_ID) {//服务ID==5，高级版包括公众号助手服务
+                            startActivity(OAHelperActivity.class);
+                        } else {//服务订购升级
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean(ServiceOrderingActivity.IS_TRY, true);
+//                            bundle.putInt(KEY_SERVICE_ID, mServiceId);
+                            bundle.putInt(KEY_MODULE_ID, mModuleId);
+                            startActivityForResult(ServiceOrderingActivity.class, bundle, REQUEST_SERVICE_PURCHASE);
+                        }
+                    } else if (mModuleId == Constant.BOSS_MODULE_WX) {//返回微店
+                        if (mServiceId > 0) {//已订购服务的授权成功直接进入微店
+                            startActivity(VdianActivity.class);
+                        } else {//未订购的授权成功进入服务订购页
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean(ServiceOrderingActivity.IS_TRY, true);
+//                            bundle.putInt(KEY_SERVICE_ID, mServiceId);
+                            bundle.putInt(KEY_MODULE_ID, mModuleId);
+                            startActivityForResult(ServiceOrderingActivity.class, bundle, REQUEST_SERVICE_PURCHASE);
+                        }
+                    }
+                    finish();
                     break;
-
                 case REQUEST_SERVICE_PURCHASE:// 服务订购
 
                     break;

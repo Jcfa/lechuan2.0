@@ -4,6 +4,8 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.util.NumberUtils;
+import com.poso2o.lechuan.util.TimeUtil;
 
 /**
  * 开通状态
@@ -45,7 +47,7 @@ public class ApplyStatusActivity extends BaseActivity {
         apply_status_attn.setText(attn);
         apply_status_mobile.setText(mobile);
         apply_status_service_name.setText(service_name);
-        apply_status_payment.setText(payment_time);
+        apply_status_payment.setText(TimeUtil.longToDateString(NumberUtils.toLong(payment_time),"yyyy-MM-dd HH:mm:ss"));
         apply_status_amount.setText(amount);
     }
 

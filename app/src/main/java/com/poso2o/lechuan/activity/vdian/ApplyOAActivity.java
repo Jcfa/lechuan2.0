@@ -41,7 +41,9 @@ public class ApplyOAActivity extends BaseActivity implements View.OnClickListene
     /**
      * 服务的项目
      */
-    private String service_name, amount, service_id, service_type;
+    private String service_name;
+    private double amount;
+    private int service_id, service_type;
     private String mAttn = "", mMobile = "";
 
 
@@ -76,13 +78,13 @@ public class ApplyOAActivity extends BaseActivity implements View.OnClickListene
             public void onResult(int tag, Object result) {
                 Gson gson = new Gson();
                 OpenNumberBe order = gson.fromJson(result.toString(), OpenNumberBe.class);
-                OpenNumber o = gson.fromJson(order.list.get(0).getRemark(), OpenNumber.class);
-                service_id = order.list.get(0).getService_id();
-                amount = order.list.get(0).getAmount();
-                service_name = order.list.get(0).getService_name();
+                OpenNumber o = gson.fromJson(order.list.get(0).remark, OpenNumber.class);
+                service_id = order.list.get(0).service_id;
+                amount = order.list.get(0).amount;
+                service_name = order.list.get(0).service_name;
                 apply_oa_approve_money.setText(o.getWechar_authentication_amount());
                 apply_oa_agency_money.setText(o.getAgency_amount());
-                service_type = order.list.get(0).getService_type();
+                service_type = order.list.get(0).service_type;
             }
 
             @Override

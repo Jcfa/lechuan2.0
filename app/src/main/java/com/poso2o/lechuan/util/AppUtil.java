@@ -40,7 +40,8 @@ public class AppUtil {
             MiPushClient.unsetAlias(activity, SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID), null);
 //            MiPushClient.pausePush(activity,SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
             SharedPreferencesUtils.logout();//清除数据
-            Intent intent = new Intent(activity, StartActivity.class);
+//            Intent intent = new Intent(activity, StartActivity.class);
+            Intent intent = new Intent(activity, LoginActivity.class);
             intent.putExtra(SharedPreferencesUtils.TAG_EXIT, true);
             activity.startActivity(intent);
         }

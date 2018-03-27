@@ -10,12 +10,13 @@ public class InvitationBean implements Serializable {
     public static final String INVITATION_BIND_CODE = "10";//邀请分销
     public static final String INVITATION_UNBIND_CODE = "11";//解除分销
     public static final String INVITATION_UNBIND_AGREE_CODE = "12";//解除分销成功
+    public static final String BIND_WX_ACCOUNT_CODE = "100";//绑定微信收款账号
 
-    public String code="";
+    public String code = "";
     public String nick = "";
     public String uid = "";
     public String logo = "";
     public String url = "";
-    public double commission_discount=0;
-    public double commission_rate=0;
+    public double commission_discount = 0;
+    public double commission_rate = 0;
 }

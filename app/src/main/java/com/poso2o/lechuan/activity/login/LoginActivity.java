@@ -35,6 +35,7 @@ public class LoginActivity extends BaseActivity {
     private EditText etAccount, etPassword;
     private CheckBox checkBoxRemember;
     private ImageView ivClear, ivShow;
+    private boolean mExist = false;
 
 
     @Override
@@ -44,6 +45,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        mExist = getIntent().getBooleanExtra(SharedPreferencesUtils.TAG_EXIT, false);
         setTitle("登录");
         ivClear = findView(R.id.iv_clear);
         ivShow = findView(R.id.iv_show);
@@ -69,7 +71,7 @@ public class LoginActivity extends BaseActivity {
         etAccount.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_MOBILE));
         etAccount.setSelection(etAccount.length());
         etPassword = findView(R.id.et_password);
-        etPassword.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_PASSWORD));
+        etPassword.setText(SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_REMEMBER_PASSWORD));
         checkBoxRemember = (CheckBox) findViewById(R.id.checkbox_remember);
     }
 
@@ -107,13 +109,13 @@ public class LoginActivity extends BaseActivity {
                 doLogin();
             }
         });
-        findView(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(StartActivity.class);
-                finish();
-            }
-        });
+//        findView(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(StartActivity.class);
+//                finish();
+//            }
+//        });
         findView(R.id.forget_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +133,21 @@ public class LoginActivity extends BaseActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         initView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String uid = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID);
+//        String token = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN);
+        String token = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_PASSWORD);
+        if (!TextUtil.isEmpty(uid) && !TextUtil.isEmpty(token) && !mExist) {//已经登录过直接去首页
+//            if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SELECTED_TYPE) == Constant.MERCHANT_TYPE) {
+            toRShopMainActivity();
+//            } else {
+//                toMainActivity();
+//            }
+        }
     }
 
     /**
@@ -151,18 +168,17 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onResult(int tag, LoginBean object) {
                     SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_SELECTED_TYPE, object.user_type);
-                    switch (object.user_type) {
-                        case Constant.MERCHANT_TYPE://商家
-                            toRShopMainActivity();
+//                    switch (object.user_type) {
+//                        case Constant.MERCHANT_TYPE://商家
+                    toRShopMainActivity();
+//                            break;
+//                        case Constant.DISTRIBUTION_TYPE://分销员
 //                            toMainActivity();
-                            break;
-                        case Constant.DISTRIBUTION_TYPE://分销员
-                            toMainActivity();
-                            break;
-                        case Constant.COMMON_TYPE://普通用户
-                            toMainActivity();
-                            break;
-                    }
+//                            break;
+//                        case Constant.COMMON_TYPE://普通用户
+//                            toMainActivity();
+//                            break;
+//                    }
                 }
             });
         }
@@ -234,13 +250,13 @@ public class LoginActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (KeyEvent.KEYCODE_BACK == keyCode) {
-            startActivity(StartActivity.class);
-            finish();
-            return false;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (KeyEvent.KEYCODE_BACK == keyCode) {
+//            startActivity(StartActivity.class);
+//            finish();
+//            return false;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 }

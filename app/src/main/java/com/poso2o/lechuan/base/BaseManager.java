@@ -73,7 +73,8 @@ public class BaseManager<T> {
         Log.i("defaultParam", "defaultParam_uid=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + ",token=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
         request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("shop_id", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
-        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+//        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_PASSWORD));
         return request;
     }
 
@@ -85,7 +86,8 @@ public class BaseManager<T> {
      */
     public Request<T> defaultParamNoShop(Request<T> request) {
         request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
-        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+//        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_PASSWORD));
         return request;
     }
 

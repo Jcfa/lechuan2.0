@@ -32,6 +32,7 @@ public class UserInfoBean {
     public float red_envelopes_amount = 0;
     public int has_shop = 0;
     public int has_commission = -1;//是否设置了佣金，0未设，1已设
+    public int buy_service_id=0;//购买的公众号服务ID
 
 
 

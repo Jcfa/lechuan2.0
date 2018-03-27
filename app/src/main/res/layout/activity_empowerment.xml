@@ -118,6 +118,7 @@
     <RelativeLayout
         android:id="@+id/case_performance"
         android:layout_width="match_parent"
+        android:background="@drawable/white_bg"
         android:layout_height="60dp">
 
         <LinearLayout
@@ -182,6 +183,7 @@
     <RelativeLayout
         android:id="@+id/empower_apply_oa"
         android:layout_width="match_parent"
+        android:background="@drawable/white_bg"
         android:layout_height="60dp">
 
         <LinearLayout
@@ -253,7 +255,7 @@
         android:id="@+id/empower_oa_empower"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/common_background">
+        android:background="@drawable/color_enable_white_black">
 
         <LinearLayout
             android:layout_width="wrap_content"

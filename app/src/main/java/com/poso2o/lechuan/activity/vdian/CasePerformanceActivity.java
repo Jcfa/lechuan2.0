@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.vdian;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.poso2o.lechuan.adapter.ViewPagerAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.mine.MerchantItemBean;
 import com.poso2o.lechuan.bean.vdian.CasePerformanceDTO;
+import com.poso2o.lechuan.bean.vdian.CasePerformancePicDTO;
 import com.poso2o.lechuan.bean.vdian.CasePerformanceShopDTO;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.CasePerformanceManager;
@@ -40,11 +42,8 @@ import java.util.List;
 
 public class CasePerformanceActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     private CasePerformanceDTO mCasePerformanceDTO = new CasePerformanceDTO();
-    private List<ImageView> dotViews = new ArrayList<>();
-    private List<ViewPagerImageView> viewPagerImageViews = new ArrayList<>();
-    private List<View> mViews=new ArrayList<>();
-    private ImageView ivDot;//白色圆点
-    private float mDistance;
+    private List<View> dotViews = new ArrayList<>();
+    private List<View> mViews = new ArrayList<>();
     private ViewPager viewPager;
     private BaseAdapter mCaseAdapter;
 
@@ -56,27 +55,10 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
     @Override
     protected void initView() {
         setTitle("演示及案例");
-        LayoutInflater inflater = getLayoutInflater();
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.addOnPageChangeListener(this);
-//        viewPagerImageViews = new ArrayList<>();
         mViews = new ArrayList<>();
-        mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
-        mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
-        mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
-        ViewPagerAdapter adapter = new ViewPagerAdapter(mViews);
-        viewPager.setAdapter(adapter);
-        dotViews.add((ImageView) findView(R.id.iv_dot1));
-        dotViews.add((ImageView) findView(R.id.iv_dot2));
-        dotViews.add((ImageView) findView(R.id.iv_dot3));
-        ivDot = findView(R.id.iv_dot);
-        final LinearLayout layoutDot = findView(R.id.layout_dot);
-        ivDot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mDistance = layoutDot.getChildAt(1).getLeft() - layoutDot.getChildAt(0).getLeft();
-            }
-        });
+        dotViews = new ArrayList<>();
         RecyclerView recyclerView = findView(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity) {
             @Override
@@ -96,7 +78,8 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
 
             @Override
             public void initItemView(BaseViewHolder holder, Object item, int position) {
-                CasePerformanceShopDTO shopDTO = (CasePerformanceShopDTO) item;
+                final CasePerformanceShopDTO shopDTO = (CasePerformanceShopDTO) item;
+                LinearLayout item_main = holder.getView(R.id.item_main);
                 ImageView logo = holder.getView(R.id.case_performance_logo);
 //                Glide.with(context).load(shopDTO.logo).thumbnail(0.1f).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(logo);
                 Glide.with(context).load(shopDTO.logo).transform(new GlideCircleTransform(context)).into(logo);
@@ -110,6 +93,14 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
                 shop_num.setText("月发文" + shopDTO.news_num + "篇");
                 shop_function.setText(shopDTO.remark);
                 shop_auth.setText(shopDTO.shop_name);
+                item_main.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(activity, CasePerformanceDetailActivity.class);
+                        intent.putExtra(CasePerformanceDetailActivity.KEY_PICS, shopDTO);
+                        activity.startActivity(intent);
+                    }
+                });
             }
         };
         recyclerView.setAdapter(mCaseAdapter);
@@ -125,22 +116,36 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
 
     }
 
+    private void initViewPager() {
+        final LinearLayout layoutDot = findView(R.id.layout_dot);
+        layoutDot.removeAllViews();
+        LayoutInflater inflater = getLayoutInflater();
+        for (CasePerformanceShopDTO shopDTO : mCasePerformanceDTO.shops) {
+            mViews.add(inflater.inflate(R.layout.layout_login_pager1, null));
+            View dotView = inflater.inflate(R.layout.view_dot, null);
+            dotViews.add(dotView);
+            layoutDot.addView(dotView);
+        }
+        ViewPagerAdapter adapter = new ViewPagerAdapter(mViews);
+        viewPager.setAdapter(adapter);
+    }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        //页面滚动时小白点移动的距离，并通过setLayoutParams(params)不断更新其位置
-        float leftMargin = mDistance * (position + positionOffset);
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivDot.getLayoutParams();
-        params.leftMargin = (int) leftMargin;
-        ivDot.setLayoutParams(params);
+//        //页面滚动时小白点移动的距离，并通过setLayoutParams(params)不断更新其位置
+//        float leftMargin = mDistance * (position + positionOffset);
+//        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivDot.getLayoutParams();
+//        params.leftMargin = (int) leftMargin;
+//        ivDot.setLayoutParams(params);
     }
 
     @Override
     public void onPageSelected(int position) {
-        //页面跳转时，设置小圆点的margin
-        float leftMargin = mDistance * position;
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivDot.getLayoutParams();
-        params.leftMargin = (int) leftMargin;
-        ivDot.setLayoutParams(params);
+//        //页面跳转时，设置小圆点的margin
+//        float leftMargin = mDistance * position;
+//        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivDot.getLayoutParams();
+//        params.leftMargin = (int) leftMargin;
+//        ivDot.setLayoutParams(params);
         setViewpagerPic(position);
     }
 
@@ -156,6 +161,7 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
             public void onResult(int tag, CasePerformanceDTO result) {
                 dismissLoading();
                 mCasePerformanceDTO = result;
+                initViewPager();
                 setViewpagerPic(0);
                 if (mCasePerformanceDTO != null && mCasePerformanceDTO.shops != null) {
                     mCaseAdapter.notifyDataSetChanged(mCasePerformanceDTO.shops);
@@ -169,9 +175,17 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
         });
     }
 
-    private void setViewpagerPic(int position){
+    private void setViewpagerPic(int position) {
+        for (int i = 0; i < dotViews.size(); i++) {
+            ImageView imageView = (ImageView) dotViews.get(i).findViewById(R.id.iv_dot);
+            if (i == position) {
+                imageView.setImageResource(R.mipmap.white_dot);
+            } else {
+                imageView.setImageResource(R.mipmap.black_dot);
+            }
+        }
         View view = mViews.get(position);
-        ImageView pic= (ImageView) view.findViewById(R.id.pic);
+        ImageView pic = (ImageView) view.findViewById(R.id.pic);
         Glide.with(activity).load("http://pic.58pic.com/58pic/13/68/03/86S58PIC26b_1024.jpg").error(R.mipmap.logo_d).placeholder(R.mipmap.logo_d).into(pic);
     }
 }
