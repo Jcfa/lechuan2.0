@@ -8,6 +8,7 @@ import com.poso2o.lechuan.base.BaseManager;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellBean;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellCountBean;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellDetailBean;
+import com.poso2o.lechuan.bean.orderInfo.QueryDirBean;
 import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.http.realshop.RMemberHttpAPI;
@@ -96,4 +97,64 @@ public class OrderInfoGoodsManager extends BaseManager {
         }, true, true);
 
     }
+
+    //排序
+    public void orderInfoGoodsSortApi(BaseActivity activity, String begin, String close, String currPage, String sort, final IRequestCallBack callBack) {
+        Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_SELL_INFO);
+        request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        request.add("shopid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("czy", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("begin_date", begin);
+        request.add("close_date", close);
+        request.add("currPage", currPage);
+        request.add("order", "totalnum");
+        request.add("sort", sort);
+        activity.request(ORDER_LIST, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                //解决旧版接口数据结构不统一问题
+                if (response.startsWith("[") && response.endsWith("]")) {
+                    response = "{\nlist\n:" + response + "}";
+                }
+                OrderInfoSellBean sellCountBean = new Gson().fromJson(response, OrderInfoSellBean.class);
+                callBack.onResult(ORDER_LIST, sellCountBean);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                callBack.onFailed(ORDER_LIST, response);
+
+            }
+        }, true, true);
+
+    }
+
+    //查看所有目录
+    public void orderInfoQueryDirApi(BaseActivity activity, final IRequestCallBack callBack) {
+        Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_SELL_QUERY_INFO);
+        request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("sessionKey", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        request.add("shopid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        request.add("czy", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+        activity.request(ORDER_LIST, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                //解决旧版接口数据结构不统一问题
+                if (response.startsWith("[") && response.endsWith("]")) {
+                    response = "{\nlist\n:" + response + "}";
+                }
+                QueryDirBean dirBean = new Gson().fromJson(response, QueryDirBean.class);
+                callBack.onResult(what, dirBean);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                callBack.onFailed(what, response);
+            }
+        }, true, true);
+
+    }
+
+
 }

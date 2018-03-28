@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -16,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.darsh.multipleimageselect.models.Image;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.orderInfo.DataBean;
+import com.poso2o.lechuan.bean.orderInfo.FidEventBus;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoPaperBean;
+import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellBean;
+import com.poso2o.lechuan.dialog.DialogQuerySellDir;
 import com.poso2o.lechuan.dialog.OrderPaperDetailDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoPaperManager;
@@ -28,15 +33,23 @@ import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ${cbf} on 2018/3/14 0014.
  * 库存管理
+ * 注意这里搜索为什么不OnClickListene的  因为第一次输入时 它
+ * 还没获取到焦点  无法进行搜索相关内容 需要再次点击时才能进行
+ * 搜索  而用OnTouchListener则第一次就可以获取到焦点  注意后面OnTouchListener
+ * 返回false 不能为true  否则事件被拦截了
  */
 
-public class OrderInfoPaperActivity extends BaseActivity implements View.OnClickListener {
+public class OrderInfoPaperActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener {
 
     private TextView tvTitle;
     private RecyclerView rlvPaper;
@@ -51,6 +64,26 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     private List<OrderInfoPaperBean.DataBean> data;
     private ImageButton clear_input;
     private InputMethodManager imm;
+    /**
+     * 查询按钮
+     */
+    private TextView tvQuery;
+    /**
+     * 目录列表弹框
+     */
+    private DialogQuerySellDir dir;
+    /**
+     * 这里因为不需要展示开始时间和结束时间  隐藏掉
+     */
+    private TextView tvEndTime, tvEndTimeVisibibity, tvBeginTime;
+    /**
+     * 图标
+     */
+    private ImageView ivTuP;
+    /**
+     * 格式化.0格式的
+     */
+    private String format;
 
     @Override
     protected int getLayoutResId() {
@@ -69,6 +102,11 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         fl_search = (FrameLayout) findViewById(R.id.fl_search);
         etKcSearch = (EditText) findViewById(R.id.et_kcsearch_input);
         clear_input = (ImageButton) findViewById(R.id.clear_input);
+        tvQuery = (TextView) findViewById(R.id.tv_query);
+        tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
+        tvEndTimeVisibibity = (TextView) findViewById(R.id.tv_visibility);
+        tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
+        ivTuP = (ImageView) findViewById(R.id.iv_tu_biao);
     }
 
     @Override
@@ -76,8 +114,12 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         tvTitle.setText("库存管理");
         rlvPaper.setLayoutManager(new LinearLayoutManager(activity));
         ivSearch.setVisibility(View.VISIBLE);
+        tvQuery.setVisibility(View.VISIBLE);
+        tvEndTime.setVisibility(View.GONE);
+        ivTuP.setImageResource(R.mipmap.kuquer);
+        tvEndTimeVisibibity.setVisibility(View.GONE);
+        tvBeginTime.setVisibility(View.GONE);
         initNetApi();
-
     }
 
     private void initNetApi() {
@@ -91,6 +133,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 } else {
                     adapter = new OrderInfoPaperAdapter(activity, data);
                     rlvPaper.setAdapter(adapter);
+                    tvQuery.setText("全部(" + data.size() + ")");
                     tv_order_sell_many_total.setText(paperBean.getTotal().getTotalnums());
                     tv_order_zm_total.setText(paperBean.getTotal().getTotalamounts());
                     adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
@@ -119,8 +162,9 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initListener() {
         ivSearch.setOnClickListener(this);
-        etKcSearch.setOnClickListener(this);
+        etKcSearch.setOnTouchListener(this);
         clear_input.setOnClickListener(this);
+        tvQuery.setOnClickListener(this);
     }
 
     @Override
@@ -128,9 +172,6 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.iv_search:
                 search();
-                break;
-            case R.id.et_kcsearch_input:
-                kuSearch();
                 break;
             case R.id.clear_input:
                 etKcSearch.setText("");
@@ -142,8 +183,56 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 break;
+            case R.id.tv_query:
+                queryDir();
+                break;
         }
     }
+
+    /**
+     * 查询所有目录列表以及多少条目
+     */
+    private void queryDir() {
+        dir = new DialogQuerySellDir(activity);
+        dir.setData();
+        dir.show();
+    }
+
+    /**
+     * 根据事件总线进行参数设置参
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(FidEventBus fidEventBus) {
+        String fid = fidEventBus.getFid();
+        //创建新的集合
+
+        List<OrderInfoPaperBean.DataBean> newlists = new ArrayList<>();
+        if (TextUtils.isEmpty(fid)) {
+            newlists = data;
+        } else {
+            newlists.clear();
+            //根据lists集合中的对象字段名过滤
+            int kucount = 0;
+            double totalMeny = 0.00;
+            for (OrderInfoPaperBean.DataBean sortModel : data) {
+                String num = sortModel.getFid();
+                if (num.equals(fid)) {
+                    newlists.add(sortModel);
+                    kucount += Integer.parseInt(sortModel.getTotalnum());
+                    BigDecimal bg = new BigDecimal(Double.parseDouble(sortModel.getTotalamount()));
+                    totalMeny += bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+                    format = df.format(totalMeny);
+                }
+            }
+            tv_order_sell_many_total.setText(kucount + "");
+            tv_order_zm_total.setText(format);
+        }
+        // 不管怎么样都要刷新
+        adapter.updateSearchListView(newlists);
+        dir.dismiss();
+    }
+
 
     /**
      * 因为是一次性加载所有数据  所以可以读取里面所有内容
@@ -197,13 +286,16 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     private void search() {
         fl_search.setVisibility(View.VISIBLE);
         rl_default_null.setVisibility(View.GONE);
-        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+      /*  imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         // 获取软键盘的显示状态
         boolean isOpen = imm.isActive();
         // 如果软键盘已经显示，则隐藏，反之则显示
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);*/
     }
 
+    /**
+     * 进行网络状态的判断
+     */
     @Override
     public void onEvent(String action) {
         super.onEvent(action);
@@ -225,5 +317,15 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
             rl_default_null.setVisibility(View.GONE);
             tv_default_null.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (v.getId()) {
+            case R.id.et_kcsearch_input:
+                kuSearch();
+                break;
+        }
+        return false;
     }
 }

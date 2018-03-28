@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/asc_icon"
+        android:maxLevel="1" />
+    <item
+        android:drawable="@drawable/desc_icon"
+        android:minLevel="2" />
+
+</level-list>

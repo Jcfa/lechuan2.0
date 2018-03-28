@@ -44,6 +44,11 @@ public class OrderInfoSellAdapter extends RecyclerView.Adapter<OrderInfoSellAdap
         notifyDataSetChanged();
     }
 
+    public void updateView(List<OrderInfoSellBean.DataBean> data) {
+        this.dataBeen = data;
+        notifyDataSetChanged();
+    }
+
     @Override
     public OrderInfoSellAdapter.Vholder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_orderinfo_sell, parent, false);

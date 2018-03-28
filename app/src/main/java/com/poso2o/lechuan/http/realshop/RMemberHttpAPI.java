@@ -10,6 +10,9 @@ public class RMemberHttpAPI {
     public static final String R_MAMBER_URL = "http://fuzhuang.poso2o.com/boss.htm?Act=";
     //实体店订单
     public static final String R_ORDER_URL = "http://fuzhuang.poso2o.com/order.htm?Act=";
+    //查看所有目录接口
+    public static final String R_ORDER_QUERY_URL = "http://fuzhuang.poso2o.com/directory.htm?Act=";
+
     //实体店订单详情
     public static final String O_ORDER_DETAIL_INFO = R_ORDER_URL + "view";
     //会员列表
@@ -28,6 +31,8 @@ public class RMemberHttpAPI {
     public static final String O_REMBER_SELL_INFO = R_MAMBER_URL + "topSales";
     //畅销商品详情
     public static final String O_REMBER_SELL_DETAIL_INFO = R_MAMBER_URL + "topSalesView";
+    //查看所有目录列表
+    public static final String O_REMBER_SELL_QUERY_INFO = R_ORDER_QUERY_URL + "list";
     //月损益表
     public static final String O_REMBER_MOTHS_INFO = R_MAMBER_URL + "topAccountMonths&sales=1";
     //月损益表详情
@@ -35,7 +40,7 @@ public class RMemberHttpAPI {
     //人员业绩
     public static final String O_POPLE_STAFF_INFO = R_MAMBER_URL + "topCzy";
     //人员业绩详情
-    public static final String O_POPLE_STAFF_DETAIL_INFO=R_MAMBER_URL+"topCzyView";
+    public static final String O_POPLE_STAFF_DETAIL_INFO = R_MAMBER_URL + "topCzyView";
 
 
 }

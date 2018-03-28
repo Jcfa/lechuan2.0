@@ -22,35 +22,48 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/orderinfo_main_bg"
-        android:gravity="center">
+        android:background="@drawable/orderinfo_main_bg">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="60dp"
             android:text="商品"
             android:textColor="@color/textBlack"
             android:textSize="14dp" />
 
-        <TextView
-            android:id="@+id/tv_order_sell_many"
+        <LinearLayout
+            android:id="@+id/ll_asc_des"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:text="销售最多"
-            android:textColor="@color/textBlack"
-            android:textSize="14dp" />
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="15dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/down_image"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/tv_order_sell_many"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/iv_asc_desc"
+                android:text="销售最多"
+                android:textColor="@color/btn_login_bg_preed"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/iv_asc_desc"
+                android:layout_width="12dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/down_sort"
+                android:visibility="visible" />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <View
@@ -73,6 +86,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     <TextView
         android:id="@+id/iv_default_null"
         android:layout_width="match_parent"

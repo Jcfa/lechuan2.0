@@ -78,12 +78,21 @@
         </FrameLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_title_layout"
+        android:layout_marginTop="10dp">
+        <include layout="@layout/layout_orderinfo_public" />
+    </LinearLayout>
+
 
     <RelativeLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@+id/ll_title_layout"
+        android:layout_below="@+id/ll_query"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
