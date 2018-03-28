@@ -3,6 +3,7 @@ package com.poso2o.lechuan.activity.realshop;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -67,5 +68,17 @@ public class ArtPreviewActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (art_preview_web != null){
+            art_preview_web.loadDataWithBaseURL(null,"","text/html","utf-8",null);
+            art_preview_web.clearHistory();
+            ((ViewGroup)art_preview_web.getParent()).removeView(art_preview_web);
+            art_preview_web.destroy();
+            art_preview_web = null;
+        }
+        super.onDestroy();
     }
 }

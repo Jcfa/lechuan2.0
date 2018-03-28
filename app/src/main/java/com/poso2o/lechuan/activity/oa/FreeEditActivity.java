@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -39,6 +40,7 @@ import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
 import com.poso2o.lechuan.util.RandomStringUtil;
+import com.poso2o.lechuan.util.ScreenUtil;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
@@ -154,24 +156,17 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
             }
         });
 
-        free_edit_view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        new ScreenUtil(this).observeInputlayout(free_edit_view, new ScreenUtil.OnInputActionListener() {
             @Override
-            public void onGlobalLayout() {
-                int heightDiff = free_edit_view.getRootView().getHeight() - free_edit_view.getHeight();
-                // 大于100像素，是打开的情况
-                if (heightDiff > 100) {
-                    // 如果已经打开软键盘，就不理会
-                    if (keyBoardShown) { return; }
-                    keyBoardShown = true;
+            public void onOpen() {
+                //键盘弹出
+                add_layout.setVisibility(View.VISIBLE);
+                free_edit_menu.setVisibility(View.GONE);
+            }
 
-                    add_layout.setVisibility(View.VISIBLE);
-                    free_edit_menu.setVisibility(View.GONE);
-                    return;
-                }
-
-                // 软键盘收起的情况
-                keyBoardShown = false;
-
+            @Override
+            public void onClose() {
+                //键盘收起
                 add_layout.setVisibility(View.GONE);
                 free_edit_menu.setVisibility(View.VISIBLE);
             }
@@ -250,6 +245,18 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (webview_edit != null){
+            webview_edit.loadDataWithBaseURL(null,"","text/html","utf-8",null);
+            webview_edit.clearHistory();
+            ((ViewGroup)webview_edit.getParent()).removeView(webview_edit);
+            webview_edit.destroy();
+            webview_edit = null;
+        }
+        super.onDestroy();
     }
 
     private void initWebView(){

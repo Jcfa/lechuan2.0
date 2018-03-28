@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/free_edit_view"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -119,6 +120,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#FEFEFE"
+        android:visibility="gone"
         android:paddingBottom="@dimen/spacing_small"
         android:paddingTop="@dimen/spacing_small">
 
@@ -205,8 +207,9 @@
             android:background="@drawable/selector_gray_radius5_bg"
             android:ems="5"
             android:gravity="center"
-            android:padding="8dp"
             android:text="加入稿件箱"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:textColor="@color/textGray"
             android:textSize="@dimen/z_text_small" />
 
@@ -223,7 +226,8 @@
             android:background="@drawable/selector_green_radius5_bg"
             android:ems="5"
             android:gravity="center"
-            android:padding="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="去发布"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/z_text_small" />

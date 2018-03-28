@@ -89,8 +89,8 @@ public class Article implements Serializable, Cloneable {
         return articles_id == article.articles_id;
     }
 
-    //添加的广告ID，本地临时字段，不提交服务器
+    //添加的广告ID，在添加草稿的时候才会一起提交到服务器
     public String ad_id = "";
-    //添加的广告名称，本地临时字段，不提交服务器
+    //添加的广告名称，在添加草稿的时候才会一起提交到服务器
     public String ad_name = "";
 }
