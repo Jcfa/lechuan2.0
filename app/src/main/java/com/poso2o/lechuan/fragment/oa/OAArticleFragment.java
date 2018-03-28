@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
+import com.poso2o.lechuan.activity.oa.ArticleInfoActivity;
 import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.base.BaseFragment;
 import com.poso2o.lechuan.bean.article.Article;
@@ -139,7 +140,7 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
                 if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
-                intent.setClass(getContext(),ArticleAdActivity.class);
+                intent.setClass(getContext(),ArticleInfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -151,7 +152,7 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
                 if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
-                intent.setClass(getContext(),ArticleAdActivity.class);
+                intent.setClass(getContext(),ArticleInfoActivity.class);
                 startActivity(intent);
             }
         });

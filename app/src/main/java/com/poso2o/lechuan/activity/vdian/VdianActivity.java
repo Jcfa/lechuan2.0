@@ -123,11 +123,11 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.vdian_add_goods:// 导入商品
-                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
-                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(activity);
-                    noAuthorDialog.show();
-                    return;
-                }
+//                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
+//                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(activity);
+//                    noAuthorDialog.show();
+//                    return;
+//                }
                 Intent intent = new Intent();
                 intent.setClass(activity, VdianImportGoodsActivity.class);
                 startActivityForResult(intent, REQUEST_IMPORT_CODE);

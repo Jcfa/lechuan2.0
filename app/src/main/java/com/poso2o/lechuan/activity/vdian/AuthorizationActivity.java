@@ -13,6 +13,7 @@ import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.tool.print.Print;
+import com.poso2o.lechuan.util.SettingSP;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 /**
@@ -84,11 +85,9 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_WEIXIN_BIND:// 微信绑定
-                    SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_AUTHORIZATION_OA, Constant.AUTHORIZATION_OA_TRUE);
-                    Print.println("AUTHORIZATION_OA_TRUE:" + Constant.AUTHORIZATION_OA_TRUE);
-                    Print.println("KEY_USER_AUTHORIZATION_OA:" + SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_AUTHORIZATION_OA));
+                    SettingSP.setAuthorizationState(Constant.AUTHORIZATION_OA_TRUE);
                     if (mModuleId == Constant.BOSS_MODULE_OA) {//返回公众号助手
-                        if (mServiceId == Constant.OA_SERVICE_ID) {//服务ID==5，高级版包括公众号助手服务
+                        if (SharedPreferencesUtils.getOACompetence() && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//有公众号助手服务权限&&未到期
                             startActivity(OAHelperActivity.class);
                         } else {//服务订购升级
                             Bundle bundle = new Bundle();
@@ -98,7 +97,7 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
                             startActivityForResult(ServiceOrderingActivity.class, bundle, REQUEST_SERVICE_PURCHASE);
                         }
                     } else if (mModuleId == Constant.BOSS_MODULE_WX) {//返回微店
-                        if (mServiceId > 0) {//已订购服务的授权成功直接进入微店
+                        if (mServiceId > 0 && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//已订购服务的授权成功直接进入微店&&未到期
                             startActivity(VdianActivity.class);
                         } else {//未订购的授权成功进入服务订购页
                             Bundle bundle = new Bundle();
@@ -111,7 +110,8 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
                     finish();
                     break;
                 case REQUEST_SERVICE_PURCHASE:// 服务订购
-
+                    setResult(RESULT_OK);
+                    finish();
                     break;
             }
         }

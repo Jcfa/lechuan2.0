@@ -57,6 +57,7 @@ public interface Constant {
     int BOSS_MODULE_WX = 1;//微店
     int BOSS_MODULE_OA = 2;//公众号助手
     int OA_SERVICE_ID = 5;//可以使用公众号助手的service_id
+    int OA_SERVICE_ID2 = 4;//可以使用公众号助手的service_id
 
     int AUTHORIZATION_OA_TRUE=1;//公众号已授权成功
     int AUTHORIZATION_OA_FALSE=0;//公众号未授权
@@ -82,5 +83,5 @@ public interface Constant {
      * 选择文章变更广播
      */
     String BROADCAST_SELECT_ARTICLE = "poso2o.lechuan.broadcast.article.select.article";
-    String LECHUAN_ROOT_DIR = "lechuan/qrcode";
+    String LECHUAN_ROOT_DIR = "/lechuan/qrcode";
 }

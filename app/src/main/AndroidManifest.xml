@@ -89,13 +89,13 @@
         <!--启动页-->
         <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
         <!--<activity-->
-            <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
-            <!--android:screenOrientation="portrait">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <!--android:name="com.poso2o.lechuan.activity.login.StartActivity"-->
+        <!--android:screenOrientation="portrait">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+        <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
         <!--</activity>-->
 
         <!--登录-->
@@ -579,6 +579,8 @@
         <activity
             android:name="com.poso2o.lechuan.activity.publish.ArticleDetailsActivity"
             android:screenOrientation="portrait" />
+        <!--新版文章详情页-->
+        <activity android:name=".activity.oa.ArticleInfoActivity"/>
 
         <!--选择商品-->
         <activity
@@ -769,7 +771,18 @@
         <activity android:name=".activity.official.ModelEditActivity" />
         <activity android:name=".activity.orderinfo.OrderEntityShopActivity" />
         <activity android:name=".activity.orderinfo.OrderInfoSellActivity" />
-        <activity android:name=".activity.orderinfo.OrderInfoMainActivity" />
+        <activity
+            android:name=".activity.orderinfo.OrderInfoMainActivity">
+            <intent-filter><action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="com.poso2o.lechuan"
+                    android:scheme="webshop" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.orderinfo.OrderInfoPaperActivity" />
         <activity android:name=".activity.orderinfo.OrderPoplstaffActivity" />
         <activity android:name=".activity.orderinfo.OrderInfoPrimecostActivity" />
@@ -777,11 +790,12 @@
         <!--微店开通公众号-->
         <activity
             android:name=".activity.vdian.EmpowermentActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleInstance" />
 
         <!--开通公众号-->
         <activity
             android:name=".activity.vdian.ApplyOAActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <!--开通状态-->
@@ -792,11 +806,13 @@
         <!--授权说明-->
         <activity
             android:name=".activity.vdian.AuthorizationActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <!--服务订购-->
         <activity
             android:name=".activity.vdian.ServiceOrderingActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <!--微店支付-->

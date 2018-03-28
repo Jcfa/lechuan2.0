@@ -118,8 +118,8 @@ public class WCAuthorityActivity extends BaseActivity {
         @JavascriptInterface
         public void showSource(String html) {
             if (html.contains("SUCCESS")) {
-                WCAuthorityActivity.this.setResult(RESULT_OK);
-                WCAuthorityActivity.this.finish();
+                setResult(RESULT_OK);
+                finish();
             }
         }
     }

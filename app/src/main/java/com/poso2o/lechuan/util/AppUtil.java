@@ -34,7 +34,7 @@ public class AppUtil {
      * @param activity
      * @param login    是否退出到登录页面
      */
-    public static void exitApp(BaseActivity activity, boolean login) {
+    public static void exitApp(Context activity, boolean login) {
         ActivityManager.getActivityManager().finishAll();
         if (login) {
             MiPushClient.unsetAlias(activity, SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID), null);
