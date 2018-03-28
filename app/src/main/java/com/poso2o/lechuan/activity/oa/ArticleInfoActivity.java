@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -238,6 +239,18 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        if (art_info_web != null){
+            art_info_web.loadDataWithBaseURL(null,"","text/html","uft-8",null);
+            art_info_web.clearHistory();
+            ((ViewGroup)art_info_web.getParent()).removeView(art_info_web);
+            art_info_web.destroy();
+            art_info_web = null;
+        }
+        super.onDestroy();
+    }
+
     //初始化文章详情
     private void initArtDetail() {
         WebSettings settings = art_info_web.getSettings();
@@ -255,6 +268,8 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         if (from_publish) add_publish.setText("保存");
         if (TextUtil.isNotEmpty(renewals_id)) add_renewals.setText("保存草稿");
         if (TextUtil.isNotEmpty(article.ad_name))ad_model_name.setText(article.ad_name);
+        select_id = article.ad_id;
+        select_name = article.ad_name;
         final String str = article.content;
         art_info_web.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -522,6 +537,8 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                     });
                 } else if (type == 1) {
                     article.content = html;
+                    article.ad_id = select_id;
+                    article.ad_name = select_name;
                     if (TextUtil.isEmpty(renewals_id)) {
                         addToRenewals();
                     } else {

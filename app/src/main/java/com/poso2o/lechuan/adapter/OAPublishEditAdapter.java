@@ -50,6 +50,14 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (showAddView(position)) {
             final ArticleAddHolder articleAddHolder = (ArticleAddHolder) holder;
+            articleAddHolder.publish_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (oaPublishListener != null) {
+                        oaPublishListener.onEdit();
+                    }
+                }
+            });
             articleAddHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -165,11 +173,13 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
     }
 
     class ArticleAddHolder extends RecyclerView.ViewHolder {
+        private ImageView publish_add;
         private TextView tvArticle;
         private TextView tvEdit;
 
         ArticleAddHolder(View itemView) {
             super(itemView);
+            publish_add = (ImageView) itemView.findViewById(R.id.publish_add);
             tvArticle = (TextView) itemView.findViewById(R.id.tv_article);
             tvEdit = (TextView) itemView.findViewById(R.id.tv_edit);
         }
