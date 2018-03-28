@@ -262,7 +262,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
                 imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
 
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//                swipeRefreshLayout.autoRefresh();
+                swipeRefreshLayout.autoRefresh();
             }
         });
         //输入搜索内

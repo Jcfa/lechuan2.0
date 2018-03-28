@@ -25,6 +25,19 @@ public class OrderInfoMemberAdapter extends RecyclerView.Adapter<OrderInfoMember
         notifyDataSetChanged();
     }
 
+    /**
+     * 搜索查询界面视图展示
+     */
+    public void updateMemberView(List<OrderInfoMemberBean.DataBean> dataBeen) {
+        this.list = dataBeen;
+        notifyDataSetChanged();
+    }
+
+    public void setData(List<OrderInfoMemberBean.DataBean> data) {
+        this.list = data;
+        notifyDataSetChanged();
+    }
+
     //点击事件
     public interface RecyclerViewOnItemClickListener {
 

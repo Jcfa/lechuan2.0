@@ -23,6 +23,18 @@ public class OrderInfoPaperAdapter extends RecyclerView.Adapter<OrderInfoPaperAd
     private List<OrderInfoPaperBean.DataBean> lists;
     private RecyclerViewOnItemClickListener onItemClickListener;
 
+    public void setData(List<OrderInfoPaperBean.DataBean> data) {
+        this.lists = data;
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 所有到内容后进行刷新视图
+     */
+    public void updateSearchListView(List<OrderInfoPaperBean.DataBean> searchlists) {
+        this.lists = searchlists;
+        notifyDataSetChanged();
+    }
 
     //点击事件
     public interface RecyclerViewOnItemClickListener {
