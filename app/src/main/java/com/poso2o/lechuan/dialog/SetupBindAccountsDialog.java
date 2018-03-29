@@ -107,7 +107,6 @@ public class SetupBindAccountsDialog extends BaseDialog {
             WaitDialog.dismissLoaddingDialog();
             if (msg.what == SaveImageThread.SUCCESSFULY) {
                 Toast.show(context, "保存二维码成功！");
-                dismiss();
                 callback.onResult();
             } else {
                 Toast.show(context, "保存二维码失败！");

@@ -410,7 +410,7 @@ public class WImportGoodsActivity extends BaseActivity implements EasyPermission
             }
         }
         showLoading("正在导入商品...");
-        WShopManager.getrShopManager().importGoods(this, goods, new IRequestCallBack() {
+        WShopManager.getrShopManager().importGoods(this, goods, false,new IRequestCallBack() {
             @Override
             public void onFailed(int tag, String msg) {
                 dismissLoading();

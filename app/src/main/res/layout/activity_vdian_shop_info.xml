@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_background"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:background="@color/common_background"
     android:orientation="vertical">
 
     <FrameLayout
@@ -13,7 +12,7 @@
         android:layout_height="@dimen/title_height"
         android:background="@drawable/shape_down_line">
 
-        <include layout="@layout/layout_base_title"/>
+        <include layout="@layout/layout_base_title" />
 
         <ImageView
             android:id="@+id/shop_info_save"
@@ -29,8 +28,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scrollbars="none"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +37,42 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/shop_info_oa"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_white"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv_oa_logo"
+                    android:layout_width="@dimen/height_little"
+                    android:layout_height="@dimen/height_little"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/tv_shop_info_oa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="left"
+                    android:text="公众号"
+                    android:textColor="@color/textBlack"
+                    android:textColorHint="#979797"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/right_arrow"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_shop_info_picture"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
@@ -46,11 +81,11 @@
 
                 <TextView
                     android:layout_width="0px"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
                     android:text="店招"
-                    android:textSize="14sp"
-                    android:paddingLeft="20dp"/>
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/shop_info_picture"
@@ -58,7 +93,7 @@
                     android:layout_height="40dp"
                     android:layout_marginRight="20dp"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/background_image"/>
+                    android:src="@mipmap/background_image" />
 
             </LinearLayout>
 
@@ -72,55 +107,55 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="店名"
-                    android:textSize="14sp"
+                    android:drawableLeft="@mipmap/icon_need_32"
                     android:paddingLeft="10dp"
-                    android:drawableLeft="@mipmap/icon_need_32"/>
+                    android:text="店名"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/shop_info_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/textBlack"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
-                    android:singleLine="true"
+                    android:background="@android:color/transparent"
                     android:ellipsize="end"
                     android:gravity="center_vertical|right"
                     android:maxLength="20"
                     android:selectAllOnFocus="true"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:color/transparent"
-                    android:textSize="14sp"/>
+                    android:singleLine="true"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="@android:color/white"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                    android:textSize="14sp"
-                    android:text="简介"/>
+                    android:layout_marginTop="10dp"
+                    android:text="简介"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/shop_info_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                    android:maxHeight="100dp"
-                    android:textSize="14sp"
-                    android:minLines="2"
-                    android:maxLines="3"
-                    android:maxLength="150"
+                    android:layout_marginTop="10dp"
                     android:background="@android:color/transparent"
-                    android:paddingRight="20dp"/>
+                    android:maxHeight="100dp"
+                    android:maxLength="150"
+                    android:maxLines="3"
+                    android:minLines="2"
+                    android:paddingRight="20dp"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -134,24 +169,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="联系人"
-                    android:textSize="14sp"
+                    android:drawableLeft="@mipmap/icon_need_32"
                     android:paddingLeft="10dp"
-                    android:drawableLeft="@mipmap/icon_need_32"/>
+                    android:text="联系人"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/shop_info_contacts"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
                     android:background="@android:color/transparent"
-                    android:singleLine="true"
                     android:ellipsize="end"
-                    android:maxLength="15"
                     android:gravity="center_vertical|right"
+                    android:maxLength="15"
                     android:selectAllOnFocus="true"
-                    android:layout_marginLeft="30dp"
-                    android:textSize="14sp"/>
+                    android:singleLine="true"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -165,26 +200,26 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="手机"
-                    android:textSize="14sp"
+                    android:drawableLeft="@mipmap/icon_need_32"
                     android:paddingLeft="10dp"
-                    android:drawableLeft="@mipmap/icon_need_32"/>
+                    android:text="手机"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/shop_info_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
                     android:background="@android:color/transparent"
-                    android:singleLine="true"
-                    android:textColor="@color/textBlack"
-                    android:inputType="phone"
                     android:ellipsize="end"
+                    android:gravity="center_vertical|right"
+                    android:inputType="phone"
                     android:maxLength="11"
                     android:selectAllOnFocus="true"
-                    android:gravity="center_vertical|right"
-                    android:textSize="14sp"/>
+                    android:singleLine="true"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -198,25 +233,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
                     android:text="电话"
-                    android:textSize="14sp"
-                    android:paddingLeft="20dp" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/shop_info_tel"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="phone"
-                    android:singleLine="true"
-                    android:textColor="@color/textBlack"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
                     android:background="@android:color/transparent"
                     android:ellipsize="end"
                     android:gravity="center_vertical|right"
+                    android:inputType="phone"
                     android:maxLength="15"
                     android:selectAllOnFocus="true"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="20dp"
-                    android:textSize="14sp"/>
+                    android:singleLine="true"
+                    android:textColor="@color/textBlack"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -224,67 +259,67 @@
                 android:id="@+id/shop_info_area_group"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selector_white"
                 android:layout_marginTop="1dp"
+                android:background="@drawable/selector_white"
                 android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
                     android:text="地区信息"
-                    android:textSize="14sp"
-                    android:paddingLeft="20dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/shop_info_area"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/textBlack"
-                    android:gravity="right"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
+                    android:gravity="right"
                     android:hint="省/市/区"
-                    android:textColorHint="#979797"/>
+                    android:textColor="@color/textBlack"
+                    android:textColorHint="#979797"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:scaleType="centerInside"
                     android:src="@mipmap/right_arrow"
-                    android:visibility="visible"
-                    android:scaleType="centerInside"/>
+                    android:visibility="visible" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@android:color/white"
                 android:layout_marginTop="1dp"
+                android:background="@android:color/white"
                 android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
                     android:text="详细信息"
-                    android:textSize="14sp"
-                    android:paddingLeft="20dp" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/shop_info_address"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="街道门牌信息"
-                    android:textColorHint="#979797"
-                    android:selectAllOnFocus="true"
-                    android:textSize="14sp"
-                    android:textColor="@color/textBlack"
-                    android:gravity="center_vertical|right"
-                    android:background="@android:color/transparent"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
-                    android:singleLine="true" />
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical|right"
+                    android:hint="街道门牌信息"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:textColor="@color/textBlack"
+                    android:textColorHint="#979797"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -292,57 +327,57 @@
                 android:id="@+id/shop_info_accounts_group"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selector_white"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/selector_white"
                 android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
                     android:text="收款帐号"
-                    android:textSize="14sp"
-                    android:paddingLeft="20dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/shop_info_accounts"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/textBlack"
-                    android:gravity="right"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:textColorHint="#979797"/>
+                    android:gravity="right"
+                    android:textColor="@color/textBlack"
+                    android:textColorHint="#979797"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:scaleType="centerInside"
                     android:src="@mipmap/right_arrow"
-                    android:visibility="visible"
-                    android:scaleType="centerInside"/>
+                    android:visibility="visible" />
 
             </LinearLayout>
-            
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="#fff"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:background="#fff">
 
                 <TextView
                     android:id="@+id/shop_info_taocan_tag"
                     style="@style/text_middle"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="14dp"
-                    android:text="套餐："/>
+                    android:text="套餐：" />
 
                 <TextView
                     android:id="@+id/shop_info_taocan"
                     style="@style/text_middle"
-                    android:layout_toRightOf="@+id/shop_info_taocan_tag"
                     android:layout_alignTop="@id/shop_info_taocan_tag"
-                    android:text="-"/>
+                    android:layout_toRightOf="@+id/shop_info_taocan_tag"
+                    android:text="-" />
 
                 <TextView
                     android:id="@+id/shop_info_expire_tag"
@@ -350,28 +385,28 @@
                     android:layout_below="@id/shop_info_taocan_tag"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="4dp"
-                    android:text="到期："/>
+                    android:text="到期：" />
 
                 <TextView
                     android:id="@+id/shop_info_expire"
                     style="@style/text_middle"
-                    android:textColor="@color/textOrange"
-                    android:layout_toRightOf="@+id/shop_info_expire_tag"
                     android:layout_alignTop="@id/shop_info_expire_tag"
-                    android:text="-"/>
+                    android:layout_toRightOf="@+id/shop_info_expire_tag"
+                    android:text="-"
+                    android:textColor="@color/textOrange" />
 
                 <TextView
                     android:id="@+id/shop_info_renew"
                     style="@style/text_middle"
                     android:layout_width="64dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
-                    android:gravity="center_horizontal"
                     android:background="@drawable/selector_orange_circular"
+                    android:gravity="center_horizontal"
                     android:padding="8dp"
-                    android:textColor="#fff"
-                    android:text="续费"/>
+                    android:text="续费"
+                    android:textColor="#fff" />
 
             </RelativeLayout>
 

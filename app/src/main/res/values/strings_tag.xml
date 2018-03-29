@@ -27,6 +27,7 @@
     <string name="barcode">条码</string>
     <string name="pack_up">收起</string>
     <string name="again_edit">重新编辑</string>
+    <string name="goods_offline">下架</string>
     <string name="print_barcode">打印条码</string>
     <string name="goods_info">商品信息</string>
     <string name="show_image">晒图</string>

@@ -19,8 +19,10 @@ public class WShopHttpAPI {
     //微店信息修改
     public static final String W_SHOP_EDIT_URL = "http://wechat.poso2o.com/ShopManage.htm?Act=save";
 
-    //微店导入商品
-    public static final String W_SHOP_IMPORT_GOODS = "http://wechat.poso2o.com/GoodsManage.htm?Act=batchOffLine";
+    //微店导入商品,上架
+    public static final String W_SHOP_IMPORT_GOODS_ONLINE = "http://wechat.poso2o.com/GoodsManage.htm?Act=batchOnLine";
+    //下架
+    public static final String W_SHOP_IMPORT_GOODS_OFFLINE = "http://wechat.poso2o.com/GoodsManage.htm?Act=batchOffLine";
 
     //微店公众号绑定信息(公众号助手使用)
     public static final String W_BINGING_STATE = "http://wechat.poso2o.com/AuthorizerTokenManage.htm?Act=getAuthorizerServiceInfo";

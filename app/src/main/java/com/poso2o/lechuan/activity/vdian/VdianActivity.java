@@ -104,10 +104,10 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
             public void input(String s, int start, int before, int count) {
                 if (TextUtils.isEmpty(s)) {
                     vdian_search_delete.setVisibility(GONE);
-                    vdianGoodsFragment.search(s);
                 } else {
                     vdian_search_delete.setVisibility(VISIBLE);
                 }
+                vdianGoodsFragment.search(s);
             }
         });
         vdian_search_delete.setOnClickListener(this);
@@ -193,7 +193,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_IMPORT_CODE:
-                    vdianGoodsFragment.loadGoodsData(FIRST);
+                    vdianGoodsFragment.loadGoodsList(FIRST);
                     break;
             }
         }

@@ -20,10 +20,11 @@
 
             <TextView
                 android:id="@+id/import_goods_list"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textSize="14sp"
+                android:ems="6"
                 android:textColor="@color/colorOrange"
                 android:background="@drawable/shape_oa_title_tag_select"
                 android:text="从商品库导入"/>
@@ -34,10 +35,11 @@
 
             <TextView
                 android:id="@+id/import_goods_upload"
-                android:layout_width="90dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textSize="14sp"
+                android:ems="6"
                 android:textColor="@color/textGray"
                 android:text="直接上传"/>
 

@@ -188,12 +188,12 @@ public class VdianPaymentActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            goBack();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == 1) {
+//            goBack();
+//        }
+//    }
 
     @Override
     public void onPushMessageEvent(InvitationBean event) {

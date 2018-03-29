@@ -14,6 +14,7 @@ import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.HttpAPI;
 import com.poso2o.lechuan.http.HttpListener;
 import com.poso2o.lechuan.http.IRequestCallBack;
+import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
 import com.yanzhenjie.nohttp.rest.Request;
@@ -22,7 +23,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
-import static com.poso2o.lechuan.manager.rshopmanager.ArticleDataManager.OA_SEND_ARTICLE_URL;
+import static com.poso2o.lechuan.http.HttpAPI.OA_GOODS_PIC_URL;
+import static com.poso2o.lechuan.http.HttpAPI.OA_SEND_ARTICLE_URL;
 
 /**
  * 文章管理
@@ -46,6 +48,8 @@ public class ArticleDataManager extends BaseManager {
     private final int TAG_COLLECT_ID = 122;
 
     private final int PUBLISH_ARTICLE_ID = 123;
+    //根据商品id获取商品推广图片
+    private static final int OA_GOODS_PIC_ID = 124;
 
     //已添加到发布列表的选文篇数
     private int art_num = 0;
@@ -83,6 +87,9 @@ public class ArticleDataManager extends BaseManager {
             request = getStringRequest(HttpAPI.ARTICLES_LIST_API);
             request.add("articles_type", articles_type);
         }
+        String type = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_OA_TYPES);
+        String labels = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_OA_LAYBELS);
+        Print.println("参数：" + type + " : " + labels);
         request.add("articles_types", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_OA_TYPES));
         request.add("articles_labels", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_OA_LAYBELS));
         request.add("keywords", keywords);
@@ -357,6 +364,30 @@ public class ArticleDataManager extends BaseManager {
             @Override
             public void onFailed(int what, String response) {
                 iRequestCallBack.onFailed(PUBLISH_ARTICLE_ID,response);
+            }
+        },true,true);
+    }
+
+    /**
+     * 获取商品的推广图
+     * @param baseActivity
+     * @param goods_id
+     * @param iRequestCallBack
+     */
+    public void getGoodsPic(BaseActivity baseActivity,String goods_id,final IRequestCallBack iRequestCallBack){
+        Request<String> request = getStringRequest(OA_GOODS_PIC_URL);
+        defaultParamNoShop(request);
+        request.add("goods_id",goods_id);
+
+        baseActivity.request(OA_GOODS_PIC_ID, request, new HttpListener<String>() {
+            @Override
+            public void onSucceed(int what, String response) {
+                iRequestCallBack.onResult(OA_GOODS_PIC_ID,response);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                iRequestCallBack.onFailed(OA_GOODS_PIC_ID,response);
             }
         },true,true);
     }

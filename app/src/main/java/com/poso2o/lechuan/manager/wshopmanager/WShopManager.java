@@ -44,9 +44,9 @@ public class WShopManager<T> extends BaseManager {
     //绑定微信支付详情
     public static final int W_BIND_PAY_ID = 0007;
 
-    public static WShopManager getrShopManager(){
-        if (wShopManager == null){
-            synchronized (WShopManager.class){
+    public static WShopManager getrShopManager() {
+        if (wShopManager == null) {
+            synchronized (WShopManager.class) {
                 if (wShopManager == null)
                     wShopManager = new WShopManager();
             }
@@ -56,10 +56,11 @@ public class WShopManager<T> extends BaseManager {
 
     /**
      * 微店详情
+     *
      * @param baseActivity
      * @param iRequestCallBack
      */
-    public void wShopInfo(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack){
+    public void wShopInfo(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
 
         final Request<String> request = getStringRequest(WShopHttpAPI.W_SHOP_INFO);
         defaultParam(request);
@@ -68,23 +69,24 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_SHOP_INFO_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                ShopData shopData = new Gson().fromJson(response,ShopData.class);
-                iRequestCallBack.onResult(W_SHOP_INFO_ID,shopData);
+                ShopData shopData = new Gson().fromJson(response, ShopData.class);
+                iRequestCallBack.onResult(W_SHOP_INFO_ID, shopData);
             }
 
             @Override
             public void onFailed(int what, String response) {
                 iRequestCallBack.onFailed(what, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
      * 获取乐传帐号详情
+     *
      * @param baseActivity
      * @param iRequestCallBack
      */
-    public void getlcAccountDetailInfo(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack){
+    public void getlcAccountDetailInfo(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
 
         final Request<String> request = getStringRequest(WShopHttpAPI.LC_ACCOUNT_DETAIL);
         defaultParam(request);
@@ -92,120 +94,128 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_SHOP_INFO_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                UserInfoBean userInfoBean = new Gson().fromJson(response,UserInfoBean.class);
+                UserInfoBean userInfoBean = new Gson().fromJson(response, UserInfoBean.class);
                 SharedPreferencesUtils.saveUserInfo(userInfoBean);
-                iRequestCallBack.onResult(W_SHOP_INFO_ID,userInfoBean);
+                iRequestCallBack.onResult(W_SHOP_INFO_ID, userInfoBean);
             }
 
             @Override
             public void onFailed(int what, String response) {
                 iRequestCallBack.onFailed(what, response);
             }
-        },true,true);
+        }, true, true);
     }
+
     /**
      * 微店头像上传
+     *
      * @param baseActivity
      * @param base64pic
      * @param iRequestCallBack
      */
-    public void updateWShopLogo(final BaseActivity baseActivity,final String base64pic, final IRequestCallBack iRequestCallBack){
+    public void updateWShopLogo(final BaseActivity baseActivity, final String base64pic, final IRequestCallBack iRequestCallBack) {
 
         Request request = getStringRequest(WShopHttpAPI.W_SHOP_UPDATE_LOGO + "&token=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN) + "&uid=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + "&key=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN) + "&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
-        request.add("base64pic",base64pic);
+        request.add("base64pic", base64pic);
 
         baseActivity.request(W_SHOP_LOGO_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                iRequestCallBack.onResult(W_SHOP_LOGO_ID,"Success");
+                ShopData shopData=new Gson().fromJson(response,ShopData.class);
+                iRequestCallBack.onResult(W_SHOP_LOGO_ID, shopData);
             }
 
             @Override
             public void onFailed(int what, String response) {
                 baseActivity.dismissLoading();
-                Toast.show(baseActivity,response);
+                Toast.show(baseActivity, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
      * 导入商品
+     *
      * @param baseActivity
      * @param goods_id
+     * @param offline          true下架，false上架
      * @param iRequestCallBack
      */
-    public void importGoods(final BaseActivity baseActivity,String goods_id,final IRequestCallBack iRequestCallBack){
+    public void importGoods(final BaseActivity baseActivity, String goods_id, boolean offline, final IRequestCallBack iRequestCallBack) {
 
-        final Request<String> request = getStringRequest(WShopHttpAPI.W_SHOP_IMPORT_GOODS);
+        final Request<String> request = getStringRequest(offline ? WShopHttpAPI.W_SHOP_IMPORT_GOODS_OFFLINE : WShopHttpAPI.W_SHOP_IMPORT_GOODS_ONLINE);
         defaultParam(request);
-        request.add("datas",goods_id);
+        request.add("datas", goods_id);
         Print.println("参数是：" + goods_id);
 
         baseActivity.request(W_SHOP_IMPORT_GOODS, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
                 Print.println("测试数据：" + response);
-                iRequestCallBack.onResult(W_SHOP_IMPORT_GOODS,response);
+                iRequestCallBack.onResult(W_SHOP_IMPORT_GOODS, response);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                iRequestCallBack.onFailed(W_SHOP_IMPORT_GOODS,response);
+                iRequestCallBack.onFailed(W_SHOP_IMPORT_GOODS, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
-     *  修改店铺信息
+     * 修改店铺信息
+     *
      * @param baseActivity
      * @param shopData
      * @param iRequestCallBack
      */
-    public void editWShop(final BaseActivity baseActivity,ShopData shopData,final IRequestCallBack iRequestCallBack){
+    public void editWShop(final BaseActivity baseActivity, ShopData shopData, final IRequestCallBack<ShopData> iRequestCallBack) {
 
         Request<String> request = getStringRequest(WShopHttpAPI.W_SHOP_EDIT_URL);
         defaultParam(request);
 
-        request.add("shop_opentime",shopData.shop_opentime);
-        request.add("shop_closetime",shopData.shop_closetime);
-        request.add("shop_name",shopData.shop_name);
-        request.add("shop_logo",shopData.shop_logo);
-        request.add("shop_introduction",shopData.shop_introduction);
-        request.add("shop_mobile",shopData.shop_mobile);
-        request.add("shop_tel",shopData.shop_tel);
-        request.add("shop_contacts",shopData.shop_contacts);
-        request.add("shop_real_name",shopData.shop_real_name);
-        request.add("province_id",shopData.province_id);
-        request.add("province_name",shopData.province_name);
-        request.add("city_id",shopData.city_id);
-        request.add("city_name",shopData.city_name);
-        request.add("area_id",shopData.area_id);
-        request.add("area_name",shopData.area_name);
-        request.add("address",shopData.address);
-        request.add("freight_num",shopData.freight_num);
-        request.add("freight",shopData.freight);
-        request.add("freight_addnum",shopData.freight_addnum);
-        request.add("freight_add",shopData.freight_add);
+        request.add("shop_opentime", shopData.shop_opentime);
+        request.add("shop_closetime", shopData.shop_closetime);
+        request.add("shop_name", shopData.shop_name);
+        request.add("shop_logo", shopData.shop_logo);
+        request.add("shop_introduction", shopData.shop_introduction);
+        request.add("shop_mobile", shopData.shop_mobile);
+        request.add("shop_tel", shopData.shop_tel);
+        request.add("shop_contacts", shopData.shop_contacts);
+        request.add("shop_real_name", shopData.shop_real_name);
+        request.add("province_id", shopData.province_id);
+        request.add("province_name", shopData.province_name);
+        request.add("city_id", shopData.city_id);
+        request.add("city_name", shopData.city_name);
+        request.add("area_id", shopData.area_id);
+        request.add("area_name", shopData.area_name);
+        request.add("address", shopData.address);
+        request.add("freight_num", shopData.freight_num);
+        request.add("freight", shopData.freight);
+        request.add("freight_addnum", shopData.freight_addnum);
+        request.add("freight_add", shopData.freight_add);
 
         baseActivity.request(W_SHOP_EDIT_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                iRequestCallBack.onResult(W_SHOP_EDIT_ID,response);
+                ShopData shopData1 = new Gson().fromJson(response, ShopData.class);
+                iRequestCallBack.onResult(W_SHOP_EDIT_ID, shopData1);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                iRequestCallBack.onFailed(W_SHOP_EDIT_ID,response);
+                iRequestCallBack.onFailed(W_SHOP_EDIT_ID, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
      * 公众号认证状态
+     *
      * @param baseActivity
      * @param iRequestCallBack
      */
-    public void authorizeState(BaseActivity baseActivity,final IRequestCallBack iRequestCallBack){
+    public void authorizeState(BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
 
         final Request<String> request = getStringRequest(WShopHttpAPI.W_BINGING_STATE);
         defaultParam(request);
@@ -213,51 +223,53 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_BINGING_STATE_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                BangDingData bangDingData = new Gson().fromJson(response,BangDingData.class);
-                iRequestCallBack.onResult(W_BINGING_STATE_ID,bangDingData);
+                BangDingData bangDingData = new Gson().fromJson(response, BangDingData.class);
+                iRequestCallBack.onResult(W_BINGING_STATE_ID, bangDingData);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                iRequestCallBack.onFailed(W_BINGING_STATE_ID,response);
+                iRequestCallBack.onFailed(W_BINGING_STATE_ID, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
      * 提交或修改绑定的微信appkey和商户号
+     *
      * @param baseActivity
      * @param appkey
      * @param mch_id
      * @param iRequestCallBack
      */
-    public void bindPay(BaseActivity baseActivity,String appkey,String mch_id,final IRequestCallBack iRequestCallBack){
+    public void bindPay(BaseActivity baseActivity, String appkey, String mch_id, final IRequestCallBack iRequestCallBack) {
 
         final Request<String> request = getStringRequest(WShopHttpAPI.W_COMMIT_BIND_PAY);
         defaultParamNoShop(request);
 
-        request.add("appkey",appkey);
-        request.add("mch_id",mch_id);
+        request.add("appkey", appkey);
+        request.add("mch_id", mch_id);
 
         baseActivity.request(W_COMMIT_BIND_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                iRequestCallBack.onResult(W_COMMIT_BIND_ID,response);
+                iRequestCallBack.onResult(W_COMMIT_BIND_ID, response);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                iRequestCallBack.onFailed(W_COMMIT_BIND_ID,response);
+                iRequestCallBack.onFailed(W_COMMIT_BIND_ID, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
      * 获取绑定微信支付详情
+     *
      * @param baseActivity
      * @param iRequestCallBack
      */
-    public void bindPayInfo(BaseActivity baseActivity,final IRequestCallBack iRequestCallBack){
+    public void bindPayInfo(BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
 
         final Request<String> request = getStringRequest(WShopHttpAPI.W_BIND_PAY_INFO);
         defaultParamNoShop(request);
@@ -265,15 +277,15 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_BIND_PAY_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                BindPayData bindPayData = new Gson().fromJson(response,BindPayData.class);
-                iRequestCallBack.onResult(W_BIND_PAY_ID,bindPayData);
+                BindPayData bindPayData = new Gson().fromJson(response, BindPayData.class);
+                iRequestCallBack.onResult(W_BIND_PAY_ID, bindPayData);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                iRequestCallBack.onFailed(W_BIND_PAY_ID,response);
+                iRequestCallBack.onFailed(W_BIND_PAY_ID, response);
             }
-        },true,true);
+        }, true, true);
     }
 
     /**
@@ -283,7 +295,7 @@ public class WShopManager<T> extends BaseManager {
      * @param iRequestCallBack
      */
     public void setBankAccount(BaseActivity baseActivity, String shop_bank_code, String shop_bank_name, String shop_bank_account_name,
-                               String shop_bank_account_no, final IRequestCallBack iRequestCallBack){
+                               String shop_bank_account_no, final IRequestCallBack iRequestCallBack) {
         final Request<String> request = getStringRequest(WShopHttpAPI.SET_BANK_ACCOUNT);
         defaultParam(request);
         request.add("shop_bank_code", shop_bank_code);
@@ -295,14 +307,14 @@ public class WShopManager<T> extends BaseManager {
 
             @Override
             public void onSucceed(int what, String response) {
-                BindPayData bindPayData = new Gson().fromJson(response,BindPayData.class);
-                iRequestCallBack.onResult(W_BIND_PAY_ID,bindPayData);
+                BindPayData bindPayData = new Gson().fromJson(response, BindPayData.class);
+                iRequestCallBack.onResult(W_BIND_PAY_ID, bindPayData);
             }
 
             @Override
             public void onFailed(int what, String response) {
-                iRequestCallBack.onFailed(W_BIND_PAY_ID,response);
+                iRequestCallBack.onFailed(W_BIND_PAY_ID, response);
             }
-        },true,true);
+        }, true, true);
     }
 }

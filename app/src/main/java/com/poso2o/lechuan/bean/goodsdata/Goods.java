@@ -45,6 +45,7 @@ public class Goods implements Serializable, Cloneable {
     public String modify_czy = "";// 修改员工
     public String modify_czy_name = "";// 修改员工名称
     public int has_online = 0;//是否微店商品，1=微店商品，0=实体店商品
+    public boolean checked = false;//是否选中
 
 
     public String share_url = "";
