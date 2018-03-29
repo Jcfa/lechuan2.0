@@ -121,7 +121,8 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_SHOP_LOGO_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                iRequestCallBack.onResult(W_SHOP_LOGO_ID, "Success");
+                ShopData shopData=new Gson().fromJson(response,ShopData.class);
+                iRequestCallBack.onResult(W_SHOP_LOGO_ID, shopData);
             }
 
             @Override
@@ -168,7 +169,7 @@ public class WShopManager<T> extends BaseManager {
      * @param shopData
      * @param iRequestCallBack
      */
-    public void editWShop(final BaseActivity baseActivity, ShopData shopData, final IRequestCallBack iRequestCallBack) {
+    public void editWShop(final BaseActivity baseActivity, ShopData shopData, final IRequestCallBack<ShopData> iRequestCallBack) {
 
         Request<String> request = getStringRequest(WShopHttpAPI.W_SHOP_EDIT_URL);
         defaultParam(request);
@@ -197,7 +198,8 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_SHOP_EDIT_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                iRequestCallBack.onResult(W_SHOP_EDIT_ID, response);
+                ShopData shopData1 = new Gson().fromJson(response, ShopData.class);
+                iRequestCallBack.onResult(W_SHOP_EDIT_ID, shopData1);
             }
 
             @Override

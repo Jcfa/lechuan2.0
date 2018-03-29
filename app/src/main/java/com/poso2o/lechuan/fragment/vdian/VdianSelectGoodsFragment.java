@@ -175,11 +175,11 @@ public class VdianSelectGoodsFragment extends BaseFragment {
                 }
                 if (result != null && result.list != null) {
                     goodsList.addAll(result.list);
-                    goodsTotal = result.total;
-                } else {
-                    Toast.show(context, "加载商品失败");
+                    if (currentPage == FIRST) {
+                        goodsTotal = result.total;
+                    }
                 }
-                vdianSelectGoodsAdapter.notifyDatas(result.list);
+                vdianSelectGoodsAdapter.notifyDatas(goodsList);
             }
 
             @Override

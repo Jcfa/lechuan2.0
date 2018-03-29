@@ -23,15 +23,14 @@ import static android.view.View.GONE;
  * Created by mr zhang on 2017/11/13.
  */
 public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoodsAdapter.GoodsViewHolder> {
-
     private Context context;
-    private ArrayList<Goods> selects;
+    //    private ArrayList<Goods> selects;
     private ArrayList<Goods> mDatas;
 
     public VdianSelectGoodsAdapter(Context context) {
         super();
         this.context = context;
-        selects = new ArrayList<>();
+//        selects = new ArrayList<>();
     }
 
     public void notifyDatas(ArrayList<Goods> goodses) {
@@ -65,7 +64,7 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
         vh.shop_goods_number.setText(item.goods_no);
 
         vh.shop_goods_sold_out_hint.setVisibility(GONE);//已下架
-        vh.shop_recycle_item_select.setSelected(findSelectData(item.guid) != null);//多选，是否选中
+        vh.shop_recycle_item_select.setSelected(item.checked);//多选，是否选中
 //        Glide.with(context).load(item.image222).into(vh.shop_recycle_item_iv);
         Glide.with(context).load(item.main_picture).into(vh.shop_recycle_item_iv);
         vh.shop_goods_money.setText(item.price);
@@ -75,8 +74,10 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
         vh.shop_goods_stock_tv.setText(item.goods_number + "");//库存
         if (item.has_online == 1) {//是否微店商品，1=微店，0=实体店
             vh.tv_vdian_goods.setVisibility(View.VISIBLE);
+            vh.shop_recycle_item_group.setEnabled(false);
         } else {
             vh.tv_vdian_goods.setVisibility(GONE);
+            vh.shop_recycle_item_group.setEnabled(true);
         }
         // 点击事件
 //        vh.shop_recycle_item_select.setOnClickListener(new View.OnClickListener() {
@@ -108,40 +109,51 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
     public void selectItem(GoodsViewHolder holder, Goods item) {
 //        Goods selectGoods = findSelectData(item.guid);
 //        if (selectGoods != null) {
-        if (holder.shop_recycle_item_select.isSelected()) {
+        if (item.checked) {
             holder.shop_recycle_item_select.setSelected(false);
 //            selects.remove(selectGoods);
-            selects.remove(item);
+            item.checked = false;
         } else {
             holder.shop_recycle_item_select.setSelected(true);
-            selects.add(item);
+            item.checked = true;
         }
 
         if (onItemSelectListener != null) {
-            if (selects.size() == getItemCount()) {
+            if (isAllSelected()) {
                 onItemSelectListener.onItemSelect(true);
-            } else if (selects.size() == getItemCount() - 1) {
+            } else if (!isAllSelected()) {
                 onItemSelectListener.onItemSelect(false);
             }
         }
     }
 
-    private Goods findSelectData(String goods_id) {
-        if (!TextUtils.isEmpty(goods_id) || selects != null) {
-            for (Goods goods : selects) {
-                if (TextUtils.equals(goods.guid, goods_id)) {
-                    return goods;
-                }
+    /**
+     * 是否全部选中
+     *
+     * @return
+     */
+    private boolean isAllSelected() {
+        if (mDatas == null || mDatas.size() == 0) return false;
+        boolean allSelected = true;
+        for (Goods goods : mDatas) {
+            if (!goods.checked) {
+                return false;
             }
         }
-        return null;
+        return allSelected;
     }
 
+    /**
+     * 全选，只能选中非微店商品，has_online=1表示微店商品
+     *
+     * @param selected
+     */
     public void allSelect(boolean selected) {
         if (mDatas == null || mDatas.size() == 0) return;
-        selects.clear();
-        if (selected) {
-            selects.addAll(mDatas);
+        for (Goods goods : mDatas) {
+            if (goods.has_online != 1) {
+                goods.checked = selected;
+            }
         }
         notifyDataSetChanged();
     }
@@ -150,8 +162,19 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
         return mDatas;
     }
 
+    /**
+     * 获取选中的商品
+     *
+     * @return
+     */
     public ArrayList<Goods> getSelects() {
-        return selects;
+        ArrayList<Goods> goodses = new ArrayList<>();
+        for (Goods goods : goodses) {
+            if (goods.checked) {
+                goodses.add(goods);
+            }
+        }
+        return goodses;
     }
 
     public class GoodsViewHolder extends RecyclerView.ViewHolder {
