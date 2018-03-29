@@ -3,6 +3,7 @@
     android:id="@+id/shop_recycle_item_group"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/color_enable_white_black"
     android:orientation="vertical">
 
     <View

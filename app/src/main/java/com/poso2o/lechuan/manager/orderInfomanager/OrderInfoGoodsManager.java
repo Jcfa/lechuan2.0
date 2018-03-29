@@ -129,8 +129,9 @@ public class OrderInfoGoodsManager extends BaseManager {
         }, true, true);
 
     }
-
-    //查看所有目录
+//http://wechat.poso2o.com/GoodsManage.htm?Act=goodsAndCatalog&shop_id=13423678930&uid=13423678930&token
+// =e41a8183db9a8b3b650a11846e7b5fc6&online=1
+    //查看所有库存目录
     public void orderInfoQueryDirApi(BaseActivity activity, final IRequestCallBack callBack) {
         Request<String> request = getStringRequest(RMemberHttpAPI.O_REMBER_SELL_QUERY_INFO);
         request.add("sessionUid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
@@ -155,6 +156,9 @@ public class OrderInfoGoodsManager extends BaseManager {
         }, true, true);
 
     }
+    //查看所有畅销目录
+    public void orderInfoQuerySellDirApi(){
 
+    }
 
 }

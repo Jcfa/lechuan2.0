@@ -262,7 +262,7 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
     /**
      * 加载商品目录
      */
-    private void loadCatalogList() {
+    public void loadCatalogList() {
         VdianGoodsManager2.getInstance().loadCatalogList((BaseActivity) context, "1", new IRequestCallBack<CatalogBean>() {
             @Override
             public void onResult(int tag, CatalogBean result) {
@@ -367,54 +367,17 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
 
     /**
      * 全部目录总商品数
+     *
      * @param catalogs
      * @return
      */
-    private int getGoodsCount(ArrayList<Catalog> catalogs){
-        int count=0;
-        for(Catalog catalog:catalogs){
-            count+=catalog.catalog_goods_number;
+    private int getGoodsCount(ArrayList<Catalog> catalogs) {
+        int count = 0;
+        for (Catalog catalog : catalogs) {
+            count += catalog.catalog_goods_number;
         }
         return count;
     }
-
-//    /**
-//     * 加载商品数据
-//     */
-//    public void loadGoodsData(final int pageType) {
-//        vdian_swipe.setRefreshing(true);
-//        vdian_goods_hint.setVisibility(GONE);
-//        vdian_goods_add.setVisibility(GONE);
-//        VdianGoodsManager.getInstance().query((BaseActivity) context, shop_id, catalog_id, orderByName, sort, keywords, pageType, new IRequestCallBack<ArrayList<Goods>>() {
-//
-//            @Override
-//            public void onResult(int tag, ArrayList<Goods> goodsDatas) {
-//                if (pageType == FIRST) {
-//                    if (ListUtils.isEmpty(goodsDatas)) {
-//                        vdian_goods_hint.setVisibility(VISIBLE);
-//                        vdian_goods_add.setVisibility(VISIBLE);
-//                        vdian_goods_hint.setText("请点击下方或右上角的按钮，添加商品至微店.");
-//                    } else {
-//                        vdian_goods_hint.setVisibility(GONE);
-//                    }
-//                    goodsListAdapter.notifyDataSetChanged(goodsDatas);
-//                } else {
-//                    goodsListAdapter.addItems(goodsDatas);
-//                }
-//                vdian_swipe.setRefreshing(false);
-//            }
-//
-//            @Override
-//            public void onFailed(int tag, String msg) {
-//                if (pageType == FIRST) {
-//                    vdian_goods_hint.setVisibility(VISIBLE);
-//                    vdian_goods_hint.setText(R.string.hint_load_goods_fail);
-//                }
-//                Toast.show(context, msg);
-//                vdian_swipe.setRefreshing(false);
-//            }
-//        });
-//    }
 
     /**
      * 加载商品列表
@@ -422,7 +385,7 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
     public void loadGoodsList(int page) {
         currentPage = page;
         vdian_swipe.setRefreshing(true);
-        VdianGoodsManager2.getInstance().loadGoodsList((BaseActivity) context, orderByName,sort,selectCatalog.catalog_id, keywords, currentPage + "", "1", new IRequestCallBack<GoodsBean>() {
+        VdianGoodsManager2.getInstance().loadGoodsList((BaseActivity) context, orderByName, sort, selectCatalog.catalog_id, keywords, currentPage + "", "1", new IRequestCallBack<GoodsBean>() {
             @Override
             public void onResult(int tag, GoodsBean result) {
                 vdian_swipe.setRefreshing(false);
@@ -430,6 +393,9 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                     goodsList.clear();
                 }
                 if (result != null && result.list != null) {
+                    if (currentPage == FIRST) {
+                        goodsTotal = result.total;
+                    }
                     goodsList.addAll(result.list);
                 }
                 goodsListAdapter.notifyDataSetChanged(goodsList);
@@ -456,15 +422,8 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                     shopData = result;
                     shop_id = NumberUtils.toLong(shopData.shop_id);
                     refreshShopData();
-//                    if (shopData.has_bank_binding == 1) {
-                    // 加载目录和商品数据
-//                    loadCatalogData();
                     loadCatalogList();
                     vdian_swipe.setRefreshing(true);
-//                    loadGoodsData(FIRST);
-//                    } else {
-//                        showSetupBindAccountsDialog();
-//                    }
                 }
                 dismissLoading();
             }
@@ -533,11 +492,6 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                 break;
 
             case R.id.vdian_goods_add:// 导入商品
-//                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
-//                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(context);
-//                    noAuthorDialog.show();
-//                    return;
-//                }
                 Intent intent = new Intent();
                 intent.setClass(context, VdianImportGoodsActivity.class);
                 ((BaseActivity) context).startActivityForResult(intent, VdianActivity.REQUEST_IMPORT_CODE);

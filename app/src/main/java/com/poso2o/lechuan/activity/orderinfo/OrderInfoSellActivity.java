@@ -271,7 +271,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     private void queryDir() {
         tvQuery.setText("全(" + 10 + ")部");
         dir = new DialogQuerySellDir(activity);
-        dir.setData();
+//        dir.setData(data.size());
         dir.show();
     }
 

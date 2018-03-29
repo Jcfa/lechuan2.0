@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,7 +21,9 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.image.SelectImagesActivity;
 import com.poso2o.lechuan.activity.order.AddressSelectActivity;
 import com.poso2o.lechuan.activity.realshop.CropActivity;
+import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.shopdata.BangDingData;
 import com.poso2o.lechuan.bean.shopdata.ShopData;
 import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.dialog.SetupBindAccountsDialog;
@@ -38,6 +41,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import lecho.lib.hellocharts.model.Line;
+
 /**
  * Created by Jaydon on 2018/3/14.
  */
@@ -48,6 +53,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     private static final int CODE_SELECT_ADDRESS = 10087;
     private static final int SERVICE_RENEW = 10088;//服务续费
     private static final int WEIXIN_SCANNING_CODE = 10090;//调用微信扫码
+    public static final int CODE_TO_V_AUTHORITY = 1001;
 
     /**
      * 保存
@@ -57,7 +63,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     /**
      * 店招
      */
-    private ImageView shop_info_picture;
+    private ImageView shop_info_picture, iv_oa_logo;
 
     /**
      * 店名
@@ -68,7 +74,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
      * 简介
      */
     private EditText shop_info_description;
-
+    private LinearLayout shop_info_oa;//公众号绑定
     /**
      * 联系人
      */
@@ -88,7 +94,8 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
      * 省市区
      */
     private TextView shop_info_area;
-
+    //公众号名称
+    private TextView tv_shop_info_oa;
     /**
      * 定位
      */
@@ -145,6 +152,9 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         shop_info_accounts = findView(R.id.shop_info_accounts);
         shop_info_taocan = findView(R.id.shop_info_taocan);
         shop_info_expire = findView(R.id.shop_info_expire);
+        iv_oa_logo = findView(R.id.iv_oa_logo);
+        tv_shop_info_oa = findView(R.id.tv_shop_info_oa);
+        shop_info_oa = findView(R.id.shop_info_oa);
     }
 
     @Override
@@ -157,6 +167,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         } else {
             refreshView();
         }
+        authorizeState();
     }
 
     private void refreshView() {
@@ -228,9 +239,10 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     protected void initListener() {
         shop_info_save.setOnClickListener(this);
 
-        shop_info_picture.setOnClickListener(this);
+        findView(R.id.ll_shop_info_picture).setOnClickListener(this);
 //        shop_info_area.setOnClickListener(this);
         shop_info_location.setOnClickListener(this);
+        shop_info_oa.setOnClickListener(this);
         findView(R.id.shop_info_accounts_group).setOnClickListener(this);
         findView(R.id.shop_info_renew).setOnClickListener(this);
     }
@@ -241,24 +253,15 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
             case R.id.shop_info_save:// 保存
                 saveShop();
                 break;
-
-            case R.id.shop_info_picture:
+            case R.id.ll_shop_info_picture:
                 selectPicture();
                 break;
-
-//            case R.id.shop_info_area:
-//                Intent intent = new Intent();
-//                intent.setClass(activity, AddressSelectActivity.class);
-//                startActivityForResult(intent, CODE_SELECT_ADDRESS);
-//                break;
-
             case R.id.shop_info_area_group:
                 Intent selectArea = new Intent();
                 selectArea.setClass(activity, AddressSelectActivity.class);
                 startActivityForResult(selectArea, CODE_SELECT_ADDRESS);
                 break;
-
-            case R.id.shop_info_accounts_group:
+            case R.id.shop_info_accounts_group://收款帐号
                 applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
                     @Override
                     public void onPermissionResult(boolean b) {
@@ -269,6 +272,12 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                         }
                     }
                 });
+                break;
+            case R.id.shop_info_oa://公众号
+                Intent intent = new Intent();
+                intent.setClass(activity, WCAuthorityActivity.class);
+                intent.putExtra(WCAuthorityActivity.BIND_TYPE, 0);
+                startActivityForResult(intent, CODE_TO_V_AUTHORITY);
                 break;
             case R.id.shop_info_renew://续费
                 startActivityForResult(new Intent(activity, ServiceOrderingActivity.class), SERVICE_RENEW);
@@ -337,13 +346,13 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         shopData.shop_tel = shop_info_tel.getText().toString();
         shopData.address = shop_info_address.getText().toString();
 
-        WShopManager.getrShopManager().editWShop(this, shopData, new IRequestCallBack() {
+        WShopManager.getrShopManager().editWShop(this, shopData, new IRequestCallBack<ShopData>() {
 
             @Override
-            public void onResult(int tag, Object object) {
+            public void onResult(int tag, ShopData object) {
                 dismissLoading();
                 Intent intent = new Intent();
-                intent.putExtra(Constant.SHOP, shopData);
+                intent.putExtra(Constant.SHOP, object);
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -401,6 +410,9 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                     break;
                 case SERVICE_RENEW://续费页返回刷新
                     loadShopData();
+                    break;
+                case CODE_TO_V_AUTHORITY://公众号授权绑定返回
+                    authorizeState();
                     break;
             }
         }
@@ -484,11 +496,12 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     private void editShopLogo(final String path) {
         showLoading("正在上传头像...");
         final Bitmap bitmap = ImageUtils.getBitmapFromFile(path);
-        WShopManager.getrShopManager().updateWShopLogo(this, ImageManage.bitmapToBase64(bitmap), new IRequestCallBack() {
+        WShopManager.getrShopManager().updateWShopLogo(this, ImageManage.bitmapToBase64(bitmap), new IRequestCallBack<ShopData>() {
 
             @Override
-            public void onResult(int tag, Object result) {
+            public void onResult(int tag, ShopData result) {
                 dismissLoading();
+                shopData = result;
                 Toast.show(activity, "头像上传成功");
                 shop_info_picture.setImageBitmap(bitmap);
                 setResult(RESULT_OK);
@@ -514,5 +527,28 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         } else {
             Toast.show(activity, "无法剪切选择图片");
         }
+    }
+
+    //获取绑定公众号的状态
+    public void authorizeState() {
+        WShopManager.getrShopManager().authorizeState(activity, new IRequestCallBack<BangDingData>() {
+            @Override
+            public void onResult(int tag, BangDingData result) {
+                if (result != null && result.authorized.equals("1")) {
+                    Glide.with(activity).load(result.head_img).placeholder(R.mipmap.background_image).into(iv_oa_logo);
+                    tv_shop_info_oa.setText(result.nick_name);
+//                    shop_info_oa.setEnabled(false);
+                } else {
+                    iv_oa_logo.setImageResource(R.mipmap.background_image);
+                    tv_shop_info_oa.setText("请绑定公众号");
+//                    shop_info_oa.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                Toast.show(activity, msg);
+            }
+        });
     }
 }
