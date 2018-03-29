@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.wshop;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.poso2o.lechuan.bean.printer.GoodsDetailsNumsData;
 import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
+import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.tool.listener.NoDoubleClickListener;
 import com.poso2o.lechuan.util.NumberFormatUtils;
 import com.poso2o.lechuan.util.Toast;
@@ -37,6 +39,10 @@ import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -100,7 +106,8 @@ public class WGoodsDetailActivity extends BaseActivity {
     private LinearLayout goods_details_spec_list;
 
     // 重新编辑
-    private TextView goods_details_edit;
+//    private TextView goods_details_edit;
+    private TextView goods_details_offline;
 
     // 上下架
     private TextView goods_details_sale_type;
@@ -162,7 +169,7 @@ public class WGoodsDetailActivity extends BaseActivity {
         goods_details_spec_list = findView(R.id.goods_details_spec_list);
 
         // 编辑商品
-        goods_details_edit = findView(R.id.goods_details_edit);
+        goods_details_offline = findView(R.id.goods_details_offline);
 
         // 打印
         goods_details_print = findView(R.id.goods_details_print);
@@ -239,7 +246,8 @@ public class WGoodsDetailActivity extends BaseActivity {
 
         goods_details_name.setText(goods.goods_name);
         goods_details_nums.setText(goods.goods_spec.size() + "款可选");
-        goods_details_price.setText("￥" + goods.goods_price_section);
+//        goods_details_price.setText("￥" + goods.goods_price_section);
+        goods_details_price.setText("￥" + goods.price);
         goods_details_bh.setText(goods.goods_no);
         goods_details_rename.setText(goods.goods_name);
         goods_details_unit.setText(goods.goods_unit);
@@ -387,14 +395,15 @@ public class WGoodsDetailActivity extends BaseActivity {
         });
 
         // 编辑商品
-        goods_details_edit.setOnClickListener(new NoDoubleClickListener() {
+        goods_details_offline.setOnClickListener(new NoDoubleClickListener() {
 
             @Override
             public void onNoDoubleClick(View v) {
-                Bundle data = new Bundle();
-                data.putSerializable(Constant.GOODS, goods);
-                data.putInt(Constant.TYPE, Constant.UPDATE);
-                startActivityForResult(WEditGoodsActivity.class, data, REQUEST_EDIT_GOODS);
+//                Bundle data = new Bundle();
+//                data.putSerializable(Constant.GOODS, goods);
+//                data.putInt(Constant.TYPE, Constant.UPDATE);
+//                startActivityForResult(WEditGoodsActivity.class, data, REQUEST_EDIT_GOODS);
+                importGoods();
             }
         });
 
@@ -569,5 +578,36 @@ public class WGoodsDetailActivity extends BaseActivity {
             public void onCancel(SHARE_MEDIA share_media) {
             }
         }).share();
+    }
+
+    /**
+     * 设置商品下架，去掉微信商品标识
+     */
+    private void importGoods() {
+        JSONArray array = new JSONArray();
+        JSONObject object = new JSONObject();
+        try {
+            object.put("goods_id", goods.goods_id);
+            array.put(object);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        showLoading("正在下架商品...");
+        WShopManager.getrShopManager().importGoods((BaseActivity) context, array.toString(), true, new IRequestCallBack() {
+
+            @Override
+            public void onResult(int tag, Object object) {
+                ((BaseActivity) context).setResult(Activity.RESULT_OK);
+                ((BaseActivity) context).finish();
+                Toast.show(context, "下架成功！");
+                dismissLoading();
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                Toast.show(context, msg);
+                dismissLoading();
+            }
+        });
     }
 }

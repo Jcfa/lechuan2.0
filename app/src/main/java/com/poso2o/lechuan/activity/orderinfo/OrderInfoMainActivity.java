@@ -2,6 +2,7 @@ package com.poso2o.lechuan.activity.orderinfo;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -24,6 +25,7 @@ import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoSellManager;
 import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.tool.print.Print;
+import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.CalendarUtil;
 import com.poso2o.lechuan.util.SettingSP;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
@@ -369,5 +371,14 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         if (action.equals("网络已连接")) {
             initNetRequest(beginTime, endTime);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AppUtil.exitApp(activity, false);
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

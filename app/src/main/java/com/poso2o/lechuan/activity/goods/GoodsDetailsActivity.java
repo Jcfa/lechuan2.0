@@ -164,7 +164,7 @@ public class GoodsDetailsActivity extends BaseActivity {
         goods_details_spec_list = findView(R.id.goods_details_spec_list);
 
         // 编辑商品
-        goods_details_edit = findView(R.id.goods_details_edit);
+        goods_details_edit = findView(R.id.goods_details_offline);
 
         // 打印
         goods_details_print = findView(R.id.goods_details_print);
