@@ -73,7 +73,7 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
             case R.id.authorization_to_empower:// 进入授权页面
                 Intent intent = new Intent();
                 intent.setClass(AuthorizationActivity.this, WCAuthorityActivity.class);
-                intent.putExtra(WCAuthorityActivity.BIND_TYPE, 0);
+                intent.putExtra(WCAuthorityActivity.BIND_TYPE, mModuleId == Constant.BOSS_MODULE_OA ? 1 : 0);
                 startActivityForResult(intent, REQUEST_WEIXIN_BIND);
                 break;
         }
@@ -85,9 +85,8 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_WEIXIN_BIND:// 微信绑定
-                    SettingSP.setAuthorizationState(Constant.AUTHORIZATION_OA_TRUE);
                     if (mModuleId == Constant.BOSS_MODULE_OA) {//返回公众号助手
-                        if (SharedPreferencesUtils.getOACompetence() && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//有公众号助手服务权限&&未到期
+                        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0 && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//有公众号助手服务权限&&未到期
                             startActivity(OAHelperActivity.class);
                         } else {//服务订购升级
                             Bundle bundle = new Bundle();
@@ -97,7 +96,7 @@ public class AuthorizationActivity extends BaseActivity implements View.OnClickL
                             startActivityForResult(ServiceOrderingActivity.class, bundle, REQUEST_SERVICE_PURCHASE);
                         }
                     } else if (mModuleId == Constant.BOSS_MODULE_WX) {//返回微店
-                        if (mServiceId > 0 && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//已订购服务的授权成功直接进入微店&&未到期
+                        if (mServiceId > 0 && SharedPreferencesUtils.getOACompetence()) {//已订购服务的授权成功直接进入微店&&未到期
                             startActivity(VdianActivity.class);
                         } else {//未订购的授权成功进入服务订购页
                             Bundle bundle = new Bundle();

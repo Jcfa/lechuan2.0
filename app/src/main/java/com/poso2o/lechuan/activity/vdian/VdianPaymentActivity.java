@@ -2,6 +2,7 @@ package com.poso2o.lechuan.activity.vdian;
 
 import android.Manifest;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class VdianPaymentActivity extends BaseActivity {
 //    private WeiXinFuWuReceived fuWuReceived;
 //    private int service_type;
     private int mModuleId;//微店或公众号助手
+    private boolean mPaymentSuccess = false;//是否支付成功
 
     @Override
     protected int getLayoutResId() {
@@ -91,6 +93,7 @@ public class VdianPaymentActivity extends BaseActivity {
     @Override
     public void onPayResult(PayEvent event) {
         if (event.code == PayEvent.SUCCESS) {
+            mPaymentSuccess = true;
             //支付成功，是否绑定过收款帐号，未绑定提示绑定
             if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT) != 1) {
                 applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
@@ -100,16 +103,12 @@ public class VdianPaymentActivity extends BaseActivity {
                             showSetupAccountDialog();
                         } else {
                             Toast.show(activity, "获取不到相关权限，无法进行操作");
+                            goBack();
                         }
                     }
                 });
             } else {
-                if (mModuleId == Constant.BOSS_MODULE_WX) {
-                    startActivity(VdianActivity.class);
-                } else if (mModuleId == Constant.BOSS_MODULE_OA) {
-                    startActivity(OAHelperActivity.class);
-                }
-                finish();
+                goBack();
             }
 //            if (service_type == 4) {
 //                Intent i = new Intent();
@@ -121,6 +120,8 @@ public class VdianPaymentActivity extends BaseActivity {
 //                intent.setClass(activity, WShopActivity.class);
 //                startActivity(intent);
 //            }
+        } else {
+            mPaymentSuccess = false;
         }
     }
 
@@ -169,7 +170,7 @@ public class VdianPaymentActivity extends BaseActivity {
 
             @Override
             public void onCancel() {
-
+                goBack();
             }
         });
     }
@@ -188,14 +189,34 @@ public class VdianPaymentActivity extends BaseActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            goBack();
+        }
+    }
+
+    @Override
     public void onPushMessageEvent(InvitationBean event) {
         if (event.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {//绑定成功
-            if (mModuleId == Constant.BOSS_MODULE_WX) {
-                startActivity(VdianActivity.class);
-            } else if (mModuleId == Constant.BOSS_MODULE_OA) {
-                startActivity(OAHelperActivity.class);
-            }
-            finish();
+            goBack();
         }
+    }
+
+    private void goBack() {
+        if (mModuleId == Constant.BOSS_MODULE_WX) {
+            startActivity(VdianActivity.class);
+        } else if (mModuleId == Constant.BOSS_MODULE_OA) {
+            startActivity(OAHelperActivity.class);
+        }
+        finish();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && mPaymentSuccess) {
+            goBack();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -45,8 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_gray_frame_cancel"
-            android:text="跳过，去试用(7天)"
+            android:visibility="gone"
+            android:background="@drawable/selector_gray_radius5_bg"
+            android:text="跳过,去试用(7天)"
             android:textColor="@color/textGray" />
 
         <Button

@@ -32,10 +32,13 @@ public class UserInfoBean {
     public float red_envelopes_amount = 0;
     public int has_shop = 0;
     public int has_commission = -1;//是否设置了佣金，0未设，1已设
+    public int has_webshop_try = 0;//微店是否已试用过
     public int buy_service_id = 0;//购买的公众号服务ID
     public int buy_service_days = 0;//剩余服务天数
-    public int has_bank_binding=0;//是否绑定收款帐号
-    public String shop_bank_binding_url="";//绑定微信收款帐号二维码链接
+    public int has_bank_binding = 0;//是否绑定收款帐号
+    public String shop_bank_binding_url = "";//绑定微信收款帐号二维码链接
+    public int has_webshop_authorizer_appid =0;//微店是否公众号授权
+    public int has_news_authorizer_appid = 0;//公众号助手是否公众号授权
 
 
     public String getHas_webshop() {

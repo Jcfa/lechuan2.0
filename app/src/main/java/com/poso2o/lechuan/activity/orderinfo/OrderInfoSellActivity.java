@@ -4,18 +4,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.orderInfo.DataBean;
+import com.poso2o.lechuan.bean.orderInfo.FidEventBus;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoSellBean;
 import com.poso2o.lechuan.dialog.CalendarDialog;
+import com.poso2o.lechuan.dialog.DialogQuerySellDir;
 import com.poso2o.lechuan.dialog.OrderInfoSellDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.orderInfomanager.OrderInfoGoodsManager;
 import com.poso2o.lechuan.orderInfoAdapter.OrderInfoPaperAdapter;
 import com.poso2o.lechuan.orderInfoAdapter.OrderInfoSellAdapter;
+import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.util.CalendarUtil;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
@@ -24,6 +30,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +50,30 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
     private RecyclerView rlvSellList;
     private boolean isBeginTime;
     private String beginTime, endTime;
-    private List<OrderInfoSellBean.DataBean> list = new ArrayList<>();
     private OrderInfoSellAdapter adapter;
     private boolean isClick = false;
     private SmartRefreshLayout refreshLayout;
     private int cuurapge = 1;
     private int apg;
     private TextView tvTitle;
-    private List<OrderInfoSellBean.DataBean> data = new ArrayList<>();
+    private List<OrderInfoSellBean.DataBean> data;
     private TextView iv_default_null;
     private OrderInfoSellBean sellBean;
+    private ImageView ivAscDesc;
+    /**
+     * 点击时标记录图片
+     */
+    private boolean OPENDOOR = false;
+    private LinearLayout ll_asc_des;
+    /**
+     * 根据点击的状态来进行赋值 默认是降序
+     */
+    public String ASC_DES = "DESC";
+    /**
+     * 查询所有的目录列表以及列表数据
+     */
+    private TextView tvQuery;
+    private DialogQuerySellDir dir;
 
     @Override
     protected int getLayoutResId() {
@@ -68,7 +91,9 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         refreshLayout = (SmartRefreshLayout) findViewById(R.id.swip_refreshlayout);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         iv_default_null = (TextView) findViewById(R.id.iv_default_null);
-
+        ivAscDesc = (ImageView) findViewById(R.id.iv_asc_desc);
+        ll_asc_des = (LinearLayout) findViewById(R.id.ll_asc_des);
+        tvQuery = (TextView) findViewById(R.id.tv_query);
 
     }
 
@@ -88,6 +113,35 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         rlvSellList.setLayoutManager(new LinearLayoutManager(this));
         adapter = new OrderInfoSellAdapter(activity, beginTs, endTs);
         rlvSellList.setAdapter(adapter);
+        tvQuery.setVisibility(View.GONE);
+    }
+
+    /**
+     * 根据事件总线进行参数设置参
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(FidEventBus fidEventBus) {
+        String fid = fidEventBus.getFid();
+        //创建新的集合
+        List<OrderInfoSellBean.DataBean> newlists = new ArrayList<>();
+        if (TextUtils.isEmpty(fid)) {
+            newlists = data;
+        } else {
+            newlists.clear();
+            //根据lists集合中的对象字段名过滤
+            for (OrderInfoSellBean.DataBean sortModel : data) {
+                String num = sortModel.getFid();
+                String name = sortModel.getName();
+                Log.v("cbf", "111==" + num + " fid = " + fid);
+                Log.v("cbf", "name==" + name);
+                if (num.equals(fid)) {
+                    newlists.add(sortModel);
+                }
+            }
+        }
+        // 不管怎么样都要刷新
+        adapter.updateView(newlists);
+        dir.dismiss();
     }
 
     private void initNet(String beginTime, String endTime, int cuurapge) {
@@ -107,7 +161,30 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         refreshLayout.autoRefresh(200);
         this.beginTs = beginTime;
         this.endTs = endTime;
-        OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTime, endTime, cuurapge + "", new IRequestCallBack() {
+        OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsSortApi(activity, beginTs, endTs, cuurapge + "", ASC_DES, new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object result) {
+                dismissLoading();
+                OrderInfoSellBean sellBean = (OrderInfoSellBean) result;
+                data = sellBean.getData();
+                if (cuurapge == 1) {
+                    adapter.setData(data);
+                } else {
+                    adapter.addData(data);
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                iv_default_null.setVisibility(View.VISIBLE);
+                refreshLayout.setVisibility(View.GONE);
+            }
+        });
+        /**
+         * 这是以前降序接口  建议保留着
+         * */
+      /*  OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTime, endTime, cuurapge + "", new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
@@ -127,7 +204,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                 refreshLayout.setVisibility(View.GONE);
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -135,7 +212,9 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         tvBeginTime.setOnClickListener(this);
         tvEndTime.setOnClickListener(this);
         tvSellMany.setOnClickListener(this);
-
+        ivAscDesc.setOnClickListener(this);
+        ll_asc_des.setOnClickListener(this);
+        tvQuery.setOnClickListener(this);
         llOrderClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,31 +227,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             public void onRefresh(RefreshLayout refreshlayout) {
                 cuurapge = 1;
                 initRequestApi(beginTs, endTs, cuurapge);
-             /*   OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
-                    @Override
-                    public void onResult(int tag, Object result) {
-                        dismissLoading();
-                        sellBean = (OrderInfoSellBean) result;
-                        data = sellBean.getData();
-                     *//*   if (data == null || data.size() < 0) {
-                            Toast.show(activity, "数据为空");
-                        } else {
-                            if (data == null) {
-                                iv_default_null.setVisibility(View.VISIBLE);
-                                refreshLayout.setVisibility(View.GONE);
-                            } else if (data != null)
-                                adapter.setData(data);
-                        }*//*
-                    }
-
-                    @Override
-                    public void onFailed(int tag, String msg) {
-                        dismissLoading();
-                        iv_default_null.setVisibility(View.VISIBLE);
-                        refreshLayout.setVisibility(View.GONE);
-
-                    }
-                });*/
                 refreshlayout.finishRefresh(200);
             }
         });
@@ -181,26 +235,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             public void onLoadmore(RefreshLayout refreshlayout) {
                 cuurapge++;
                 initRequestApi(beginTs, endTs, cuurapge);
-              /*  OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsApi(activity, beginTs, endTs, cuurapge + "", new IRequestCallBack() {
-                    @Override
-                    public void onResult(int tag, Object result) {
-                        dismissLoading();
-                        sellBean = (OrderInfoSellBean) result;
-                        data = sellBean.getData();
-                     *//*   if (data == null || data.size() < 0) {
-                            Toast.show(activity, "数据为空");
-                        } else {
-                            adapter.addData(data);
-                        }*//*
-                    }
-
-                    @Override
-                    public void onFailed(int tag, String msg) {
-                        dismissLoading();
-                        iv_default_null.setVisibility(View.VISIBLE);
-                        refreshLayout.setVisibility(View.GONE);
-                    }
-                });*/
                 refreshLayout.finishLoadmore(200);
 
             }
@@ -222,6 +256,42 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
             case R.id.tv_order_sell_many:
 //                Toast.show(activity, "点击了");
                 break;
+            case R.id.ll_asc_des:
+                ascDes();
+                break;
+            case R.id.tv_query:
+                queryDir();
+                break;
+        }
+
+    }
+
+    /**
+     * 查询所有目录列表以及多少条目
+     */
+    private void queryDir() {
+        tvQuery.setText("全(" + 10 + ")部");
+        dir = new DialogQuerySellDir(activity);
+        dir.setData();
+        dir.show();
+    }
+
+    /**
+     * 点击图片进行更改 并进行传值 更改图标
+     */
+    private void ascDes() {
+        if (!OPENDOOR) {
+            refreshLayout.autoRefresh(200);
+            ivAscDesc.setImageResource(R.mipmap.down_sort);
+            tvSellMany.setText("销售最多");
+            ASC_DES = "DESC";
+            OPENDOOR = true;
+        } else if (OPENDOOR) {
+            refreshLayout.autoRefresh(200);
+            ivAscDesc.setImageResource(R.mipmap.home_hand_up);
+            tvSellMany.setText("销售最少");
+            ASC_DES = "ASC";
+            OPENDOOR = false;
         }
 
     }

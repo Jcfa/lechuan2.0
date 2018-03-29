@@ -32,14 +32,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class RealGoodsManager extends BaseManager {
 
-//    private static final String REAL_GOODS_ADD_URL = "http://fuzhuang.poso2o.com/productService.htm?Act=add2";
+    //    private static final String REAL_GOODS_ADD_URL = "http://fuzhuang.poso2o.com/productService.htm?Act=add2";
 //    private static final String REAL_GOODS_URL = "http://fuzhuang.poso2o.com/productService.htm?Act=query";
 //    private static final String REAL_BATCH_DEL_GOODS_URL = "http://fuzhuang.poso2o.com/productService.htm?Act=batchDelete";
     private static final int LIST = 10001;// 获取商品信息
     private static final int ADD = 10002;// 添加商品
     private static final int EDIT = 10003;// 添加商品
     private static final int BATCH_DEL = 10004;// 批量删除产品
-
 
 
     private static volatile RealGoodsManager realGoodsManager;
@@ -53,6 +52,16 @@ public class RealGoodsManager extends BaseManager {
             }
         }
         return realGoodsManager;
+    }
+
+    //实体店商品列表
+    public void loadGoodsList() {
+
+    }
+
+    //实体店商品目录列表
+    public void loadCatalogList() {
+
     }
 
     public void loadGoodsAndCatalog(final BaseActivity baseActivity, String order, String sort, String fid, String keywords, final IRequestCallBack<AllGoodsAndCatalog> iRequestCallBack) {
@@ -120,8 +129,8 @@ public class RealGoodsManager extends BaseManager {
         for (OldSpec goodsSpec : goods.nums) {
             MoreViewData moreViewData = new MoreViewData();
             moreViewData.colorid = goodsSpec.colorid;
-            if (TextUtils.isEmpty(goodsSpec.barcode)){
-                goodsSpec.barcode = RandomStringUtil.randomGUID(13,"0123456789");
+            if (TextUtils.isEmpty(goodsSpec.barcode)) {
+                goodsSpec.barcode = RandomStringUtil.randomGUID(13, "0123456789");
             }
             moreViewData.barcode = goodsSpec.barcode;
             moreViewData.sizeid = goodsSpec.sizeid;
@@ -180,8 +189,8 @@ public class RealGoodsManager extends BaseManager {
         for (OldSpec goodsSpec : goods.nums) {
             MoreViewData moreViewData = new MoreViewData();
             moreViewData.colorid = goodsSpec.colorid;
-            if (TextUtils.isEmpty(goodsSpec.barcode)){
-                goodsSpec.barcode = RandomStringUtil.randomGUID(13,"0123456789");
+            if (TextUtils.isEmpty(goodsSpec.barcode)) {
+                goodsSpec.barcode = RandomStringUtil.randomGUID(13, "0123456789");
             }
             moreViewData.barcode = goodsSpec.barcode;
             moreViewData.sizeid = goodsSpec.sizeid;

@@ -81,6 +81,15 @@ public class OrderInfoPaperBean {
         private String name;
         private String guid;
         private String fprice;
+        private String fid;
+
+        public String getFid() {
+            return fid;
+        }
+
+        public void setFid(String fid) {
+            this.fid = fid;
+        }
 
         public String getTotalamount() {
             return totalamount;

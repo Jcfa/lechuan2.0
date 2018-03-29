@@ -88,6 +88,7 @@ public class OrderInfoSellBean implements Serializable {
          * salesamount : 660.00
          * sizeid : -
          * totalnum : 2
+         * "fid": "aed3d733cdd6d1862c601f057c4cafc3",
          */
 
         private String bh;
@@ -100,6 +101,15 @@ public class OrderInfoSellBean implements Serializable {
         private String salesamount;
         private String sizeid;
         private String totalnum;
+        private String fid;
+
+        public String getFid() {
+            return fid;
+        }
+
+        public void setFid(String fid) {
+            this.fid = fid;
+        }
 
         public String getBh() {
             if (bh == null || bh.equals(""))

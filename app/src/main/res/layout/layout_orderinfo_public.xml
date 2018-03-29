@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_vi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll_vi"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -20,10 +20,12 @@
             android:clickable="true">
 
             <ImageView
+                android:id="@+id/iv_tu_biao"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
+                android:gravity="center"
                 android:src="@mipmap/date_icon" />
 
             <TextView
@@ -76,6 +78,19 @@
             android:layout_gravity="center"
             android:clickable="true"
             android:src="@mipmap/search_image"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_query"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="全部(0)"
+            android:textColor="@color/btn_login_bg_preed"
+            android:textSize="14dp"
             android:visibility="gone" />
     </RelativeLayout>
 

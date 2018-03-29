@@ -84,7 +84,11 @@ public class EmpowermentActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initData() {
         setTitle("开通授权申请");
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         loadStates();
     }
 

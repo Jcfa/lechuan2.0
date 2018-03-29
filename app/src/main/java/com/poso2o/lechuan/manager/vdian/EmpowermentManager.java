@@ -22,6 +22,7 @@ public class EmpowermentManager extends BaseManager {
     public String SERVICE_TRANSLATE_URL = HttpAPI.SERVER_MAIN_API + "BuyServiceManage.htm?Act=wxBuy";
     public String SERVICE_OPEN_STATE_URL = HttpAPI.SERVER_MAIN_API + "WeCharAgencyManage.htm?Act=getAgency";
     public String SERVICE_SET_AGENCY_URL = HttpAPI.SERVER_MAIN_API + "WeCharAgencyManage.htm?Act=setAgency";
+    public String SERVICE_ON_PROBATION_URL = HttpAPI.SERVER_MAIN_API + "UserAccountManage.htm?Act=tryWeChat";//微店开通7天试用
 
     private static EmpowermentManager instance;
 
@@ -52,7 +53,26 @@ public class EmpowermentManager extends BaseManager {
         request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
         request.add("service_type", "3");
         defaultParam(request);
+        baseActivity.request(TRIALID, request, new HttpListener<String>() {
 
+            @Override
+            public void onSucceed(int what, String response) {
+                iRequestCallBack.onResult(TRIALID, response);
+            }
+
+            @Override
+            public void onFailed(int what, String response) {
+                iRequestCallBack.onFailed(TRIALID, response);
+            }
+        }, true, true);
+    }
+
+    //微店7天试用
+    public void vdianOnProbation(final BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
+        final Request<String> request = getStringRequest(SERVICE_ON_PROBATION_URL);
+//        request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+//        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+        defaultParam(request);
         baseActivity.request(TRIALID, request, new HttpListener<String>() {
 
             @Override
@@ -76,8 +96,8 @@ public class EmpowermentManager extends BaseManager {
      */
     public void trialTranslateDate(final BaseActivity baseActivity, String service_id, final IRequestCallBack iRequestCallBack) {
         final Request<String> request = getStringRequest(SERVICE_TRANSLATE_URL);
-        request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
-        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
+//        request.add("uid", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
+//        request.add("token", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_TOKEN));
         request.add("shop_branch_id", SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID));
         request.add("service_id", service_id);
         defaultParam(request);
