@@ -97,23 +97,24 @@ public class GoodsListAdapter extends BaseAdapter<GoodsListAdapter.HomeGoodsHold
         // 设置数据
         if (isVdian) {
             // 设置高亮
-            if (item.isNameLight) {
-                holder.home_goods_name.setText(Html.fromHtml(item.light_name));
-            } else {
+//            if (item.isNameLight) {
+//                holder.home_goods_name.setText(Html.fromHtml(item.light_name));
+//            } else {
                 holder.home_goods_name.setText(item.goods_name);
-            }
+//            }
 
-            if (item.isNoLight) {
-                holder.home_goods_number.setText(Html.fromHtml(item.light_no));
-            } else {
+//            if (item.isNoLight) {
+//                holder.home_goods_number.setText(Html.fromHtml(item.light_no));
+//            } else {
                 holder.home_goods_number.setText(item.goods_no);
-            }
+//            }
 
             holder.setTag("" + position);
 
             Glide.with(context).load(item.main_picture).placeholder(R.mipmap.background_image).into(holder.home_recycle_item_iv);// 设置图片
 
-            holder.home_goods_money.setText(item.goods_price_section);
+//            holder.home_goods_money.setText(item.goods_price_section);
+            holder.home_goods_money.setText(item.price);
             holder.home_goods_sales_volume_tv.setText(Integer.toString(item.goods_sale_number));
             holder.home_goods_stock_tv.setText(Integer.toString(item.goods_number));
         } else {

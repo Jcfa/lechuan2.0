@@ -117,6 +117,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
      */
     public void setData(String guid, String begin, final int type) {
         if (type == 1) {
+            ((BaseActivity) context).showLoading();
             OrderPaperDetailManager.getOrderInfo().orderPaperDetailApi((BaseActivity) context, guid,
                     new IRequestCallBack<OrderPaperDetailBean>() {
                         @Override
@@ -167,6 +168,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
             tv_public_fifth.setText("净利润");
             tvPrice.setVisibility(View.GONE);
             tvQchu.setVisibility(View.VISIBLE);
+            ((BaseActivity) context).showLoading();
             OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi((BaseActivity) context, begin, new IRequestCallBack<OrderMothsDetailBean>() {
                 @Override
                 public void onResult(int tag, OrderMothsDetailBean detailBean) {
@@ -226,6 +228,7 @@ public class OrderPaperDetailDialog extends BaseDialog {
             tvTotalshouc.setVisibility(View.GONE);
             tvQchu.setVisibility(View.GONE);
             tv_spg.setVisibility(View.GONE);
+            ((BaseActivity) context).showLoading();
             OrderPaperDetailManager.getOrderInfo().orderMemberDetailApi((BaseActivity) context, guid, new IRequestCallBack<OrderMemberDetailBean>() {
                 @Override
                 public void onResult(int tag, OrderMemberDetailBean memberDetailBean) {

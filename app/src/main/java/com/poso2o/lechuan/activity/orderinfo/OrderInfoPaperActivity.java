@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,6 +39,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -57,7 +60,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     private int type = 1;
     private TextView tv_order_sell_many_total, tv_order_zm_total;
     private TextView tv_default_null;
-    private RelativeLayout rl_default_null;
+    private RelativeLayout rl_default_null, rl_search_title;
     private ImageView ivSearch;
     private FrameLayout fl_search;
     private EditText etKcSearch;
@@ -79,12 +82,31 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     /**
      * 图标
      */
-    private ImageView ivTuP;
+    private ImageView ivTuP, iv_back_search;
     /**
      * 格式化.0格式的
      */
     private String format;
+    /**
+     * 库存排序  总成本排序
+     */
+    private LinearLayout ll_kc_sort, ll_zcb_sort;
+    /**
+     * 库存排序  总成本排序
+     */
+    private ImageView iv_kc_sort, iv_zcb_sort;
+    /**
+     * 总成本   库存名称
+     */
+    private TextView tv_zcb_meny, tv_kc_count;
+    /**
+     * 标记按钮是否点击
+     */
+    public boolean IV_PAPER = false;
 
+    /**
+     * 标记是否点击回退
+     */
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_orderinfo_paper;
@@ -107,6 +129,15 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         tvEndTimeVisibibity = (TextView) findViewById(R.id.tv_visibility);
         tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         ivTuP = (ImageView) findViewById(R.id.iv_tu_biao);
+        iv_back_search = (ImageView) findViewById(R.id.iv_back_search);
+
+        ll_kc_sort = (LinearLayout) findViewById(R.id.ll_kc_sort);
+        ll_zcb_sort = (LinearLayout) findViewById(R.id.ll_zcb_sort);
+        iv_kc_sort = (ImageView) findViewById(R.id.iv_kc_sort);
+        iv_zcb_sort = (ImageView) findViewById(R.id.iv_zcb_sort);
+        tv_kc_count = (TextView) findViewById(R.id.tv_kc_count);
+        tv_zcb_meny = (TextView) findViewById(R.id.tv_zcb_meny);
+        rl_search_title = (RelativeLayout) findViewById(R.id.rl_search_title);
     }
 
     @Override
@@ -123,6 +154,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     }
 
     private void initNetApi() {
+        showLoading();
         OrderInfoPaperManager.getsInsatcne().orderInfoPaperApi(activity, new IRequestCallBack<OrderInfoPaperBean>() {
             @Override
             public void onResult(int tag, OrderInfoPaperBean paperBean) {
@@ -163,8 +195,11 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     protected void initListener() {
         ivSearch.setOnClickListener(this);
         etKcSearch.setOnTouchListener(this);
+        iv_back_search.setOnTouchListener(this);
         clear_input.setOnClickListener(this);
         tvQuery.setOnClickListener(this);
+        ll_kc_sort.setOnClickListener(this);
+        ll_zcb_sort.setOnClickListener(this);
     }
 
     @Override
@@ -175,7 +210,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.clear_input:
                 etKcSearch.setText("");
-                rl_default_null.setVisibility(View.VISIBLE);
+                rl_default_null.setVisibility(View.GONE);
 //                initNetApi();
                 adapter.setData(data);
                 //强制隐藏键盘
@@ -186,7 +221,75 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
             case R.id.tv_query:
                 queryDir();
                 break;
+            case R.id.ll_kc_sort:
+                paperSort(iv_kc_sort);
+                break;
+            case R.id.ll_zcb_sort:
+                paperSort(iv_zcb_sort);
+                break;
         }
+    }
+
+    /**
+     * 点击按钮进行排序和更改图标
+     * * 进行比较大小
+     * //当返回0的时候排序方式是 t1,t2
+     * //当返回1的时候排序方式是 t2,t1
+     */
+    private void paperSort(ImageView ivsort) {
+        if (!IV_PAPER) {
+            if (ivsort.getId() == R.id.iv_kc_sort) {
+                iv_kc_sort.setImageResource(R.mipmap.home_hand_up);
+                tv_kc_count.setTextColor(getResources().getColor(R.color.color_00BCB4));
+                tv_zcb_meny.setTextColor(getResources().getColor(R.color.textBlack));
+                Collections.sort(data, new Comparator<OrderInfoPaperBean.DataBean>() {
+                    @Override
+                    public int compare(OrderInfoPaperBean.DataBean o1, OrderInfoPaperBean.DataBean o2) {
+                        int sort1 = Integer.parseInt(o1.getTotalnum());
+                        int sort2 = Integer.parseInt(o2.getTotalnum());
+                        return sort1 - sort2;
+                    }
+                });
+            } else if (ivsort.getId() == R.id.iv_zcb_sort) {
+                iv_zcb_sort.setImageResource(R.mipmap.home_hand_up);
+                tv_zcb_meny.setTextColor(getResources().getColor(R.color.color_00BCB4));
+                tv_kc_count.setTextColor(getResources().getColor(R.color.textBlack));
+                Collections.sort(data, new Comparator<OrderInfoPaperBean.DataBean>() {
+                    @Override
+                    public int compare(OrderInfoPaperBean.DataBean o1, OrderInfoPaperBean.DataBean o2) {
+                        double sort1 = Double.parseDouble(o1.getTotalamount());
+                        double sort2 = Double.parseDouble(o2.getTotalamount());
+                        return (int) (sort1 - sort2);
+                    }
+                });
+            }
+            adapter.setData(data);
+            IV_PAPER = true;
+        } else if (IV_PAPER) {
+            if (ivsort.getId() == R.id.iv_kc_sort) {
+                iv_kc_sort.setImageResource(R.mipmap.down_sort);
+                tv_kc_count.setTextColor(getResources().getColor(R.color.color_00BCB4));
+                tv_zcb_meny.setTextColor(getResources().getColor(R.color.textBlack));
+                Collections.reverse(data);
+                adapter.updateSorttView(data);
+            } else if (ivsort.getId() == R.id.iv_zcb_sort) {
+                iv_zcb_sort.setImageResource(R.mipmap.down_sort);
+                tv_zcb_meny.setTextColor(getResources().getColor(R.color.color_00BCB4));
+                tv_kc_count.setTextColor(getResources().getColor(R.color.textBlack));
+                Collections.sort(data, new Comparator<OrderInfoPaperBean.DataBean>() {
+                    @Override
+                    public int compare(OrderInfoPaperBean.DataBean o1, OrderInfoPaperBean.DataBean o2) {
+                        double sort1 = Double.parseDouble(o1.getTotalamount());
+                        double sort2 = Double.parseDouble(o2.getTotalamount());
+                        return (int) (sort2 - sort1);
+                    }
+                });
+                adapter.updateSorttView(data);
+            }
+
+            IV_PAPER = false;
+        }
+
     }
 
     /**
@@ -203,6 +306,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(FidEventBus fidEventBus) {
+        rl_default_null.setVisibility(View.GONE);
         String fid = fidEventBus.getFid();
         //创建新的集合
 
@@ -225,8 +329,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                     format = df.format(totalMeny);
                 }
             }
-            tv_order_sell_many_total.setText(kucount + "");
-            tv_order_zm_total.setText(format);
+//            tv_order_sell_many_total.setText(kucount + "");
+//            tv_order_zm_total.setText(format);
         }
         // 不管怎么样都要刷新
         adapter.updateSearchListView(newlists);
@@ -243,6 +347,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         etKcSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                rl_default_null.setVisibility(View.GONE);
                 searchKeyword(s.toString());
             }
 
@@ -284,6 +389,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
      * 点击按钮显示搜索框  进行搜索  不搜索时进行展示界面
      */
     private void search() {
+        rl_search_title.setVisibility(View.VISIBLE);
         fl_search.setVisibility(View.VISIBLE);
         rl_default_null.setVisibility(View.GONE);
       /*  imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -324,6 +430,15 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.et_kcsearch_input:
                 kuSearch();
+                break;
+            case R.id.iv_back_search:
+                adapter.setData(data);
+                rl_search_title.setVisibility(View.GONE);
+                rl_default_null.setVisibility(View.VISIBLE);
+                //强制隐藏键盘
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 break;
         }
         return false;

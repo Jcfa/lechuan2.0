@@ -74,6 +74,7 @@ public class OrderInfoStaffDetailDialog extends BaseDialog {
 
     //名字  销售员id
     public void setDiaLogData(final String realname, String czyId) {
+        ((BaseActivity) context).showLoading();
         OrderInfoPoplStaffManager.getsInstance().poplStaffDetailApi((BaseActivity) context, czyId, new IRequestCallBack<OrderIOnfoStaffDetailBean>() {
             @Override
             public void onResult(int tag, OrderIOnfoStaffDetailBean staffDetailBean) {

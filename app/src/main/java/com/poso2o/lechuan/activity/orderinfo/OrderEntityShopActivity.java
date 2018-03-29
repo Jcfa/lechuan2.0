@@ -13,9 +13,6 @@ import com.poso2o.lechuan.base.BaseActivity;
 
 public class OrderEntityShopActivity extends BaseActivity {
     private FrameLayout florderContent;
-    //设置用户名
-    private TextView tvNick;
-
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_orderentity_shop;
@@ -23,13 +20,12 @@ public class OrderEntityShopActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        //设置用户名
-        tvNick = (TextView) findViewById(R.id.tv_title);
+
     }
 
     @Override
     protected void initData() {
-        tvNick.setText("我的订单");
+
         initTime();
     }
 

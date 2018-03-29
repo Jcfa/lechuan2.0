@@ -84,6 +84,7 @@ public class OrderInfoSellDialog extends BaseDialog {
     }
 
     public void setData(String beginTime, String endTime, String guid, String colorid, String sizeid) {
+        ((BaseActivity) context).showLoading();
         OrderInfoGoodsManager.getOrderInfo().orderInfoDetailSell((BaseActivity) context, beginTime,
                 endTime, guid, colorid, sizeid, new IRequestCallBack<OrderInfoSellDetailBean>() {
                     @Override

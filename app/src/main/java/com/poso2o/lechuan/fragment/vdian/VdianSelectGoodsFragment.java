@@ -16,6 +16,7 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.adapter.VdianSelectGoodsAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
+import com.poso2o.lechuan.base.BaseManager;
 import com.poso2o.lechuan.bean.TotalBean;
 import com.poso2o.lechuan.bean.goodsdata.AllGoodsAndCatalog;
 import com.poso2o.lechuan.bean.goodsdata.Catalog;
@@ -24,6 +25,7 @@ import com.poso2o.lechuan.bean.goodsdata.Goods;
 import com.poso2o.lechuan.bean.goodsdata.GoodsBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.rshopmanager.RealGoodsManager;
+import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager2;
 import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
@@ -34,6 +36,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static com.poso2o.lechuan.base.BaseManager.FIRST;
 
 /**
  * 导入商品选商品界面
@@ -79,7 +83,19 @@ public class VdianSelectGoodsFragment extends BaseFragment {
     private RecyclerView import_goods_recycle;
     private VdianSelectGoodsAdapter vdianSelectGoodsAdapter;
     private View import_goods_shade;
+    /**
+     * 排序类型
+     */
+    private String orderByName = "";
 
+    /**
+     * 排序方向
+     */
+    private String sort = BaseManager.ASC;
+    /**
+     * 选中的排序按钮
+     */
+    private TextView selectSort;
     /**
      * 下拉菜单
      */
@@ -89,6 +105,7 @@ public class VdianSelectGoodsFragment extends BaseFragment {
      * 选中的目录
      */
     private Catalog selectCatalog = new Catalog();
+    private ArrayList<Goods> goodsList = new ArrayList<>();
     private TotalBean goodsTotal = new TotalBean();//商品列表的total
     private int currentPage = 1;//当前第几页商品
 
@@ -115,9 +132,8 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         import_goods_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                currentPage = 1;
                 loadCatalogs();
-                loadGoods();
+                loadGoods(FIRST);
             }
         });
     }
@@ -135,30 +151,35 @@ public class VdianSelectGoodsFragment extends BaseFragment {
                 if (!import_goods_recycle.canScrollVertically(1)) {//滚动到底部
                     if (goodsTotal.pages > currentPage) {
                         ++currentPage;
-                        loadGoods();
+                        loadGoods(currentPage);
                     }
                 }
             }
         });
-        loadGoods();
+        loadGoods(FIRST);
         loadCatalogs();
     }
 
     /**
      * 加载商品列表
      */
-    public void loadGoods() {
+    public void loadGoods(int page) {
+        currentPage = page;
         import_goods_swipe.setRefreshing(true);
-        VdianGoodsManager2.getInstance().loadGoodsList((BaseActivity) context, selectCatalog.catalog_id, "", currentPage + "", "", new IRequestCallBack<GoodsBean>() {
+        VdianGoodsManager2.getInstance().loadGoodsList((BaseActivity) context, orderByName, sort, selectCatalog.catalog_id, "", currentPage + "", "", new IRequestCallBack<GoodsBean>() {
             @Override
             public void onResult(int tag, GoodsBean result) {
                 import_goods_swipe.setRefreshing(false);
+                if (currentPage == FIRST) {
+                    goodsList.clear();
+                }
                 if (result != null && result.list != null) {
+                    goodsList.addAll(result.list);
                     goodsTotal = result.total;
-                    vdianSelectGoodsAdapter.notifyDatas(result.list);
                 } else {
                     Toast.show(context, "加载商品失败");
                 }
+                vdianSelectGoodsAdapter.notifyDatas(result.list);
             }
 
             @Override
@@ -173,7 +194,7 @@ public class VdianSelectGoodsFragment extends BaseFragment {
      * 加载商品目录列表
      */
     public void loadCatalogs() {
-        VdianGoodsManager2.getInstance().loadCatalogList((BaseActivity) context, new IRequestCallBack<CatalogBean>() {
+        VdianGoodsManager2.getInstance().loadCatalogList((BaseActivity) context, "", new IRequestCallBack<CatalogBean>() {
             @Override
             public void onResult(int tag, CatalogBean result) {
                 if (result != null && result.list != null) {
@@ -233,10 +254,9 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         });
 
         import_goods_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
             @Override
             public void onRefresh() {
-                loadGoods();
+                loadGoods(FIRST);
             }
         });
 
@@ -244,15 +264,8 @@ public class VdianSelectGoodsFragment extends BaseFragment {
 
             @Override
             public void onClick(View view) {
-                setSortTextAndIcon(import_sort_stock, R.color.textBlack, R.mipmap.home_hand_default);
-                isAscStock = false;
-                if (isAscSale) {// 升序
-                    setSortTextAndIcon(import_sort_sale, R.color.color_00BCB4, R.mipmap.home_hand_down);
-                } else {// 降序
-                    setSortTextAndIcon(import_sort_sale, R.color.color_00BCB4, R.mipmap.home_hand_up);
-                }
-                isAscSale = !isAscSale;
-                saleSort();
+                orderByName = VdianGoodsManager.SORT_TYPE_SALE_NUMBER;
+                sort(import_sort_sale);
             }
         });
 
@@ -260,16 +273,8 @@ public class VdianSelectGoodsFragment extends BaseFragment {
 
             @Override
             public void onClick(View view) {
-                setSortTextAndIcon(import_sort_sale, R.color.textBlack, R.mipmap.home_hand_default);
-                isAscSale = false;
-
-                if (isAscStock) {// 升序
-                    setSortTextAndIcon(import_sort_stock, R.color.color_00BCB4, R.mipmap.home_hand_down);
-                } else {// 降序
-                    setSortTextAndIcon(import_sort_stock, R.color.color_00BCB4, R.mipmap.home_hand_up);
-                }
-                isAscStock = !isAscStock;
-                stockSort();
+                orderByName = VdianGoodsManager.SORT_TYPE_STOCK;
+                sort(import_sort_stock);
             }
         });
 
@@ -314,8 +319,8 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         catalog.fid = "-1";
         catalog.directory = "全部";
         catalog.catalog_name = "全部";
-        catalog.productNum = vdianSelectGoodsAdapter.getItemCount() + "";
-        import_goods_catalog.setText(catalog.catalog_name + "（" + catalog.productNum + "）");
+        catalog.catalog_goods_number = getGoodsCount(catalogs);
+        import_goods_catalog.setText(catalog.catalog_name + "（" + catalog.catalog_goods_number + "）");
         selectCatalog = catalog;
         catalogs.add(0, catalog);
         catalogPopupWindow = new CatalogPopupWindow(context, catalogs, selectCatalog, true);
@@ -325,7 +330,7 @@ public class VdianSelectGoodsFragment extends BaseFragment {
             public void onItemClick(Catalog catalog) {
                 import_goods_catalog.setText(catalog.catalog_name + "（" + catalog.catalog_goods_number + "）");
                 selectCatalog = catalog;
-                loadGoods();
+                loadGoods(FIRST);
 //                search("");
             }
         });
@@ -341,6 +346,20 @@ public class VdianSelectGoodsFragment extends BaseFragment {
     }
 
     /**
+     * 全部目录总商品数
+     *
+     * @param catalogs
+     * @return
+     */
+    private int getGoodsCount(ArrayList<Catalog> catalogs) {
+        int count = 0;
+        for (Catalog catalog : catalogs) {
+            count += catalog.catalog_goods_number;
+        }
+        return count;
+    }
+
+    /**
      * 导入商品
      */
     private void importGoods() {
@@ -353,14 +372,14 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         for (int i = 0; i < selects.size(); i++) {
             JSONObject object = new JSONObject();
             try {
-                object.put("guid", selects.get(i).guid);
+                object.put("goods_id", selects.get(i).goods_id);
                 array.put(object);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         showLoading("正在导入商品...");
-        WShopManager.getrShopManager().importGoods((BaseActivity) context, array.toString(), new IRequestCallBack() {
+        WShopManager.getrShopManager().importGoods((BaseActivity) context, array.toString(), false, new IRequestCallBack() {
 
             @Override
             public void onResult(int tag, Object object) {
@@ -379,18 +398,6 @@ public class VdianSelectGoodsFragment extends BaseFragment {
     }
 
     /**
-     * 设置排序按钮颜色和图标
-     *
-     * @param textView
-     * @param colorResId
-     * @param iconResId
-     */
-    private void setSortTextAndIcon(TextView textView, int colorResId, int iconResId) {
-        textView.setTextColor(ContextCompat.getColor(context, colorResId));
-        textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, iconResId, 0);
-    }
-
-    /**
      * 复位排序视图
      */
     private void restorationSort() {
@@ -400,29 +407,38 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         isAscSale = false;
     }
 
+
     /**
-     * 按销量排序
+     * 排序
      */
-    private void saleSort() {
-        RealGoodsManager.getInstance().saleSort(isAscSale, vdianSelectGoodsAdapter.getItems(), new RealGoodsManager.OnSortListener() {
-            @Override
-            public void onSort(ArrayList<Goods> goodsDatas) {
-                vdianSelectGoodsAdapter.notifyDatas(goodsDatas);
-                import_goods_recycle.scrollToPosition(0);
+    private void sort(TextView tv) {
+        if (selectSort != tv) {
+            sort = BaseManager.ASC;
+            if (selectSort != null) {
+                setSortTextAndIcon(selectSort, R.color.textBlack, R.mipmap.home_hand_default);
             }
-        });
+            selectSort = tv;
+        } else {
+            sort = sort.equals(BaseManager.ASC) ? BaseManager.DESC : BaseManager.ASC;
+        }
+        if (sort.equals(BaseManager.ASC)) {
+            setSortTextAndIcon(tv, R.color.textGreen, R.mipmap.home_hand_down);
+        } else {
+            setSortTextAndIcon(tv, R.color.textGreen, R.mipmap.home_hand_up);
+        }
+        import_goods_swipe.setRefreshing(true);
+        loadGoods(FIRST);
     }
 
     /**
-     * 按库存排序
+     * 设置排序按钮颜色和图标
+     *
+     * @param textView
+     * @param colorResId
+     * @param iconResId
      */
-    private void stockSort() {
-        RealGoodsManager.getInstance().stockSort(isAscStock, vdianSelectGoodsAdapter.getItems(), new RealGoodsManager.OnSortListener() {
-            @Override
-            public void onSort(ArrayList<Goods> goodsDatas) {
-                vdianSelectGoodsAdapter.notifyDatas(goodsDatas);
-                import_goods_recycle.scrollToPosition(0);
-            }
-        });
+    private void setSortTextAndIcon(TextView textView, int colorResId, int iconResId) {
+        textView.setTextColor(ContextCompat.getColor(context, colorResId));
+        textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, iconResId, 0);
     }
 }

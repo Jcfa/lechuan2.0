@@ -675,22 +675,24 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
 
+            <!--android:id="@+id/goods_details_edit"-->
             <TextView
-                android:id="@+id/goods_details_edit"
+                android:id="@+id/goods_details_offline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="32dp"
                 android:background="@drawable/selector_sign_btn"
-                android:drawableLeft="@mipmap/goods_details_edit"
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
+                android:ems="6"
                 android:paddingTop="10dp"
-                android:text="@string/again_edit"
+                android:text="@string/goods_offline"
                 android:textColor="#ffffff"
                 android:textSize="14sp"/>
+            <!--android:drawableLeft="@mipmap/goods_details_edit"-->
 
         </LinearLayout>
 

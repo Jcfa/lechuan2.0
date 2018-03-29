@@ -159,6 +159,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
 
     private void initRequestApi(final String beginTime, final String endTime, final int cuurapge) {
         refreshLayout.autoRefresh(200);
+//        showLoading();
         this.beginTs = beginTime;
         this.endTs = endTime;
         OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsSortApi(activity, beginTs, endTs, cuurapge + "", ASC_DES, new IRequestCallBack() {
@@ -212,7 +213,6 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
         tvBeginTime.setOnClickListener(this);
         tvEndTime.setOnClickListener(this);
         tvSellMany.setOnClickListener(this);
-        ivAscDesc.setOnClickListener(this);
         ll_asc_des.setOnClickListener(this);
         tvQuery.setOnClickListener(this);
         llOrderClick.setOnClickListener(new View.OnClickListener() {
@@ -254,10 +254,9 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
                 showCalender();
                 break;
             case R.id.tv_order_sell_many:
-//                Toast.show(activity, "点击了");
+                ascDes();
                 break;
             case R.id.ll_asc_des:
-                ascDes();
                 break;
             case R.id.tv_query:
                 queryDir();

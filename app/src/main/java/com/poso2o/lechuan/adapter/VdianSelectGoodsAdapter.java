@@ -106,10 +106,12 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
     }
 
     public void selectItem(GoodsViewHolder holder, Goods item) {
-        Goods selectGoods = findSelectData(item.guid);
-        if (selectGoods != null) {
+//        Goods selectGoods = findSelectData(item.guid);
+//        if (selectGoods != null) {
+        if (holder.shop_recycle_item_select.isSelected()) {
             holder.shop_recycle_item_select.setSelected(false);
-            selects.remove(selectGoods);
+//            selects.remove(selectGoods);
+            selects.remove(item);
         } else {
             holder.shop_recycle_item_select.setSelected(true);
             selects.add(item);

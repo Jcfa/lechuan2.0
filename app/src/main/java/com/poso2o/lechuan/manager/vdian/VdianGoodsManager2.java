@@ -42,9 +42,12 @@ public class VdianGoodsManager2 extends BaseManager {
     /**
      * 加载商品目录列表
      */
-    public void loadCatalogList(BaseActivity baseActivity, final IRequestCallBack<CatalogBean> callBack) {
+    public void loadCatalogList(BaseActivity baseActivity, String online, final IRequestCallBack<CatalogBean> callBack) {
         Request<String> request = new StringRequest(CATALOG_LIST_API, RequestMethod.POST);
         defaultParam(request);
+        if (!online.equals("")) {
+            request.add("online", online);
+        }
         CallServer.getInstance().request(baseActivity, VDIAN_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
@@ -62,7 +65,7 @@ public class VdianGoodsManager2 extends BaseManager {
     /**
      * 加载商品列表
      */
-    public void loadGoodsList(BaseActivity baseActivity, String catalogId, String keywords, String currPage, String online, final IRequestCallBack<GoodsBean> callBack) {
+    public void loadGoodsList(BaseActivity baseActivity, String orderByName, String sort, String catalogId, String keywords, String currPage, String online, final IRequestCallBack<GoodsBean> callBack) {
         Request<String> request = new StringRequest(GOODS_LIST_API, RequestMethod.POST);
         defaultParam(request);
         if (!catalogId.equals("")) {
@@ -75,6 +78,8 @@ public class VdianGoodsManager2 extends BaseManager {
         if (!online.equals("")) {
             request.add("online", online);
         }
+        request.add("orderByName", orderByName);
+        request.add("sort", sort);
         CallServer.getInstance().request(baseActivity, VDIAN_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {

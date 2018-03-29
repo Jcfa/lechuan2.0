@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
-
         <include layout="@layout/layout_orderinfo_public" />
     </LinearLayout>
 
@@ -36,9 +35,9 @@
         <LinearLayout
             android:id="@+id/ll_asc_des"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:clickable="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -46,21 +45,17 @@
                 android:id="@+id/tv_order_sell_many"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/iv_asc_desc"
                 android:text="销售最多"
-                android:textColor="@color/btn_login_bg_preed"
+                android:clickable="true"
+                android:textColor="@color/color_00BCB4"
                 android:textSize="14dp" />
 
             <ImageView
                 android:id="@+id/iv_asc_desc"
-                android:layout_width="12dp"
+                android:layout_width="15dp"
                 android:layout_height="13dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:scaleType="fitCenter"
-                android:clickable="true"
                 android:layout_marginRight="5dp"
-                android:background="@mipmap/down_sort"
+                android:src="@mipmap/down_sort"
                 android:visibility="visible" />
         </LinearLayout>
 
