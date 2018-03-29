@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.orderinfo.OrderInfoMainActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.event.EventBean;
 import com.poso2o.lechuan.dialog.TipsNoAuthorDialog;
@@ -24,7 +25,7 @@ import static com.poso2o.lechuan.base.BaseManager.FIRST;
 
 /**
  * 微店
- *
+ * <p>
  * Created by Jaydon on 2018/3/13.
  */
 public class VdianActivity extends BaseActivity implements View.OnClickListener {
@@ -113,6 +114,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
         vdian_add_goods.setOnClickListener(this);
         vdian_goods_tag.setOnClickListener(this);
         vdian_order_tag.setOnClickListener(this);
+        findView(R.id.iv_back).setOnClickListener(this);
     }
 
     @Override
@@ -158,7 +160,25 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
                     replaceFragment(R.id.vdian_content, vdianOrderFragment);
                 }
                 break;
+            case R.id.iv_back:
+                goBack();
+                break;
         }
+    }
+
+    private void goBack(){
+        startActivity(OrderInfoMainActivity.class);
+        finish();
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            goBack();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

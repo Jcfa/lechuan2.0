@@ -99,7 +99,7 @@ public class ShopData implements Serializable {
     public String shop_bank_name = "";
 
     /** 商家提现银行-户名 */
-    public String shop_bank_account_name = "";
+    public String shop_bank_account_name = "";//微信收款帐号的昵称
 
     /** 商家提现银行-账号 */
     public String shop_bank_account_no = "";

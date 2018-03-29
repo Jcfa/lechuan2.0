@@ -180,9 +180,10 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
 //            accounts.append("(").append(shopData.shop_bank_name).append(")");
 //        }
 //        shop_info_accounts.setText(accounts.toString());
-        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT, 0) == 1) {
-            shop_info_accounts.setHint("已绑定");
-        }
+//        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT, 0) == 1) {
+//            shop_info_accounts.setHint("已绑定");
+//        }
+        shop_info_accounts.setHint(shopData.shop_bank_account_name);//已绑定的收款微信
         // 套餐
 //        if (shopData.has_webshop == 1) {
 //            shop_info_taocan.setText(shopData.webshop_service_name);
@@ -269,8 +270,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
                     }
                 });
                 break;
-
-            case R.id.shop_info_renew:
+            case R.id.shop_info_renew://续费
                 startActivityForResult(new Intent(activity, ServiceOrderingActivity.class), SERVICE_RENEW);
                 break;
         }
@@ -301,7 +301,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         try {
             Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
             intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, WEIXIN_SCANNING_CODE);
         } catch (Exception e) {
             Toast.show(activity, "打开微信失败！");
         }
@@ -379,9 +379,9 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (WEIXIN_SCANNING_CODE == requestCode) {
-            Toast.show(activity, "onActivityResult:" + resultCode);
-        }
+//        if (WEIXIN_SCANNING_CODE == requestCode) {
+//
+//        }
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PICTURE:

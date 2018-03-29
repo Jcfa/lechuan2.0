@@ -50,24 +50,34 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
         if (mDatas == null) return;
         final Goods item = mDatas.get(position);
         // 设置高亮
-        if (item.isNameLight) {
-            vh.shop_goods_name.setText(Html.fromHtml(item.light_name));
-        } else {
-            vh.shop_goods_name.setText(item.name);
-        }
+//        if (item.isNameLight) {
+//            vh.shop_goods_name.setText(Html.fromHtml(item.light_name));
+//        } else {
+//            vh.shop_goods_name.setText(item.name);
+//        }
+        vh.shop_goods_name.setText(item.goods_name);
 
-        if (item.isNoLight) {
-            vh.shop_goods_number.setText(Html.fromHtml(item.light_no));
-        } else {
-            vh.shop_goods_number.setText(item.bh);
-        }
+//        if (item.isNoLight) {
+//            vh.shop_goods_number.setText(Html.fromHtml(item.light_no));
+//        } else {
+//            vh.shop_goods_number.setText(item.bh);
+//        }
+        vh.shop_goods_number.setText(item.goods_no);
 
-        vh.shop_goods_sold_out_hint.setVisibility(GONE);
-        vh.shop_recycle_item_select.setSelected(findSelectData(item.guid) != null);
-        Glide.with(context).load(item.image222).into(vh.shop_recycle_item_iv);
+        vh.shop_goods_sold_out_hint.setVisibility(GONE);//已下架
+        vh.shop_recycle_item_select.setSelected(findSelectData(item.guid) != null);//多选，是否选中
+//        Glide.with(context).load(item.image222).into(vh.shop_recycle_item_iv);
+        Glide.with(context).load(item.main_picture).into(vh.shop_recycle_item_iv);
         vh.shop_goods_money.setText(item.price);
-        vh.shop_goods_sales_volume_tv.setText(item.salesnum);
-        vh.shop_goods_stock_tv.setText(item.kcnum);
+//        vh.shop_goods_sales_volume_tv.setText(item.salesnum);
+        vh.shop_goods_sales_volume_tv.setText(item.goods_sale_number + "");//销量
+//        vh.shop_goods_stock_tv.setText(item.kcnum);
+        vh.shop_goods_stock_tv.setText(item.goods_number + "");//库存
+        if (item.has_online == 1) {//是否微店商品，1=微店，0=实体店
+            vh.tv_vdian_goods.setVisibility(View.VISIBLE);
+        } else {
+            vh.tv_vdian_goods.setVisibility(GONE);
+        }
         // 点击事件
 //        vh.shop_recycle_item_select.setOnClickListener(new View.OnClickListener() {
 //
@@ -155,6 +165,7 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
         TextView shop_goods_money;
         TextView shop_goods_sales_volume_tv;
         TextView shop_goods_stock_tv;
+        TextView tv_vdian_goods;
 
         GoodsViewHolder(View itemView) {
             super(itemView);
@@ -168,6 +179,7 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
             shop_goods_money = (TextView) itemView.findViewById(R.id.shop_goods_money);
             shop_goods_sales_volume_tv = (TextView) itemView.findViewById(R.id.shop_goods_sales_volume_tv);
             shop_goods_stock_tv = (TextView) itemView.findViewById(R.id.shop_goods_stock_tv);
+            tv_vdian_goods = (TextView) itemView.findViewById(R.id.tv_vdian_goods);
 
             shop_goods_sort = (ImageView) itemView.findViewById(R.id.shop_goods_sort);
         }

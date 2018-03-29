@@ -41,7 +41,7 @@ import java.util.List;
 public class OrderInfoMainActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout llOrderEntityShop;  // 实体店
-    private LinearLayout llOrderPaper;  // 畅销管理
+    private RelativeLayout llOrderPaper;  // 畅销管理
     private RelativeLayout llOrderSell;  // 微店
     private LinearLayout llOrderWeid;  // 库存
     private LinearLayout ll_order_poplstaff;  // 人员业绩
@@ -59,7 +59,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     private String endTime;
     //销售额 目标额 完成率 毛利润
     private TextView tvSellPrice, tvAimPrice, tvComPletePrice, tvGpmPrice;
-    private TextView tvNick, tvNotWebshop;
+    private TextView tvNick, tvNotWebshop, tvNotOa;
     private OrderInfoExitApp detailDialog;
 
     @Override
@@ -74,7 +74,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
         llOrderSell = (RelativeLayout) findViewById(R.id.ll_order_sell);
 
-        llOrderPaper = (LinearLayout) findViewById(R.id.ll_order_paper);
+        llOrderPaper = (RelativeLayout) findViewById(R.id.ll_order_paper);
 
         llOrderWeid = (LinearLayout) findViewById(R.id.ll_order_weid);
 
@@ -89,6 +89,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         tvBeginTime = (TextView) findViewById(R.id.tv_order_info_bgin_time);
         tvEndTime = (TextView) findViewById(R.id.tv_order_end_time);
         tvNotWebshop = findView(R.id.tv_not_webshop);
+        tvNotOa = findView(R.id.tv_not_oa);
         //销售统计
         tvSellPrice = (TextView) findViewById(R.id.tv_order_sell_price);
         tvAimPrice = (TextView) findViewById(R.id.tv_order_aim_price);
@@ -117,11 +118,17 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadAccountDetailState();
+    }
+
     /**
      * 设置推送别名
      */
     private void setAlias() {
-        String uid = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID)+"-app";
+        String uid = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + "-app";
         List<String> list = MiPushClient.getAllAlias(activity);
         if (list != null && list.size() > 0) {
             String alias = list.get(0);
@@ -136,12 +143,12 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initNetRequest(String beginTime, String endTime) {
+        showLoading();
         OrderInfoSellManager.getOrderInfo().orderInfoSell(activity, beginTime, endTime, new IRequestCallBack<OrderInfoSellCountBean>() {
             @Override
             public void onResult(int tag, OrderInfoSellCountBean result) {
                 OrderInfoSellCountBean sellCountBean = result;
                 initNetData(sellCountBean);
-                loadAccountDetailState();
             }
 
             @Override
@@ -240,7 +247,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         llOrderSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SettingSP.getAuthorizationState() == Constant.AUTHORIZATION_OA_TRUE) {//有微店并授权了公众号
+                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP_AUTHORIZER_APPID) == Constant.AUTHORIZATION_TRUE) {//有微店并授权了公众号
                     if (SharedPreferencesUtils.getOACompetence() && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//已购买服务了&&未到期
                         startActivity(VdianActivity.class);
                     } else {//未购买服务
@@ -282,7 +289,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 break;
             //库存管理   //公众号助手 1
             case R.id.ll_order_paper:
-                if (SettingSP.getAuthorizationState() == Constant.AUTHORIZATION_OA_TRUE) {//公众号已授权成功过了
+                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_NEWS_AUTHORIZER_APPID) == Constant.AUTHORIZATION_TRUE) {//公众号已授权成功过了
                     if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_ID_OA, 0) > 0 && SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA, 0) > 0) {//已购买有公众号助手的服务&&未到期
                         startActivity(new Intent(activity, OAHelperActivity.class).putExtra(AuthorizationActivity.KEY_MODULE_ID, Constant.BOSS_MODULE_OA));
                     } else {//未购买服务、或购买的服务没有公众号助手的权限
@@ -331,10 +338,19 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
                 if (result == null) {
                     Toast.show(activity, "帐号信息失败");
                 }
-                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP, 0) == 1) {//有微店已开通
+                if (SharedPreferencesUtils.getOACompetence()) {//微店已开通
                     tvNotWebshop.setVisibility(View.GONE);
+                    llOrderSell.setSelected(false);
                 } else {
                     tvNotWebshop.setVisibility(View.VISIBLE);//显示未开通微店
+                    llOrderSell.setSelected(true);
+                }
+                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_ID_OA) >= 3) {//公众号助手已开通
+                    tvNotOa.setVisibility(View.GONE);
+                    llOrderPaper.setSelected(false);
+                } else {
+                    tvNotOa.setVisibility(View.VISIBLE);
+                    llOrderPaper.setSelected(true);
                 }
             }
 

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/shop_recycle_item_group"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"/>
+        android:layout_height="3dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#fff"
+        android:orientation="horizontal"
         android:paddingBottom="6dp"
         android:paddingRight="10dp"
         android:paddingTop="6dp">
@@ -25,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:scaleType="centerInside"
-            android:src="@drawable/selector_home_recycle_item_select_img"/>
+            android:src="@drawable/selector_home_recycle_item_select_img" />
 
         <FrameLayout
             android:layout_width="66dp"
@@ -36,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/background_image"/>
+                android:src="@mipmap/background_image" />
 
             <TextView
                 android:id="@+id/shop_goods_sold_out_hint"
@@ -45,7 +44,7 @@
                 android:background="#33000000"
                 android:gravity="center"
                 android:text="已下架"
-                android:textColor="#fff"/>
+                android:textColor="#fff" />
 
         </FrameLayout>
 
@@ -56,14 +55,31 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/shop_goods_name"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="#000000"
-                android:textSize="14sp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/shop_goods_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_vdian_goods"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/ic_vdian_goods"
+                    android:drawablePadding="3dp"
+                    android:text="微店"
+                    android:textColor="@color/colorCyan"
+                    android:textSize="@dimen/textSize_middle" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,12 +96,12 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/textBlack"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="18dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -99,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="2dp"
-                    android:src="@mipmap/home_rmb"/>
+                    android:src="@mipmap/home_rmb" />
 
                 <TextView
                     android:id="@+id/shop_goods_money"
@@ -108,10 +124,10 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:drawablePadding="3dp"
-                    android:singleLine="true"
                     android:ellipsize="end"
+                    android:singleLine="true"
                     android:textColor="#b95f55"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -127,11 +143,11 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:ellipsize="end"
                     android:textColor="@color/color_999999"
                     android:textSize="@dimen/z_text_little" />
 
@@ -149,11 +165,11 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="3dp"
-                    android:singleLine="true"
                     android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
                     android:textColor="@color/color_999999"
                     android:textSize="@dimen/z_text_little" />
 
@@ -167,7 +183,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:scaleType="centerInside"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 

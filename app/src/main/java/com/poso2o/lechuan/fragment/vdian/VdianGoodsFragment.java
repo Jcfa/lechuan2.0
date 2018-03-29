@@ -212,7 +212,6 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
 
     private void loadCatalogData() {
         VdianCatalogManager.getInstance().loadList((BaseActivity) context, shop_id, new IRequestCallBack<CatalogBean>() {
-
             @Override
             public void onResult(int tag, CatalogBean catalogBean) {
                 Catalog allCatalog = new Catalog();
@@ -401,11 +400,11 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                 break;
 
             case R.id.vdian_goods_add:// 导入商品
-                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
-                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(context);
-                    noAuthorDialog.show();
-                    return;
-                }
+//                if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SHOP_VERIFY) == 0){
+//                    TipsNoAuthorDialog noAuthorDialog = new TipsNoAuthorDialog(context);
+//                    noAuthorDialog.show();
+//                    return;
+//                }
                 Intent intent = new Intent();
                 intent.setClass(context, VdianImportGoodsActivity.class);
                 ((BaseActivity) context).startActivityForResult(intent, VdianActivity.REQUEST_IMPORT_CODE);
