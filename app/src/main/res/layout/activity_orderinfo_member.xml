@@ -5,7 +5,7 @@
     android:background="@color/color_EEEEEE"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,67 +15,71 @@
             android:id="@+id/ll_title"
             layout="@layout/layout_title_back" />
 
-        <FrameLayout
-            android:id="@+id/fl_search"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/title_height"
-            android:background="@drawable/shape_down_line"
-            android:gravity="center_vertical"
+        <RelativeLayout
+            android:id="@+id/rl_search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="gone">
+
+            <FrameLayout
+                android:id="@+id/fl_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_height"
+                android:background="@drawable/shape_down_line"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/shape_home_search"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/ic_search" />
+
+                    <EditText
+                        android:id="@+id/et_kcsearch_input"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:hint="请输入搜索订单号"
+                        android:inputType="text"
+                        android:textColor="#575757"
+                        android:textColorHint="#c0bebe"
+                        android:textSize="@dimen/z_text_small" />
+
+                    <ImageButton
+                        android:id="@+id/clear_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@android:color/transparent"
+                        android:src="@mipmap/home_delete_search" />
+                </LinearLayout>
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/iv_back_search"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:clickable="true"
-                android:src="@mipmap/icon_back"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/shape_home_search"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@mipmap/ic_search" />
-
-                <EditText
-                    android:id="@+id/et_kcsearch_input"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center_vertical"
-                    android:hint="请输入搜索订单号"
-                    android:inputType="text"
-                    android:textColor="#575757"
-                    android:textColorHint="#c0bebe"
-                    android:textSize="@dimen/z_text_small" />
-
-                <ImageButton
-                    android:id="@+id/clear_input"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@android:color/transparent"
-                    android:clickable="true"
-                    android:src="@mipmap/home_delete_search" />
-
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                android:clickable="true"
+                android:src="@mipmap/icon_add_with_circle_64" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -118,10 +122,11 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_cjs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="成交数"
-                android:textColor="@color/textBlack"
+                android:textColor="@color/color_00BCB4"
                 android:textSize="14dp" />
 
             <ImageView
@@ -144,6 +149,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_cje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="成交额"
@@ -169,6 +175,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_ye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="余额"
@@ -185,16 +192,33 @@
                 android:visibility="visible" />
         </LinearLayout>
 
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll_jf_sort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="积分"
-            android:textColor="@color/textBlack"
-            android:textSize="14dp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_jf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="积分"
+                android:textColor="@color/textBlack"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/iv_jf_sort"
+                android:layout_width="15dp"
+                android:layout_height="13dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="1dp"
+                android:src="@mipmap/down_sort"
+                android:visibility="visible" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <View

@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -62,7 +64,6 @@ public class OrderInfoEntityFragment extends BaseFragment {
     private TextView tvBeginTime;
     private TextView tvEndTime;
     private ImageView ivVisibility;
-    private TextView tvNick;
     private boolean isBeginTime;
     private String beginTime, endTime;
     private OrderInfoEntityFragment infoEntityFragment;
@@ -87,6 +88,10 @@ public class OrderInfoEntityFragment extends BaseFragment {
     private RelativeLayout rl_defult_null;
     //没有网络时 展示的界面
     private TextView iv_default_null;
+    //设置用户名
+    private TextView tvNick;
+    private RelativeLayout rlSearchTitle;
+    private ImageView ivBack;
 
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,6 +101,8 @@ public class OrderInfoEntityFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        //设置用户名
+        tvNick = (TextView) view.findViewById(R.id.tv_title);
         swipeRefreshLayout = (SmartRefreshLayout) view.findViewById(R.id.srl_refreshlayout);
         rlv = (RecyclerView) view.findViewById(R.id.rlv_order_entity);
         tvNum = (TextView) view.findViewById(R.id.tv_order_info_num);
@@ -116,16 +123,19 @@ public class OrderInfoEntityFragment extends BaseFragment {
         ll = (RelativeLayout) view.findViewById(R.id.ll);
         rl_defult_null = (RelativeLayout) view.findViewById(R.id.rl_defult_null);
         iv_default_null = (TextView) view.findViewById(R.id.iv_default_null);
+        rlSearchTitle = (RelativeLayout) view.findViewById(R.id.rl_search_title);
+        ivBack = (ImageView) view.findViewById(R.id.iv_back);
     }
 
     @Override
     public void initData() {
-        ivVisibility.setVisibility(View.GONE);
         //默认为当天时间
         final String nowDay = CalendarUtil.getTodayDate();
         //本月第一天
         final String begin = CalendarUtil.getFirstDay();
+        tvNick.setText("我的订单");
         iv_search.setVisibility(View.VISIBLE);
+        ivVisibility.setVisibility(View.GONE);
         tvBeginTime.setText(begin);
         tvEndTime.setText(nowDay);
         //进行断线重连机制  心跳机制原理
@@ -247,8 +257,8 @@ public class OrderInfoEntityFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 ll_vi.setVisibility(View.GONE);
-                fl_search.setVisibility(View.VISIBLE);
                 ll.setVisibility(View.GONE);
+                rlSearchTitle.setVisibility(View.VISIBLE);
 
             }
         });
@@ -257,6 +267,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
             public void onClick(View v) {
                 ll_vi.setVisibility(View.VISIBLE);
                 ll.setVisibility(View.VISIBLE);
+                rlSearchTitle.setVisibility(View.GONE);
                 //强制隐藏键盘
                 InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
@@ -285,6 +296,14 @@ public class OrderInfoEntityFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 searchInput.setText("");
+            }
+        });
+        ivBack.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                context.startActivity(new Intent(context, OrderInfoMainActivity.class));
+                getActivity().finish();
+                return false;
             }
         });
     }

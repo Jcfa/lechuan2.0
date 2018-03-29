@@ -36,6 +36,14 @@ public class OrderInfoPaperAdapter extends RecyclerView.Adapter<OrderInfoPaperAd
         notifyDataSetChanged();
     }
 
+    /**
+     * 排序更新视图
+     * */
+    public void updateSorttView(List<OrderInfoPaperBean.DataBean>  lists) {
+        this.lists = lists;
+        notifyDataSetChanged();
+    }
+
     //点击事件
     public interface RecyclerViewOnItemClickListener {
 
