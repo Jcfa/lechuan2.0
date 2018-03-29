@@ -199,6 +199,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <TextView

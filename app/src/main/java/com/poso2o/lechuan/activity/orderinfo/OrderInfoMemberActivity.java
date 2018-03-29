@@ -154,7 +154,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
         ll_cjs_sort.setOnClickListener(this);
         ll_ye_sort.setOnClickListener(this);
         ll_cje_sort.setOnClickListener(this);
-        iv_jf_sort.setOnClickListener(this);
+        ll_jf_sort.setOnClickListener(this);
     }
 
     @Override
@@ -203,7 +203,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
             case R.id.ll_ye_sort:
                 cjsSort(iv_ye_sort);
                 break;
-            case R.id.iv_jf_sort:
+            case R.id.ll_jf_sort:
                 cjsSort(iv_jf_sort);
                 break;
         }
@@ -222,6 +222,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
                 tvCjs.setTextColor(getResources().getColor(R.color.color_00BCB4));
                 tvCje.setTextColor(getResources().getColor(R.color.textBlack));
                 tvYe.setTextColor(getResources().getColor(R.color.textBlack));
+                tvJf.setTextColor(getResources().getColor(R.color.textBlack));
                 Collections.sort(data, new Comparator<OrderInfoMemberBean.DataBean>() {
                     @Override
                     public int compare(OrderInfoMemberBean.DataBean o1, OrderInfoMemberBean.DataBean o2) {
@@ -235,6 +236,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
                 tvCje.setTextColor(getResources().getColor(R.color.color_00BCB4));
                 tvCjs.setTextColor(getResources().getColor(R.color.textBlack));
                 tvYe.setTextColor(getResources().getColor(R.color.textBlack));
+                tvJf.setTextColor(getResources().getColor(R.color.textBlack));
                 Collections.sort(data, new Comparator<OrderInfoMemberBean.DataBean>() {
                     @Override
                     public int compare(OrderInfoMemberBean.DataBean o1, OrderInfoMemberBean.DataBean o2) {
@@ -248,6 +250,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
                 tvYe.setTextColor(getResources().getColor(R.color.color_00BCB4));
                 tvCjs.setTextColor(getResources().getColor(R.color.textBlack));
                 tvCje.setTextColor(getResources().getColor(R.color.textBlack));
+                tvJf.setTextColor(getResources().getColor(R.color.textBlack));
                 Collections.sort(data, new Comparator<OrderInfoMemberBean.DataBean>() {
                     @Override
                     public int compare(OrderInfoMemberBean.DataBean o1, OrderInfoMemberBean.DataBean o2) {
@@ -279,16 +282,19 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
                 tvCjs.setTextColor(getResources().getColor(R.color.color_00BCB4));
                 tvYe.setTextColor(getResources().getColor(R.color.textBlack));
                 tvCje.setTextColor(getResources().getColor(R.color.textBlack));
+                tvJf.setTextColor(getResources().getColor(R.color.textBlack));
             } else if (ivort.getId() == R.id.iv_cje_sort) {
                 iv_cje_sort.setImageResource(R.mipmap.down_sort);
                 tvCje.setTextColor(getResources().getColor(R.color.color_00BCB4));
                 tvYe.setTextColor(getResources().getColor(R.color.textBlack));
                 tvCjs.setTextColor(getResources().getColor(R.color.textBlack));
+                tvJf.setTextColor(getResources().getColor(R.color.textBlack));
             } else if (ivort.getId() == R.id.iv_ye_sort) {
                 iv_ye_sort.setImageResource(R.mipmap.down_sort);
                 tvYe.setTextColor(getResources().getColor(R.color.color_00BCB4));
                 tvCje.setTextColor(getResources().getColor(R.color.textBlack));
                 tvCjs.setTextColor(getResources().getColor(R.color.textBlack));
+                tvJf.setTextColor(getResources().getColor(R.color.textBlack));
             } else if (ivort.getId() == R.id.iv_jf_sort) {
                 iv_jf_sort.setImageResource(R.mipmap.down_sort);
                 tvJf.setTextColor(getResources().getColor(R.color.color_00BCB4));

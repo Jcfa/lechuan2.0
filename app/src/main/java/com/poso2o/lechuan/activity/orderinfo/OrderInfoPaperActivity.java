@@ -103,9 +103,10 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
      * 标记按钮是否点击
      */
     public boolean IV_PAPER = false;
+
     /**
      * 标记是否点击回退
-     * */
+     */
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_orderinfo_paper;
