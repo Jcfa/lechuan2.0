@@ -104,9 +104,10 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
      */
     public boolean IV_PAPER = false;
 
-    /**
-     * 标记是否点击回退
-     */
+
+    private OrderInfoPaperBean infoPaperBean;
+    private TextView tvName;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_orderinfo_paper;
@@ -138,6 +139,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         tv_kc_count = (TextView) findViewById(R.id.tv_kc_count);
         tv_zcb_meny = (TextView) findViewById(R.id.tv_zcb_meny);
         rl_search_title = (RelativeLayout) findViewById(R.id.rl_search_title);
+        tvName = (TextView) findViewById(R.id.tv_order_name);
     }
 
     @Override
@@ -159,13 +161,14 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
             @Override
             public void onResult(int tag, OrderInfoPaperBean paperBean) {
                 dismissLoading();
+                infoPaperBean = paperBean;
                 data = paperBean.getData();
                 if (data == null || data.size() < 0) {
                     Toast.show(activity, "数据为空");
                 } else {
                     adapter = new OrderInfoPaperAdapter(activity, data);
                     rlvPaper.setAdapter(adapter);
-                    tvQuery.setText("全部(" + data.size() + ")");
+                    tvName.setText("全部(" + data.size() + ")");
                     tv_order_sell_many_total.setText(paperBean.getTotal().getTotalnums());
                     tv_order_zm_total.setText(paperBean.getTotal().getTotalamounts());
                     adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
@@ -200,6 +203,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         tvQuery.setOnClickListener(this);
         ll_kc_sort.setOnClickListener(this);
         ll_zcb_sort.setOnClickListener(this);
+        tvName.setOnClickListener(this);
     }
 
     @Override
@@ -210,7 +214,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.clear_input:
                 etKcSearch.setText("");
-                rl_default_null.setVisibility(View.GONE);
+                rl_default_null.setVisibility(View.VISIBLE);
 //                initNetApi();
                 adapter.setData(data);
                 //强制隐藏键盘
@@ -218,8 +222,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 break;
-            case R.id.tv_query:
-                queryDir();
+            case R.id.tv_order_name:
+                queryDir(data.size());
                 break;
             case R.id.ll_kc_sort:
                 paperSort(iv_kc_sort);
@@ -295,9 +299,9 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     /**
      * 查询所有目录列表以及多少条目
      */
-    private void queryDir() {
+    private void queryDir(int count) {
         dir = new DialogQuerySellDir(activity);
-        dir.setData();
+        dir.setData(count);
         dir.show();
     }
 
@@ -306,35 +310,57 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(FidEventBus fidEventBus) {
-        rl_default_null.setVisibility(View.GONE);
+        rl_default_null.setVisibility(View.VISIBLE);
         String fid = fidEventBus.getFid();
         //创建新的集合
-
-        List<OrderInfoPaperBean.DataBean> newlists = new ArrayList<>();
-        if (TextUtils.isEmpty(fid)) {
-            newlists = data;
+        if (fidEventBus.getFid().equals("全部")) {
+            adapter.setData(data);
         } else {
-            newlists.clear();
-            //根据lists集合中的对象字段名过滤
-            int kucount = 0;
-            double totalMeny = 0.00;
-            for (OrderInfoPaperBean.DataBean sortModel : data) {
-                String num = sortModel.getFid();
-                if (num.equals(fid)) {
-                    newlists.add(sortModel);
-                    kucount += Integer.parseInt(sortModel.getTotalnum());
-                    BigDecimal bg = new BigDecimal(Double.parseDouble(sortModel.getTotalamount()));
-                    totalMeny += bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
-                    format = df.format(totalMeny);
+            List<OrderInfoPaperBean.DataBean> newlists = new ArrayList<>();
+            if (TextUtils.isEmpty(fid)) {
+                newlists = data;
+            } else {
+                newlists.clear();
+                //根据lists集合中的对象字段名过滤
+                int kucount = 0;
+                double totalMeny = 0.00;
+                for (OrderInfoPaperBean.DataBean sortModel : data) {
+                    String num = sortModel.getFid();
+                    if (num.equals(fid)) {
+                        newlists.add(sortModel);
+                        kucount += Integer.parseInt(sortModel.getTotalnum());
+                        BigDecimal bg = new BigDecimal(Double.parseDouble(sortModel.getTotalamount()));
+                        totalMeny += bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+                        format = df.format(totalMeny);
+                    }
                 }
+                setTota(kucount, format);
+        /*    int count = Integer.parseInt(infoPaperBean.getTotal().getTotalnums());
+            if (kucount <= count) {
+                tv_order_sell_many_total.setText(kucount + "");
+                tv_order_zm_total.setText(format);
+            } else {
+                tv_order_sell_many_total.setText(count + "");
+                tv_order_zm_total.setText(infoPaperBean.getTotal().getTotalamounts());
+            }*/
             }
-//            tv_order_sell_many_total.setText(kucount + "");
-//            tv_order_zm_total.setText(format);
+            // 不管怎么样都要刷新
+            adapter.updateSearchListView(newlists);
         }
-        // 不管怎么样都要刷新
-        adapter.updateSearchListView(newlists);
         dir.dismiss();
+    }
+
+    private void setTota(int kucount, String format) {
+        int count = Integer.parseInt(infoPaperBean.getTotal().getTotalnums());
+        if (count > kucount) {
+            tv_order_sell_many_total.setText(kucount + "");
+            tv_order_zm_total.setText(format);
+        } else {
+            tv_order_sell_many_total.setText(count + "");
+            tv_order_zm_total.setText(format);
+
+        }
     }
 
 
@@ -435,6 +461,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 adapter.setData(data);
                 rl_search_title.setVisibility(View.GONE);
                 rl_default_null.setVisibility(View.VISIBLE);
+                int count = Integer.parseInt(infoPaperBean.getTotal().getTotalnums());
+                setTota(count, infoPaperBean.getTotal().getTotalamounts());
                 //强制隐藏键盘
                 InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(v, InputMethodManager.SHOW_FORCED);
