@@ -262,7 +262,7 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
     /**
      * 加载商品目录
      */
-    private void loadCatalogList() {
+    public void loadCatalogList() {
         VdianGoodsManager2.getInstance().loadCatalogList((BaseActivity) context, "1", new IRequestCallBack<CatalogBean>() {
             @Override
             public void onResult(int tag, CatalogBean result) {

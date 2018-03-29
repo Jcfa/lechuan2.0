@@ -169,7 +169,7 @@ public class VdianSelectGoodsAdapter extends RecyclerView.Adapter<VdianSelectGoo
      */
     public ArrayList<Goods> getSelects() {
         ArrayList<Goods> goodses = new ArrayList<>();
-        for (Goods goods : goodses) {
+        for (Goods goods : mDatas) {
             if (goods.checked) {
                 goodses.add(goods);
             }

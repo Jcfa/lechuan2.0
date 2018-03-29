@@ -193,6 +193,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_IMPORT_CODE:
+                    vdianGoodsFragment.loadCatalogList();
                     vdianGoodsFragment.loadGoodsList(FIRST);
                     break;
             }

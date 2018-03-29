@@ -211,31 +211,6 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         });
     }
 
-//    private void loadGoods() {
-//        showLoading("正在加载商品...");
-//        RealGoodsManager.getInstance().loadGoodsAndCatalog((BaseActivity) context, "dat", "DESC", "", "", new IRequestCallBack() {
-//
-//            @Override
-//            public void onResult(int tag, Object object) {
-//                dismissLoading();
-//                import_goods_swipe.setRefreshing(false);
-//                AllGoodsAndCatalog allGoodsAndCatalog = (AllGoodsAndCatalog) object;
-//                if (allGoodsAndCatalog != null) {
-//                    vdianSelectGoodsAdapter.notifyDatas(allGoodsAndCatalog.list);
-//                    initCatalogPopupWindow(allGoodsAndCatalog.directory);
-//                }
-//                restorationSort();
-//            }
-//
-//            @Override
-//            public void onFailed(int tag, String msg) {
-//                dismissLoading();
-//                import_goods_swipe.setRefreshing(false);
-//                Toast.show(context, msg);
-//            }
-//        });
-//    }
-
     @Override
     public void initListener() {
         vdianSelectGoodsAdapter.setOnItemClickListener(new VdianSelectGoodsAdapter.OnItemClickListener() {
