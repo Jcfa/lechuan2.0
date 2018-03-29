@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/free_edit_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/free_edit_view"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_small"
-        android:gravity="center_vertical"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -21,8 +21,8 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="发文"
             android:textSize="@dimen/textSize_large" />
@@ -32,85 +32,80 @@
             style="@style/text_9E9E9E_16"
             android:layout_width="60dp"
             android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginRight="10dp"
             android:background="@drawable/selector_gray_radius5_bg"
             android:gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:text="预览" />
     </LinearLayout>
 
     <View style="@style/horizontal_line_gray" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/height_tiny"
             android:background="@android:color/white"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_tiny"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/free_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/spacing_middle"
-                    android:text="自由编辑:"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="@dimen/textSize_normal" />
-
-                <TextView
-                    android:id="@+id/select_template_name"
-                    style="@style/text_9E9E9E_14"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/free_edit"
-                    android:hint="选择模版" />
-
-                <ImageView
-                    android:id="@+id/free_edit_hide_template"
-                    android:layout_width="@dimen/height_tiny"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/spacing_middle"
-                    android:src="@mipmap/arrow_less" />
-            </LinearLayout>
-
-            <View style="@style/horizontal_line_gray" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView_template"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/free_edit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"/>
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/spacing_middle"
+                android:text="自由编辑:"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/textSize_normal" />
 
-            <View style="@style/horizontal_line_gray"
-                android:id="@+id/recycler_line"/>
+            <TextView
+                android:id="@+id/select_template_name"
+                style="@style/text_9E9E9E_14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/free_edit"
+                android:layout_weight="1"
+                android:hint="选择模版" />
 
-            <WebView
-                android:id="@+id/webview_edit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
+            <ImageView
+                android:id="@+id/free_edit_hide_template"
+                android:layout_width="@dimen/height_tiny"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/spacing_middle"
+                android:src="@mipmap/arrow_less" />
         </LinearLayout>
 
-    </ScrollView>
+        <View style="@style/horizontal_line_gray" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_template"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
+
+        <View
+            android:id="@+id/recycler_line"
+            style="@style/horizontal_line_gray" />
+
+        <WebView
+            android:id="@+id/webview_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <View style="@style/horizontal_line_gray" />
 
@@ -118,11 +113,11 @@
         android:id="@+id/add_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#FEFEFE"
-        android:visibility="gone"
+        android:orientation="horizontal"
         android:paddingBottom="@dimen/spacing_small"
-        android:paddingTop="@dimen/spacing_small">
+        android:paddingTop="@dimen/spacing_small"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/oa_template_change"
@@ -196,46 +191,46 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/free_edit_draft"
             android:layout_width="0dp"
-            android:layout_weight="1.6"
             android:layout_height="wrap_content"
+            android:layout_weight="1.6"
             android:background="@drawable/selector_gray_radius5_bg"
             android:ems="5"
             android:gravity="center"
-            android:text="加入稿件箱"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="加入稿件箱"
             android:textColor="@color/textGray"
             android:textSize="@dimen/z_text_small" />
 
         <View
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/free_edit_publish"
             android:layout_width="0dp"
-            android:layout_weight="1.6"
             android:layout_height="wrap_content"
+            android:layout_weight="1.6"
             android:background="@drawable/selector_green_radius5_bg"
             android:ems="5"
             android:gravity="center"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:text="去发布"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/z_text_small" />
 
         <View
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="1dp" />
+            android:layout_height="1dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 </LinearLayout>

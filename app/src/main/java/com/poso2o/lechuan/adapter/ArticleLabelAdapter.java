@@ -37,9 +37,9 @@ public class ArticleLabelAdapter extends BaseAdapter<ArticleLabelAdapter.OaLaybe
             @Override
             public void onClick(View v) {
                 if (findSelect(item)) {
-                    selects.remove(item.label_id);
+                    selects.remove(item.label_name);
                 } else {
-                    selects.add(item.label_id);
+                    selects.add(item.label_name);
                 }
                 notifyDataSetChanged();
             }
@@ -57,7 +57,7 @@ public class ArticleLabelAdapter extends BaseAdapter<ArticleLabelAdapter.OaLaybe
 
     private boolean findSelect(OaLablesBean item) {
         for (String str : selects) {
-            if (TextUtils.equals(str, item.label_id)) {
+            if (TextUtils.equals(str, item.label_name)) {
                 return true;
             }
         }

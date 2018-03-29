@@ -57,8 +57,10 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
 
     //打开相册
     private static final int CODE_OPEN_PIC = 1301;
-    //选择商品
+    //JS调用Android选择商品
     private static final int CODE_SELECT_GOODS = 1302;
+    //Android主动选择商品添加到文章中
+    private static final int CODE_INPUT_GOODS = 1304;
     //切换模板
     private static final int CODE_CHANGE_MODEL = 1303;
 
@@ -153,6 +155,8 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                 select_template_name.setText(item.template_name);
                 webview_edit.loadUrl("javascript:emptyAdTemplate()");
                 webview_edit.loadUrl("javascript:appendBase64HTML('" + item.content + "')");
+                mTemplateAdapter.notifyDataSetChanged(templates,templateBean == null ? "" : templateBean.template_id);
+                showOrNot();
             }
         });
 
@@ -194,7 +198,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.oa_template_goods:
                 //选择插入商品
-                toSelectGoods();
+                selectGoodsInput();
                 break;
             case R.id.oa_template_image:
                 //选择插入图片
@@ -232,7 +236,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                         xmlStr = xmlStr.replaceAll("\n","");
                         webview_edit.loadUrl("javascript:replaceGoodsItemInfo('" + xmlStr + "')");
                     }catch (Exception e){
-
+                        Toast.show(getApplication(),"数据读写出错");
                     }
                     break;
                 case CODE_CHANGE_MODEL:
@@ -242,6 +246,10 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                         webview_edit.loadUrl("javascript:emptyAdTemplate()");
                         webview_edit.loadUrl("javascript:appendBase64HTML('" + templateBean.content + "')");
                     }
+                    break;
+                case CODE_INPUT_GOODS:
+                    Goods g = (Goods) data.getExtras().get(AdGoodsActivity.AD_ARTICLE_GOODS);
+                    inputGoods(g);
                     break;
             }
         }
@@ -362,6 +370,30 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    //区别toSelectGoods，toSelectGoods是JS主动调用Android选择商品，而selectGoodsInput是Android主动往文章插入商品
+    private void selectGoodsInput(){
+        Intent intent = new Intent();
+        intent.setClass(getApplication(),AdGoodsActivity.class);
+        startActivityForResult(intent,CODE_INPUT_GOODS);
+    }
+
+    private void inputGoods(Goods goods){
+        showLoading();
+        ArticleDataManager.getInstance().getGoodsPic(this, goods.goods_id, new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object result) {
+                dismissLoading();
+                insertPic((String)result);
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                Toast.show(getApplication(),msg);
+            }
+        });
+    }
+
     @JavascriptInterface
     public void toSelectGoods(){
         Intent intent = new Intent();
@@ -429,7 +461,7 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
                 DefaultTemplates defaultTemplates = (DefaultTemplates) result;
                 if (defaultTemplates != null && defaultTemplates.list != null) {
                     templates = defaultTemplates.list;
-                    mTemplateAdapter.notifyDataSetChanged(templates);
+                    mTemplateAdapter.notifyDataSetChanged(templates,templateBean == null ? "" : templateBean.template_id);
                 }
             }
 

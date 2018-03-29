@@ -128,6 +128,16 @@ public class HttpAPI {
     public static String ARTICLES_UNCOLLECT_API = SERVER_MAIN_API + "ArticlesManage.htm?Act=unCollect";
 
     /**
+     * 根据商品id获取商品推广图片
+     */
+    public static final String OA_GOODS_PIC_URL = SERVER_MAIN_API + "ImgManage.htm?Act=uploadWeixiGoodsImage";
+
+    /**
+     * 发布文章
+     */
+    public static final String OA_SEND_ARTICLE_URL = SERVER_MAIN_API + "WxNewsManage.htm?Act=sendArticles";
+
+    /**
      * 分销商店铺列表
      */
     public static String DIST_SHOP_LIST_API = SERVER_MAIN_API + "distributorManage.htm?Act=distributorShops";

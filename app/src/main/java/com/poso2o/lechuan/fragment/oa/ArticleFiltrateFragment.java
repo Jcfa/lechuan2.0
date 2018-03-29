@@ -153,7 +153,7 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
         ArrayList<String> types = typeAdapter.getSelects();
         String t = "";
         for (int i = 0; i < types.size(); i++) {
-            if (i == types.size()) {
+            if (i == types.size() - 1) {
                 t = t + types.get(i);
             } else {
                 t = t + types.get(i) + ",";
@@ -164,7 +164,7 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
         ArrayList<String> laybels = tagAdapter.getSelects();
         String l = "";
         for (int i = 0; i < laybels.size(); i++) {
-            if (i == laybels.size()) {
+            if (i == laybels.size() - 1) {
                 l = l + laybels.get(i);
             } else {
                 l = l + laybels.get(i) + ",";

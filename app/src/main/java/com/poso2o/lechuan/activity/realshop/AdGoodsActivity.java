@@ -21,9 +21,11 @@ import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
 import com.poso2o.lechuan.bean.goodsdata.AllGoodsAndCatalog;
 import com.poso2o.lechuan.bean.goodsdata.Catalog;
+import com.poso2o.lechuan.bean.goodsdata.CatalogBean;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.rshopmanager.RealGoodsManager;
+import com.poso2o.lechuan.manager.vdian.VdianCatalogManager;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
 import com.poso2o.lechuan.tool.edit.TextUtils;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.poso2o.lechuan.base.BaseManager.FIRST;
 
 /**
  * Created by mr zhang on 2017/10/31.
@@ -50,8 +53,6 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
     public static final String AD_TYPE = "ad_type";
     //返回商品
     public static final String AD_ARTICLE_GOODS = "ad_article_goods";
-    //店铺类型：true为微店，false为实体店
-    public static final String SHOP_TYPE = "shop_type";
 
     //返回
     private ImageView ad_goods_back;
@@ -85,17 +86,44 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
 
     //下拉菜单
     private CatalogPopupWindow catalogPopupWindow;
-    //选中的目录
-    private Catalog selectCatalog;
     
     //列表数据适配器
     private GoodsListAdapter goodsListAdapter;
 
-    private boolean isAscSale = false;
-    private boolean isAscStock = false;
+    /**
+     * 选中的排序按钮
+     */
+    private TextView selectSort;
 
-    //是否微店
-    private boolean is_vshop = true;
+    /**
+     * 选中的目录
+     */
+    private Catalog selectCatalog;
+
+    /**
+     * 目录ID
+     */
+    private String catalog_id = "-1";
+
+    /**
+     * 排序类型
+     */
+    private String orderByName = "";
+
+    /**
+     * 排序方向
+     */
+    private String sort = BaseManager.ASC;
+
+    /**
+     * 搜索关键词
+     */
+    private String keywords = "";
+
+    /**
+     * 店铺ID
+     */
+    private long shop_id = 0;
 
     @Override
     protected int getLayoutResId() {
@@ -141,15 +169,15 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void initData() {
-//        is_vshop = !SharedPreferencesUtils.getBoolean(SharedPreferencesUtils.KEY_SHOP_TYPE);
 
-        goodsListAdapter = new GoodsListAdapter(context,is_vshop);
+        goodsListAdapter = new GoodsListAdapter(context,true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         ad_goods_recycle.setLayoutManager(linearLayoutManager);
         ad_goods_recycle.setAdapter(goodsListAdapter);
- 
-        loadGoodsData();
+
+        showLoading();
+        loadCatalogData();
     }
 
     @Override
@@ -164,7 +192,7 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
         ad_goods_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadGoodsData();
+                loadGoodsData(FIRST);
             }
         });
 
@@ -186,7 +214,8 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                search(ad_goods_search.getText().toString());
+                keywords = ad_goods_search.getText().toString();
+                loadGoodsData(FIRST);
             }
 
             @Override
@@ -210,27 +239,12 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
                 startActivityForResult(intent,111);
                 break;
             case R.id.ad_goods_sort_sale:
-                setSortTextAndIcon(ad_goods_sort_stock, R.color.color_262626, R.mipmap.home_hand_default);
-                isAscStock = false;
-                if (isAscSale) {// 升序
-                    setSortTextAndIcon(ad_goods_sort_sale, R.color.color_00BCB4, R.mipmap.home_hand_down);
-                } else {// 降序
-                    setSortTextAndIcon(ad_goods_sort_sale, R.color.color_00BCB4, R.mipmap.home_hand_up);
-                }
-                isAscSale = !isAscSale;
-                saleSort();
+                orderByName = VdianGoodsManager.SORT_TYPE_SALE_NUMBER;
+                sort(ad_goods_sort_sale);
                 break;
             case R.id.ad_goods_sort_stock:
-                setSortTextAndIcon(ad_goods_sort_sale, R.color.color_262626, R.mipmap.home_hand_default);
-                isAscSale = false;
-
-                if (isAscStock) {// 升序
-                    setSortTextAndIcon(ad_goods_sort_stock, R.color.color_00BCB4, R.mipmap.home_hand_down);
-                } else {// 降序
-                    setSortTextAndIcon(ad_goods_sort_stock, R.color.color_00BCB4, R.mipmap.home_hand_up);
-                }
-                isAscStock = !isAscStock;
-                stockSort();
+                orderByName = VdianGoodsManager.SORT_TYPE_STOCK;
+                sort(ad_goods_sort_stock);
                 break;
             case R.id.ad_goods_catalog:
                 if (catalogPopupWindow != null) {
@@ -242,28 +256,55 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    private void loadCatalogData() {
+        VdianCatalogManager.getInstance().loadList((BaseActivity) context, shop_id, new IRequestCallBack<CatalogBean>() {
+            @Override
+            public void onResult(int tag, CatalogBean catalogBean) {
+                Catalog allCatalog = new Catalog();
+                allCatalog.catalog_id = "-1";
+                allCatalog.catalog_name = getString(R.string.all);
+                for (Catalog catalog : catalogBean.list) {
+                    allCatalog.catalog_goods_number += catalog.catalog_goods_number;
+                }
+                catalogBean.list.add(0, allCatalog);
+                if (selectCatalog == null) {
+                    selectCatalog = allCatalog;
+                } else {
+                    for (Catalog catalog : catalogBean.list) {
+                        if (android.text.TextUtils.equals(selectCatalog.catalog_id, catalog.catalog_id)) {
+                            selectCatalog = catalog;
+                        }
+                    }
+                }
+                ad_goods_catalog.setText(selectCatalog.getNameAndNum());
+                initCatalogPopupWindow(catalogBean.list);
+                dismissLoading();
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                Toast.show(context, msg);
+                dismissLoading();
+            }
+        });
+    }
+
     /**
      * 初始化目录列表
+     *
      * @param catalogs
      */
     private void initCatalogPopupWindow(ArrayList<Catalog> catalogs) {
-        Catalog catalog = new Catalog();
-        catalog.catalog_goods_number = goodsListAdapter.getItemCount();
-        catalog.catalog_name = "全部";
-        catalog.catalog_id = "-1";
-        catalog.fid = "-1";
-        catalog.directory = "全部";
-        catalog.productNum = goodsListAdapter.getItemCount() + "";
-        selectCatalog = catalog;
-        catalogs.add(0, catalog);
-        catalogPopupWindow = new CatalogPopupWindow(this, catalogs, selectCatalog, is_vshop);
+        catalogPopupWindow = new CatalogPopupWindow(context, catalogs, selectCatalog);
         catalogPopupWindow.setOnItemClickListener(new CatalogPopupWindow.OnItemClickListener() {
 
             @Override
             public void onItemClick(Catalog catalog) {
-                ad_goods_catalog.setText(catalog.directory + "（" + catalog.productNum + "）");
+                ad_goods_catalog.setText(catalog.getNameAndNum());
                 selectCatalog = catalog;
-                search("");
+                catalog_id = catalog.catalog_id;
+                ad_goods_swipe.setRefreshing(true);
+                loadGoodsData(FIRST);
             }
         });
 
@@ -272,99 +313,9 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onDismiss() {
-                catalog_shade.setVisibility(View.GONE);
+                catalog_shade.setVisibility(GONE);
             }
         });
-    }
-
-    /**
-     * 加载商品数据
-     */
-    private void loadGoodsData() {
-        ad_goods_swipe.setRefreshing(true);
-        if (is_vshop){
-            VdianGoodsManager.getInstance().loadList(this, new IRequestCallBack<AllGoodsAndCatalog>() {
-                @Override
-                public void onResult(int tag, AllGoodsAndCatalog result) {
-                    dismissLoading();
-                    ad_goods_swipe.setRefreshing(false);
-                    restorationSort();
-                    refreshGoodsListData(result.list);
-                    initCatalogPopupWindow(result.catalogs);
-                    ad_goods_catalog.setText("全部（" + result.list.size() + "）");
-                }
-
-                @Override
-                public void onFailed(int tag, String msg) {
-                    dismissLoading();
-                    ad_goods_swipe.setRefreshing(false);
-                    Toast.show(context,msg);
-                }
-            });
-        }else {
-            RealGoodsManager.getInstance().loadGoodsAndCatalog(this, "dat", BaseManager.DESC, "", "", new IRequestCallBack<AllGoodsAndCatalog>() {
-                @Override
-                public void onResult(int tag, AllGoodsAndCatalog result) {
-                    dismissLoading();
-                    ad_goods_swipe.setRefreshing(false);
-                    restorationSort();
-                    refreshGoodsListData(result.list);
-                    initCatalogPopupWindow(result.directory);
-                    ad_goods_catalog.setText("全部（" + result.list.size() + "）");
-                }
-
-                @Override
-                public void onFailed(int tag, String msg) {
-                    dismissLoading();
-                    ad_goods_swipe.setRefreshing(false);
-                    Toast.show(context,msg);
-                }
-            });
-        }
-    }
-
-    /**
-     * 搜索
-     */
-    private void search(String s) {
-        ArrayList<Goods> goodsDatas = null;
-        if (is_vshop){
-            goodsDatas = VdianGoodsManager.getInstance().search(this,s,selectCatalog);
-        }else {
-            goodsDatas = RealGoodsManager.getInstance().search(this, s, selectCatalog);
-        }
-        refreshGoodsListData(goodsDatas);
-        ad_goods_recycle.scrollToPosition(0);
-        if (goodsDatas == null || goodsDatas.size() == 0) {
-            ad_goods_search_no_goods.setVisibility(View.VISIBLE);
-            ad_goods_search_no_goods.setText("抱歉，找不到相关商品");
-        } else {
-            ad_goods_search_no_goods.setVisibility(View.GONE);
-        }
-    }
-
-
-    /**
-     * 复位排序视图
-     */
-    private void restorationSort() {
-        setSortTextAndIcon(ad_goods_sort_stock, R.color.color_262626, R.mipmap.home_hand_default);
-        setSortTextAndIcon(ad_goods_sort_sale, R.color.color_262626, R.mipmap.home_hand_default);
-        isAscStock = false;
-        isAscSale = false;
-    }
-    
-    private void refreshGoodsListData(ArrayList<Goods> goodsDatas) {
-        ad_goods_catalog.setText("全部（" + goodsDatas.size() + "）");
-        ad_goods_search_no_goods.setVisibility(GONE);
-        ad_goods_hint_no_goods.setVisibility(GONE);
-        if (ListUtils.isNotEmpty(goodsDatas)) {
-            ad_goods_no_goods.setVisibility(GONE);
-        } else {
-            ad_goods_no_goods.setVisibility(VISIBLE);
-        }
-        goodsListAdapter.notifyDataSetChanged(goodsDatas);
-        ad_goods_recycle.scrollToPosition(0);
     }
 
     /**
@@ -379,49 +330,61 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
     }
 
     /**
-     * 按销量排序
+     * 排序
      */
-    private void saleSort() {
-        if (is_vshop){
-            VdianGoodsManager.getInstance().saleSort(isAscSale, goodsListAdapter.getItems(), new VdianGoodsManager.OnSortListener() {
-                @Override
-                public void onSort(ArrayList<Goods> goodsDatas) {
-                    goodsListAdapter.notifyDataSetChanged(goodsDatas);
-                    ad_goods_recycle.scrollToPosition(0);
-                }
-            });
-        }else {
-            RealGoodsManager.getInstance().saleSort(isAscSale, goodsListAdapter.getItems(), new RealGoodsManager.OnSortListener() {
-                @Override
-                public void onSort(ArrayList<Goods> goodsDatas) {
-                    goodsListAdapter.notifyDataSetChanged(goodsDatas);
-                    ad_goods_recycle.scrollToPosition(0);
-                }
-            });
+    private void sort(TextView tv) {
+        if (selectSort != tv) {
+            sort = BaseManager.ASC;
+            if (selectSort != null) {
+                setSortTextAndIcon(selectSort, R.color.textBlack, R.mipmap.home_hand_default);
+            }
+            selectSort = tv;
+        } else {
+            sort = sort.equals(BaseManager.ASC) ? BaseManager.DESC : BaseManager.ASC;
         }
+        if (sort.equals(BaseManager.ASC)) {
+            setSortTextAndIcon(tv, R.color.textGreen, R.mipmap.home_hand_down);
+        } else {
+            setSortTextAndIcon(tv, R.color.textGreen, R.mipmap.home_hand_up);
+        }
+        ad_goods_swipe.setRefreshing(true);
+        loadGoodsData(FIRST);
     }
 
     /**
-     * 按库存排序
+     * 加载商品数据
      */
-    private void stockSort() {
-        if (is_vshop){
-            VdianGoodsManager.getInstance().stockSort(isAscStock, goodsListAdapter.getItems(), new VdianGoodsManager.OnSortListener() {
-                @Override
-                public void onSort(ArrayList<Goods> goodsDatas) {
+    public void loadGoodsData(final int pageType) {
+        ad_goods_swipe.setRefreshing(true);
+        ad_goods_hint_no_goods.setVisibility(GONE);
+        VdianGoodsManager.getInstance().query((BaseActivity) context, shop_id, catalog_id, orderByName, sort, keywords, pageType, new IRequestCallBack<ArrayList<Goods>>() {
+
+            @Override
+            public void onResult(int tag, ArrayList<Goods> goodsDatas) {
+                if (pageType == FIRST) {
+                    if (ListUtils.isEmpty(goodsDatas)) {
+                        ad_goods_hint_no_goods.setVisibility(VISIBLE);
+                        ad_goods_hint_no_goods.setText("请点击下方或右上角的按钮，添加商品至微店.");
+                    } else {
+                        ad_goods_hint_no_goods.setVisibility(GONE);
+                    }
                     goodsListAdapter.notifyDataSetChanged(goodsDatas);
-                    ad_goods_recycle.scrollToPosition(0);
+                } else {
+                    goodsListAdapter.addItems(goodsDatas);
                 }
-            });
-        }else {
-            RealGoodsManager.getInstance().stockSort(isAscStock, goodsListAdapter.getItems(), new RealGoodsManager.OnSortListener() {
-                @Override
-                public void onSort(ArrayList<Goods> goodsDatas) {
-                    goodsListAdapter.notifyDataSetChanged(goodsDatas);
-                    ad_goods_recycle.scrollToPosition(0);
+                ad_goods_swipe.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                if (pageType == FIRST) {
+                    ad_goods_hint_no_goods.setVisibility(VISIBLE);
+                    ad_goods_hint_no_goods.setText(R.string.hint_load_goods_fail);
                 }
-            });
-        }
+                Toast.show(context, msg);
+                ad_goods_swipe.setRefreshing(false);
+            }
+        });
     }
 
     @Override
