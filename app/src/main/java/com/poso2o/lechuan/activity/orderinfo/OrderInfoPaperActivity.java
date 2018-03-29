@@ -314,6 +314,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
         String fid = fidEventBus.getFid();
         //创建新的集合
         if (fidEventBus.getFid().equals("全部")) {
+            tvName.setText("全部(" + data.size() + ")");
             adapter.setData(data);
         } else {
             List<OrderInfoPaperBean.DataBean> newlists = new ArrayList<>();
@@ -335,6 +336,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                         format = df.format(totalMeny);
                     }
                 }
+                tvName.setText(fidEventBus.getDirectory() + "(" + fidEventBus.getProductNum() + ")");
                 setTota(kucount, format);
         /*    int count = Integer.parseInt(infoPaperBean.getTotal().getTotalnums());
             if (kucount <= count) {

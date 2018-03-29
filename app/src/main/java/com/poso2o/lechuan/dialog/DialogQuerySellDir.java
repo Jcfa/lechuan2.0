@@ -52,7 +52,7 @@ public class DialogQuerySellDir extends BaseDialog {
 
     @Override
     public void initData() {
-        setDialogGravity(Gravity.BOTTOM);
+        setDialogGravity(Gravity.CENTER);
         setWindowDispalay(1.0f, 0.7f);
         this.getWindow().setWindowAnimations(R.style.BottomInAnimation);
         rlvQ.setLayoutManager(new LinearLayoutManager(context));
@@ -79,7 +79,7 @@ public class DialogQuerySellDir extends BaseDialog {
         tv_quer_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new FidEventBus("全部"));
+                EventBus.getDefault().post(new FidEventBus("全部","",""));
             }
         });
     }

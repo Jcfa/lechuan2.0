@@ -45,7 +45,7 @@ public class DialogQueryDirAdapter extends RecyclerView.Adapter<DialogQueryDirAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new FidEventBus(bean.getFid()));
+                EventBus.getDefault().post(new FidEventBus(bean.getFid(),bean.getDirectory(),bean.getProductNum()));
             }
         });
     }
