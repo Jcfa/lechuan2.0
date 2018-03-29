@@ -119,6 +119,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
     }
 
     private void initNetApi() {
+        showLoading();
         OrderInfoMemberManager.getsInstance().oInfoMember(activity, new IRequestCallBack<OrderInfoMemberBean>() {
             @Override
             public void onResult(int tag, OrderInfoMemberBean infoMemberBean) {

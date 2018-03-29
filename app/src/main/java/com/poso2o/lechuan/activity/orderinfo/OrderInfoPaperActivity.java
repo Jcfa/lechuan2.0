@@ -154,6 +154,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
     }
 
     private void initNetApi() {
+        showLoading();
         OrderInfoPaperManager.getsInsatcne().orderInfoPaperApi(activity, new IRequestCallBack<OrderInfoPaperBean>() {
             @Override
             public void onResult(int tag, OrderInfoPaperBean paperBean) {

@@ -147,6 +147,7 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
         OrderInfoSellManager.getOrderInfo().orderInfoSell(activity, beginTime, endTime, new IRequestCallBack<OrderInfoSellCountBean>() {
             @Override
             public void onResult(int tag, OrderInfoSellCountBean result) {
+                dismissLoading();
                 OrderInfoSellCountBean sellCountBean = result;
                 initNetData(sellCountBean);
             }

@@ -134,10 +134,11 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
      * 网络访问
      */
     private void initNet(final String begin) {
+        showLoading();
         OrderPaperDetailManager.getOrderInfo().orderMothsDetailApi(activity, begin, new IRequestCallBack<OrderMothsDetailBean>() {
             @Override
             public void onResult(int tag, OrderMothsDetailBean detailBean) {
-                activity.dismissLoading();
+                dismissLoading();
                 List<OrderMothsDetailBean.ListBean> list = detailBean.getList();
                 double profit = 0.00;
                 double income = 0.00;
@@ -176,7 +177,7 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
 
             @Override
             public void onFailed(int tag, String msg) {
-                activity.dismissLoading();
+                dismissLoading();
                 iv_default_null.setVisibility(View.VISIBLE);
                 ll1.setVisibility(View.GONE);
                 rlv.setVisibility(View.GONE);

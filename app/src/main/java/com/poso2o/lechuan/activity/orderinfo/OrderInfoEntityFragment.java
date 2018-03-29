@@ -151,6 +151,7 @@ public class OrderInfoEntityFragment extends BaseFragment {
         swipeRefreshLayout.autoRefresh(200);
         this.beginTs = beginTime;
         this.endTS = endTime;
+//        showLoading();
         OrderInfoManager.getInfoManager().myOrderInfo((BaseActivity) getActivity(), beginTime, endTime, currPage + "",
                 new IRequestCallBack<OrderInfoBean>() {
                     @Override

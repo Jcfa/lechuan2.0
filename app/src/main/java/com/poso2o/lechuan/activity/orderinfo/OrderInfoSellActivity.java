@@ -159,6 +159,7 @@ public class OrderInfoSellActivity extends BaseActivity implements View.OnClickL
 
     private void initRequestApi(final String beginTime, final String endTime, final int cuurapge) {
         refreshLayout.autoRefresh(200);
+//        showLoading();
         this.beginTs = beginTime;
         this.endTs = endTime;
         OrderInfoGoodsManager.getOrderInfo().orderInfoGoodsSortApi(activity, beginTs, endTs, cuurapge + "", ASC_DES, new IRequestCallBack() {

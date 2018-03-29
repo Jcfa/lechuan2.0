@@ -73,6 +73,7 @@ public class OrderPoplstaffActivity extends BaseActivity implements View.OnClick
     }
 
     private void initNetApi() {
+        showLoading();
         OrderInfoPoplStaffManager.getsInstance().poplStaffApi(activity, new IRequestCallBack<OrderInfoPoplStaffBean>() {
             @Override
             public void onResult(int tag, OrderInfoPoplStaffBean poplStaffBean) {
