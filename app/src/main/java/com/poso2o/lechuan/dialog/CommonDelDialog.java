@@ -18,6 +18,8 @@ public class CommonDelDialog extends BaseDialog implements View.OnClickListener 
     private View view;
     private Context context;
 
+    //提示框标题
+    private TextView tips_title;
     //提示语
     private TextView common_tips;
     //取消
@@ -38,6 +40,8 @@ public class CommonDelDialog extends BaseDialog implements View.OnClickListener 
 
     @Override
     public void initView() {
+        tips_title = (TextView) view.findViewById(R.id.tips_title);
+
         common_tips = (TextView) view.findViewById(R.id.common_tips);
 
         common__cancel = (Button) view.findViewById(R.id.common__cancel);
@@ -72,6 +76,14 @@ public class CommonDelDialog extends BaseDialog implements View.OnClickListener 
 
     public void setTips(String tips) {
         common_tips.setText(tips);
+    }
+
+    public void setTips(String title,int title_size,String tips,int tips_size){
+        tips_title.setText(title);
+        tips_title.setTextSize(title_size);
+
+        common_tips.setText(tips);
+        common_tips.setTextSize(tips_size);
     }
 
     private OnCommonOkListener onCommonOkListener;
