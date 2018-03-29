@@ -19,14 +19,17 @@ import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.adapter.GoodsListAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseManager;
+import com.poso2o.lechuan.bean.TotalBean;
 import com.poso2o.lechuan.bean.goodsdata.AllGoodsAndCatalog;
 import com.poso2o.lechuan.bean.goodsdata.Catalog;
 import com.poso2o.lechuan.bean.goodsdata.CatalogBean;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
+import com.poso2o.lechuan.bean.goodsdata.GoodsBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.rshopmanager.RealGoodsManager;
 import com.poso2o.lechuan.manager.vdian.VdianCatalogManager;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
+import com.poso2o.lechuan.manager.vdian.VdianGoodsManager2;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
 import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.util.ListUtils;
@@ -98,7 +101,10 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
     /**
      * 选中的目录
      */
-    private Catalog selectCatalog;
+    private Catalog selectCatalog = new Catalog();
+    private int currentPage = 1;//当前商品页
+    private ArrayList<Goods> goodsList = new ArrayList<>();
+    private TotalBean goodsTotal = new TotalBean();
 
     /**
      * 目录ID
@@ -257,27 +263,15 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void loadCatalogData() {
-        VdianCatalogManager.getInstance().loadList((BaseActivity) context, shop_id, new IRequestCallBack<CatalogBean>() {
+        VdianGoodsManager2.getInstance().loadCatalogList(this, "1", new IRequestCallBack<CatalogBean>() {
             @Override
             public void onResult(int tag, CatalogBean catalogBean) {
-                Catalog allCatalog = new Catalog();
-                allCatalog.catalog_id = "-1";
-                allCatalog.catalog_name = getString(R.string.all);
-                for (Catalog catalog : catalogBean.list) {
-                    allCatalog.catalog_goods_number += catalog.catalog_goods_number;
-                }
-                catalogBean.list.add(0, allCatalog);
-                if (selectCatalog == null) {
-                    selectCatalog = allCatalog;
+                dismissLoading();
+                if (catalogBean != null && catalogBean.list != null) {
+                    initCatalogPopupWindow(catalogBean.list);
                 } else {
-                    for (Catalog catalog : catalogBean.list) {
-                        if (android.text.TextUtils.equals(selectCatalog.catalog_id, catalog.catalog_id)) {
-                            selectCatalog = catalog;
-                        }
-                    }
+                    Toast.show(context, "加载目录失败");
                 }
-                ad_goods_catalog.setText(selectCatalog.getNameAndNum());
-                initCatalogPopupWindow(catalogBean.list);
                 dismissLoading();
             }
 
@@ -295,6 +289,14 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
      * @param catalogs
      */
     private void initCatalogPopupWindow(ArrayList<Catalog> catalogs) {
+        Catalog catalog = new Catalog();
+        catalog.fid = "-1";
+        catalog.directory = "全部";
+        catalog.catalog_name = "全部";
+        catalog.catalog_goods_number = getGoodsCount(catalogs);
+        ad_goods_catalog.setText(catalog.catalog_name + "（" + catalog.catalog_goods_number + "）");
+        selectCatalog = catalog;
+        catalogs.add(0, catalog);
         catalogPopupWindow = new CatalogPopupWindow(context, catalogs, selectCatalog);
         catalogPopupWindow.setOnItemClickListener(new CatalogPopupWindow.OnItemClickListener() {
 
@@ -316,6 +318,19 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
                 catalog_shade.setVisibility(GONE);
             }
         });
+    }
+
+    /**
+     * 全部目录总商品数
+     * @param catalogs
+     * @return
+     */
+    private int getGoodsCount(ArrayList<Catalog> catalogs){
+        int count=0;
+        for(Catalog catalog:catalogs){
+            count+=catalog.catalog_goods_number;
+        }
+        return count;
     }
 
     /**
@@ -355,33 +370,23 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
      * 加载商品数据
      */
     public void loadGoodsData(final int pageType) {
+        currentPage = pageType;
         ad_goods_swipe.setRefreshing(true);
-        ad_goods_hint_no_goods.setVisibility(GONE);
-        VdianGoodsManager.getInstance().query((BaseActivity) context, shop_id, catalog_id, orderByName, sort, keywords, pageType, new IRequestCallBack<ArrayList<Goods>>() {
-
+        VdianGoodsManager2.getInstance().loadGoodsList((BaseActivity) context, orderByName,sort,selectCatalog.catalog_id, keywords, currentPage + "", "1", new IRequestCallBack<GoodsBean>() {
             @Override
-            public void onResult(int tag, ArrayList<Goods> goodsDatas) {
-                if (pageType == FIRST) {
-                    if (ListUtils.isEmpty(goodsDatas)) {
-                        ad_goods_hint_no_goods.setVisibility(VISIBLE);
-                        ad_goods_hint_no_goods.setText("请点击下方或右上角的按钮，添加商品至微店.");
-                    } else {
-                        ad_goods_hint_no_goods.setVisibility(GONE);
-                    }
-                    goodsListAdapter.notifyDataSetChanged(goodsDatas);
-                } else {
-                    goodsListAdapter.addItems(goodsDatas);
-                }
+            public void onResult(int tag, GoodsBean result) {
                 ad_goods_swipe.setRefreshing(false);
+                if (currentPage == FIRST) {
+                    goodsList.clear();
+                }
+                if (result != null && result.list != null) {
+                    goodsList.addAll(result.list);
+                }
+                goodsListAdapter.notifyDataSetChanged(goodsList);
             }
 
             @Override
             public void onFailed(int tag, String msg) {
-                if (pageType == FIRST) {
-                    ad_goods_hint_no_goods.setVisibility(VISIBLE);
-                    ad_goods_hint_no_goods.setText(R.string.hint_load_goods_fail);
-                }
-                Toast.show(context, msg);
                 ad_goods_swipe.setRefreshing(false);
             }
         });

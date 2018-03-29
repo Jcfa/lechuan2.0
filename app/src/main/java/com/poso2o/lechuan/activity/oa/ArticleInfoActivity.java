@@ -40,8 +40,10 @@ import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
+import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
+import com.poso2o.lechuan.util.ScrollWebView;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
@@ -62,7 +64,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
     //预览
     private TextView article_info_preview;
     //网页
-    private WebView art_info_web;
+    private ScrollWebView art_info_web;
     //菜单栏
     private LinearLayout menu_layout;
     //添加广告
@@ -77,6 +79,8 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
     private TextView add_publish;
     //悬浮按钮
     private TextView show_menu;
+    //底部按钮
+    private LinearLayout bottom_menu;
 
 
     private ADTemplateAdapter mTemplateAdapter;
@@ -135,6 +139,8 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         add_publish = findView(R.id.add_publish);
 
         show_menu = findView(R.id.show_menu);
+
+        bottom_menu = findView(R.id.bottom_menu);
     }
 
     @Override
@@ -188,6 +194,22 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
                 // 软键盘收起的情况
                 keyBoardShown = false;
+            }
+        });
+
+        art_info_web.setOnScrollChangeListener(new ScrollWebView.OnScrollChangeListener() {
+            @Override
+            public void onPageEnd(int l, int t, int oldl, int oldt) {
+                if (bottom_menu.getVisibility() == View.GONE)bottom_menu.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageTop(int l, int t, int oldl, int oldt) {
+            }
+
+            @Override
+            public void onScrollChanged(int l, int t, int oldl, int oldt) {
+                if (bottom_menu.getVisibility() == View.VISIBLE)bottom_menu.setVisibility(View.GONE);
             }
         });
     }
