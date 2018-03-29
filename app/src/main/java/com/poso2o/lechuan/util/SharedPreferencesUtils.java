@@ -74,6 +74,10 @@ public class SharedPreferencesUtils {
      * 是否绑定收款帐号
      */
     public static final String KEY_USER_BIND_WX_ACCOUNT = "has_bank_binding";
+    //微店是否授权
+    public static final String KEY_USER_HAS_WEBSHOP_AUTHORIZER_APPID = "has_webshop_authorizer_appid";
+    //公众号助手是否授权
+    public static final String KEY_USER_HAS_NEWS_AUTHORIZER_APPID = "has_news_authorizer_appid";
 
     /**
      * 乐传服务剩余天数
@@ -99,6 +103,10 @@ public class SharedPreferencesUtils {
      * 是否有微店
      */
     public static final String KEY_USER_HAS_WEBSHOP = "has_webshop";
+    /**
+     * 微店是否试用7天
+     */
+    public static final String KEY_USER_HAS_WEBSHOP_TRY = "has_webshop_try";
     /**
      * 绑定微信收款账号的二维码
      */
@@ -266,10 +274,13 @@ public class SharedPreferencesUtils {
         put(KEY_USER_OPEN_ID, userInfo.openid);
         put(KEY_USER_HAS_SHOP, userInfo.has_shop);//int 是否有实体店，0=无，1=有
         put(KEY_USER_HAS_WEBSHOP, userInfo.has_webshop);//int 是否有微店，0=无，1=有
+        put(KEY_USER_HAS_WEBSHOP_TRY, userInfo.has_webshop_try);//微店是否试用7天，0=未试用，1=已试用
         put(KEY_USER_BIND_ACCOUNT_QRCODE, userInfo.shop_bank_binding_url);//绑定微信收款账号的二维码
         put(KEY_USER_SERVICE_ID_OA, userInfo.buy_service_id);//公众号服务ID
         put(KEY_USER_SERVICE_DAYS_OA, userInfo.buy_service_days);//公众号服务剩余天数
         put(KEY_USER_BIND_WX_ACCOUNT, userInfo.has_bank_binding);//是否绑定微信收款帐号
+        put(KEY_USER_HAS_WEBSHOP_AUTHORIZER_APPID, userInfo.has_webshop_authorizer_appid);//微店是否授权
+        put(KEY_USER_HAS_NEWS_AUTHORIZER_APPID, userInfo.has_news_authorizer_appid);//公众号助手是否授权
 
     }
 

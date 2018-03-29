@@ -56,6 +56,8 @@ public class SetupBindAccountsDialog extends BaseDialog {
 
     @Override
     public void initView() {
+        setCancelable(false);
+        setCanceledOnTouchOutside(false);
         ImageView iv_qrcode = findView(R.id.iv_qrcode);
         mBitmap = getQRCode();
         if (mBitmap != null) {
@@ -88,6 +90,7 @@ public class SetupBindAccountsDialog extends BaseDialog {
             @Override
             public void onClick(View view) {
                 dismiss();
+                callback.onCancel();
             }
         });
     }
@@ -121,7 +124,7 @@ public class SetupBindAccountsDialog extends BaseDialog {
                 return ImageUtils.createQrCode(url, logo, BarcodeFormat.QR_CODE, 35);
             } catch (WriterException e) {
                 e.printStackTrace();
-                Toast.show(context,"生成二维码异常");
+                Toast.show(context, "生成二维码异常");
             }
         }
         return null;

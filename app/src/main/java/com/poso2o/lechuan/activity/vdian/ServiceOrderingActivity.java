@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.oa.OAHelperActivity;
 import com.poso2o.lechuan.adapter.wopenaccountadapter.ServiceOrderingAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.vdian.ServiceOrderingTrial;
@@ -50,6 +51,7 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
     private int mModuleId;//微店或公众号助手
     private ServiceOrderingAdapter mAdapter;
     private ArrayList<ServiceOrderingTrial> serviceList = new ArrayList<>();
+    private final int PAYMENT_RESULT_CODE = 11;//
 
     @Override
     protected int getLayoutResId() {
@@ -71,8 +73,10 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
     @Override
     protected void initData() {
         boolean isTry = getIntent().getBooleanExtra(IS_TRY, false);
-        if (isTry) {
+        int hasTry = SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP_TRY, 0);//是否已经试用，0未试用，1已试用
+        if (isTry && hasTry == 0) {
             setTitle("服务订购/试用");
+            service_ordering_try.setVisibility(View.VISIBLE);
         } else {
             setTitle("服务订购");
             service_ordering_try.setVisibility(View.GONE);
@@ -118,27 +122,60 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
     @Override
     protected void initListener() {
         service_ordering_purchase.setOnClickListener(this);
+        service_ordering_try.setOnClickListener(this);
+    }
+
+
+    /**
+     * 微店试用
+     */
+    private void vDianOnProbation() {
+        showLoading();
+        EmpowermentManager.getInstance().vdianOnProbation(activity, new IRequestCallBack() {
+            @Override
+            public void onResult(int tag, Object result) {
+                dismissLoading();
+                Toast.show(activity, "开通试用成功！");
+                SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_HAS_WEBSHOP_TRY, 1);
+                if (mModuleId == Constant.BOSS_MODULE_OA) {
+                    startActivity(OAHelperActivity.class);
+                } else {
+                    startActivity(VdianActivity.class);
+                }
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+                Toast.show(activity, "开通试用失败！");
+            }
+        });
     }
 
     /**
      * 设置选中默认的服务，比当前高一级的服务
      */
     private void setDefaultService() {
-        ServiceOrderingTrial defaultService = null;
+//        ServiceOrderingTrial defaultService = null;
         int position = 0;
         for (int i = 0; i < serviceList.size(); i++) {
             ServiceOrderingTrial orderingTrial = serviceList.get(i);
-            if (orderingTrial.service_id < mServiceId) {
-                orderingTrial.enable = false;
-            } else {
-                orderingTrial.enable = true;
-            }
-            if (defaultService == null) {
-                defaultService = orderingTrial;
-                continue;
-            }
-            if (orderingTrial.service_id > mServiceId && orderingTrial.service_id < defaultService.service_id) {
-                defaultService = orderingTrial;
+//            if (orderingTrial.service_id < mServiceId) {
+//                orderingTrial.enable = false;
+//            } else {
+//                orderingTrial.enable = true;
+//            }
+//            if (defaultService == null) {
+//                defaultService = orderingTrial;
+//                continue;
+//            }
+//            if (orderingTrial.service_id > mServiceId && orderingTrial.service_id < defaultService.service_id) {
+//                defaultService = orderingTrial;
+//                position = i;
+//            }
+            if (orderingTrial.service_id == mServiceId) {
                 position = i;
             }
         }
@@ -162,8 +199,8 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            // 点击立即订购
             case R.id.service_ordering_purchase:
-                // 点击立即订购
                 if (service_id > 0) {
                     Intent i = new Intent();
                     i.putExtra("service_id", service_id);
@@ -172,9 +209,21 @@ public class ServiceOrderingActivity extends BaseActivity implements View.OnClic
                     i.putExtra("service_type", service_type);
                     i.putExtra(AuthorizationActivity.KEY_MODULE_ID, mModuleId);
                     i.setClass(ServiceOrderingActivity.this, VdianPaymentActivity.class);
-                    startActivity(i);
+                    startActivityForResult(i, PAYMENT_RESULT_CODE);
                 }
                 break;
+            //7天试用
+            case R.id.service_ordering_try:
+                vDianOnProbation();
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PAYMENT_RESULT_CODE && resultCode == RESULT_OK) {
+            setResult(RESULT_OK);
+            finish();
         }
     }
 

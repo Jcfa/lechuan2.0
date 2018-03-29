@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tips_title"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:gravity="center_horizontal|bottom"
@@ -20,6 +21,10 @@
         android:layout_height="70dp"
         android:text="确定删除？"
         android:textSize="@dimen/z_text_normal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:maxLength="50"
+        android:lineSpacingMultiplier="1.2"
         android:textColor="@color/color_5E5E5E"
         android:gravity="center_horizontal"
         android:layout_marginTop="5dp"/>

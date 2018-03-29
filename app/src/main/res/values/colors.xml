@@ -11,6 +11,8 @@
     <!--红色-->
     <color name="colorRed">#E53847</color>
     <color name="colorRed_Press">#CE5F61</color>
+    <!--青色-->
+    <color name="colorCyan">#74b059</color>
     <!--分隔线背景色-->
     <color name="lineBg">#E3E3E3</color>
     <!--字体颜色-->

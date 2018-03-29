@@ -75,10 +75,10 @@ public class WCAuthorityActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             authorize_wechat.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-
+//        has_news=1  =绑定【资讯公众号】 0=绑定【微店公众号】
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
-            mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID);
+            mUrl = HttpAPI.SERVER_MAIN_API + "casparManage.htm?Act=goAuthor&shop_id=" + SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID) + "&has_news=1";
         } else {
             int type = bundle.getInt(BIND_TYPE);
             if (type == 1) {

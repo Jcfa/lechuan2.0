@@ -106,14 +106,6 @@ public class OAPublishEditAdapter extends RecyclerView.Adapter {
                     return true;
                 }
             });
-            articleHolder.article_add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    if (oaPublishListener != null) {
-//                        oaPublishListener.onItemAddAdvertised(position, article);
-//                    }
-                }
-            });
             articleHolder.article_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

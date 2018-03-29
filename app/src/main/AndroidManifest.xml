@@ -789,13 +789,11 @@
 
         <!--微店开通公众号-->
         <activity
-            android:name=".activity.vdian.EmpowermentActivity"
-            android:launchMode="singleInstance" />
+            android:name=".activity.vdian.EmpowermentActivity"/>
 
         <!--开通公众号-->
         <activity
             android:name=".activity.vdian.ApplyOAActivity"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <!--开通状态-->
@@ -806,13 +804,11 @@
         <!--授权说明-->
         <activity
             android:name=".activity.vdian.AuthorizationActivity"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <!--服务订购-->
         <activity
             android:name=".activity.vdian.ServiceOrderingActivity"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
         <!--微店支付-->

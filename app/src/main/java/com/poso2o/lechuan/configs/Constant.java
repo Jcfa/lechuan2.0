@@ -59,8 +59,8 @@ public interface Constant {
     int OA_SERVICE_ID = 5;//可以使用公众号助手的service_id
     int OA_SERVICE_ID2 = 4;//可以使用公众号助手的service_id
 
-    int AUTHORIZATION_OA_TRUE=1;//公众号已授权成功
-    int AUTHORIZATION_OA_FALSE=0;//公众号未授权
+    int AUTHORIZATION_TRUE=1;//已授权
+    int AUTHORIZATION_FALSE=0;//未授权
 
     // TODO 广播相关 =======================================================================
 

@@ -2,11 +2,13 @@ package com.poso2o.lechuan.activity.oa;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
+import com.poso2o.lechuan.activity.orderinfo.OrderInfoMainActivity;
 import com.poso2o.lechuan.activity.realshop.ArticleSearchActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.event.EventBean;
@@ -26,7 +28,7 @@ import static android.view.View.VISIBLE;
 
 /**
  * 微信公众号助手
- *
+ * <p>
  * Created by Jaydon on 2018/1/26.
  */
 public class OAHelperActivity extends BaseActivity implements View.OnClickListener {
@@ -131,13 +133,14 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
         oa_article.setOnClickListener(this);
         oa_publish.setOnClickListener(this);
         oa_setup.setOnClickListener(this);
+        findView(R.id.iv_back).setOnClickListener(this);
 
         oaArticleFragment.setOnPageChangeListener(new OAArticleFragment.OnPageChangeListener() {
             @Override
             public void onPageChange(int page) {
-                if (page == 0){
+                if (page == 0) {
                     setSearchVisible(View.INVISIBLE);
-                }else {
+                } else {
                     setSearchVisible(View.VISIBLE);
                 }
             }
@@ -174,10 +177,13 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             case R.id.oa_title_draft:
                 renewalsOrMudel();
                 break;
+            case R.id.iv_back:
+                goBack();
+                break;
         }
     }
 
-    public void setPublishTitle(){
+    public void setPublishTitle() {
         oa_title_publish.setTextColor(getColorValue(R.color.colorOrange));
         oa_title_publish.setBackgroundResource(R.drawable.shape_oa_title_tag_select);
         oa_title_draft.setTextColor(getColorValue(R.color.textGray));
@@ -185,7 +191,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    public void setDraftTitle(){
+    public void setDraftTitle() {
         oa_title_draft.setTextColor(getColorValue(R.color.colorOrange));
         oa_title_draft.setBackgroundResource(R.drawable.shape_oa_title_tag_select);
         oa_title_publish.setTextColor(getColorValue(R.color.textGray));
@@ -222,12 +228,12 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     /**
      * 发布还是公众号
      */
-    private void publishOrOa(){
+    private void publishOrOa() {
         setPublishTitle();
-        if (viewType == 1){
+        if (viewType == 1) {
             // 发布编辑
             oaPublishFragment.setFragment(0);
-        }else if(viewType == 2) {
+        } else if (viewType == 2) {
             //公众号
             oaSetFragment.setFragment(0);
         }
@@ -236,12 +242,12 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     /**
      * 草稿箱还是模板
      */
-    private void renewalsOrMudel(){
+    private void renewalsOrMudel() {
         setDraftTitle();
-        if (viewType == 1){
+        if (viewType == 1) {
             // 稿件箱
             oaPublishFragment.setFragment(1);
-        }else if(viewType == 2) {
+        } else if (viewType == 2) {
             //模板
             oaSetFragment.setFragment(1);
         }
@@ -250,7 +256,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     /**
      * 点击资讯
      */
-    private void clickArticle(){
+    private void clickArticle() {
         viewType = 0;
         if (!oaArticleFragment.isVisible()) {
             oa_title_tag.setVisibility(GONE);
@@ -265,7 +271,7 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     /**
      * 点击底部发布
      */
-    private void clickPublish(){
+    private void clickPublish() {
         viewType = 1;
         setArtNum();
         if (!oaPublishFragment.isVisible()) {
@@ -277,9 +283,9 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             setTitle("");
             replaceFragment(R.id.oa_content, oaPublishFragment);
             switchTag(oa_publish, R.mipmap.icon_wechat_on);
-            if (oaPublishFragment.getPosition() == 0){
+            if (oaPublishFragment.getPosition() == 0) {
                 setPublishTitle();
-            }else {
+            } else {
                 setDraftTitle();
             }
         }
@@ -288,9 +294,9 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     /**
      * 点击底部设置
      */
-    private void clickSet(){
+    private void clickSet() {
         viewType = 2;
-        if (!oaSetFragment.isVisible()){
+        if (!oaSetFragment.isVisible()) {
             oa_title_tag.setVisibility(VISIBLE);
             oa_article_search.setVisibility(GONE);
             oa_article_filtrate.setVisibility(GONE);
@@ -299,9 +305,9 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
             setTitle("");
             replaceFragment(R.id.oa_content, oaSetFragment);
             switchTag(oa_setup, R.mipmap.icon_oa_setup_on);
-            if (oaSetFragment.getPosition() == 0){
+            if (oaSetFragment.getPosition() == 0) {
                 setPublishTitle();
-            }else {
+            } else {
                 setDraftTitle();
             }
         }
@@ -310,18 +316,18 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     /**
      * 点击搜索文章
      */
-    private void clickSearchArt(){
+    private void clickSearchArt() {
         Intent intent = new Intent();
-        intent.setClass(this,ArticleSearchActivity.class);
+        intent.setClass(this, ArticleSearchActivity.class);
         startActivity(intent);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK)return;
-        if (requestCode == 8001){
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == 8001) {
             //购买服务成功
-        }else if (requestCode == 8002){
+        } else if (requestCode == 8002) {
             //购买或续费模板成功
 //            if (oaSetModelFragment != null)oaSetModelFragment.requestData();
         }
@@ -330,43 +336,59 @@ public class OAHelperActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onEvent(EventBean event) {
         super.onEvent(event);
-        if (event.code == EventBean.CODE_TO_COLLECT_LIST){
+        if (event.code == EventBean.CODE_TO_COLLECT_LIST) {
             toSelectArt();
-        }else if (event.code == EventBean.CODE_ART_NUM_CHANGE){
+        } else if (event.code == EventBean.CODE_ART_NUM_CHANGE) {
             setArtNum();
         }
     }
 
     //是否还有公众号服务
-    private boolean lessDay(){
+    private boolean lessDay() {
         return SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS) > 0 ? true : false;
     }
 
     //跳转到续费页面
-    public void toRenewals(){
+    public void toRenewals() {
         replaceFragment(R.id.oa_content, new OARenewalsFragment());
     }
 
     //跳转到资讯页收藏列表
-    public void toSelectArt(){
+    public void toSelectArt() {
         oa_article.performClick();
         oaArticleFragment.toCollectList();
     }
 
     //搜索、筛选按钮的隐藏、显示操作
-    private void setSearchVisible(int visible){
+    private void setSearchVisible(int visible) {
         oa_article_search.setVisibility(visible);
         oa_article_filtrate.setVisibility(visible);
     }
 
     //设置文章数
-    private void setArtNum(){
+    private void setArtNum() {
         int num = ArticleDataManager.getInstance().getSelectData().size();
-        if (num == 0 || viewType == 1){
+        if (num == 0 || viewType == 1) {
             oa_publish_num.setVisibility(GONE);
-        }else {
+        } else {
             oa_publish_num.setVisibility(VISIBLE);
             oa_publish_num.setText(num + "");
         }
+    }
+
+
+    private void goBack() {
+        startActivity(OrderInfoMainActivity.class);
+        finish();
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            goBack();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

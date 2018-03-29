@@ -76,15 +76,15 @@ public class SettingSP {
     public static boolean getBoolean(String key) {
         return mSharedPreferences.getBoolean(key, false);
     }
-    /**
-     * 根据帐号来获取授权状态，确保是当前帐号的授权状态
-     *
-     * @return
-     */
-    public static int getAuthorizationState() {
-        String uid = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID);
-        return getInt(KEY_USER_AUTHORIZATION_OA + uid, Constant.AUTHORIZATION_OA_FALSE);
-    }
+//    /**
+//     * 根据帐号来获取授权状态，确保是当前帐号的授权状态
+//     *
+//     * @return
+//     */
+//    public static int getAuthorizationState() {
+//        String uid = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_ID);
+//        return getInt(KEY_USER_AUTHORIZATION_OA + uid, Constant.AUTHORIZATION_OA_FALSE);
+//    }
 
     /**
      * 保存授权状态

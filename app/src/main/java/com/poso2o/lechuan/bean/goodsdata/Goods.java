@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * 商品
- *
+ * <p>
  * Created by J on 2017-08-18.
  */
 public class Goods implements Serializable, Cloneable {
@@ -44,6 +44,7 @@ public class Goods implements Serializable, Cloneable {
     public long modify_time = 0;// 修改时间
     public String modify_czy = "";// 修改员工
     public String modify_czy_name = "";// 修改员工名称
+    public int has_online = 0;//是否微店商品，1=微店商品，0=实体店商品
 
 
     public String share_url = "";

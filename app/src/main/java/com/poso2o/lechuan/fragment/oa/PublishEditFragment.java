@@ -22,6 +22,8 @@ import com.poso2o.lechuan.base.BaseFragment;
 import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.event.EventBean;
 import com.poso2o.lechuan.bean.shopdata.BangDingData;
+import com.poso2o.lechuan.dialog.CommonDelDialog;
+import com.poso2o.lechuan.dialog.CommonDeleteDialog;
 import com.poso2o.lechuan.dialog.PublishConfirmDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.article.ArticleDataManager;
@@ -56,6 +58,9 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
 
     //绑定公众号信息
     private BangDingData bangDingData;
+
+    //发布文章删除弹窗
+    private CommonDelDialog delDialog;
 
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -188,10 +193,20 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
      * @param article
      */
     @Override
-    public void onItemDelete(int position, Article article) {
-        ArticleDataManager.getInstance().removeSelectData(article);
-        mAdapter.notifyDataSetChanged(ArticleDataManager.getInstance().getSelectData());
-        publishClickable();
+    public void onItemDelete(int position,final Article article) {
+        if (delDialog == null){
+            delDialog = new CommonDelDialog(getContext());
+            delDialog.setOnCommonOkListener(new CommonDelDialog.OnCommonOkListener() {
+                @Override
+                public void onOkClick() {
+                    ArticleDataManager.getInstance().removeSelectData(article);
+                    mAdapter.notifyDataSetChanged(ArticleDataManager.getInstance().getSelectData());
+                    publishClickable();
+                }
+            });
+        }
+        delDialog.show();
+        delDialog.setTips("确定删除文章",18,article.title,14);
     }
 
     /**

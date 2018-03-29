@@ -16,14 +16,22 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.adapter.VdianSelectGoodsAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.base.BaseFragment;
+import com.poso2o.lechuan.bean.TotalBean;
 import com.poso2o.lechuan.bean.goodsdata.AllGoodsAndCatalog;
 import com.poso2o.lechuan.bean.goodsdata.Catalog;
+import com.poso2o.lechuan.bean.goodsdata.CatalogBean;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
+import com.poso2o.lechuan.bean.goodsdata.GoodsBean;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.rshopmanager.RealGoodsManager;
+import com.poso2o.lechuan.manager.vdian.VdianGoodsManager2;
 import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
 import com.poso2o.lechuan.util.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -80,7 +88,9 @@ public class VdianSelectGoodsFragment extends BaseFragment {
     /**
      * 选中的目录
      */
-    private Catalog selectCatalog;
+    private Catalog selectCatalog = new Catalog();
+    private TotalBean goodsTotal = new TotalBean();//商品列表的total
+    private int currentPage = 1;//当前第几页商品
 
     private boolean isAscSale = false;
     private boolean isAscStock = false;
@@ -102,6 +112,14 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         import_goods_all_select = findView(R.id.import_goods_all_select);
         import_goods_select_num = findView(R.id.import_goods_select_num);
         import_goods_import = findView(R.id.import_goods_import);
+        import_goods_swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                currentPage = 1;
+                loadCatalogs();
+                loadGoods();
+            }
+        });
     }
 
     @Override
@@ -111,34 +129,91 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         import_goods_recycle.setLayoutManager(linearLayoutManager);
         import_goods_recycle.setAdapter(vdianSelectGoodsAdapter);
-
+        import_goods_recycle.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (!import_goods_recycle.canScrollVertically(1)) {//滚动到底部
+                    if (goodsTotal.pages > currentPage) {
+                        ++currentPage;
+                        loadGoods();
+                    }
+                }
+            }
+        });
         loadGoods();
+        loadCatalogs();
     }
 
-    private void loadGoods() {
-        showLoading("正在加载商品...");
-        RealGoodsManager.getInstance().loadGoodsAndCatalog((BaseActivity) context, "dat", "DESC", "", "", new IRequestCallBack() {
-
+    /**
+     * 加载商品列表
+     */
+    public void loadGoods() {
+        import_goods_swipe.setRefreshing(true);
+        VdianGoodsManager2.getInstance().loadGoodsList((BaseActivity) context, selectCatalog.catalog_id, "", currentPage + "", "", new IRequestCallBack<GoodsBean>() {
             @Override
-            public void onResult(int tag, Object object) {
-                dismissLoading();
+            public void onResult(int tag, GoodsBean result) {
                 import_goods_swipe.setRefreshing(false);
-                AllGoodsAndCatalog allGoodsAndCatalog = (AllGoodsAndCatalog) object;
-                if (allGoodsAndCatalog != null) {
-                    vdianSelectGoodsAdapter.notifyDatas(allGoodsAndCatalog.list);
-                    initCatalogPopupWindow(allGoodsAndCatalog.directory);
+                if (result != null && result.list != null) {
+                    goodsTotal = result.total;
+                    vdianSelectGoodsAdapter.notifyDatas(result.list);
+                } else {
+                    Toast.show(context, "加载商品失败");
                 }
-                restorationSort();
             }
 
             @Override
             public void onFailed(int tag, String msg) {
-                dismissLoading();
                 import_goods_swipe.setRefreshing(false);
-                Toast.show(context, msg);
+                Toast.show(context, "加载商品失败");
             }
         });
     }
+
+    /**
+     * 加载商品目录列表
+     */
+    public void loadCatalogs() {
+        VdianGoodsManager2.getInstance().loadCatalogList((BaseActivity) context, new IRequestCallBack<CatalogBean>() {
+            @Override
+            public void onResult(int tag, CatalogBean result) {
+                if (result != null && result.list != null) {
+                    initCatalogPopupWindow(result.list);
+                } else {
+                    Toast.show(context, "加载目录失败");
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                Toast.show(context, "加载目录失败");
+            }
+        });
+    }
+
+//    private void loadGoods() {
+//        showLoading("正在加载商品...");
+//        RealGoodsManager.getInstance().loadGoodsAndCatalog((BaseActivity) context, "dat", "DESC", "", "", new IRequestCallBack() {
+//
+//            @Override
+//            public void onResult(int tag, Object object) {
+//                dismissLoading();
+//                import_goods_swipe.setRefreshing(false);
+//                AllGoodsAndCatalog allGoodsAndCatalog = (AllGoodsAndCatalog) object;
+//                if (allGoodsAndCatalog != null) {
+//                    vdianSelectGoodsAdapter.notifyDatas(allGoodsAndCatalog.list);
+//                    initCatalogPopupWindow(allGoodsAndCatalog.directory);
+//                }
+//                restorationSort();
+//            }
+//
+//            @Override
+//            public void onFailed(int tag, String msg) {
+//                dismissLoading();
+//                import_goods_swipe.setRefreshing(false);
+//                Toast.show(context, msg);
+//            }
+//        });
+//    }
 
     @Override
     public void initListener() {
@@ -238,17 +313,19 @@ public class VdianSelectGoodsFragment extends BaseFragment {
         Catalog catalog = new Catalog();
         catalog.fid = "-1";
         catalog.directory = "全部";
+        catalog.catalog_name = "全部";
         catalog.productNum = vdianSelectGoodsAdapter.getItemCount() + "";
-        import_goods_catalog.setText(catalog.directory + "（" + catalog.productNum + "）");
+        import_goods_catalog.setText(catalog.catalog_name + "（" + catalog.productNum + "）");
         selectCatalog = catalog;
         catalogs.add(0, catalog);
-        catalogPopupWindow = new CatalogPopupWindow(context, catalogs, selectCatalog, false);
+        catalogPopupWindow = new CatalogPopupWindow(context, catalogs, selectCatalog, true);
         catalogPopupWindow.setOnItemClickListener(new CatalogPopupWindow.OnItemClickListener() {
 
             @Override
             public void onItemClick(Catalog catalog) {
-                import_goods_catalog.setText(catalog.directory + "（" + catalog.productNum + "）");
+                import_goods_catalog.setText(catalog.catalog_name + "（" + catalog.catalog_goods_number + "）");
                 selectCatalog = catalog;
+                loadGoods();
 //                search("");
             }
         });
@@ -272,16 +349,18 @@ public class VdianSelectGoodsFragment extends BaseFragment {
             Toast.show(context, "请选择商品");
             return;
         }
-        String goods = "[";
+        JSONArray array = new JSONArray();
         for (int i = 0; i < selects.size(); i++) {
-            if (i == selects.size() - 1) {
-                goods = goods + "\"" + selects.get(i).guid + "\"]";
-            } else {
-                goods = goods + "\"" + selects.get(i).guid + "\",";
+            JSONObject object = new JSONObject();
+            try {
+                object.put("guid", selects.get(i).guid);
+                array.put(object);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
         showLoading("正在导入商品...");
-        WShopManager.getrShopManager().importGoods((BaseActivity) context, goods, new IRequestCallBack() {
+        WShopManager.getrShopManager().importGoods((BaseActivity) context, array.toString(), new IRequestCallBack() {
 
             @Override
             public void onResult(int tag, Object object) {
