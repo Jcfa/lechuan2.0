@@ -32,6 +32,7 @@ import com.poso2o.lechuan.manager.vdian.VdianGoodsManager;
 import com.poso2o.lechuan.manager.vdian.VdianGoodsManager2;
 import com.poso2o.lechuan.popubwindow.CatalogPopupWindow;
 import com.poso2o.lechuan.tool.edit.TextUtils;
+import com.poso2o.lechuan.tool.recycler.OnSlideToBottomListener;
 import com.poso2o.lechuan.util.ListUtils;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 import com.poso2o.lechuan.util.Toast;
@@ -227,6 +228,16 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        ad_goods_recycle.addOnScrollListener(new OnSlideToBottomListener() {
+            @Override
+            protected void slideToBottom() {
+                if (goodsListAdapter.getItemCount() >= 20 && !ad_goods_swipe.isRefreshing()){
+                    currentPage ++;
+                    loadGoodsData(currentPage);
+                }
             }
         });
     }

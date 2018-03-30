@@ -27,6 +27,7 @@ import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.article.Article;
 import com.poso2o.lechuan.bean.goodsdata.Goods;
+import com.poso2o.lechuan.bean.goodsdata.GoodsMovePicture;
 import com.poso2o.lechuan.bean.oa.DefaultTemplates;
 import com.poso2o.lechuan.bean.oa.TemplateBean;
 import com.poso2o.lechuan.bean.oa.TemplateGroup;
@@ -383,7 +384,8 @@ public class FreeEditActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onResult(int tag, Object result) {
                 dismissLoading();
-                insertPic((String)result);
+                GoodsMovePicture picture = new Gson().fromJson((String)result,GoodsMovePicture.class);
+                insertPic(picture.picture_url);
             }
 
             @Override

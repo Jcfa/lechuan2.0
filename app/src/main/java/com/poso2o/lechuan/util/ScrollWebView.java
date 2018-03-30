@@ -33,13 +33,15 @@ public class ScrollWebView extends WebView {
         super.onScrollChanged(l, t, oldl, oldt);
         float webcontent = getContentHeight() * getScale();// webview的高度
         float webnow = getHeight() + getScrollY();// 当前webview的高度
-        if (webcontent - webnow < 1) {
+//        Print.println("zzzz:" + l + " : " + oldl + " : " + t + " : " + oldt);
+        Print.println("zzzz:" + webcontent + " : " + webnow);
+        if (webcontent - webnow <= 1) {
             // 已经处于底端
             if (listener != null)listener.onPageEnd(l, t, oldl, oldt);
         } else if (getScrollY() == 0) {
             // Log.i("TAG1", "已经处于顶端");
             if (listener != null)listener.onPageTop(l, t, oldl, oldt);
-        } else if (webcontent - webnow > 3){
+        } else if (webcontent - webnow > 1){
             if (listener != null)listener.onScrollChanged(l, t, oldl, oldt);
         }
     }
