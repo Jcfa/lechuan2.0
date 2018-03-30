@@ -83,16 +83,11 @@ public class UserDataManager<T> extends BaseManager {
 //                Log.i("doLogin", "doLogin_response:" + response);
                 Gson gson = new Gson();
                 LoginBean loginBean = gson.fromJson(response, LoginBean.class);
-//                if (checkResult(baseActivity, loginBean)) {//登录成功
-//                    loginBean.data.account = account;
-//                loginBean.password = remember ? password : "";
-                if (remember) {
-                    SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_REMEMBER_PASSWORD, remember ? password : "");
-                }
+                SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_REMEMBER_PASSWORD, remember ? password : "");
                 saveUserInfo(loginBean);
                 callBack.onResult(TAG_LOGIN_ID, loginBean);
                 Toast.show(baseActivity, "登录成功！");
-                doRegisterToPhysical(baseActivity, account, loginBean.password,loginBean.nick);
+                doRegisterToPhysical(baseActivity, account, loginBean.password, loginBean.nick);
             }
 
             @Override
@@ -109,7 +104,7 @@ public class UserDataManager<T> extends BaseManager {
      * @param account
      * @param password
      */
-    public void doRegisterToPhysical(final BaseActivity baseActivity, final String account, final String password,String nick) {
+    public void doRegisterToPhysical(final BaseActivity baseActivity, final String account, final String password, String nick) {
         Request<String> request = getStringRequest(HttpAPI.REGISTER_SHOP_API);
         request.add("uid", account);
         request.add("token", password);
@@ -263,20 +258,23 @@ public class UserDataManager<T> extends BaseManager {
      * @param verificationCode
      * @param callBack
      */
-    public void resetPassowrd(final BaseActivity baseActivity, String account, String password, String verificationCode, final IRequestCallBack callBack) {
-        Request<String> request = getStringRequest(HttpAPI.RESET_PASSWORD_API);
+    public void resetPassowrd(final BaseActivity baseActivity, String account, final String password, String verificationCode, final IRequestCallBack callBack) {
+        Request<String> request = getStringRequest(HttpAPI.FZ_RESET_PASSWORD_API);
         request.add("mobile", account);
-        request.add("key", password);
-        request.add("verifyCode", verificationCode);
+        request.add("password", password);
+//        request.add("key", password);
+//        request.add("verifyCode", verificationCode);
+        request.add("code", verificationCode);
         baseActivity.request(TAG_RESET_PASSWORD_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
 //                Log.i("doRegister", "doRegister_response:" + response);
                 Toast.show(baseActivity, "密码重置成功！");
-                Gson gson = new Gson();
-                LoginBean loginBean = gson.fromJson(response, LoginBean.class);
-                saveUserInfo(loginBean);
-                callBack.onResult(what, loginBean);
+//                Gson gson = new Gson();
+//                LoginBean loginBean = gson.fromJson(response, LoginBean.class);
+//                saveUserInfo(loginBean);
+                SharedPreferencesUtils.put(SharedPreferencesUtils.KEY_USER_REMEMBER_PASSWORD, password);
+                callBack.onResult(what, new LoginBean());
             }
 
             @Override
@@ -327,7 +325,7 @@ public class UserDataManager<T> extends BaseManager {
      * @param callBack
      */
     public void getVerificationCode(final BaseActivity baseActivity, String account, final IRequestCallBack callBack) {
-        Request<String> request = getStringRequest(HttpAPI.VERIFICATION_CODE_API);
+        Request<String> request = getStringRequest(HttpAPI.FZ_VERIFICATION_CODE_API);
         request.add("mobile", account);
         baseActivity.request(TAG_VERIFICATION_ID, request, new HttpListener<String>() {
             @Override

@@ -44,6 +44,7 @@ public class HttpAPI {
      * 重置密码
      */
     public static String RESET_PASSWORD_API = SERVER_MAIN_API + "UserManage.htm?Act=forgetPW";
+    public static String FZ_RESET_PASSWORD_API = FZ_SERVER_MAIN_API + "user.htm?Act=setpasswd";//服装版重置密码
     /**
      * 修改密码
      */
@@ -52,6 +53,7 @@ public class HttpAPI {
      * 验证码
      */
     public static String VERIFICATION_CODE_API = SERVER_MAIN_API + "SMSManage.htm";
+    public static String FZ_VERIFICATION_CODE_API = FZ_SERVER_MAIN_API + "user.htm?Act=getpasswd";//服装版获取验证码
 
     /**
      * 微信登录
