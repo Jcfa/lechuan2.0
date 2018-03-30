@@ -184,6 +184,7 @@ public class AdGoodsActivity extends BaseActivity implements View.OnClickListene
 
         showLoading();
         loadCatalogData();
+        loadGoodsData(FIRST);
     }
 
     @Override

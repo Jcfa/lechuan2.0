@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 
 import static com.poso2o.lechuan.http.HttpAPI.OA_GOODS_PIC_URL;
-import static com.poso2o.lechuan.http.HttpAPI.OA_SEND_ARTICLE_URL;
+import static com.poso2o.lechuan.manager.rshopmanager.ArticleDataManager.OA_SEND_ARTICLE_URL;
 
 /**
  * 文章管理
@@ -391,5 +391,4 @@ public class ArticleDataManager extends BaseManager {
             }
         },true,true);
     }
-
 }
