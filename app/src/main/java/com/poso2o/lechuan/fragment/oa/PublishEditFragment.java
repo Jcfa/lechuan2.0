@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.ArticleInfoActivity;
+import com.poso2o.lechuan.activity.oa.ArticleInfoNewActivity;
 import com.poso2o.lechuan.activity.oa.FreeEditActivity;
 import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
@@ -177,7 +178,10 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
     @Override
     public void onItemClick(int position, Article article) {
         Intent intent = new Intent();
-        intent.setClass(getContext(), ArticleInfoActivity.class);
+//        intent.setClass(getContext(), ArticleInfoActivity.class);
+
+        intent.setClass(getContext(), ArticleInfoNewActivity.class);
+
         intent.putExtra(ArticleAdActivity.ART_DATA,article);
         intent.putExtra(ArticleAdActivity.FROM_PUBLISH_LIST,true);
         startActivity(intent);
