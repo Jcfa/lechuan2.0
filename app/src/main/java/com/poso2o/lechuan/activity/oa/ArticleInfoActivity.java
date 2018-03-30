@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.activity.oa;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -40,8 +42,10 @@ import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
+import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
+import com.poso2o.lechuan.util.ScrollWebView;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
@@ -62,11 +66,13 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
     //预览
     private TextView article_info_preview;
     //网页
-    private WebView art_info_web;
+    private ScrollWebView art_info_web;
     //菜单栏
     private LinearLayout menu_layout;
+    //隐藏、展示模板组
+    private LinearLayout add_model_layout;
     //添加广告
-    private TextView hide_ad_models;
+    private ImageView hide_ad_models;
     //模板名称
     private TextView ad_model_name;
     //模板列表
@@ -76,7 +82,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
     //添加发布
     private TextView add_publish;
     //悬浮按钮
-    private TextView show_menu;
+    private ImageView to_bottom;
 
 
     private ADTemplateAdapter mTemplateAdapter;
@@ -124,6 +130,8 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
         menu_layout = findView(R.id.menu_layout);
 
+        add_model_layout = findView(R.id.add_model_layout);
+
         hide_ad_models = findView(R.id.hide_ad_models);
 
         ad_model_name = findView(R.id.ad_model_name);
@@ -134,7 +142,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
         add_publish = findView(R.id.add_publish);
 
-        show_menu = findView(R.id.show_menu);
+        to_bottom = findView(R.id.to_bottom);
     }
 
     @Override
@@ -148,12 +156,12 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         art_info_back.setOnClickListener(this);
         article_info_preview.setOnClickListener(this);
 
-        hide_ad_models.setOnClickListener(this);
+        add_model_layout.setOnClickListener(this);
 
         add_renewals.setOnClickListener(this);
         add_publish.setOnClickListener(this);
 
-        show_menu.setOnClickListener(this);
+        to_bottom.setOnClickListener(this);
 
         mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>() {
             @Override
@@ -166,7 +174,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                 mTemplateAdapter.notifyDataSetChanged(templates,select_id);
                 art_info_web.loadUrl("javascript:emptyAdTemplate()");
                 art_info_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
-                show_menu.setVisibility(View.VISIBLE);
+                to_bottom.setVisibility(View.VISIBLE);
                 menu_layout.setVisibility(View.GONE);
             }
         });
@@ -181,13 +189,38 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                     if (keyBoardShown) { return; }
                     keyBoardShown = true;
 
-                    show_menu.setVisibility(View.VISIBLE);
+                    to_bottom.setVisibility(View.GONE);
                     menu_layout.setVisibility(View.GONE);
                     return;
                 }
 
                 // 软键盘收起的情况
                 keyBoardShown = false;
+            }
+        });
+
+        art_info_web.setOnScrollChangeListener(new ScrollWebView.OnScrollChangeListener() {
+            @Override
+            public void onPageEnd(int l, int t, int oldl, int oldt) {
+                if (menu_layout.getVisibility() == View.GONE && !keyBoardShown){
+                    menu_layout.setVisibility(View.VISIBLE);
+                    to_bottom.setVisibility(View.GONE);
+                    article_info.invalidate();
+                }
+            }
+
+            @Override
+            public void onPageTop(int l, int t, int oldl, int oldt) {
+                to_bottom.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onScrollChanged(int l, int t, int oldl, int oldt) {
+                if (menu_layout.getVisibility() == View.VISIBLE && oldt > t){
+                    menu_layout.setVisibility(View.GONE);
+                    to_bottom.setVisibility(View.VISIBLE);
+                    article_info.invalidate();
+                }
             }
         });
     }
@@ -201,9 +234,8 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
             case R.id.article_info_preview:
                 getHtml(0);
                 break;
-            case R.id.hide_ad_models:
-                menu_layout.setVisibility(View.GONE);
-                show_menu.setVisibility(View.VISIBLE);
+            case R.id.add_model_layout:
+                showOrNot();
                 break;
             case R.id.add_renewals:
                 getHtml(1);
@@ -211,9 +243,11 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
             case R.id.add_publish:
                 getHtml(2);
                 break;
-            case R.id.show_menu:
-                menu_layout.setVisibility(View.VISIBLE);
-                show_menu.setVisibility(View.GONE);
+            case R.id.to_bottom:
+                art_info_web.requestFocus();
+                art_info_web.loadUrl("javascript:scrollToEnd()");
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(art_info_web.getWindowToken(), 0);
                 break;
         }
     }
@@ -257,7 +291,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setDefaultTextEncodingName("UTF-8");
-        art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=3.0");
+        art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=2.0");
         art_info_web.addJavascriptInterface(ArticleInfoActivity.this, "android");
 
         Bundle bundle = getIntent().getExtras();
@@ -279,6 +313,17 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                 art_info_web.loadUrl("javascript:setHTML('" + str + "')");
             }
         });
+    }
+
+    //模板列表展开收起
+    private void showOrNot() {
+        if (info_model_list.getVisibility() == View.VISIBLE) {
+            info_model_list.setVisibility(View.GONE);
+            hide_ad_models.setImageResource(R.mipmap.arrow_more);
+        } else {
+            info_model_list.setVisibility(View.VISIBLE);
+            hide_ad_models.setImageResource(R.mipmap.arrow_less);
+        }
     }
 
     //删除广告模板回调

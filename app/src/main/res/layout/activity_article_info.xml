@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/article_info"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <FrameLayout
@@ -42,125 +43,131 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <WebView
-            android:id="@+id/art_info_web"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@android:color/white"/>
-
         <LinearLayout
-            android:id="@+id/menu_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:visibility="gone"
-            android:background="@android:color/white"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/add_model_layout"
+            <com.poso2o.lechuan.util.ScrollWebView
+                android:id="@+id/art_info_web"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_tiny"
-                android:gravity="center_vertical">
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
-                <TextView
-                    android:id="@+id/tag_ad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/spacing_middle"
-                    android:text="添加广告:"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="@dimen/textSize_normal" />
-
-                <TextView
-                    android:id="@+id/ad_model_name"
-                    style="@style/text_9E9E9E_14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/tag_ad"
-                    android:layout_weight="1"
-                    android:hint="请选择广告模版" />
-
-                <TextView
-                    android:id="@+id/hide_ad_models"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/spacing_tiny"
-                    android:text="收起"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center"
-                    android:textColor="@color/color_999999"/>
-            </LinearLayout>
-
-            <View style="@style/horizontal_line_gray" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/info_model_list"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="@dimen/line_height"
+                android:background="@color/lineBg" />
 
             <LinearLayout
+                android:id="@+id/menu_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_small"
-                android:background="@color/color_EEEEEE"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3" />
+                <LinearLayout
+                    android:id="@+id/add_model_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_tiny"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/add_renewals"
-                    android:layout_width="120dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/shape_per_reduce"
-                    android:gravity="center"
-                    android:text="加入草稿箱"
-                    android:textSize="@dimen/z_text_small" />
+                    <TextView
+                        android:id="@+id/tag_ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/spacing_middle"
+                        android:text="添加广告:"
+                        android:textColor="@color/colorOrange"
+                        android:textSize="@dimen/textSize_normal" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2" />
+                    <TextView
+                        android:id="@+id/ad_model_name"
+                        style="@style/text_9E9E9E_14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tag_ad"
+                        android:layout_weight="1"
+                        android:hint="请选择广告模版" />
 
-                <TextView
-                    android:id="@+id/add_publish"
-                    android:layout_width="120dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/selector_sign_btn"
-                    android:gravity="center"
-                    android:text="添加到发布"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/z_text_small" />
+                    <ImageView
+                        android:id="@+id/hide_ad_models"
+                        android:layout_width="@dimen/height_tiny"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/spacing_middle"
+                        android:src="@mipmap/arrow_less"/>
+                </LinearLayout>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3" />
+                <View style="@style/horizontal_line_gray" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/info_model_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_small"
+                    android:background="@color/color_EEEEEE"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                    <TextView
+                        android:id="@+id/add_renewals"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/shape_per_reduce"
+                        android:gravity="center"
+                        android:text="加入草稿箱"
+                        android:textSize="@dimen/z_text_small" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:id="@+id/add_publish"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/selector_sign_btn"
+                        android:gravity="center"
+                        android:text="添加到发布"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/z_text_small" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/show_menu"
+        <ImageView
+            android:id="@+id/to_bottom"
             android:layout_width="50dp"
             android:layout_height="36dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="60dp"
             android:layout_marginRight="20dp"
-            android:text="点我"
-            android:textColor="@android:color/white"
-            android:background="#55000000"
+            android:src="@mipmap/icon_to_bottom"
             android:gravity="center"/>
 
     </RelativeLayout>
