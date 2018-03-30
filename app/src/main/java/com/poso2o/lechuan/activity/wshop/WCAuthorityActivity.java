@@ -5,17 +5,21 @@ import android.content.Context;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.http.HttpAPI;
+import com.poso2o.lechuan.tool.print.Print;
+import com.poso2o.lechuan.util.ScreenInfo;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
 
 /**
@@ -36,6 +40,7 @@ public class WCAuthorityActivity extends BaseActivity {
 
     //应对方案以及服务端返回数据的特殊情况制定的反人类的解决方法
     private String mUrl = "";
+    private HorizontalScrollView horizontalScrollView;
 
     @Override
     protected int getLayoutResId() {
@@ -46,6 +51,7 @@ public class WCAuthorityActivity extends BaseActivity {
     protected void initView() {
         wechat_authorize_back = (ImageView) findViewById(R.id.wechat_authorize_back);
         authorize_wechat = (WebView) findViewById(R.id.authorize_wechat);
+        horizontalScrollView = findView(R.id.horizontalScrollView);
     }
 
     @SuppressLint("JavascriptInterface")
@@ -64,6 +70,7 @@ public class WCAuthorityActivity extends BaseActivity {
         authorize_wechat.getSettings().setSupportZoom(true);
         authorize_wechat.getSettings().setLoadWithOverviewMode(true);
         authorize_wechat.getSettings().setDomStorageEnabled(true);
+        authorize_wechat.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
         //缩放操作
         authorize_wechat.getSettings().setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
@@ -108,8 +115,21 @@ public class WCAuthorityActivity extends BaseActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+//                view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+//                Print.println("onPageFinished="+url);
+//                Print.println("onPageFinished_child_width="+horizontalScrollView.getChildAt(0).getWidth());
+//                Print.println("onPageFinished_screen_width="+ScreenInfo.WIDTH);
+//                Print.println("onPageFinished_scrollview_width="+horizontalScrollView.getWidth());
+                if (url.contains("mp.weixin.qq.com")) {
+                    super.onPageFinished(view, url);
+//                    horizontalScrollView.scrollTo((2112 - ScreenInfo.WIDTH) / 2, 0);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            horizontalScrollView.scrollTo((horizontalScrollView.getChildAt(0).getWidth() - ScreenInfo.WIDTH) / 2, 0);
+                        }
+                    },300);
+                }
             }
         });
     }

@@ -186,6 +186,9 @@ public class CasePerformanceActivity extends BaseActivity implements ViewPager.O
         }
         View view = mViews.get(position);
         ImageView pic = (ImageView) view.findViewById(R.id.pic);
-        Glide.with(activity).load("http://pic.58pic.com/58pic/13/68/03/86S58PIC26b_1024.jpg").error(R.mipmap.logo_d).placeholder(R.mipmap.logo_d).into(pic);
+        try {
+            Glide.with(activity).load(mCasePerformanceDTO.main_pics.get(position).url).error(R.mipmap.logo_d).placeholder(R.mipmap.logo_d).into(pic);
+        } catch (IndexOutOfBoundsException e) {
+        }
     }
 }

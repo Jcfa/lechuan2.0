@@ -17,15 +17,17 @@ public class WShopHttpAPI {
     public static final String W_SHOP_UPDATE_LOGO = W_MAIN_API + W_SHOP + "uploadLogo";
 
     //微店信息修改
-    public static final String W_SHOP_EDIT_URL = "http://wechat.poso2o.com/ShopManage.htm?Act=save";
+    public static final String W_SHOP_EDIT_URL = W_MAIN_API + "ShopManage.htm?Act=save";
 
     //微店导入商品,上架
-    public static final String W_SHOP_IMPORT_GOODS_ONLINE = "http://wechat.poso2o.com/GoodsManage.htm?Act=batchOnLine";
+    public static final String W_SHOP_IMPORT_GOODS_ONLINE = W_MAIN_API + "GoodsManage.htm?Act=batchOnLine";
     //下架
-    public static final String W_SHOP_IMPORT_GOODS_OFFLINE = "http://wechat.poso2o.com/GoodsManage.htm?Act=batchOffLine";
+    public static final String W_SHOP_IMPORT_GOODS_OFFLINE = W_MAIN_API + "GoodsManage.htm?Act=batchOffLine";
 
+    //微店公众号绑定信息(微店使用)
+    public static final String W_BINGING_STATE = W_MAIN_API + "AuthorizerTokenManage.htm?Act=getAuthorizerServiceInfo";
     //微店公众号绑定信息(公众号助手使用)
-    public static final String W_BINGING_STATE = "http://wechat.poso2o.com/AuthorizerTokenManage.htm?Act=getAuthorizerServiceInfo";
+    public static final String G_BINGING_STATE = W_MAIN_API + "AuthorizerTokenManage.htm?Act=getAuthorizerNewsInfo";
 
     //提交或修改绑定的微信支付相关id
     public static final String W_COMMIT_BIND_PAY = W_MAIN_API + "AuthorizerTokenManage.htm?Act=setWxPay";

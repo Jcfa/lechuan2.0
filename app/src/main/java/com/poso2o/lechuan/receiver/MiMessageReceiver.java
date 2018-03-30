@@ -52,17 +52,7 @@ public class MiMessageReceiver extends PushMessageReceiver {
             if (code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {
                 mEvent.code = code;
                 new ForegroundRunning(context).start();
-//                EventBus.getDefault().post(mEvent);
-                Intent i = new Intent();
-                i.setClassName("com.poso2o.lechuan","VdianActivity");
-                mContext.startActivity(i);
-
-
-                Intent i2 = new Intent();
-                i2.setClass(mContext.getApplicationContext(), VdianActivity.class);
-                mContext.startActivity(i2);
-                Toast.show(context, "绑定成功！");
-                context.startActivity(new Intent(context, OrderInfoMainActivity.class));
+                EventBus.getDefault().post(mEvent);
             } else {
                 Gson gson = new Gson();
                 InvitationBean event = gson.fromJson(object.optString("data"), InvitationBean.class);

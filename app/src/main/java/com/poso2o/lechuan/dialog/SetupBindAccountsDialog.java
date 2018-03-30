@@ -2,6 +2,7 @@ package com.poso2o.lechuan.dialog;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -107,12 +108,35 @@ public class SetupBindAccountsDialog extends BaseDialog {
             WaitDialog.dismissLoaddingDialog();
             if (msg.what == SaveImageThread.SUCCESSFULY) {
                 Toast.show(context, "保存二维码成功！");
-                callback.onResult();
+                openWeixinScanning();
             } else {
                 Toast.show(context, "保存二维码失败！");
             }
         }
     };
+
+
+    /**
+     * 打开微信扫一扫
+     */
+    private void openWeixinScanning() {
+//        try {
+//            Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
+//            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+//            startActivityForResult(intent, 1);
+//        } catch (Exception e) {
+//            Toast.show(activity, "打开微信失败！");
+//        }
+        try {
+            Intent intent = new Intent();
+            intent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI"));
+            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+            intent.setFlags(335544320);
+            intent.setAction("android.intent.action.VIEW");
+            context.startActivity(intent);
+        } catch (Exception e) {
+        }
+    }
 
     private Bitmap getQRCode() {
         String url = SharedPreferencesUtils.getString(SharedPreferencesUtils.KEY_USER_BIND_ACCOUNT_QRCODE);

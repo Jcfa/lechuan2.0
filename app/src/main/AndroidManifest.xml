@@ -841,6 +841,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".activity.orderinfo.OrderInfoMemberActivity" />
+        <activity android:name=".activity.oa.ArticleInfoNewActivity" />
 
         <!-- 蓝牙广播服务 -->
         <receiver android:name=".receiver.BluetoothReceiver">

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
 import com.poso2o.lechuan.activity.oa.ArticleInfoActivity;
+import com.poso2o.lechuan.activity.oa.ArticleInfoNewActivity;
 import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.adapter.RenewalsAdapter;
 import com.poso2o.lechuan.base.BaseActivity;
@@ -85,7 +86,9 @@ public class PublishDraftFragment extends BaseFragment implements SwipeRefreshLa
             @Override
             public void onItemClick(RenewalsBean item) {
                 Intent intent = new Intent();
-                intent.setClass(getContext(), ArticleInfoActivity.class);
+//                intent.setClass(getContext(), ArticleInfoActivity.class);
+
+                intent.setClass(getContext(), ArticleInfoNewActivity.class);
                 intent.putExtra(ArticleAdActivity.ART_DATA,item.articles);
                 intent.putExtra(ArticleAdActivity.RENEWALS_ID,item.news_id);
                 startActivity(intent);

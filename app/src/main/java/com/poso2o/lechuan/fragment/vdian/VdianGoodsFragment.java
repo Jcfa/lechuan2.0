@@ -398,6 +398,13 @@ public class VdianGoodsFragment extends BaseFragment implements View.OnClickList
                     }
                     goodsList.addAll(result.list);
                 }
+                if(goodsList.size()>0){
+                    vdian_goods_add.setVisibility(GONE);
+                    findView(R.id.vdian_addgoods_hint).setVisibility(GONE);
+                }else{
+                    vdian_goods_add.setVisibility(VISIBLE);
+                    findView(R.id.vdian_addgoods_hint).setVisibility(VISIBLE);
+                }
                 goodsListAdapter.notifyDataSetChanged(goodsList);
             }
 

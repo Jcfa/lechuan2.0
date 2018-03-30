@@ -4,25 +4,33 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
+import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -39,43 +47,39 @@ import com.poso2o.lechuan.bean.goodsdata.Goods;
 import com.poso2o.lechuan.bean.oa.TemplateBean;
 import com.poso2o.lechuan.bean.oa.TemplateGroup;
 import com.poso2o.lechuan.bean.oa.TemplateGroups;
+import com.poso2o.lechuan.dialog.DialogQuerySellDir;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.article.ArticleDataManager;
 import com.poso2o.lechuan.manager.oa.ModelGroupManager;
 import com.poso2o.lechuan.manager.oa.RenewalsManager;
 import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
-import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
-import com.poso2o.lechuan.util.ScreenUtil;
-import com.poso2o.lechuan.util.ScrollWebView;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
+import com.poso2o.lechuan.view.MyWebView;
 
 import java.io.File;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 
 /**
  * Created by mr zhang on 2018/3/27.
  */
 
-public class ArticleInfoActivity extends BaseActivity implements View.OnClickListener{
+public class ArticleInfoNewActivity extends BaseActivity implements View.OnClickListener {
 
-    private  LinearLayout article_info;
+    private RelativeLayout article_info;
 
     private ImageView art_info_back;
     //预览
     private TextView article_info_preview;
     //网页
-    private ScrollWebView art_info_web;
+    private MyWebView art_info_web;
     //菜单栏
     private LinearLayout menu_layout;
-    //隐藏、展示模板组
-    private LinearLayout add_model_layout;
     //添加广告
-    private ImageView hide_ad_models;
+    private TextView hide_ad_models;
     //模板名称
     private TextView ad_model_name;
     //模板列表
@@ -85,7 +89,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
     //添加发布
     private TextView add_publish;
     //悬浮按钮
-    private ImageView to_bottom;
+    private TextView show_menu;
 
 
     private ADTemplateAdapter mTemplateAdapter;
@@ -115,10 +119,11 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
     //键盘打开状态
     private boolean keyBoardShown;
+    private LinearLayout ll_bottom;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_article_info;
+        return R.layout.activity_article_info_new;
     }
 
     @Override
@@ -133,8 +138,6 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
         menu_layout = findView(R.id.menu_layout);
 
-        add_model_layout = findView(R.id.add_model_layout);
-
         hide_ad_models = findView(R.id.hide_ad_models);
 
         ad_model_name = findView(R.id.ad_model_name);
@@ -145,13 +148,17 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
         add_publish = findView(R.id.add_publish);
 
-        to_bottom = findView(R.id.to_bottom);
+        show_menu = findView(R.id.show_menu);
+        ll_bottom = findView(R.id.ll_bottom);
+
     }
 
     @Override
     protected void initData() {
         initArtDetail();
         getMyTemplateGroups();
+        ll_bottom.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -159,84 +166,96 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         art_info_back.setOnClickListener(this);
         article_info_preview.setOnClickListener(this);
 
-        add_model_layout.setOnClickListener(this);
+        hide_ad_models.setOnClickListener(this);
 
         add_renewals.setOnClickListener(this);
         add_publish.setOnClickListener(this);
 
-        to_bottom.setOnClickListener(this);
+        show_menu.setOnClickListener(this);
+
+        /**
+         * 这里是根据h5自身高度和自己滑动最后页Y所在位置来做处理
+         *根据前后两个值间距做判断
+         * */
+        art_info_web.setOnCustomScroolChangeListener(new MyWebView.ScrollInterface() {
+            @Override
+            public void onSChanged(int l, int t, int oldl, int oldt) {
+                show_menu.setVisibility(View.VISIBLE);
+                //WebView的总高度
+                float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
+                //WebView的现高度
+                float webViewCurrentHeight = (art_info_web.getHeight() + art_info_web.getScrollY());
+                if (Build.VERSION.SDK_INT > 23) {
+                    if (webViewContentHeight - art_info_web.getScrollY() < 1700) {
+
+                        ll_bottom.setVisibility(View.VISIBLE);
+                    } else {
+                        ll_bottom.setVisibility(View.GONE);
+
+                    }
+                } else {
+                    if (webViewContentHeight - art_info_web.getScrollY() < 1150) {
+
+                        ll_bottom.setVisibility(View.VISIBLE);
+                    } else {
+                        ll_bottom.setVisibility(View.GONE);
+
+                    }
+                }
+
+            }
+        });
 
         mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>() {
             @Override
             public void onItemClick(TemplateBean item) {
-                if (select_id.equals(item.template_id))return;
+                if (select_id.equals(item.template_id)) return;
                 ad_model_name.setText(item.template_name);
                 String str = item.content;
                 select_id = item.template_id;
                 select_name = item.template_name;
-                mTemplateAdapter.notifyDataSetChanged(templates,select_id);
+                mTemplateAdapter.notifyDataSetChanged(templates, select_id);
                 art_info_web.loadUrl("javascript:emptyAdTemplate()");
                 art_info_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
-                showOrNot();
-            }
-        });
-
-        new ScreenUtil(this).observeInputlayout(article_info, new ScreenUtil.OnInputActionListener() {
-            @Override
-            public void onOpen() {
-                //键盘弹出
-                if (keyBoardShown) { return; }
-                keyBoardShown = true;
-
-                to_bottom.setVisibility(View.GONE);
+                show_menu.setVisibility(View.VISIBLE);
                 menu_layout.setVisibility(View.GONE);
             }
-
-            @Override
-            public void onClose() {
-                //键盘收起
-                keyBoardShown = false;
-            }
         });
-
-        art_info_web.setOnScrollChangeListener(new ScrollWebView.OnScrollChangeListener() {
+        article_info.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onPageEnd(int l, int t, int oldl, int oldt) {
-                if (menu_layout.getVisibility() == View.GONE && !keyBoardShown){
-                    menu_layout.setVisibility(View.VISIBLE);
-                    to_bottom.setVisibility(View.GONE);
-                    article_info.invalidate();
-                    if (t > oldt)art_info_web.loadUrl("javascript:scrollToEnd()");
-                }
-            }
+            public void onGlobalLayout() {
+                int heightDiff = article_info.getRootView().getHeight() - article_info.getHeight();
+                // 大于100像素，是打开的情况
+                if (heightDiff > 100) {
+                    // 如果已经打开软键盘，就不理会
+                    if (keyBoardShown) {
+                        return;
+                    }
+                    keyBoardShown = true;
 
-            @Override
-            public void onPageTop(int l, int t, int oldl, int oldt) {
-                to_bottom.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onScrollChanged(int l, int t, int oldl, int oldt) {
-                if (menu_layout.getVisibility() == View.VISIBLE && oldt > t){
+                    show_menu.setVisibility(View.VISIBLE);
                     menu_layout.setVisibility(View.GONE);
-                    to_bottom.setVisibility(View.VISIBLE);
-                    article_info.invalidate();
+                    return;
                 }
+
+                // 软键盘收起的情况
+                keyBoardShown = false;
             }
         });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.art_info_back:
                 finish();
                 break;
             case R.id.article_info_preview:
                 getHtml(0);
                 break;
-            case R.id.add_model_layout:
-                showOrNot();
+            case R.id.hide_ad_models:
+                menu_layout.setVisibility(View.GONE);
+                show_menu.setVisibility(View.VISIBLE);
                 break;
             case R.id.add_renewals:
                 getHtml(1);
@@ -244,13 +263,43 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
             case R.id.add_publish:
                 getHtml(2);
                 break;
-            case R.id.to_bottom:
-                art_info_web.requestFocus();
-                art_info_web.loadUrl("javascript:scrollToEnd()");
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(art_info_web.getWindowToken(), 0);
+            case R.id.show_menu:
+                menu_layout.setVisibility(View.VISIBLE);
+                show_menu.setVisibility(View.GONE);
+                ll_bottom.setVisibility(View.VISIBLE);
+                bottm();
                 break;
         }
+    }
+
+    /**
+     * 点击滑到最底部
+     * onScrollChanged
+     */
+    private void bottm() {
+        art_info_web.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                mUrl = url;
+                if (!url.contains("https")) {
+                    view.loadUrl(url);
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
+            }
+        });
     }
 
     @Override
@@ -276,10 +325,10 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void onDestroy() {
-        if (art_info_web != null){
-            art_info_web.loadDataWithBaseURL(null,"","text/html","uft-8",null);
+        if (art_info_web != null) {
+            art_info_web.loadDataWithBaseURL(null, "", "text/html", "uft-8", null);
             art_info_web.clearHistory();
-            ((ViewGroup)art_info_web.getParent()).removeView(art_info_web);
+            ((ViewGroup) art_info_web.getParent()).removeView(art_info_web);
             art_info_web.destroy();
             art_info_web = null;
         }
@@ -293,7 +342,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setDefaultTextEncodingName("UTF-8");
         art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=3.0");
-        art_info_web.addJavascriptInterface(ArticleInfoActivity.this, "android");
+        art_info_web.addJavascriptInterface(ArticleInfoNewActivity.this, "android");
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) return;
@@ -302,35 +351,23 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         from_publish = !(ArticleDataManager.getInstance().findSelectData(article) == null);
         if (from_publish) add_publish.setText("保存");
         if (TextUtil.isNotEmpty(renewals_id)) add_renewals.setText("保存草稿");
-        if (TextUtil.isNotEmpty(article.ad_name))ad_model_name.setText(article.ad_name);
+        if (TextUtil.isNotEmpty(article.ad_name)) ad_model_name.setText(article.ad_name);
         select_id = article.ad_id;
         select_name = article.ad_name;
         final String str = article.content;
         art_info_web.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress == 100){
+                if (newProgress == 100)
                     art_info_web.loadUrl("javascript:setTitleHTML('" + article.title + "')");
-                    art_info_web.loadUrl("javascript:setHTML('" + str + "')");
-                }
+                art_info_web.loadUrl("javascript:setHTML('" + str + "')");
             }
         });
     }
 
-    //模板列表展开收起
-    private void showOrNot() {
-        if (info_model_list.getVisibility() == View.VISIBLE) {
-            info_model_list.setVisibility(View.GONE);
-            hide_ad_models.setImageResource(R.mipmap.arrow_more);
-        } else {
-            info_model_list.setVisibility(View.VISIBLE);
-            hide_ad_models.setImageResource(R.mipmap.arrow_less);
-        }
-    }
-
     //删除广告模板回调
     @JavascriptInterface
-    public void callDelClick(){
+    public void callDelClick() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -338,7 +375,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                 select_name = "";
                 ad_model_name.setText("请选择模板");
                 art_info_web.clearFocus();
-                mTemplateAdapter.notifyDataSetChanged(templates,select_id);
+                mTemplateAdapter.notifyDataSetChanged(templates, select_id);
             }
         });
     }
@@ -493,7 +530,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                     for (TemplateGroup templateGroup : templatesGroup) {
                         templates.addAll(templateGroup.templates);
                     }
-                    mTemplateAdapter.notifyDataSetChanged(templates,article.ad_id);
+                    mTemplateAdapter.notifyDataSetChanged(templates, article.ad_id);
                 }
             }
 
@@ -513,7 +550,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                 dismissLoading();
                 Toast.show(getApplication(), "添加成功");
                 if (from_publish) ArticleDataManager.getInstance().removeSelectData(article);
-                ArticleInfoActivity.this.finish();
+                ArticleInfoNewActivity.this.finish();
             }
 
             @Override
@@ -532,7 +569,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
             public void onResult(int tag, Object result) {
                 dismissLoading();
                 if (ArticleDataManager.getInstance().addSelectData(getApplication(), article))
-                    ArticleInfoActivity.this.finish();
+                    ArticleInfoNewActivity.this.finish();
             }
 
             @Override
@@ -551,7 +588,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
             public void onResult(int tag, Object result) {
                 dismissLoading();
                 Toast.show(getApplication(), "保存成功");
-                ArticleInfoActivity.this.finish();
+                ArticleInfoNewActivity.this.finish();
             }
 
             @Override
@@ -602,11 +639,11 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                     } else if (from_publish) {
                         //发布列表文章详情，保存新的文章内容
                         ArticleDataManager.getInstance().updateSelectData(article);
-                        ArticleInfoActivity.this.finish();
+                        ArticleInfoNewActivity.this.finish();
                     } else {
                         //资讯列表的文章详情，添加到发布列表
                         if (ArticleDataManager.getInstance().addSelectData(getApplication(), article))
-                            ArticleInfoActivity.this.finish();
+                            ArticleInfoNewActivity.this.finish();
                     }
                 }
             }
