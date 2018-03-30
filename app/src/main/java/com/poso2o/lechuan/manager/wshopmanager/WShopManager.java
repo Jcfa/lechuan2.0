@@ -121,7 +121,7 @@ public class WShopManager<T> extends BaseManager {
         baseActivity.request(W_SHOP_LOGO_ID, request, new HttpListener<String>() {
             @Override
             public void onSucceed(int what, String response) {
-                ShopData shopData=new Gson().fromJson(response,ShopData.class);
+                ShopData shopData = new Gson().fromJson(response, ShopData.class);
                 iRequestCallBack.onResult(W_SHOP_LOGO_ID, shopData);
             }
 
@@ -213,11 +213,12 @@ public class WShopManager<T> extends BaseManager {
      * 公众号认证状态
      *
      * @param baseActivity
+     * @param webshop          是否微店的公众号信息，true微店，false公众号助手
      * @param iRequestCallBack
      */
-    public void authorizeState(BaseActivity baseActivity, final IRequestCallBack iRequestCallBack) {
+    public void authorizeState(BaseActivity baseActivity, boolean webshop, final IRequestCallBack iRequestCallBack) {
 
-        final Request<String> request = getStringRequest(WShopHttpAPI.W_BINGING_STATE);
+        final Request<String> request = getStringRequest(webshop ? WShopHttpAPI.W_BINGING_STATE : WShopHttpAPI.G_BINGING_STATE);
         defaultParam(request);
 
         baseActivity.request(W_BINGING_STATE_ID, request, new HttpListener<String>() {
