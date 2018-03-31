@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,6 +59,7 @@ import com.poso2o.lechuan.util.FileUtils;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
 import com.poso2o.lechuan.util.UploadImageAsyncTask;
+import com.poso2o.lechuan.view.MyScrollView;
 import com.poso2o.lechuan.view.MyWebView;
 
 import java.io.File;
@@ -120,6 +122,10 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
     //键盘打开状态
     private boolean keyBoardShown;
     private LinearLayout ll_bottom;
+    /**
+     * 滑动监听
+     */
+    private MyScrollView srcollView;
 
     @Override
     protected int getLayoutResId() {
@@ -150,6 +156,7 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
 
         show_menu = findView(R.id.show_menu);
         ll_bottom = findView(R.id.ll_bottom);
+        srcollView = findView(R.id.srcollView);
 
     }
 
@@ -157,8 +164,6 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
     protected void initData() {
         initArtDetail();
         getMyTemplateGroups();
-        ll_bottom.setVisibility(View.GONE);
-
     }
 
     @Override
@@ -177,25 +182,24 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
          * 这里是根据h5自身高度和自己滑动最后页Y所在位置来做处理
          *根据前后两个值间距做判断
          * */
-        art_info_web.setOnCustomScroolChangeListener(new MyWebView.ScrollInterface() {
+        srcollView.setOnCustomScroolChangeListener(new MyWebView.ScrollInterface() {
             @Override
             public void onSChanged(int l, int t, int oldl, int oldt) {
                 show_menu.setVisibility(View.VISIBLE);
                 //WebView的总高度
                 float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
                 //WebView的现高度
-                float webViewCurrentHeight = (art_info_web.getHeight() + art_info_web.getScrollY());
+                float webViewCurrentHeight = (art_info_web.getHeight() + srcollView.getScrollY());
+                Log.v("cbf", "w-y = " + (webViewContentHeight - srcollView.getScrollY()));
                 if (Build.VERSION.SDK_INT > 23) {
-                    if (webViewContentHeight - art_info_web.getScrollY() < 1700) {
-
+                    if (webViewContentHeight - srcollView.getScrollY() <= 1710) {
                         ll_bottom.setVisibility(View.VISIBLE);
                     } else {
                         ll_bottom.setVisibility(View.GONE);
 
                     }
                 } else {
-                    if (webViewContentHeight - art_info_web.getScrollY() < 1150) {
-
+                    if (webViewContentHeight - srcollView.getScrollY() <= 1129) {
                         ll_bottom.setVisibility(View.VISIBLE);
                     } else {
                         ll_bottom.setVisibility(View.GONE);
@@ -264,42 +268,21 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
                 getHtml(2);
                 break;
             case R.id.show_menu:
-                menu_layout.setVisibility(View.VISIBLE);
                 show_menu.setVisibility(View.GONE);
+                ll_bottom.requestFocus();
+                srcollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //自动滑到底部
+                        srcollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
+//                float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
+//                Log.v("cbf", "count = " + ((int) webViewContentHeight + 850));
+//                srcollView.scrollTo(0, ((int) webViewContentHeight + 850));
                 ll_bottom.setVisibility(View.VISIBLE);
-                bottm();
                 break;
         }
-    }
-
-    /**
-     * 点击滑到最底部
-     * onScrollChanged
-     */
-    private void bottm() {
-        art_info_web.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                mUrl = url;
-                if (!url.contains("https")) {
-                    view.loadUrl(url);
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-            }
-
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                super.onReceivedSslError(view, handler, error);
-                handler.proceed();
-            }
-        });
     }
 
     @Override
