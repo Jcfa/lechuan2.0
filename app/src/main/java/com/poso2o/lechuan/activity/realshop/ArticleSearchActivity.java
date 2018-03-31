@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.oa.ArticleAdActivity;
+import com.poso2o.lechuan.activity.oa.ArticleInfoActivity;
 import com.poso2o.lechuan.adapter.ArticleSearchHistoryAdapter;
 import com.poso2o.lechuan.adapter.BaseAdapter;
 import com.poso2o.lechuan.adapter.OAArticleListAdapter;
@@ -250,7 +251,7 @@ public class ArticleSearchActivity extends BaseActivity implements View.OnClickL
                 if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
-                intent.setClass(getApplication(),ArticleAdActivity.class);
+                intent.setClass(getApplication(),ArticleInfoActivity.class);
                 startActivity(intent);
             }
         });

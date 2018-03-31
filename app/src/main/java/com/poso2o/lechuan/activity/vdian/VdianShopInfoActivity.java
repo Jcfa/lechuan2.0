@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.activity.vdian;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import com.poso2o.lechuan.activity.order.AddressSelectActivity;
 import com.poso2o.lechuan.activity.realshop.CropActivity;
 import com.poso2o.lechuan.activity.wshop.WCAuthorityActivity;
 import com.poso2o.lechuan.base.BaseActivity;
+import com.poso2o.lechuan.bean.mine.InvitationBean;
+import com.poso2o.lechuan.bean.mine.UserInfoBean;
 import com.poso2o.lechuan.bean.shopdata.BangDingData;
 import com.poso2o.lechuan.bean.shopdata.ShopData;
 import com.poso2o.lechuan.configs.Constant;
@@ -31,6 +34,7 @@ import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.tool.edit.TextUtils;
 import com.poso2o.lechuan.tool.image.ImageCompressTool;
+import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.ImageManage;
 import com.poso2o.lechuan.util.ImageUtils;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
@@ -54,7 +58,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     private static final int SERVICE_RENEW = 10088;//服务续费
     private static final int WEIXIN_SCANNING_CODE = 10090;//调用微信扫码
     public static final int CODE_TO_V_AUTHORITY = 1001;
-
+    private SetupBindAccountsDialog bindAccountsDialog;
     /**
      * 保存
      */
@@ -161,12 +165,12 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     protected void initData() {
         destinationUri = Uri.fromFile(new File(activity.getCacheDir(), "cropImage.jpeg"));
         shopData = (ShopData) getIntent().getSerializableExtra(Constant.SHOP);
-        if (shopData == null) {
-            showLoading();
-            loadShopData();
-        } else {
-            refreshView();
-        }
+//        if (shopData == null) {
+        showLoading();
+        loadShopData();
+//        } else {
+//            refreshView();
+//        }
         authorizeState();
     }
 
@@ -180,29 +184,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         shop_info_tel.setText(shopData.shop_tel);
         shop_info_area.setText(shopData.province_name + " " + shopData.city_name + " " + shopData.area_name);
         shop_info_address.setText(shopData.address);
-        // 收款账号
-//        StringBuilder accounts = new StringBuilder(shopData.shop_bank_account_name).append("    ");
-//        if (shopData.shop_bank_account_no != null && shopData.shop_bank_account_no.length() > 11) {
-//            StringBuilder no = new StringBuilder(shopData.shop_bank_account_no);
-//            no.replace(4, 11, "*******");
-//            accounts.append(no.toString());
-//        }
-//        if (TextUtils.isNotEmpty(shopData.shop_bank_name)) {
-//            accounts.append("(").append(shopData.shop_bank_name).append(")");
-//        }
-//        shop_info_accounts.setText(accounts.toString());
-//        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT, 0) == 1) {
-//            shop_info_accounts.setHint("已绑定");
-//        }
         shop_info_accounts.setHint(shopData.shop_bank_account_name);//已绑定的收款微信
-        // 套餐
-//        if (shopData.has_webshop == 1) {
-//            shop_info_taocan.setText(shopData.webshop_service_name);
-//            shop_info_expire.setText(shopData.webshop_service_date);
-//        } else if (shopData.has_webshop_try == 1) {
-//            shop_info_taocan.setText("试用中");
-//            shop_info_expire.setText("剩余 " + shopData.webshop_service_days + " 天");
-//        }
         shop_info_taocan.setText(shopData.buy_service_name);
         if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_SERVICE_DAYS_OA) > 0) {
             Calendar calendar = Calendar.getInstance();
@@ -289,11 +271,10 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
      * 显示设置收款帐号
      */
     private void showSetupAccountDialog() {
-        SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity);
+        bindAccountsDialog = new SetupBindAccountsDialog(activity);
         bindAccountsDialog.show(new SetupBindAccountsDialog.Callback() {
             @Override
             public void onResult() {
-                openWeixinScanning();
             }
 
             @Override
@@ -303,17 +284,44 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
         });
     }
 
-    /**
-     * 打开微信扫一扫
-     */
-    private void openWeixinScanning() {
-        try {
-            Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
-            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
-            startActivityForResult(intent, WEIXIN_SCANNING_CODE);
-        } catch (Exception e) {
-            Toast.show(activity, "打开微信失败！");
+    private boolean isActiv = true;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isActiv) {//从后台返回前台，即微信扫码绑定收款帐号后检测是否绑定成功
+            getAccountDetail();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        isActiv = false;
+    }
+
+    /**
+     * 帐户详情
+     */
+    private void getAccountDetail() {
+        showLoading();
+        WShopManager.getrShopManager().getlcAccountDetailInfo(activity, new IRequestCallBack<UserInfoBean>() {
+            @Override
+            public void onResult(int tag, UserInfoBean result) {
+                dismissLoading();
+                if (result.has_bank_binding == 1) {//已绑定收款帐号
+                    if (bindAccountsDialog != null) {
+                        bindAccountsDialog.dismiss();
+                    }
+                    shop_info_accounts.setHint(result.shop_bank_account_name);//已绑定的收款微信
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+                dismissLoading();
+            }
+        });
     }
 
     /**
@@ -388,9 +396,6 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (WEIXIN_SCANNING_CODE == requestCode) {
-//
-//        }
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PICTURE:
@@ -531,7 +536,7 @@ public class VdianShopInfoActivity extends BaseActivity implements View.OnClickL
 
     //获取绑定公众号的状态
     public void authorizeState() {
-        WShopManager.getrShopManager().authorizeState(activity, new IRequestCallBack<BangDingData>() {
+        WShopManager.getrShopManager().authorizeState(activity,true, new IRequestCallBack<BangDingData>() {
             @Override
             public void onResult(int tag, BangDingData result) {
                 if (result != null && result.authorized.equals("1")) {

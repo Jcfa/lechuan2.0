@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.activity.orderinfo;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -124,6 +125,18 @@ public class OrderInfoMainActivity extends BaseActivity implements View.OnClickL
     public void onResume() {
         super.onResume();
         loadAccountDetailState();
+        requestPermission();
+    }
+
+    /**
+     * 请求存储权限
+     */
+    private void requestPermission() {
+        applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
+            @Override
+            public void onPermissionResult(boolean b) {
+            }
+        });
     }
 
     /**

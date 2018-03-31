@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.activity.vdian;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.poso2o.lechuan.activity.wshop.WShopActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.event.PayEvent;
 import com.poso2o.lechuan.bean.mine.InvitationBean;
+import com.poso2o.lechuan.bean.mine.UserInfoBean;
 import com.poso2o.lechuan.broadcast.wopenbroad.WeiXinFuWuReceived;
 import com.poso2o.lechuan.broadcast.wopenbroad.WeiXinKaiReceived;
 import com.poso2o.lechuan.configs.AppConfig;
@@ -20,6 +22,7 @@ import com.poso2o.lechuan.configs.Constant;
 import com.poso2o.lechuan.dialog.SetupBindAccountsDialog;
 import com.poso2o.lechuan.http.IRequestCallBack;
 import com.poso2o.lechuan.manager.vdian.EmpowermentManager;
+import com.poso2o.lechuan.manager.wshopmanager.WShopManager;
 import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.NumberUtils;
 import com.poso2o.lechuan.util.SharedPreferencesUtils;
@@ -42,6 +45,7 @@ public class VdianPaymentActivity extends BaseActivity {
      */
     private TextView vdian_payment_type, vdian_payment_money;
     private IWXAPI api;
+    private SetupBindAccountsDialog bindAccountsDialog;
     /**
      * 微信支付
      */
@@ -96,17 +100,7 @@ public class VdianPaymentActivity extends BaseActivity {
             mPaymentSuccess = true;
             //支付成功，是否绑定过收款帐号，未绑定提示绑定
             if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT) != 1) {
-                applyForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, new OnPermissionListener() {
-                    @Override
-                    public void onPermissionResult(boolean b) {
-                        if (b) {
-                            showSetupAccountDialog();
-                        } else {
-                            Toast.show(activity, "获取不到相关权限，无法进行操作");
-                            goBack();
-                        }
-                    }
-                });
+                showSetupAccountDialog();
             } else {
                 goBack();
             }
@@ -161,11 +155,10 @@ public class VdianPaymentActivity extends BaseActivity {
      * 显示设置收款帐号
      */
     private void showSetupAccountDialog() {
-        SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity);
+        bindAccountsDialog = new SetupBindAccountsDialog(activity);
         bindAccountsDialog.show(new SetupBindAccountsDialog.Callback() {
             @Override
             public void onResult() {
-                openWeixinScanning();
             }
 
             @Override
@@ -175,32 +168,50 @@ public class VdianPaymentActivity extends BaseActivity {
         });
     }
 
-    /**
-     * 打开微信扫一扫
-     */
-    private void openWeixinScanning() {
-        try {
-            Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
-            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
-            startActivityForResult(intent, 1);
-        } catch (Exception e) {
-            Toast.show(activity, "打开微信失败！");
+    private boolean isActiv = true;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isActiv) {//从后台返回前台，即微信扫码绑定收款帐号后检测是否绑定成功
+            getAccountDetail();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        isActiv = false;
+    }
+
+    /**
+     * 帐户详情
+     */
+    private void getAccountDetail() {
+        WShopManager.getrShopManager().getlcAccountDetailInfo(activity, new IRequestCallBack<UserInfoBean>() {
+            @Override
+            public void onResult(int tag, UserInfoBean result) {
+                if (result.has_bank_binding == 1) {//已绑定收款帐号
+                    if (bindAccountsDialog != null) {
+                        bindAccountsDialog.dismiss();
+                    }
+                    goBack();
+                }
+            }
+
+            @Override
+            public void onFailed(int tag, String msg) {
+
+            }
+        });
     }
 
 //    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == 1) {
+//    public void onPushMessageEvent(InvitationBean event) {
+//        if (event.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {//绑定成功
 //            goBack();
 //        }
 //    }
-
-    @Override
-    public void onPushMessageEvent(InvitationBean event) {
-        if (event.code.equals(InvitationBean.BIND_WX_ACCOUNT_CODE)) {//绑定成功
-            goBack();
-        }
-    }
 
     private void goBack() {
         if (mModuleId == Constant.BOSS_MODULE_WX) {

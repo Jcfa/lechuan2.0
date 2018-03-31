@@ -282,7 +282,7 @@ public class OfficialAccountsIssueView extends BaseView implements View.OnClickL
 
     //获取绑定公众号的状态
     public void authorizeState(){
-        WShopManager.getrShopManager().authorizeState(context, new IRequestCallBack() {
+        WShopManager.getrShopManager().authorizeState(context,false, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 bangDingData = (BangDingData) result;

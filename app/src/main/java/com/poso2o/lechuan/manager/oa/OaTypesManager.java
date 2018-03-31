@@ -39,11 +39,12 @@ public class OaTypesManager extends BaseManager {
      * @param iRequestCallBack
      */
     public void getTypesAndLabels(BaseActivity baseActivity,IRequestCallBack iRequestCallBack){
-        if (oaTypeAndLables == null){
+        typesAndLabels(baseActivity,iRequestCallBack);
+        /*if (oaTypeAndLables == null){
             typesAndLabels(baseActivity,iRequestCallBack);
         }else {
             iRequestCallBack.onResult(OA_TYPES_ID,oaTypeAndLables);
-        }
+        }*/
     }
 
     /**

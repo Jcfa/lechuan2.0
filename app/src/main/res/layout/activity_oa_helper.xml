@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootview_oa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_background"
-    android:id="@+id/rootview_oa"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -13,37 +12,38 @@
         android:layout_height="@dimen/title_height"
         android:background="@drawable/shape_down_line">
 
-        <include
-            layout="@layout/layout_base_title"/>
+        <include layout="@layout/layout_base_title" />
 
         <TableRow
             android:id="@+id/oa_title_tag"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="38dp">
+            android:layout_height="38dp"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/oa_title_publish"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textSize="@dimen/textSize_title"
-                android:textColor="@color/colorOrange"
                 android:background="@drawable/shape_oa_title_tag_select"
-                android:text="发布"/>
+                android:ems="3"
+                android:gravity="center"
+                android:text="发布"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/textSize_title" />
 
             <View
-                android:layout_margin="8dp"
-                style="@style/vertical_line"/>
+                style="@style/vertical_line"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/oa_title_draft"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:ems="3"
                 android:gravity="center"
-                android:textSize="@dimen/textSize_title"
+                android:text="稿件箱"
                 android:textColor="@color/textGray"
-                android:text="稿件箱"/>
+                android:textSize="@dimen/textSize_title" />
 
         </TableRow>
 
@@ -52,21 +52,21 @@
             android:layout_width="@dimen/title_button_width"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:background="@drawable/selector_common"
             android:layout_marginRight="@dimen/title_button_width"
-            android:visibility="gone"
+            android:background="@drawable/selector_common"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_search"/>
+            android:src="@mipmap/ic_search"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/oa_article_filtrate"
             android:layout_width="@dimen/title_button_width"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:visibility="gone"
             android:background="@drawable/selector_common"
             android:scaleType="centerInside"
-            android:src="@mipmap/icon_filtrate"/>
+            android:src="@mipmap/icon_filtrate"
+            android:visibility="gone" />
 
     </FrameLayout>
 
@@ -74,10 +74,9 @@
         android:id="@+id/oa_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
-    <View
-        style="@style/horizontal_line"/>
+    <View style="@style/horizontal_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,13 +89,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:paddingTop="6dp"
             android:background="@drawable/selector_common"
             android:drawableTop="@mipmap/icon_info_off"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="资讯"
             android:textColor="@color/textGray"
-            android:textSize="@dimen/textSize_small"
-            android:text="资讯"/>
+            android:textSize="@dimen/textSize_small" />
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -107,27 +106,27 @@
                 android:id="@+id/oa_publish"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/selector_common"
+                android:drawableTop="@mipmap/icon_wechat_on"
                 android:gravity="center"
                 android:paddingTop="6dp"
-                android:drawableTop="@mipmap/icon_wechat_on"
-                android:background="@drawable/selector_common"
+                android:text="发布"
                 android:textColor="@color/textGreen"
-                android:textSize="@dimen/textSize_small"
-                android:text="发布"/>
+                android:textSize="@dimen/textSize_small" />
 
             <TextView
                 android:id="@+id/oa_publish_num"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:background="@mipmap/icon_num_bg_red_64"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="28dp"
                 android:layout_marginTop="2dp"
+                android:background="@mipmap/icon_num_bg_red_64"
                 android:gravity="center"
-                android:visibility="gone"
-                android:textSize="@dimen/textSize_small"
+                android:text="0"
                 android:textColor="@android:color/white"
-                android:text="0"/>
+                android:textSize="@dimen/textSize_small"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -136,13 +135,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:paddingTop="6dp"
             android:background="@drawable/selector_common"
             android:drawableTop="@mipmap/icon_oa_setup_off"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="设置"
             android:textColor="@color/textGray"
-            android:textSize="@dimen/textSize_small"
-            android:text="设置"/>
+            android:textSize="@dimen/textSize_small" />
 
     </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,6 +59,8 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
 
     private OaTypeAndLables typeAndLables;
 
+    private Handler handler = new Handler();
+
     @Override
     public View initGroupView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_article_filtrate, container, false);
@@ -101,25 +104,30 @@ public class ArticleFiltrateFragment extends BaseFragment implements View.OnClic
         lp.setMargins(0,statusBarHeight1,0,0);
         menu_left_view.setLayoutParams(lp);
 
-        showLoading();
-        OaTypesManager.getOaTypesManager().getTypesAndLabels((BaseActivity) getActivity(), new IRequestCallBack() {
-
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onResult(int tag, Object result) {
-                dismissLoading();
-                typeAndLables = (OaTypeAndLables) result;
-                if (typeAndLables != null) {
-                    typeAdapter.notifyDataSetChanged(typeAndLables.types.list);
-                    tagAdapter.notifyDataSetChanged(typeAndLables.labels.list);
-                }
-            }
+            public void run() {
+                showLoading();
+                OaTypesManager.getOaTypesManager().getTypesAndLabels((BaseActivity) getActivity(), new IRequestCallBack() {
 
-            @Override
-            public void onFailed(int tag, String msg) {
-                dismissLoading();
-                Toast.show(getContext(), msg);
+                    @Override
+                    public void onResult(int tag, Object result) {
+                        dismissLoading();
+                        typeAndLables = (OaTypeAndLables) result;
+                        if (typeAndLables != null) {
+                            typeAdapter.notifyDataSetChanged(typeAndLables.types.list);
+                            tagAdapter.notifyDataSetChanged(typeAndLables.labels.list);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(int tag, String msg) {
+                        dismissLoading();
+                        Toast.show(getContext(), msg);
+                    }
+                });
             }
-        });
+        },100);
     }
 
     @Override

@@ -178,7 +178,7 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
                     //预处理后失败返回 目前也给返回数据结果
                     callback.onFailed(what, msg);
                 } else if (code.equals("enabled")) {
-                    Toast.show(mActivity, "帐号不存在");
+//                    Toast.show(mActivity, "帐号不存在");
                     String msg = json.getString("msg");
                     //预处理后失败返回 目前也给返回数据结果
                     callback.onFailed(what, msg);

@@ -12,6 +12,7 @@ import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.activity.orderinfo.OrderInfoMainActivity;
 import com.poso2o.lechuan.base.BaseActivity;
 import com.poso2o.lechuan.bean.event.EventBean;
+import com.poso2o.lechuan.dialog.SetupBindAccountsDialog;
 import com.poso2o.lechuan.dialog.TipsNoAuthorDialog;
 import com.poso2o.lechuan.fragment.vdian.VdianGoodsFragment;
 import com.poso2o.lechuan.fragment.vdian.VdianOrderFragment;
@@ -118,6 +119,31 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        //未绑定收款帐号
+        if (SharedPreferencesUtils.getInt(SharedPreferencesUtils.KEY_USER_BIND_WX_ACCOUNT) != 1) {
+            showSetupAccountDialog();
+        }
+    }
+
+    /**
+     * 显示设置收款帐号
+     */
+    private void showSetupAccountDialog() {
+        SetupBindAccountsDialog bindAccountsDialog = new SetupBindAccountsDialog(activity);
+        bindAccountsDialog.show(new SetupBindAccountsDialog.Callback() {
+            @Override
+            public void onResult() {
+            }
+
+            @Override
+            public void onCancel() {
+            }
+        });
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.vdian_search_delete:// 清空搜索
@@ -166,7 +192,7 @@ public class VdianActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    private void goBack(){
+    private void goBack() {
         startActivity(OrderInfoMainActivity.class);
         finish();
     }

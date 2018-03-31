@@ -279,9 +279,11 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
         });
     }
 
-    //获取绑定公众号的状态
+    /**
+     * 获取绑定公众号的状态
+     */
     public void authorizeState(){
-        WShopManager.getrShopManager().authorizeState((BaseActivity) getActivity(), new IRequestCallBack() {
+        WShopManager.getrShopManager().authorizeState((BaseActivity) getActivity(),false, new IRequestCallBack() {
             @Override
             public void onResult(int tag, Object result) {
                 bangDingData = (BangDingData) result;

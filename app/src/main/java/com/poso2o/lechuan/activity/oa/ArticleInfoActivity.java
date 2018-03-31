@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -45,6 +47,7 @@ import com.poso2o.lechuan.manager.rshopmanager.CompressImageAsyncTask;
 import com.poso2o.lechuan.tool.print.Print;
 import com.poso2o.lechuan.util.AppUtil;
 import com.poso2o.lechuan.util.FileUtils;
+import com.poso2o.lechuan.util.ScreenUtil;
 import com.poso2o.lechuan.util.ScrollWebView;
 import com.poso2o.lechuan.util.TextUtil;
 import com.poso2o.lechuan.util.Toast;
@@ -174,27 +177,24 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                 mTemplateAdapter.notifyDataSetChanged(templates,select_id);
                 art_info_web.loadUrl("javascript:emptyAdTemplate()");
                 art_info_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
-                to_bottom.setVisibility(View.VISIBLE);
-                menu_layout.setVisibility(View.GONE);
+                showOrNot();
             }
         });
 
-        article_info.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        new ScreenUtil(this).observeInputlayout(article_info, new ScreenUtil.OnInputActionListener() {
             @Override
-            public void onGlobalLayout() {
-                int heightDiff = article_info.getRootView().getHeight() - article_info.getHeight();
-                // 大于100像素，是打开的情况
-                if (heightDiff > 100) {
-                    // 如果已经打开软键盘，就不理会
-                    if (keyBoardShown) { return; }
-                    keyBoardShown = true;
+            public void onOpen() {
+                //键盘弹出
+                if (keyBoardShown) { return; }
+                keyBoardShown = true;
 
-                    to_bottom.setVisibility(View.GONE);
-                    menu_layout.setVisibility(View.GONE);
-                    return;
-                }
+                to_bottom.setVisibility(View.GONE);
+                menu_layout.setVisibility(View.GONE);
+            }
 
-                // 软键盘收起的情况
+            @Override
+            public void onClose() {
+                //键盘收起
                 keyBoardShown = false;
             }
         });
@@ -206,6 +206,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                     menu_layout.setVisibility(View.VISIBLE);
                     to_bottom.setVisibility(View.GONE);
                     article_info.invalidate();
+                    if (t > oldt)art_info_web.loadUrl("javascript:scrollToEnd()");
                 }
             }
 
@@ -291,7 +292,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setDefaultTextEncodingName("UTF-8");
-        art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=2.0");
+        art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=3.0");
         art_info_web.addJavascriptInterface(ArticleInfoActivity.this, "android");
 
         Bundle bundle = getIntent().getExtras();
@@ -308,9 +309,10 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         art_info_web.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress == 100)
+                if (newProgress == 100){
                     art_info_web.loadUrl("javascript:setTitleHTML('" + article.title + "')");
-                art_info_web.loadUrl("javascript:setHTML('" + str + "')");
+                    art_info_web.loadUrl("javascript:setHTML('" + str + "')");
+                }
             }
         });
     }

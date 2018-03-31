@@ -16,16 +16,26 @@
         <TextView
             style="@style/text_title"
             android:layout_centerInParent="true"
-            android:text="公众号授权"/>
+            android:text="公众号授权" />
 
     </RelativeLayout>
 
-    <View
-        style="@style/horizontal_line"/>
+    <View style="@style/horizontal_line" />
 
-    <WebView
-        android:id="@+id/authorize_wechat"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <WebView
+                android:id="@+id/authorize_wechat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </HorizontalScrollView>
 </LinearLayout>
