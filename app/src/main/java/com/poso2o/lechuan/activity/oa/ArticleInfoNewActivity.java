@@ -192,9 +192,9 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
                 float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
                 //WebView的现高度
                 float webViewCurrentHeight = (art_info_web.getHeight() + srcollView.getScrollY());
-//                Log.v("cbf", "w-y = " + (webViewContentHeight - srcollView.getScrollY()));
-                if (Build.VERSION.SDK_INT > 23) {
-                    if (webViewContentHeight - srcollView.getScrollY() < 1710) {
+                Log.v("cbf", "w-y = " + (webViewContentHeight - srcollView.getScrollY()));
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (webViewContentHeight - srcollView.getScrollY() < 1730) {
                         ll_bottom.setVisibility(View.VISIBLE);
                     } else {
                         ll_bottom.setVisibility(View.GONE);

@@ -171,15 +171,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                     tvName.setText("全部(" + data.size() + ")");
                     tv_order_sell_many_total.setText(paperBean.getTotal().getTotalnums());
                     tv_order_zm_total.setText(paperBean.getTotal().getTotalamounts());
-                    adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
-                        @Override
-                        public void onItemClickListener(View view, int position) {
-                            OrderInfoPaperBean.DataBean dataBean = data.get(position);
-                            OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(activity);
-                            dialog.show();
-                            dialog.setData(dataBean.getGuid(), "", type);
-                        }
-                    });
+                    setItemClick(data);
                 }
 
             }
@@ -254,6 +246,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                         return sort1 - sort2;
                     }
                 });
+                setItemClick(data);
             } else if (ivsort.getId() == R.id.iv_zcb_sort) {
                 iv_zcb_sort.setImageResource(R.mipmap.home_hand_up);
                 tv_zcb_meny.setTextColor(getResources().getColor(R.color.color_00BCB4));
@@ -267,6 +260,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                     }
                 });
             }
+            setItemClick(data);
             adapter.setData(data);
             IV_PAPER = true;
         } else if (IV_PAPER) {
@@ -288,6 +282,7 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                         return (int) (sort2 - sort1);
                     }
                 });
+                setItemClick(data);
                 adapter.updateSorttView(data);
             }
 
@@ -347,6 +342,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 tv_order_zm_total.setText(infoPaperBean.getTotal().getTotalamounts());
             }*/
             }
+            List<OrderInfoPaperBean.DataBean> finalNewlists = newlists;
+            setItemClick(finalNewlists);
             // 不管怎么样都要刷新
             adapter.updateSearchListView(newlists);
         }
@@ -409,8 +406,22 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 }
             }
         }
+        List<OrderInfoPaperBean.DataBean> finalSearchlists = searchlists;
+        setItemClick(finalSearchlists);
         // 不管怎么样都要刷新
         adapter.updateSearchListView(searchlists);
+    }
+
+    private void setItemClick(final List<OrderInfoPaperBean.DataBean> finalSearchlists) {
+        adapter.setOnItemClickListener(new OrderInfoPaperAdapter.RecyclerViewOnItemClickListener() {
+            @Override
+            public void onItemClickListener(View view, int position) {
+                OrderInfoPaperBean.DataBean dataBean = finalSearchlists.get(position);
+                OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(activity);
+                dialog.show();
+                dialog.setData(dataBean.getGuid(), "", type);
+            }
+        });
     }
 
     /**
