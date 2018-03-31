@@ -1,6 +1,7 @@
 package com.poso2o.lechuan.view;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -47,5 +48,9 @@ public class MyScrollView extends ScrollView {
             }
             return false;
         }
+    }
+    @Override
+    protected int computeScrollDeltaToGetChildRectOnScreen(Rect rect) {
+        return 0;
     }
 }

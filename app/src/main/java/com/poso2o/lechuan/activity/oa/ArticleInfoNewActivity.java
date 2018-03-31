@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -91,7 +92,7 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
     //添加发布
     private TextView add_publish;
     //悬浮按钮
-    private TextView show_menu;
+    private ImageView show_menu;
 
 
     private ADTemplateAdapter mTemplateAdapter;
@@ -162,6 +163,7 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
+        ll_bottom.setVisibility(View.GONE);
         initArtDetail();
         getMyTemplateGroups();
     }
@@ -190,9 +192,9 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
                 float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
                 //WebView的现高度
                 float webViewCurrentHeight = (art_info_web.getHeight() + srcollView.getScrollY());
-                Log.v("cbf", "w-y = " + (webViewContentHeight - srcollView.getScrollY()));
+//                Log.v("cbf", "w-y = " + (webViewContentHeight - srcollView.getScrollY()));
                 if (Build.VERSION.SDK_INT > 23) {
-                    if (webViewContentHeight - srcollView.getScrollY() <= 1710) {
+                    if (webViewContentHeight - srcollView.getScrollY() < 1710) {
                         ll_bottom.setVisibility(View.VISIBLE);
                     } else {
                         ll_bottom.setVisibility(View.GONE);
@@ -209,7 +211,6 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
 
             }
         });
-
         mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>() {
             @Override
             public void onItemClick(TemplateBean item) {
@@ -269,20 +270,40 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.show_menu:
                 show_menu.setVisibility(View.GONE);
-                ll_bottom.requestFocus();
-                srcollView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //自动滑到底部
-                        srcollView.fullScroll(ScrollView.FOCUS_DOWN);
-                    }
-                });
-//                float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
-//                Log.v("cbf", "count = " + ((int) webViewContentHeight + 850));
-//                srcollView.scrollTo(0, ((int) webViewContentHeight + 850));
+                setScrollviewListener();
                 ll_bottom.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    /**
+     * 注意事项:  z这里不能使用对象树的形式 不然当点击屏幕按钮也会下滑到最底下 但是
+     * 当你下次上滑时，会出现滑不上来情况,这是因为这是的焦点在列表这里，而webView没有获取到焦点
+     * 当然也可以上滑  不过要再屏幕的中上方
+     * 第二种情况就是使用 srcollView.fullScroll(ScrollView.FOCUS_DOWN);也是可以实现 ，但要同时点击屏幕按钮两次才会出现列表界面
+     * 第三种情况当然就是使用滑动的位置来做处理 srcollView.scrollTo(x,y)这里时根据网页界面的高度来做处理最后在后面补个值  大于当前
+     * 网页高度就行
+     */
+    private void setScrollviewListener() {
+        //这种方法有问题当滑到底部 上滑时会回滚
+             /*   srcollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        srcollView.post(new Runnable() {
+                            public void run() {
+                                srcollView.fullScroll(View.FOCUS_DOWN);
+                            }
+                        });
+                    }
+                });*/
+        final float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                srcollView.scrollTo(0, ((int) webViewContentHeight + 50));
+//                        srcollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 
     @Override

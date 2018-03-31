@@ -50,10 +50,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:descendantFocusability="blocksDescendants"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:layout_height="match_parent">
 
                 <com.poso2o.lechuan.view.MyWebView
                     android:id="@+id/art_info_web"
@@ -67,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/art_info_web"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:id="@+id/menu_layout"
@@ -167,6 +164,7 @@
 
                     </LinearLayout>
                 </LinearLayout>
+
             </RelativeLayout>
 
 
@@ -174,17 +172,17 @@
     </LinearLayout>
 
 
-    <TextView
+    <ImageView
         android:id="@+id/show_menu"
         android:layout_width="50dp"
         android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginRight="20dp"
-        android:background="#55000000"
+        android:clickable="true"
         android:gravity="center"
-        android:text="点我"
-        android:textColor="@android:color/white" />
+        android:src="@mipmap/icon_to_bottom"
+         />
 
 </RelativeLayout>
