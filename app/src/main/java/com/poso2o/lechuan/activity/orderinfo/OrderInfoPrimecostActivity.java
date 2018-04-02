@@ -150,21 +150,27 @@ public class OrderInfoPrimecostActivity extends BaseActivity implements View.OnC
                     spend += Double.parseDouble(list.get(i).getSales_amount());
                     fprice += Double.parseDouble(list.get(i).getDel_amount());
                 }
-                BigDecimal bg = new BigDecimal(profit);
-                BigDecimal bg2 = new BigDecimal(income);
-                BigDecimal bg3 = new BigDecimal(spend);
-                double value = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                double value2 = bg2.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                double value3 = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
                 String fprices = df.format(fprice);
+                String profits = df.format(profit);
+                String incomes = df.format(income);
+                String spends = df.format(spend);
                 if (fprice == 0.0) {
                     tv_shouc.setText("0.00");
                 } else
                     tv_shouc.setText(fprices + "");
-                tv_qchu.setText(value3 + "");
-                tv_kc.setText(value2 + "");
-                tv_price.setText(value + "");
+                if (spend == 0.0) {
+                    tv_qchu.setText("0.00");
+                } else
+                    tv_qchu.setText(spends + "");
+                if (income == 0.0) {
+                    tv_kc.setText("0.00");
+                } else
+                    tv_kc.setText(incomes + "");
+                if (profit == 0.0) {
+                    tv_price.setText("0.00");
+                } else
+                    tv_price.setText(profits + "");
                 tv_qchu.setTextColor(getResources().getColor(R.color.color_FF6537));
                 tv_shouc.setTextColor(getResources().getColor(R.color.color_FF6537));
                 tv_kc.setTextColor(getResources().getColor(R.color.color_FF6537));
