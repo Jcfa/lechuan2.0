@@ -56,6 +56,7 @@ import com.poso2o.lechuan.util.UploadImageAsyncTask;
 import java.io.File;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by mr zhang on 2018/3/27.
@@ -293,7 +294,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setDefaultTextEncodingName("UTF-8");
-        art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=3.0");
+        art_info_web.loadUrl("http://wechat.poso2o.com/editor/?v=" + new Random().nextInt(10) + ".0");
         art_info_web.addJavascriptInterface(ArticleInfoActivity.this, "android");
 
         Bundle bundle = getIntent().getExtras();
@@ -311,11 +312,12 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100){
+                    art_info_web.loadUrl("javascript:emptyHtml()");
                     art_info_web.loadUrl("javascript:setTitleHTML('" + article.title + "')");
                     art_info_web.loadUrl("javascript:setHTML('" + str + "')");
-                    float h = view.getContentHeight()*view.getScale();
-                    Print.println("各高度：" + h + " : " + view.getContentHeight() + " : " + view.getScale());
-                    if (h == 0){
+                    float h = view.getContentHeight()*view.getScale() - art_info_web.getHeight();
+                    Print.println("各高度：" + h + " : " + view.getContentHeight() + " : " + view.getScale() + " : " + getWindow().getDecorView().getDisplay().getHeight());
+                    if (h < 100){
                         to_bottom.setVisibility(View.GONE);
                         menu_layout.setVisibility(View.VISIBLE);
                     }else {
