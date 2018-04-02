@@ -279,6 +279,7 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
         if (art_info_web != null){
             art_info_web.loadDataWithBaseURL(null,"","text/html","uft-8",null);
             art_info_web.clearHistory();
+            art_info_web.clearCache(true);
             ((ViewGroup)art_info_web.getParent()).removeView(art_info_web);
             art_info_web.destroy();
             art_info_web = null;
@@ -312,6 +313,15 @@ public class ArticleInfoActivity extends BaseActivity implements View.OnClickLis
                 if (newProgress == 100){
                     art_info_web.loadUrl("javascript:setTitleHTML('" + article.title + "')");
                     art_info_web.loadUrl("javascript:setHTML('" + str + "')");
+                    float h = view.getContentHeight()*view.getScale();
+                    Print.println("各高度：" + h + " : " + view.getContentHeight() + " : " + view.getScale());
+                    if (h == 0){
+                        to_bottom.setVisibility(View.GONE);
+                        menu_layout.setVisibility(View.VISIBLE);
+                    }else {
+                        to_bottom.setVisibility(View.VISIBLE);
+                        menu_layout.setVisibility(View.GONE);
+                    }
                 }
             }
         });

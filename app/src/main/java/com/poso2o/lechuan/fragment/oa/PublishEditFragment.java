@@ -178,9 +178,9 @@ public class PublishEditFragment extends BaseFragment implements OAPublishEditAd
     @Override
     public void onItemClick(int position, Article article) {
         Intent intent = new Intent();
-//        intent.setClass(getContext(), ArticleInfoActivity.class);
+        intent.setClass(getContext(), ArticleInfoActivity.class);
 
-        intent.setClass(getContext(), ArticleInfoNewActivity.class);
+//        intent.setClass(getContext(), ArticleInfoNewActivity.class);
 
         intent.putExtra(ArticleAdActivity.ART_DATA,article);
         intent.putExtra(ArticleAdActivity.FROM_PUBLISH_LIST,true);

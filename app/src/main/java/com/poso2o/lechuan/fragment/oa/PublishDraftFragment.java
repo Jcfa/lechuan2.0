@@ -86,9 +86,9 @@ public class PublishDraftFragment extends BaseFragment implements SwipeRefreshLa
             @Override
             public void onItemClick(RenewalsBean item) {
                 Intent intent = new Intent();
-//                intent.setClass(getContext(), ArticleInfoActivity.class);
+                intent.setClass(getContext(), ArticleInfoActivity.class);
 
-                intent.setClass(getContext(), ArticleInfoNewActivity.class);
+//                intent.setClass(getContext(), ArticleInfoNewActivity.class);
                 intent.putExtra(ArticleAdActivity.ART_DATA,item.articles);
                 intent.putExtra(ArticleAdActivity.RENEWALS_ID,item.news_id);
                 startActivity(intent);

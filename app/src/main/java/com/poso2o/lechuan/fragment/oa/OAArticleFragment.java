@@ -141,9 +141,9 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
                 if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
-//                intent.setClass(getContext(),ArticleInfoActivity.class);
+                intent.setClass(getContext(),ArticleInfoActivity.class);
 
-                intent.setClass(getContext(),ArticleInfoNewActivity.class);
+//                intent.setClass(getContext(),ArticleInfoNewActivity.class);
                 startActivity(intent);
             }
         });
@@ -155,9 +155,9 @@ public class OAArticleFragment extends BaseFragment implements View.OnClickListe
                 if (article == null) article = (Article) item;
                 Intent intent = new Intent();
                 intent.putExtra(ArticleAdActivity.ART_DATA,article);
-//                intent.setClass(getContext(),ArticleInfoActivity.class);
+                intent.setClass(getContext(),ArticleInfoActivity.class);
 
-                intent.setClass(getContext(),ArticleInfoNewActivity.class);
+//                intent.setClass(getContext(),ArticleInfoNewActivity.class);
                 startActivity(intent);
             }
         });
