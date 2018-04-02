@@ -262,6 +262,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
             }
             setItemClick(data);
             adapter.setData(data);
+            tv_order_sell_many_total.setText(infoPaperBean.getTotal().getTotalnums());
+            tv_order_zm_total.setText(infoPaperBean.getTotal().getTotalamounts());
             IV_PAPER = true;
         } else if (IV_PAPER) {
             if (ivsort.getId() == R.id.iv_kc_sort) {
@@ -284,6 +286,8 @@ public class OrderInfoPaperActivity extends BaseActivity implements View.OnClick
                 });
                 setItemClick(data);
                 adapter.updateSorttView(data);
+                tv_order_sell_many_total.setText(infoPaperBean.getTotal().getTotalnums());
+                tv_order_zm_total.setText(infoPaperBean.getTotal().getTotalamounts());
             }
 
             IV_PAPER = false;

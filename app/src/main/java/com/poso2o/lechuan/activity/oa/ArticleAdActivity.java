@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
@@ -173,12 +174,12 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         mTemplateAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener<TemplateBean>() {
             @Override
             public void onItemClick(TemplateBean item) {
-                if (select_id.equals(item.template_id))return;
+                if (select_id.equals(item.template_id)) return;
                 ad_model_name.setText(item.template_name);
                 String str = item.content;
                 select_id = item.template_id;
                 select_name = item.template_name;
-                mTemplateAdapter.notifyDataSetChanged(templates,select_id);
+                mTemplateAdapter.notifyDataSetChanged(templates, select_id);
                 art_detail_web.loadUrl("javascript:emptyAdTemplate()");
                 art_detail_web.loadUrl("javascript:appendBase64HTML('" + str + "')");
             }
@@ -194,7 +195,6 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                 }
             }
         });
-
     }
 
     @Override
@@ -261,7 +261,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
         from_publish = !(ArticleDataManager.getInstance().findSelectData(article) == null);
         if (from_publish) add_to_publish.setText("保存");
         if (TextUtil.isNotEmpty(renewals_id)) add_to_renewals.setText("保存草稿");
-        if (TextUtil.isNotEmpty(article.ad_name))ad_model_name.setText(article.ad_name);
+        if (TextUtil.isNotEmpty(article.ad_name)) ad_model_name.setText(article.ad_name);
         final String str = article.content;
         art_detail_web.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -292,14 +292,14 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
 
     //删除广告模板回调
     @JavascriptInterface
-    public void callDelClick(){
+    public void callDelClick() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 select_id = "";
                 select_name = "";
                 ad_model_name.setText("请选择模板");
-                mTemplateAdapter.notifyDataSetChanged(templates,select_id);
+                mTemplateAdapter.notifyDataSetChanged(templates, select_id);
             }
         });
     }
@@ -454,7 +454,7 @@ public class ArticleAdActivity extends BaseActivity implements View.OnClickListe
                     for (TemplateGroup templateGroup : templatesGroup) {
                         templates.addAll(templateGroup.templates);
                     }
-                    mTemplateAdapter.notifyDataSetChanged(templates,article.ad_id);
+                    mTemplateAdapter.notifyDataSetChanged(templates, article.ad_id);
                 }
             }
 

@@ -1,5 +1,6 @@
 package com.poso2o.lechuan.orderInfoAdapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.poso2o.lechuan.R;
 import com.poso2o.lechuan.bean.orderInfo.OrderInfoMemberBean;
+import com.poso2o.lechuan.dialog.OrderPaperDetailDialog;
 
 import java.util.List;
 
@@ -19,9 +21,13 @@ import java.util.List;
 public class OrderInfoMemberAdapter extends RecyclerView.Adapter<OrderInfoMemberAdapter.Vholder> implements View.OnClickListener {
     public List<OrderInfoMemberBean.DataBean> list;
     private RecyclerViewOnItemClickListener onItemClickListener;
+    private Context context;
+    private int type;
 
-    public OrderInfoMemberAdapter(List<OrderInfoMemberBean.DataBean> data) {
+    public OrderInfoMemberAdapter(List<OrderInfoMemberBean.DataBean> data, Context context, int type) {
         this.list = data;
+        this.context = context;
+        this.type = type;
         notifyDataSetChanged();
     }
 
@@ -66,14 +72,22 @@ public class OrderInfoMemberAdapter extends RecyclerView.Adapter<OrderInfoMember
 
 
     @Override
-    public void onBindViewHolder(OrderInfoMemberAdapter.Vholder holder, int position) {
-        OrderInfoMemberBean.DataBean dataBean = list.get(position);
+    public void onBindViewHolder(OrderInfoMemberAdapter.Vholder holder, final int position) {
+        final OrderInfoMemberBean.DataBean dataBean = list.get(position);
         holder.tvXuhao.setText(dataBean.getNick());
         holder.tvName.setText(dataBean.getOrdernum());
         holder.tvCjs.setText(dataBean.getOrderamount());
         holder.tvCje.setText(dataBean.getAmounts());
         holder.tvYe.setText(dataBean.getPoints());//积分
-        holder.itemView.setTag(position);
+//        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(context);
+                dialog.show();
+                dialog.setData(list.get(position).getUid(), "", type);
+            }
+        });
 
     }
 

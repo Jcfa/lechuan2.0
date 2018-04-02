@@ -166,6 +166,15 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
         ll_bottom.setVisibility(View.GONE);
         initArtDetail();
         getMyTemplateGroups();
+        //WebView的总高度
+        float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
+        //WebView的现高度
+        float webViewCurrentHeight = (art_info_web.getHeight() + srcollView.getScrollY());
+        if (webViewContentHeight == webViewCurrentHeight) {
+            ll_bottom.setVisibility(View.VISIBLE);
+        } else {
+            ll_bottom.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -192,6 +201,11 @@ public class ArticleInfoNewActivity extends BaseActivity implements View.OnClick
                 float webViewContentHeight = art_info_web.getContentHeight() * art_info_web.getScale();
                 //WebView的现高度
                 float webViewCurrentHeight = (art_info_web.getHeight() + srcollView.getScrollY());
+                if (webViewContentHeight == webViewCurrentHeight) {
+                    ll_bottom.setVisibility(View.VISIBLE);
+                } else {
+                    ll_bottom.setVisibility(View.GONE);
+                }
                 Log.v("cbf", "w-y = " + (webViewContentHeight - srcollView.getScrollY()));
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (webViewContentHeight - srcollView.getScrollY() < 1730) {

@@ -13,6 +13,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="女装(10)"
+        android:maxLength="10"
         android:textColor="@color/textBlack"
         android:textSize="14dp" />
 

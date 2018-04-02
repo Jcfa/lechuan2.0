@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/art_info_web"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:id="@+id/menu_layout"

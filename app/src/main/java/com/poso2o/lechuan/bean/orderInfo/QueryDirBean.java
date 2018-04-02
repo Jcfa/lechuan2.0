@@ -60,6 +60,10 @@ public class QueryDirBean {
         }
 
         public String getDirectory() {
+            if (directory.length() >= 5) {
+                String sub = directory.substring(0, 6);
+                return sub;
+            }
             return directory;
         }
 

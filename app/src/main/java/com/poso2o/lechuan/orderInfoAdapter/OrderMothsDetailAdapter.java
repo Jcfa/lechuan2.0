@@ -38,18 +38,36 @@ public class OrderMothsDetailAdapter extends RecyclerView.Adapter<OrderMothsDeta
     public void onBindViewHolder(OrderMothsDetailAdapter.Vholder holder, int position) {
         OrderMothsDetailBean.ListBean listsBean = data.get(position);
         holder.tvSpg.setText(listsBean.getCreate_date());
-        holder.tvQchu.setText(listsBean.getSales_amount());
+        java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+        BigDecimal sales = new BigDecimal(Double.parseDouble(listsBean.getSales_amount()));
+        double income = sales.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        String icomes = df.format(income);
+        if (income == 0.0) {
+            holder.tvQchu.setText("0.00");
+        } else
+            holder.tvQchu.setText(icomes);
         String delAmount = listsBean.getDel_amount();
         BigDecimal bg3 = new BigDecimal(Double.parseDouble(delAmount));
         double value = bg3.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
+
         String format = df.format(value);
         if (value == 0.0) {
             holder.tvShouc.setText("0.00");
         } else
             holder.tvShouc.setText(format);
-        holder.tvKc.setText(listsBean.getPrimecost_amount());
-        holder.tvPrice.setText(listsBean.getClear_profit());
+        BigDecimal primcost = new BigDecimal(Double.parseDouble(listsBean.getPrimecost_amount()));
+        double cost = primcost.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        String costs = df.format(cost);
+        if (cost == 0.0) {
+            holder.tvKc.setText("0.00");
+        } else
+            holder.tvKc.setText(costs);
+        double profit = new BigDecimal(listsBean.getClear_profit()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        String profits = df.format(profit);
+        if (profit == 0.0) {
+            holder.tvPrice.setText("0.00");
+        } else
+            holder.tvPrice.setText(profits);
         holder.tvQchu.setVisibility(View.VISIBLE);
 
 

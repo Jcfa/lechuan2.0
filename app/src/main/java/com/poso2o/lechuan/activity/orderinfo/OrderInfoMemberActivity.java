@@ -125,16 +125,9 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
             public void onResult(int tag, OrderInfoMemberBean infoMemberBean) {
                 dismissLoading();
                 data = infoMemberBean.getData();
-                adapter = new OrderInfoMemberAdapter(data);
+                adapter = new OrderInfoMemberAdapter(data, activity, type);
                 rlv.setAdapter(adapter);
-                adapter.setOnItemClickListener(new OrderInfoMemberAdapter.RecyclerViewOnItemClickListener() {
-                    @Override
-                    public void onItemClickListener(View view, int position) {
-                        OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(activity);
-                        dialog.show();
-                        dialog.setData(data.get(position).getUid(), "", type);
-                    }
-                });
+//                paperDialog(data);
             }
 
             @Override
@@ -142,6 +135,17 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
                 dismissLoading();
                 iv_default_null.setVisibility(View.VISIBLE);
                 rlv.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void paperDialog(final List<OrderInfoMemberBean.DataBean> data) {
+        adapter.setOnItemClickListener(new OrderInfoMemberAdapter.RecyclerViewOnItemClickListener() {
+            @Override
+            public void onItemClickListener(View view, int position) {
+                OrderPaperDetailDialog dialog = new OrderPaperDetailDialog(activity);
+                dialog.show();
+                dialog.setData(data.get(position).getUid(), "", type);
             }
         });
     }
@@ -347,6 +351,7 @@ public class OrderInfoMemberActivity extends BaseActivity implements View.OnClic
                 }
             }
         }
+//        paperDialog(list);
         adapter.updateMemberView(list);
 
     }
